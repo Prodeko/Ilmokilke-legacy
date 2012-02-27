@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="app"/>
+	<buildpathentry kind="src" path="src/Acme/DemoBundle"/>
+	<buildpathentry kind="src" path="vendor/assetic/src"/>
+	<buildpathentry kind="src" path="vendor/assetic/tests"/>
+	<buildpathentry kind="src" path="vendor/bundles/Doctrine/Bundle/DoctrineBundle"/>
+	<buildpathentry kind="src" path="vendor/bundles/JMS/AopBundle"/>
+	<buildpathentry kind="src" path="vendor/bundles/JMS/DiExtraBundle"/>
+	<buildpathentry kind="src" path="vendor/bundles/JMS/SecurityExtraBundle"/>
+	<buildpathentry kind="src" path="vendor/bundles/Sensio/Bundle/DistributionBundle"/>
+	<buildpathentry kind="src" path="vendor/bundles/Sensio/Bundle/FrameworkExtraBundle"/>
+	<buildpathentry kind="src" path="vendor/bundles/Sensio/Bundle/GeneratorBundle"/>
+	<buildpathentry kind="src" path="vendor/bundles/Symfony/Bundle/AsseticBundle"/>
+	<buildpathentry kind="src" path="vendor/bundles/Symfony/Bundle/MonologBundle"/>
+	<buildpathentry kind="src" path="vendor/bundles/Symfony/Bundle/SwiftmailerBundle"/>
+	<buildpathentry kind="src" path="vendor/cg-library/src/CG"/>
+	<buildpathentry kind="src" path="vendor/cg-library/tests"/>
+	<buildpathentry kind="src" path="vendor/doctrine-common/lib/Doctrine/Common"/>
+	<buildpathentry kind="src" path="vendor/doctrine-dbal/lib/Doctrine/DBAL"/>
+	<buildpathentry kind="src" path="vendor/doctrine/lib/Doctrine/ORM"/>
+	<buildpathentry kind="src" path="vendor/metadata/src/Metadata"/>
+	<buildpathentry kind="src" path="vendor/monolog/src/Monolog"/>
+	<buildpathentry kind="src" path="vendor/swiftmailer/lib"/>
+	<buildpathentry kind="src" path="vendor/symfony"/>
+	<buildpathentry kind="src" path="vendor/twig-extensions/lib/Twig/Extensions"/>
+	<buildpathentry kind="src" path="vendor/twig/lib/Twig"/>
+	<buildpathentry kind="src" path="web"/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+</buildpath>
