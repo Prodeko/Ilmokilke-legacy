@@ -1,4 +1,4 @@
-Prodeko\IlmoBundle\Entity\Event:
+Prodeko\IlmoBundle\Entity\Tapahtuma:
   type: entity
   table: null
   fields:
@@ -9,11 +9,13 @@ Prodeko\IlmoBundle\Entity\Event:
         strategy: AUTO
     name:
       type: string
-      length: '255'
+      length: 255
     description:
       type: text
-      length: null
-    short_description:
-      type: text
-      length: null
+    takes_place:
+      type: datetime
+    registration_starts:
+      type: datetime
+    registration_ends:
+      type: datetime
   lifecycleCallbacks: {  }
