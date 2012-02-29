@@ -1,0 +1,5 @@
+.settings
+.project
+app/logs
+app/cache
+vendor/

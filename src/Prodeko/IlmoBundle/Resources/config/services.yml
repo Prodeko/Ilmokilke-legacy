@@ -1,0 +1,7 @@
+parameters:
+#    prodeko_ilmo.example.class: Prodeko\IlmoBundle\Example
+
+services:
+#    prodeko_ilmo.example:
+#        class: %prodeko_ilmo.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
