@@ -149,4 +149,33 @@ class Tapahtuma
     {
         return $this->registration_ends;
     }
+    /**
+     * @var Prodeko\IlmoBundle\Entity\Ilmoittautuminen
+     */
+    private $ilmoittautumiset;
+
+    public function __construct()
+    {
+        $this->ilmoittautumiset = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add ilmoittautumiset
+     *
+     * @param Prodeko\IlmoBundle\Entity\Ilmoittautuminen $ilmoittautumiset
+     */
+    public function addIlmoittautuminen(\Prodeko\IlmoBundle\Entity\Ilmoittautuminen $ilmoittautumiset)
+    {
+        $this->ilmoittautumiset[] = $ilmoittautumiset;
+    }
+
+    /**
+     * Get ilmoittautumiset
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getIlmoittautumiset()
+    {
+        return $this->ilmoittautumiset;
+    }
 }
