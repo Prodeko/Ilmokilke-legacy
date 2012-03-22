@@ -1,3 +1,9 @@
-ProdekoIlmoBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ProdekoIlmoBundle:Default:index }
+
+
+list:
+    pattern: /list/
+    defaults: { _controller: ProdekoIlmoBundle:Ilmo:list }
+    
+show:
+    pattern: /show/{tapahtuma}
+    defaults: { _controller: ProdekoIlmoBundle:Ilmo:show }

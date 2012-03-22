@@ -1,3 +1,6 @@
+ProdekoIlmoBundle:
+    resource: "@ProdekoIlmoBundle/Resources/config/routing.yml"
+
 _welcome:
     pattern:  /
     defaults: { _controller: AcmeDemoBundle:Welcome:index }
