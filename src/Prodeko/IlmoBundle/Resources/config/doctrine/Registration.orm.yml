@@ -1,0 +1,12 @@
+Prodeko\IlmoBundle\Entity\Registration:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    registration_time:
+      type: datetime
+  lifecycleCallbacks: {  }

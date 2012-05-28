@@ -1,0 +1,10 @@
+Prodeko\IlmoBundle\Entity\Event:
+  type: entity
+  table: event_table
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+  lifecycleCallbacks: {  }
