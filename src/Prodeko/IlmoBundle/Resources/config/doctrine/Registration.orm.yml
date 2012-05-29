@@ -9,4 +9,12 @@ Prodeko\IlmoBundle\Entity\Registration:
         strategy: AUTO
     registration_time:
       type: datetime
+  manyToOne:
+    person:
+      targetEntity: Person
+      inversedBy: registrations
+  manyToOne:
+    event:
+      targetEntity: Event
+      inversedBy: registrations
   lifecycleCallbacks: {  }

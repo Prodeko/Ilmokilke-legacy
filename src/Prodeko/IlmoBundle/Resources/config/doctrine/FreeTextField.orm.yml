@@ -1,0 +1,18 @@
+Prodeko\IlmoBundle\Entity\FreeTextField:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    name:
+      type: string
+    
+    #this might be unneccessary?
+    description:
+      type: text
+      nullable: TRUE
+      
+  lifecycleCallbacks: {  }

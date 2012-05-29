@@ -1,4 +1,4 @@
-Prodeko\IlmoBundle\Entity\Person:
+Prodeko\IlmoBundle\Entity\MultipleChoiceField:
   type: entity
   table: null
   fields:
@@ -7,9 +7,8 @@ Prodeko\IlmoBundle\Entity\Person:
       id: true
       generator:
         strategy: AUTO
-  oneToMany:
-    registrations:
-      targetEntity: Registration
-      mappedBy: person
-  
+    name:
+      type: string
+    choices:
+      type: array
   lifecycleCallbacks: {  }

@@ -7,4 +7,26 @@ Prodeko\IlmoBundle\Entity\Event:
       id: true
       generator:
         strategy: AUTO
+    takes_place:
+      type: datetime
+    registration_starts:
+      type: datetime
+    registration_ends:
+      type: datetime
+    location:
+      type: string
+      length: 50
+    summary:
+      type: string
+      length: 160
+    description:
+      type: text
+  manyToMany:
+    free_text_fields:
+      targetEntity: FreeTextField
+      
+  oneToMany:
+    registrations:
+      targetEntity: Registration
+      mappedBy: event
   lifecycleCallbacks: {  }
