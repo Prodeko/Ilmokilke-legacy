@@ -15,7 +15,8 @@ class IlmoController extends Controller
 	public function listAction()
 	{
 		//TODO: implement list controller
-		return new Response("Homo");
+		$tapahtuma = array(array('nimi'=>'Ekatapahtuma','aika'=>'Tanaan','kuvaus'=>'Parasta ikina'),array('nimi'=>'Tokatapahtuma','aika'=>'Tanaan','kuvaus'=>'Parasta ikina'),array('nimi'=>'Kolmastapahtuma','aika'=>'Tanaan','kuvaus'=>'Parasta ikina'));
+		return $this->render('ProdekoIlmoBundle:Ilmo:eventlist.html.twig', array('list' => $tapahtuma));
 	}
 	
 	//Näyttää yhden tapahtuman tiedot
@@ -65,3 +66,4 @@ class IlmoController extends Controller
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', array('event' => $event->$getId()));
 	}
 }
+?>
