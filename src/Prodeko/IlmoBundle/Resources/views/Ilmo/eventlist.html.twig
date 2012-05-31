@@ -1,0 +1,32 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+	<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block title %}
+	Vitun ilmokilke
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+		<div class="row">
+			<div class="span9" id="title">
+				<h1>Ilmokilke</h1>
+			</div>
+			<div class="span3">
+				<h3>T&auml;h&auml;n voisi kirjoittaa jotain</h3>
+			</div>
+		</div>
+
+{% for event in list %}
+	<div class="row" id="content">
+			<div class="span6">
+			<h2 rel="popover" data-content="{{ event.kuvaus }}">{{ event.nimi }}</h2>
+			<p>{{ event.aika }}</p>
+			</div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
