@@ -1,5 +1,3 @@
-
-
 list:
     pattern: /list/
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:list }
@@ -7,3 +5,7 @@ list:
 show:
     pattern: /show/{tapahtuma}
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:show }
+
+create:
+    pattern: /create/
+    defaults: { _controller: ProdekoIlmoBundle:Ilmo:createEventForm }
