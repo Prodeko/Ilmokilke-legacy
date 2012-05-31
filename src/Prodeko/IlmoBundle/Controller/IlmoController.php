@@ -116,9 +116,7 @@ class IlmoController extends Controller
 		$em->persist($registration);
 		$em->flush();
 	
-		return $this->render('ProdekoIlmoBundle:Ilmo:createEvent.html.twig', array(
-				'form' => $form->createView(),
-		));
+		return $this->redirect($this->generateUrl('show', array('id' => '1')));
 	
 	
 	}
