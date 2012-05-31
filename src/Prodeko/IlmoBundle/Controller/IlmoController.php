@@ -4,6 +4,8 @@ namespace Prodeko\IlmoBundle\Controller;
 
 use Prodeko\IlmoBundle\Entity\Event;
 
+use Prodeko\IlmoBundle\Entity\Registration;
+
 use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -33,9 +35,9 @@ class IlmoController extends Controller
 			->getRepository('ProdekoIlmoBundle:Registration')
 			->findBy(array('id' => $id));
 		$registration = new Registration();
-		$form = $this->createFormBuilder($event)
-		->add('FirstName', 'text')
-		->add('LastName', 'textarea')
+		$form = $this->createFormBuilder($registration)
+		->add('firstName', 'text')
+		->add('lastName', 'text')
 		->getForm();
 		$variables = array(
 				'eventname' => $event->getName(),
@@ -97,21 +99,17 @@ class IlmoController extends Controller
 	
 	public function createRegistrationAction(Request $r)
 	{
-		$event = new Event();
-		$form = $this->createFormBuilder($event)
-		->add('name', 'text')
-		->add('summary', 'textarea')
-		->add('description', 'textarea')
-		->add('takes_place', "datetime")
-		->add('registration_starts', "datetime")
-		->add('registration_ends', "datetime")
-		->add('location', "text")
+		$registration = new Registration();
+		$form = $this->createFormBuilder($registration)
+		->add('firstName', 'text')
+		->add('lastName', 'text')	
 		->getForm();
 		$form->bindRequest($r);
-		$event = $form->getData();
-	
+		$registration = $form->getData();
+		$time = new \DateTime();
+		$registration->setRegistrationTime($time);
 		$em = $this->getDoctrine()->getEntityManager();
-		$em->persist($event);
+		$em->persist($registration);
 		$em->flush();
 	
 		return $this->render('ProdekoIlmoBundle:Ilmo:createEvent.html.twig', array(
