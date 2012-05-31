@@ -23,10 +23,9 @@ class IlmoController extends Controller
 	}
 	
 	//Näyttää yhden tapahtuman tiedot
-	public function showAction($tapahtuma)
+	public function showAction($id)
 	{
 		//TODO: implement "show event details"-controller
-		$id = $request->query->get('id', '1');
 		$event = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Event')
 			->findOneBy(array('id' => $id));

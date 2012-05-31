@@ -3,7 +3,7 @@ list:
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:list }
     
 show:
-    pattern: /show/{tapahtuma}
+    pattern: /show/{id}
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:show }
 
 create:
