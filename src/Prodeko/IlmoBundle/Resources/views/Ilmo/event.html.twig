@@ -16,9 +16,10 @@
 		</div>
 		<div class="row" id="content">
 			<div class="span12">
-    			<h2>{{ eventname }}</h2>
-    			<p class="time">{{ starttime }}</p>
-    			<p>{{ description }}</p>
+    			<h2 id="eventtitle">{{ eventname }}</h2>
+    			<p id="eventtime">{{ starttime }} - {{ endtime }}</p>
+    			<p id="eventsummary">{{ summary }}</p>
+    			<button id="eventsubscribe" class="btn btn-info">Ilmoittaudu</button>
     		</div>
     	</div>
     	{% include 'ProdekoIlmoBundle:Ilmo:footer.html.twig' %}
