@@ -9,3 +9,8 @@ show:
 create:
     pattern: /create/
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:createEventForm }
+
+createEvent:
+    pattern: /createEvent/
+    defaults: { _controller: ProdekoIlmoBundle:Ilmo:createEvent }
+    

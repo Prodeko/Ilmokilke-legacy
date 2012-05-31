@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block body %}
-<form action="{{ path('create') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('createEvent') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
 
     <input type="submit" />
