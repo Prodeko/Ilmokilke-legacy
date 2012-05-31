@@ -1,11 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block stylesheets %}
-	{% stylesheets
-	    '@ProdekoIlmoBundle/Resources/public/css/bootstrap.css'
-	%}
-	<link rel="stylesheet" href="{{ asset_url }}" />
-	{% endstylesheets %}
+	<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block body %}
