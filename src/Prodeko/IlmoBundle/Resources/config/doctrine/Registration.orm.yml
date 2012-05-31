@@ -15,7 +15,8 @@ Prodeko\IlmoBundle\Entity\Registration:
       type: string
     email:
       type: string
-    
+    allergies:
+      type: string
   manyToOne:
     person:
       targetEntity: Person
