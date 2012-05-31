@@ -1,0 +1,1 @@
+$("#subscriptionmodal").modal();
