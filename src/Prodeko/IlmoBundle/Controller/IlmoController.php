@@ -38,6 +38,8 @@ class IlmoController extends Controller
 		$form = $this->createFormBuilder($registration)
 		->add('firstName', 'text')
 		->add('lastName', 'text')
+		->add('email', 'text')
+		->add('allergies', 'text')
 		->getForm();
 		$variables = array(
 				'eventname' => $event->getName(),
@@ -105,7 +107,9 @@ class IlmoController extends Controller
 		$registration = new Registration();
 		$form = $this->createFormBuilder($registration)
 		->add('firstName', 'text')
-		->add('lastName', 'text')	
+		->add('lastName', 'text')
+		->add('email', 'text')
+		->add('allergies', 'text')
 		->getForm();
 		$form->bindRequest($r);
 		$registration = $form->getData();
