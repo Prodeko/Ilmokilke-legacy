@@ -17,7 +17,7 @@
 		<div class="row" id="content">
 			<div class="span12">
     			<h2 id="eventtitle">{{ eventname }}</h2>
-    			<p id="eventtime">{{ starttime }}</p>
+    			<p id="eventtime">{{ starttime|date("m/d/Y") }}</p>
     			<p id="eventsummary">{{ summary }}</p>
     			<button id="eventsubscribe" class="btn" data-toggle="modal" href="#subscriptionmodal">Ilmoittaudu</button>
     			<!-- Start subscription modal -->
