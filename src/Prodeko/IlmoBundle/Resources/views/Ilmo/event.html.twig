@@ -4,6 +4,22 @@
 	<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
+{% block title %}
+	Vitun ilmokilke
+{% endblock %}
+
 {% block body %}
-    <p>Haista vittu {{ event }}!</p>
+	<div class="container">
+		<div class="row">
+			<div class="span9" id="title">
+				<h1>Ilmokilke</h1>
+			</div>
+			<div class="span3">
+				<h3>T&auml;h&auml;n voisi kirjoittaa jotain</h3>
+			</div>
+		</div>
+		<div class="row" id="content">
+    		<p>Haista vittu {{ event }}!</p>
+    	</div>
+    </div>
 {% endblock %}
