@@ -1,6 +1,7 @@
 <?php 
 namespace Prodeko\IlmoBundle\Controller;
 
+
 use Prodeko\IlmoBundle\Entity\Event;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -39,6 +40,10 @@ class IlmoController extends Controller
 		->add('name', 'text')
 		->add('summary', 'textarea')
 		->add('description', 'textarea')
+		->add('takes_place', "datetime")
+		->add('registration_starts', "datetime")
+		->add('registration_ends', "datetime")
+		->add('location', "text")
 		->getForm();
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:createEvent.html.twig', array(
@@ -49,18 +54,41 @@ class IlmoController extends Controller
 	
 	public function createEventAction(Request $r)
 	{
-		$tapahtuma = new Event();
-		$form = $this->createFormBuilder($tapahtuma)
+		$event = new Event();
+		$form = $this->createFormBuilder($event)
 		->add('name', 'text')
 		->add('summary', 'textarea')
 		->add('description', 'textarea')
+		->add('takes_place', "datetime")
+		->add('registration_starts', "datetime")
+		->add('registration_ends', "datetime")
+		->add('location', "text")
 		->getForm();
-		if ($r->getMethod() == 'POST') {
-			$form->bindRequest($r);
-				return $this->redirect($this->generateUrl('create'));
-			}
-		$tapahtuma->save();
-	}
+        $form->bindRequest($r);
+		$event = $form->getData();
+		
+		$em = $this->getDoctrine()->getEntityManager();
+		$em->persist($event);
+		$em->flush();
+		
+		return $this->render('ProdekoIlmoBundle:Ilmo:createEvent.html.twig', array(
+				'form' => $form->createView(),
+		));
+/*		$name = "lol";//$post_params->get("name");
+		$summary = $post_params->get("summary");
+		$description = $post_params->get("description");
+		$event = new Event();
+		
+		$event->setName($name);
+		$event->setSummary($summary);
+		$event->setDescription($description);
+		
+		$em = $this->getDoctrine()->getEntityManager();
+		$em->persist($event);
+		$em->flush();
+		
+		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', array('event' => $event->$getId()));
+*/	}
 	
 }
 ?>
