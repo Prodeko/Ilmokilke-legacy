@@ -31,7 +31,7 @@ class IlmoController extends Controller
 			->getRepository('ProdekoIlmoBundle:Event')
 			->findOneBy(array('id' => $id));
 		$registrations = $this->getDoctrine()
-			->getRepository('ProdekoIlmomBundle:Registration')
+			->getRepository('ProdekoIlmoBundle:Registration')
 			->findBy(array('event_id' => $id));
 		$variables = array(
 				'eventname' => $event->getName(),
