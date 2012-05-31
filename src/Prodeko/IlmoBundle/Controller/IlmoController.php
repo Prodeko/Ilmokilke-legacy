@@ -32,6 +32,11 @@ class IlmoController extends Controller
 		$registrations = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Registration')
 			->findBy(array('id' => $id));
+		$registration = new Registration();
+		$form = $this->createFormBuilder($event)
+		->add('FirstName', 'text')
+		->add('LastName', 'textarea')
+		->getForm();
 		$variables = array(
 				'eventname' => $event->getName(),
 				'description' => $event->getDescription(),
@@ -40,8 +45,10 @@ class IlmoController extends Controller
 				'registration_ends' => $event->getRegistrationEnds(),
 				'location' => $event->getLocation(),
 				'summary' => $event->getSummary(),
-				'registrations' => $registrations
+				'registrations' => $registrations,
+				'form' => $form->createView()
 				);											//Osallistujat
+		
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);
 	}
 	
@@ -67,6 +74,29 @@ class IlmoController extends Controller
 	
 	public function createEventAction(Request $r)
 	{
+		$registration = new Registration();
+		$form = $this->createFormBuilder($registration)
+		->add('firstname', 'text')
+		->add('lastsummary', 'text')
+		->getForm();
+        $form->bindRequest($r);
+		$registration = $form->getData();
+		
+		$em = $this->getDoctrine()->getEntityManager();
+		$em->persist($event);
+		$em->flush();
+		
+		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', array(
+				'form' => $form->createView(),
+		));
+
+
+	}
+
+	
+	
+	public function createRegistrationAction(Request $r)
+	{
 		$event = new Event();
 		$form = $this->createFormBuilder($event)
 		->add('name', 'text')
@@ -77,18 +107,18 @@ class IlmoController extends Controller
 		->add('registration_ends', "datetime")
 		->add('location', "text")
 		->getForm();
-        $form->bindRequest($r);
+		$form->bindRequest($r);
 		$event = $form->getData();
-		
+	
 		$em = $this->getDoctrine()->getEntityManager();
 		$em->persist($event);
 		$em->flush();
-		
+	
 		return $this->render('ProdekoIlmoBundle:Ilmo:createEvent.html.twig', array(
 				'form' => $form->createView(),
 		));
-
-
+	
+	
 	}
 }
 ?>
