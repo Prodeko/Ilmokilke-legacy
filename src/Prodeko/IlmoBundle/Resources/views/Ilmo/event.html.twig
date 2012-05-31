@@ -17,7 +17,7 @@
 		<div class="row" id="content">
 			<div class="span12">
     			<h2 id="eventtitle">{{ eventname }}</h2>
-    			<p id="eventtime">{{ starttime }} - {{ endtime }}</p>
+    			<p id="eventtime">{{ starttime|date("m/d/Y") }}</p>
     			<p id="eventsummary">{{ summary }}</p>
     			<button id="eventsubscribe" class="btn btn-info">Ilmoittaudu</button>
     		</div>
