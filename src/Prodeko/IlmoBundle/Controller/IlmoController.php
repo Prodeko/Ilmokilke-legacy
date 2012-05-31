@@ -40,6 +40,10 @@ class IlmoController extends Controller
 		->add('name', 'text')
 		->add('summary', 'textarea')
 		->add('description', 'textarea')
+		->add('takes_place', "datetime")
+		->add('registration_starts', "datetime")
+		->add('registration_ends', "datetime")
+		->add('location', "text")
 		->getForm();
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:createEvent.html.twig', array(
@@ -55,6 +59,10 @@ class IlmoController extends Controller
 		->add('name', 'text')
 		->add('summary', 'textarea')
 		->add('description', 'textarea')
+		->add('takes_place', "datetime")
+		->add('registration_starts', "datetime")
+		->add('registration_ends', "datetime")
+		->add('location', "text")
 		->getForm();
         $form->bindRequest($r);
 		$event = $form->getData();
