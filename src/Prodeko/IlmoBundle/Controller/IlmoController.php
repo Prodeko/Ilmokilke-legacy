@@ -17,9 +17,9 @@ class IlmoController extends Controller
 	{
 		//TODO: implement list controller
 		$repository = $this->getDoctrine()->getRepository('ProdekoIlmoBundle:Event');
-		$list = $repository->findAll();
+		$events = $repository->findAll();
 		
-		return $this->render('ProdekoIlmoBundle:Ilmo:eventlist.html.twig', $list);
+		return $this->render('ProdekoIlmoBundle:Ilmo:eventlist.html.twig', array('list' => $events));
 	}
 	
 	//Näyttää yhden tapahtuman tiedot
