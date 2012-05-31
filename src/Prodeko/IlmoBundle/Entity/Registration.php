@@ -253,4 +253,10 @@ class Registration
     {
         return $this->freeTextEntries;
     }
+    /**
+     * @var datetime $registrationTime
+     */
+    private $registrationTime;
+
+
 }

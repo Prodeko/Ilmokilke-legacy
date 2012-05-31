@@ -253,4 +253,25 @@ class Event
     {
         return $this->name;
     }
+    /**
+     * @var datetime $takesPlace
+     */
+    private $takesPlace;
+
+    /**
+     * @var datetime $registrationStarts
+     */
+    private $registrationStarts;
+
+    /**
+     * @var datetime $registrationEnds
+     */
+    private $registrationEnds;
+
+    /**
+     * @var Prodeko\IlmoBundle\Entity\FreeTextField
+     */
+    private $freeTextFields;
+
+
 }

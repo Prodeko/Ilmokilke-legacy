@@ -9,13 +9,13 @@ Prodeko\IlmoBundle\Entity\Event:
         strategy: AUTO
     name:
       type: string
-    takes_place:
+    takesPlace:
       type: datetime
       nullable: true
-    registration_starts:
+    registrationStarts:
       type: datetime
       nullable: true
-    registration_ends:
+    registrationEnds:
       type: datetime
       nullable: true
     location:
@@ -28,7 +28,7 @@ Prodeko\IlmoBundle\Entity\Event:
     description:
       type: text
   manyToMany:
-    free_text_fields:
+    freeTextFields:
       targetEntity: FreeTextField
       
   oneToMany:

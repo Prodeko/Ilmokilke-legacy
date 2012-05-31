@@ -7,7 +7,7 @@ Prodeko\IlmoBundle\Entity\Registration:
       id: true
       generator:
         strategy: AUTO
-    registration_time:
+    registrationTime:
       type: datetime
     firstName: 
       type: string
@@ -17,6 +17,7 @@ Prodeko\IlmoBundle\Entity\Registration:
       type: string
     allergies:
       type: string
+      nullable: TRUE
   manyToOne:
     person:
       targetEntity: Person
