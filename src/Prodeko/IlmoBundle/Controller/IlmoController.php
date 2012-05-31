@@ -59,8 +59,8 @@ class IlmoController extends Controller
 	// Näyttää lomakkeen jolla luodaan tapahtuma
 	public function createEventFormAction() 
 	{
-		$tapahtuma = new Event();
-		$form = $this->createFormBuilder($tapahtuma)
+		$event = new Event();
+		$form = $this->createFormBuilder($event)
 		->add('name', 'text')
 		->add('summary', 'textarea')
 		->add('description', 'textarea')
@@ -78,10 +78,15 @@ class IlmoController extends Controller
 	
 	public function createEventAction(Request $r)
 	{
-		$registration = new Registration();
-		$form = $this->createFormBuilder($registration)
-		->add('firstname', 'text')
-		->add('lastsummary', 'text')
+		$event = new Event();
+		$form = $this->createFormBuilder($event)
+		->add('name', 'text')
+		->add('summary', 'textarea')
+		->add('description', 'textarea')
+		->add('takes_place', "datetime")
+		->add('registration_starts', "datetime")
+		->add('registration_ends', "datetime")
+		->add('location', "text")
 		->getForm();
         $form->bindRequest($r);
 		$registration = $form->getData();
@@ -90,9 +95,7 @@ class IlmoController extends Controller
 		$em->persist($event);
 		$em->flush();
 		
-		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', array(
-				'form' => $form->createView(),
-		));
+		return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
 
 
 	}

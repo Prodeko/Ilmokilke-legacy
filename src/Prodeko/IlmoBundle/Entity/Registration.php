@@ -24,31 +24,9 @@ class Registration
     {
         return $this->id;
     }
-    /**
-     * @var datetime $registration_time
-     */
-    private $registration_time;
 
 
-    /**
-     * Set registration_time
-     *
-     * @param datetime $registrationTime
-     */
-    public function setRegistrationTime($registrationTime)
-    {
-        $this->registration_time = $registrationTime;
-    }
 
-    /**
-     * Get registration_time
-     *
-     * @return datetime 
-     */
-    public function getRegistrationTime()
-    {
-        return $this->registration_time;
-    }
     /**
      * @var Prodeko\IlmoBundle\Entity\Person
      */
@@ -259,4 +237,24 @@ class Registration
     private $registrationTime;
 
 
+
+    /**
+     * Set registrationTime
+     *
+     * @param datetime $registrationTime
+     */
+    public function setRegistrationTime($registrationTime)
+    {
+        $this->registrationTime = $registrationTime;
+    }
+
+    /**
+     * Get registrationTime
+     *
+     * @return datetime 
+     */
+    public function getRegistrationTime()
+    {
+        return $this->registrationTime;
+    }
 }
