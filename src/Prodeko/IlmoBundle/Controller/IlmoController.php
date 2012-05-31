@@ -16,8 +16,10 @@ class IlmoController extends Controller
 	public function listAction()
 	{
 		//TODO: implement list controller
-		$tapahtuma = array(array('nimi'=>'Ekatapahtuma','aika'=>'Tanaan','kuvaus'=>'Parasta ikina'),array('nimi'=>'Tokatapahtuma','aika'=>'Tanaan','kuvaus'=>'Parasta ikina'),array('nimi'=>'Kolmastapahtuma','aika'=>'Tanaan','kuvaus'=>'Parasta ikina'));
-		return $this->render('ProdekoIlmoBundle:Ilmo:eventlist.html.twig', array('list' => $tapahtuma));
+		$repository = $this->getDoctrine()->getRepository('ProdekoIlmoBundle:Event');
+		$events = $repository->findAll();
+		
+		return $this->render('ProdekoIlmoBundle:Ilmo:eventlist.html.twig', $events);
 	}
 	
 	//Näyttää yhden tapahtuman tiedot
@@ -74,21 +76,7 @@ class IlmoController extends Controller
 		return $this->render('ProdekoIlmoBundle:Ilmo:createEvent.html.twig', array(
 				'form' => $form->createView(),
 		));
-/*		$name = "lol";//$post_params->get("name");
-		$summary = $post_params->get("summary");
-		$description = $post_params->get("description");
-		$event = new Event();
-		
-		$event->setName($name);
-		$event->setSummary($summary);
-		$event->setDescription($description);
-		
-		$em = $this->getDoctrine()->getEntityManager();
-		$em->persist($event);
-		$em->flush();
-		
-		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', array('event' => $event->$getId()));
-*/	}
+}
 	
 }
 ?>
