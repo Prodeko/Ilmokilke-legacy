@@ -1,0 +1,20 @@
+Prodeko\IlmoBundle\Entity\FreeTextEntry:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    content:
+      type: text
+  manyToOne:
+    field:
+      targetEntity: FreeTextField
+      inversedBy: entries
+  manyToOne:
+    registration:
+      targetEntity: Registration
+      inversedBy: freeTextEntries
+  lifecycleCallbacks: {  }

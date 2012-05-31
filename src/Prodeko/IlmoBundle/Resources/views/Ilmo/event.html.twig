@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'ProdekoIlmoBundle:Ilmo:base.html.twig' %}
 
 {% block stylesheets %}
 	<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
@@ -19,7 +19,11 @@
 			</div>
 		</div>
 		<div class="row" id="content">
-    		<p>Haista vittu {{ event }}!</p>
+			<div class="span12">
+    			<h2>{{ eventname }}</h2>
+    			<p>{{ description }}</p>
+    		</div>
     	</div>
+    	{% include 'ProdekoIlmoBundle:Ilmo:footer.html.twig' %}
     </div>
 {% endblock %}

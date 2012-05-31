@@ -224,4 +224,33 @@ class Registration
     {
         return $this->allergies;
     }
+    /**
+     * @var Prodeko\IlmoBundle\Entity\FreeTextEntry
+     */
+    private $freeTextEntries;
+
+    public function __construct()
+    {
+        $this->freeTextEntries = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add freeTextEntries
+     *
+     * @param Prodeko\IlmoBundle\Entity\FreeTextEntry $freeTextEntries
+     */
+    public function addFreeTextEntry(\Prodeko\IlmoBundle\Entity\FreeTextEntry $freeTextEntries)
+    {
+        $this->freeTextEntries[] = $freeTextEntries;
+    }
+
+    /**
+     * Get freeTextEntries
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getFreeTextEntries()
+    {
+        return $this->freeTextEntries;
+    }
 }
