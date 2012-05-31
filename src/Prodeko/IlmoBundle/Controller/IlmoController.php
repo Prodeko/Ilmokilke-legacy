@@ -55,5 +55,7 @@ class IlmoController extends Controller
 		$em = $this->getDoctrine()->getEntityManager();
 		$em->persist($event);
 		$em->flush();
+		
+		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', array('event' => $event->$getId()));
 	}
 }
