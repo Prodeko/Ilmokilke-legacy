@@ -11,13 +11,17 @@ Prodeko\IlmoBundle\Entity\Event:
       type: string
     takes_place:
       type: datetime
+      nullable: true
     registration_starts:
       type: datetime
+      nullable: true
     registration_ends:
       type: datetime
+      nullable: true
     location:
       type: string
       length: 50
+      nullable: true
     summary:
       type: string
       length: 160

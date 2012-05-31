@@ -31,9 +31,10 @@ class IlmoController extends Controller
 	}
 	
 	// Näyttää lomakkeen jolla luodaan tapahtuma
-	public function createEventFormAction($tapahtuma) 
+	public function createEventFormAction() 
 	{
-		$form = $this->createFormBuilder($task)
+		$tapahtuma = new Event();
+		$form = $this->createFormBuilder($tapahtuma)
 		->add('name', 'text')
 		->add('summary', 'textarea')
 		->add('description', 'textarea')
@@ -60,5 +61,7 @@ class IlmoController extends Controller
 		$em = $this->getDoctrine()->getEntityManager();
 		$em->persist($event);
 		$em->flush();
+		
+		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', array('event' => $event->$getId()));
 	}
 }
