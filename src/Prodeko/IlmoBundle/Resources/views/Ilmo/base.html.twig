@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Vitun ilmokilke{% endblock %}</title>
         <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
         {% block stylesheets %}{% endblock %}
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
@@ -10,6 +10,7 @@
     <body>
         {% block body %}{% endblock %}
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="{{ asset('js/bootstrap.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
