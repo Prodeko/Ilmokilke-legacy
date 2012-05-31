@@ -14,5 +14,10 @@ Prodeko\IlmoBundle\Entity\FreeTextField:
     description:
       type: text
       nullable: TRUE
+    
+  oneToMany:
+    entries:
+      targetEntity: FreeTextEntry
+      mappedBy: field
       
   lifecycleCallbacks: {  }

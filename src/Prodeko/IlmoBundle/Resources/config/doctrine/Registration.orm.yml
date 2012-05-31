@@ -25,4 +25,8 @@ Prodeko\IlmoBundle\Entity\Registration:
     event:
       targetEntity: Event
       inversedBy: registrations
+  oneToMany:
+    freeTextEntries:
+      targetEntity: FreeTextEntry
+      mappedBy: registration
   lifecycleCallbacks: {  }

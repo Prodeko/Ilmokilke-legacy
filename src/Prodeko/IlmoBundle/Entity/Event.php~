@@ -203,4 +203,29 @@ class Event
     {
         return $this->registrations;
     }
+    /**
+     * @var Prodeko\IlmoBundle\Entity\FreeTextField
+     */
+    private $free_text_fields;
+
+
+    /**
+     * Add free_text_fields
+     *
+     * @param Prodeko\IlmoBundle\Entity\FreeTextField $freeTextFields
+     */
+    public function addFreeTextField(\Prodeko\IlmoBundle\Entity\FreeTextField $freeTextFields)
+    {
+        $this->free_text_fields[] = $freeTextFields;
+    }
+
+    /**
+     * Get free_text_fields
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getFreeTextFields()
+    {
+        return $this->free_text_fields;
+    }
 }

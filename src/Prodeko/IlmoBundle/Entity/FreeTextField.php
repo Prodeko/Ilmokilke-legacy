@@ -74,4 +74,33 @@ class FreeTextField
     {
         return $this->description;
     }
+    /**
+     * @var Prodeko\IlmoBundle\Entity\FreeTextEntry
+     */
+    private $entries;
+
+    public function __construct()
+    {
+        $this->entries = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add entries
+     *
+     * @param Prodeko\IlmoBundle\Entity\FreeTextEntry $entries
+     */
+    public function addFreeTextEntry(\Prodeko\IlmoBundle\Entity\FreeTextEntry $entries)
+    {
+        $this->entries[] = $entries;
+    }
+
+    /**
+     * Get entries
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getEntries()
+    {
+        return $this->entries;
+    }
 }
