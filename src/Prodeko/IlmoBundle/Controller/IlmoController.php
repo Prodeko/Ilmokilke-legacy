@@ -26,7 +26,7 @@ class IlmoController extends Controller
 	}
 	
 	// Näyttää lomakkeen jolla luodaan tapahtuma
-	public function createEventAction($tapahtuma) 
+	public function createEventFormAction($tapahtuma) 
 	{
 		$form = $this->createFormBuilder($task)
 		->add('name', 'text')
