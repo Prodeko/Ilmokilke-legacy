@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'ProdekoIlmoBundle:Ilmo:base.html.twig' %}
 
 {% block stylesheets %}
 	<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
@@ -24,5 +24,6 @@
     			<p>{{ description }}</p>
     		</div>
     	</div>
+    	{% include 'ProdekoIlmoBundle:Ilmo:footer.html.twig' %}
     </div>
 {% endblock %}

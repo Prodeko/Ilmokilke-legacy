@@ -24,7 +24,7 @@ class IlmoController extends Controller
 		//TODO: implement "show event details"-controller
 		$variables = array(
 				'eventname' => $tapahtuma,
-				'description' => 'Lorem ipsum vittu on perseestä',
+				'description' => 'Lorem ipsum vittu on perseesta',
 				'starttime' => '20:15'
 				);
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);
