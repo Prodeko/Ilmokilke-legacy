@@ -26,10 +26,18 @@ class IlmoController extends Controller
 	public function showAction($tapahtuma)
 	{
 		//TODO: implement "show event details"-controller
+		$id = $request->query->get('id', '1');
+		$event = $this->getDoctrine()
+		->getRepository('ProdekoIlmoBundle:Event')
+		->find($id);
 		$variables = array(
-				'eventname' => $tapahtuma,
-				'description' => 'Lorem ipsum vittu on perseesta',
-				'starttime' => '20:15'
+				'eventname' => $event->getName(),
+				'description' => $event->getDescription(),
+				'starttime' => $event->getTakesPlace(),
+				'registration_starts' => $event->getRegistrationStarts(),
+				'registration_ends' => $event->getRegistrationEnds(),
+				'location' => $event->getLocation(),
+				'summary' => $event->getSummary(),
 				);
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);
 	}
@@ -76,7 +84,8 @@ class IlmoController extends Controller
 		return $this->render('ProdekoIlmoBundle:Ilmo:createEvent.html.twig', array(
 				'form' => $form->createView(),
 		));
-}
-	
+
+
+	}
 }
 ?>
