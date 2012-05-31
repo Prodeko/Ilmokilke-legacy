@@ -7,6 +7,16 @@ Prodeko\IlmoBundle\Entity\Person:
       id: true
       generator:
         strategy: AUTO
+    openId:
+      type: string
+      nullable: TRUE
+    firstName:
+      type: string
+    lastName:
+      type: string
+    email:
+      type: string
+    
   oneToMany:
     registrations:
       targetEntity: Registration

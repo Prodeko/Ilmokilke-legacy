@@ -9,6 +9,13 @@ Prodeko\IlmoBundle\Entity\Registration:
         strategy: AUTO
     registration_time:
       type: datetime
+    firstName: 
+      type: string
+    lastName:
+      type: string
+    email:
+      type: string
+    
   manyToOne:
     person:
       targetEntity: Person
