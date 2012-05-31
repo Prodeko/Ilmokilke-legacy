@@ -1,9 +1,11 @@
 <?php 
 namespace Prodeko\IlmoBundle\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 use Symfony\Component\HttpFoundation\Response;
 
-class IlmoController
+class IlmoController extends Controller
 {
 	//listaa kaikki tapahtumat
 	public function listAction()
@@ -15,6 +17,6 @@ class IlmoController
 	public function showAction($tapahtuma)
 	{
 		//TODO: implement "show event details"-controller
-		return new Response("<h1>Ime paskaa, " . $tapahtuma . "</h1>");
+		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', array('name' => $tapahtuma));
 	}
 }
