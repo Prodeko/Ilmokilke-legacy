@@ -49,17 +49,21 @@ class IlmoController extends Controller
 	
 	public function createEventAction(Request $r)
 	{
-		$tapahtuma = new Event();
-		$form = $this->createFormBuilder($tapahtuma)
-		->add('name', 'text')
-		->add('summary', 'textarea')
-		->add('description', 'textarea')
-		->getForm();
-		if ($r->getMethod() == 'POST') {
-			$form->bindRequest($r);
-				return $this->redirect($this->generateUrl('create'));
-			}
-		$tapahtuma->save();
+		$post_params = $r->request;
+		$name = $post_params->get("name");
+		$summary = $post_params->get("summary");
+		$description = $post_params->get("description");
+		$event = new Event();
+		
+		$event->setName($name);
+		$event->setSummary($summary);
+		$event->setDescription($description);
+		
+		$em = $this->getDoctrine()->getEntityManager();
+		$em->persist($event);
+		$em->flush();
+		
+		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', array('event' => $event->$getId()));
 	}
 }
 ?>
