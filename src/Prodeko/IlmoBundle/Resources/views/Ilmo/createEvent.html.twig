@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+	<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block title %}
+	Vitun ilmokilke
+{% endblock %}
+
+{% block body %}
+<form action="{{ path('task_new') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+    <input type="submit" />
+</form>
+{% endblock %}
