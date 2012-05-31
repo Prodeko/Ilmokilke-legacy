@@ -26,8 +26,11 @@ class IlmoController extends Controller
 		//TODO: implement "show event details"-controller
 		$id = $request->query->get('id', '1');
 		$event = $this->getDoctrine()
-		->getRepository('ProdekoIlmoBundle:Event')
-		->find($id);
+			->getRepository('ProdekoIlmoBundle:Event')
+			->findOneBy(array('id' => $id));
+		$registrations = $this->getDoctrine()
+			->getRepository('ProdekoIlmomBundle:Registration')
+			->findBy(array('event_id' => $id));
 		$variables = array(
 				'eventname' => $event->getName(),
 				'description' => $event->getDescription(),
@@ -36,7 +39,8 @@ class IlmoController extends Controller
 				'registration_ends' => $event->getRegistrationEnds(),
 				'location' => $event->getLocation(),
 				'summary' => $event->getSummary(),
-				);
+				'registrations' => $registrations
+				);											//Osallistujat
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);
 	}
 	
