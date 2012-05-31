@@ -1,1 +1,13 @@
-Haista vittu {{ name }}!
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+	{% stylesheets
+	    '@ProdekoIlmoBundle/Resources/public/css/bootstrap.css'
+	%}
+	<link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <p>Haista vittu {{ event }}!</p>
+{% endblock %}

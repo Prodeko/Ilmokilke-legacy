@@ -17,6 +17,6 @@ class IlmoController extends Controller
 	public function showAction($tapahtuma)
 	{
 		//TODO: implement "show event details"-controller
-		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', array('name' => $tapahtuma));
+		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', array('event' => $tapahtuma));
 	}
 }
