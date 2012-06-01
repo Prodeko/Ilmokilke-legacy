@@ -28,8 +28,36 @@
 						<h3>Ilmoittaudu tapahtumaan</h3>
 					</div>
 					<div class="modal-body">
-						<form action="{{ path('show', { 'id': '1' }) }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
-						    {{ form_widget(form) }}
+						<form action="{{ path('show', { 'id': event.id }) }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
+						
+							{{ form_errors(form) }}
+	
+							<div>
+							    {{ form_label(form.firstName, 'Etunimi') }}
+							    <div class="formerror">{{ form_errors(form.firstName) }}</div>
+							    {{ form_widget(form.firstName) }}
+							</div>
+							
+							<div>
+							    {{ form_label(form.lastName, 'Sukunimi') }}
+							    <div class="formerror">{{ form_errors(form.lastName) }}</div>
+							    {{ form_widget(form.lastName) }}
+							</div>
+							
+							<div>
+							    {{ form_label(form.email, 'Sähköposti') }}
+							    <div class="formerror">{{ form_errors(form.email) }}</div>
+							    {{ form_widget(form.email) }}
+							</div>
+							
+							<div>
+							    {{ form_label(form.allergies, 'Allergiat') }}
+							    <div class="formerror">{{ form_errors(form.allergies) }}</div>
+							    {{ form_widget(form.allergies) }}
+							</div>
+							
+							{{ form_rest(form) }}
+						    
 						    <input type="submit" />
 						    
 						</form>
