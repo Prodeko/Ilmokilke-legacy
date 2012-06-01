@@ -1,0 +1,45 @@
+<div class="modal" id="subscriptionmodal" style="display: none">
+	<form action="{{ path('show', { 'id': event.id }) }}" method="post" {{ form_enctype(form) }} novalidate="novalidate" class="form-horizontal">
+		<div class="modal-header">
+			<button class="close" data-dismiss="modal">&times;</button>
+			<h3>Ilmoittaudu tapahtumaan {{ event.name }}</h3>
+		</div>
+		<div class="modal-body">
+			<fieldset>
+				<div class="formerror">{{ form_errors(form) }}</div>
+	
+				<div>
+				    {{ form_label(form.firstName, 'Etunimi') }}
+				    <div class="formerror">{{ form_errors(form.firstName) }}</div>
+				    {{ form_widget(form.firstName) }}
+				</div>
+				
+				<div>
+				    {{ form_label(form.lastName, 'Sukunimi') }}
+				    <div class="formerror">{{ form_errors(form.lastName) }}</div>
+				    {{ form_widget(form.lastName) }}
+				</div>
+				
+				<div>
+				    {{ form_label(form.email, 'Sähköposti') }}
+				    <div class="formerror">{{ form_errors(form.email) }}</div>
+				    {{ form_widget(form.email) }}
+				</div>
+				
+				<div>
+				    {{ form_label(form.allergies, 'Allergiat') }}
+				    <div class="formerror">{{ form_errors(form.allergies) }}</div>
+				    {{ form_widget(form.allergies) }}
+				</div>
+				
+				{{ form_rest(form) }}
+			</fieldset>
+			
+						    
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">Sulje</a>
+			<input type="submit" class="btn btn-info" value="Ilmoittaudu!" />
+		</div>
+	</form>
+</div>
