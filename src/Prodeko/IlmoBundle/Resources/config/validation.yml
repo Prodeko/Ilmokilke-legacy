@@ -1,0 +1,8 @@
+Prodeko\IlmoBundle\Entity\Registration:
+    properties:
+        firstName:
+            - NotBlank: ~
+        lastName:
+            - NotBlank: ~
+        email:
+            - NotBlank: ~

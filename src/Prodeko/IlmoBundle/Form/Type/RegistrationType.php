@@ -8,10 +8,10 @@ class RegistrationType extends AbstractType
 {
 	public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder->add('firstName');
-        $builder->add('lastName');
-        $builder->add('email');
-        $builder->add('allergies');
+        $builder->add('firstName', 'text');
+        $builder->add('lastName', 'text');
+        $builder->add('email', 'email');
+        $builder->add('allergies', 'text', array('required' => false));
     }
 	//T‰llanen funktio pit‰‰ jostain syyst‰ olla, palauttaa formin "nimen"
     public function getName()

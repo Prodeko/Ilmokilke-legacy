@@ -41,8 +41,9 @@ class IlmoController extends Controller
 		$variables = array(
 				'event' => $event,
 				'registrations' => $registrations,
-				'form' => $form->createView()
-				);											//Osallistujat
+				'form' => $form->createView(),
+				'id' => $id
+				);
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);
 	}
@@ -93,20 +94,21 @@ class IlmoController extends Controller
 
 	
 	
-	public function createRegistrationAction(Request $r)
+	public function createRegistrationAction(Request $request)
 	{
 		$registration = new Registration();
 		$form = $this->createForm(new RegistrationType(), $registration);
-		$form->bindRequest($r);
-		$registration = $form->getData();
-		$time = new \DateTime();
-		$registration->setRegistrationTime($time);
-		$em = $this->getDoctrine()->getEntityManager();
-		$em->persist($registration);
-		$em->flush();
-	
-		return $this->redirect($this->generateUrl('show', array('id' => '1')));
-	
+		$form->bindRequest($request);
+		if ($form->isValid()) {
+			$registration = $form->getData();
+			$time = new \DateTime();
+			$registration->setRegistrationTime($time);
+			$em = $this->getDoctrine()->getEntityManager();
+			$em->persist($registration);
+			$em->flush();
+		
+			return $this->redirect($this->generateUrl('show', array('id' => '1')));
+		}
 	
 	}
 }
