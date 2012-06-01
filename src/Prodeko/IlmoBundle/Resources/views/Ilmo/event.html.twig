@@ -69,6 +69,12 @@
     			</div>
     			<!-- End subscription modal -->
     			
+    			{% for registration in registrations %}
+					<div class="row">
+						{{ registration.firstName }}
+				    </div>
+				{% endfor %}
+				
     		</div>
     	</div>
     	{% include 'ProdekoIlmoBundle:Ilmo:footer.html.twig' %}

@@ -35,8 +35,9 @@ class IlmoController extends Controller
 			->findOneBy(array('id' => $id));
 		$registrations = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Registration')
-			->findBy(array('id' => $id));
+			->findBy(array('event' => $id));
 		$registration = new Registration();
+		$registration->setEvent($event);
 		$form = $this->createForm(new RegistrationType(), $registration);
 		
 		if ($request->getMethod() == 'POST') {

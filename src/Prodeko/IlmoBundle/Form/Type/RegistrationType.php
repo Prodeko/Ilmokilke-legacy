@@ -13,7 +13,7 @@ class RegistrationType extends AbstractType
         $builder->add('email', 'email');
         $builder->add('allergies', 'text', array('required' => false));
     }
-	//T‰llanen funktio pit‰‰ jostain syyst‰ olla, palauttaa formin "nimen"
+    //T√§llanen funktio pit√§√§ jostain syyst√§ olla, palauttaa formin "nimen"
     public function getName()
     {
         return 'registration';
