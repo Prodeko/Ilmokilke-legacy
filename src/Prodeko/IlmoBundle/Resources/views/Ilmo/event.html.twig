@@ -28,7 +28,7 @@
 						<h3>Ilmoittaudu tapahtumaan</h3>
 					</div>
 					<div class="modal-body">
-						<form action="{{ path('createRegistration') }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
+						<form action="{{ path('show', { 'id': '1' }) }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
 						    {{ form_widget(form) }}
 						    <input type="submit" />
 						    

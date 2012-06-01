@@ -27,7 +27,7 @@ class IlmoController extends Controller
 	}
 	
 	//Näyttää yhden tapahtuman tiedot
-	public function showAction($id)
+	public function showAction($id, Request $request)
 	{
 		//TODO: implement "show event details"-controller
 		$event = $this->getDoctrine()
@@ -38,6 +38,21 @@ class IlmoController extends Controller
 			->findBy(array('id' => $id));
 		$registration = new Registration();
 		$form = $this->createForm(new RegistrationType(), $registration);
+		
+		if ($request->getMethod() == 'POST') {
+			$form->bindRequest($request);
+			if ($form->isValid()) {
+				$registration = $form->getData();
+				$time = new \DateTime();
+				$registration->setRegistrationTime($time);
+				$em = $this->getDoctrine()->getEntityManager();
+				$em->persist($registration);
+				$em->flush();
+			
+				return $this->redirect($this->generateUrl('show', array('id' => '1')));
+			}
+		}
+		
 		$variables = array(
 				'event' => $event,
 				'registrations' => $registrations,
