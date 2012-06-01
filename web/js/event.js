@@ -1,5 +1,6 @@
 $(function() {
 	//Tarkista, onko lomakkeeseen tullut virheitä edellisestä lähetyksestä
+	//(Jos virheitä on tullut, .formerror - luokan diveillä on sisältöä, eli joku niistä on :parent)
 	if ($('.formerror:parent').length == 0) {
 		//Jos virheitä ei ole tullut tai sivu ladataan ensimmäistä kertaa, tee lomakkeesta modaali, ja piilota se
 		$("#subscriptionmodal").modal('hide');

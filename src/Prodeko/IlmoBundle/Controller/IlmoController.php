@@ -26,7 +26,7 @@ class IlmoController extends Controller
 		return $this->render('ProdekoIlmoBundle:Ilmo:eventlist.html.twig', array('list' => $events));
 	}
 	
-	//Näyttää yhden tapahtuman tiedot
+	//NÃ¤yttÃ¤Ã¤ yhden tapahtuman tiedot
 	public function showAction($id, Request $request)
 	{
 		//TODO: implement "show event details"-controller
@@ -49,7 +49,7 @@ class IlmoController extends Controller
 				$em->persist($registration);
 				$em->flush();
 			
-				return $this->redirect($this->generateUrl('show', array('id' => '1')));
+				return $this->redirect($this->generateUrl('show', array('id' => $id)));
 			}
 		}
 		
@@ -63,7 +63,7 @@ class IlmoController extends Controller
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);
 	}
 	
-	// Näyttää lomakkeen jolla luodaan tapahtuma
+	// NÃ¤yttÃ¤Ã¤ lomakkeen jolla luodaan tapahtuma
 	public function createEventFormAction() 
 	{
 		$event = new Event();
@@ -104,27 +104,6 @@ class IlmoController extends Controller
 		
 		return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
 
-
-	}
-
-	
-	
-	public function createRegistrationAction(Request $request)
-	{
-		$registration = new Registration();
-		$form = $this->createForm(new RegistrationType(), $registration);
-		$form->bindRequest($request);
-		if ($form->isValid()) {
-			$registration = $form->getData();
-			$time = new \DateTime();
-			$registration->setRegistrationTime($time);
-			$em = $this->getDoctrine()->getEntityManager();
-			$em->persist($registration);
-			$em->flush();
-		
-			return $this->redirect($this->generateUrl('show', array('id' => '1')));
-		}
-	
 	}
 }
 ?>

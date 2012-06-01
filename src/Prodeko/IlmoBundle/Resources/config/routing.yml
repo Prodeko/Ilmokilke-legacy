@@ -14,7 +14,3 @@ createEvent:
     pattern: /createEvent/
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:createEvent }
     
-createRegistration:
-    pattern: /createRegistration/
-    defaults: { _controller: ProdekoIlmoBundle:Ilmo:createRegistration }
-    
