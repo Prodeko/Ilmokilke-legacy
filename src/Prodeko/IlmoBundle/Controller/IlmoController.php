@@ -2,6 +2,8 @@
 namespace Prodeko\IlmoBundle\Controller;
 
 
+use Prodeko\IlmoBundle\Form\Type\RegistrationType;
+
 use Prodeko\IlmoBundle\Entity\Event;
 
 use Prodeko\IlmoBundle\Entity\Registration;
@@ -35,20 +37,9 @@ class IlmoController extends Controller
 			->getRepository('ProdekoIlmoBundle:Registration')
 			->findBy(array('id' => $id));
 		$registration = new Registration();
-		$form = $this->createFormBuilder($registration)
-		->add('firstName', 'text')
-		->add('lastName', 'text')
-		->add('email', 'text')
-		->add('allergies', 'text')
-		->getForm();
+		$form = $this->createForm(new RegistrationType(), $registration);
 		$variables = array(
-				'eventname' => $event->getName(),
-				'description' => $event->getDescription(),
-				'starttime' => $event->getTakesPlace(),
-				'registration_starts' => $event->getRegistrationStarts(),
-				'registration_ends' => $event->getRegistrationEnds(),
-				'location' => $event->getLocation(),
-				'summary' => $event->getSummary(),
+				'event' => $event,
 				'registrations' => $registrations,
 				'form' => $form->createView()
 				);											//Osallistujat
@@ -105,12 +96,7 @@ class IlmoController extends Controller
 	public function createRegistrationAction(Request $r)
 	{
 		$registration = new Registration();
-		$form = $this->createFormBuilder($registration)
-		->add('firstName', 'text')
-		->add('lastName', 'text')
-		->add('email', 'text')
-		->add('allergies', 'text')
-		->getForm();
+		$form = $this->createForm(new RegistrationType(), $registration);
 		$form->bindRequest($r);
 		$registration = $form->getData();
 		$time = new \DateTime();

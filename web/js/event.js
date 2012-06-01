@@ -1,2 +1,3 @@
-$("#subscriptionmodal").modal();
-$('#subscriptionmodal').modal('hide');
+$(function() {
+	$("#subscriptionmodal").modal('hide');
+});
