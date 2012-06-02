@@ -7,9 +7,26 @@
 {% block body %}
 <div class="container">
 	<form action="{{ path('createEvent') }}" method="post" {{ form_enctype(form) }}>
-	    {{ form_widget(form) }}
-	
+	    {{ form_row(form.name) }}
+	    {{ form_row(form.summary) }}
+	    {{ form_row(form.description) }}
+	    {{ form_row(form.takesPlace) }}
+	    {{ form_row(form.registrationStarts) }}
+	    {{ form_row(form.registrationEnds) }}
+	    {{ form_row(form.location) }}
+		
+		<h3>Lisäkentät</h3>
+		<ul class="freeTextFields" data-prototype="{{ form_widget(form.freeTextFields.get('prototype')) | e }}">
+    		{% for freeTextField in form.freeTextFields %}
+       	    	<li>{{ form_row(freeTextField.name) }}</li>
+        	{% endfor %}
+		</ul>
+		
 	    <input type="submit" />
 	</form>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('js/createEvent.js') }}"></script>
 {% endblock %}

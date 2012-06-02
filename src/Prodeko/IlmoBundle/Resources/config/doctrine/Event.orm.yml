@@ -30,6 +30,7 @@ Prodeko\IlmoBundle\Entity\Event:
   manyToMany:
     freeTextFields:
       targetEntity: FreeTextField
+      cascade:      [persist]
       
   oneToMany:
     registrations:

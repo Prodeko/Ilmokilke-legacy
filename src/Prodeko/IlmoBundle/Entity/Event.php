@@ -3,12 +3,19 @@
 namespace Prodeko\IlmoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Prodeko\IlmoBundle\Entity\Event
  */
 class Event
 {
+	public function __construct()
+	{
+		$this->freeTextFields = new ArrayCollection();
+		$this->registrations = new ArrayCollection();
+	}
+	
 	public function isOpen() {
 		$now = new \DateTime();
 		$interval = new \DateInterval();
@@ -181,10 +188,6 @@ class Event
      */
     private $registrations;
 
-    public function __construct()
-    {
-        $this->registrations = new \Doctrine\Common\Collections\ArrayCollection();
-    }
     
     /**
      * Add registrations
@@ -208,32 +211,42 @@ class Event
     /**
      * @var Prodeko\IlmoBundle\Entity\FreeTextField
      */
-    private $free_text_fields;
+    private $freeTextFields;
 
 
     /**
-     * Add free_text_fields
+     * Add freeTextFields
      *
      * @param Prodeko\IlmoBundle\Entity\FreeTextField $freeTextFields
      */
     public function addFreeTextField(\Prodeko\IlmoBundle\Entity\FreeTextField $freeTextFields)
     {
-        $this->free_text_fields[] = $freeTextFields;
+        $this->freeTextFields[] = $freeTextFields;
     }
 
     /**
-     * Get free_text_fields
+     * Get freeTextFields
      *
      * @return Doctrine\Common\Collections\Collection 
      */
     public function getFreeTextFields()
     {
-        return $this->free_text_fields;
+        return $this->freeTextFields;
     }
     /**
      * @var string $name
      */
     private $name;
+    
+    /**
+     * Set freeTextFields
+     *
+     * @param Doctrine\Common\Collections\ArrayCollection $freeTextFields
+     */
+    public function setFreeTextFields(ArrayCollection $freeTextFields)
+    {
+    	$this->freeTextFields = $freeTextFields;
+    }
 
 
     /**
@@ -269,10 +282,6 @@ class Event
      * @var datetime $registrationEnds
      */
     
-    /**
-     * @var Prodeko\IlmoBundle\Entity\FreeTextField
-     */
-    private $freeTextFields;
 
 
 }
