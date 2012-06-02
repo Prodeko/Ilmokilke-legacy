@@ -21,8 +21,14 @@ class IlmoController extends Controller
 	{
 		//TODO: implement list controller
 		$repository = $this->getDoctrine()->getRepository('ProdekoIlmoBundle:Event');
-		$events = $repository->findAll();
-		
+		$allEvents = $repository->findAll();
+		//jos admin niin näyettään kaikki, alla oleva jos ei
+		$events = array();
+		foreach ($events as $event) {
+			if ($event->isOpen()) {
+				$events[] = $event;
+			}
+		}		
 		return $this->render('ProdekoIlmoBundle:Ilmo:eventlist.html.twig', array('list' => $events));
 	}
 	
@@ -71,48 +77,6 @@ class IlmoController extends Controller
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);
 	}
-	
-	// Näyttää lomakkeen jolla luodaan tapahtuma
-	public function createEventFormAction() 
-	{
-		$event = new Event();
-		$form = $this->createFormBuilder($event)
-		->add('name', 'text')
-		->add('summary', 'textarea')
-		->add('description', 'textarea')
-		->add('takes_place', "datetime")
-		->add('registration_starts', "datetime")
-		->add('registration_ends', "datetime")
-		->add('location', "text")
-		->getForm();
-		
-		return $this->render('ProdekoIlmoBundle:Ilmo:createEvent.html.twig', array(
-				'form' => $form->createView(),
-		));
-	}
-	
-	
-	public function createEventAction(Request $r)
-	{
-		$event = new Event();
-		$form = $this->createFormBuilder($event)
-		->add('name', 'text')
-		->add('summary', 'textarea')
-		->add('description', 'textarea')
-		->add('takes_place', "datetime")
-		->add('registration_starts', "datetime")
-		->add('registration_ends', "datetime")
-		->add('location', "text")
-		->getForm();
-        $form->bindRequest($r);
-		$registration = $form->getData();
-		
-		$em = $this->getDoctrine()->getEntityManager();
-		$em->persist($event);
-		$em->flush();
-		
-		return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
 
-	}
 }
 ?>
