@@ -18,6 +18,7 @@ class EventType extends AbstractType
 		$builder->add('freeTextFields', 'collection', array(
 				'type' => new FreeTextFieldType(),
 				'allow_add' => true,
+				'allow_delete' => true,
 				'by_reference' => false,
 		));
     }
