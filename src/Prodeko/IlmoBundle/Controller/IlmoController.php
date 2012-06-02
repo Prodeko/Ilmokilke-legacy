@@ -53,6 +53,7 @@ class IlmoController extends Controller
 				$time = new \DateTime();
 				$registration->setRegistrationTime($time);
 				//Tallenna ilmoittautuminen tietokantaan ja ohjaa takaisin sivulle
+				//TODO: Joku 'ilmoittautuminen onnistunut' -viesti, ajaxilla? parametri urlissa?
 				$em = $this->getDoctrine()->getEntityManager();
 				$em->persist($registration);
 				$em->flush();

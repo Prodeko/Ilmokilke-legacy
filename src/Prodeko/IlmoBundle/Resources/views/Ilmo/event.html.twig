@@ -14,23 +14,39 @@
 				<h3>T&auml;h&auml;n voisi kirjoittaa jotain</h3>
 			</div>
 		</div>
-		<div class="row" id="content">
-			<div class="span12">
-    			<h2 id="eventtitle">{{ event.name }}</h2>
-    			<p id="eventtime">{{ event.takesPlace | date("m/d/Y") }}</p>
-    			<p id="eventsummary">{{ event.summary }}</p>
-    			<button id="eventsubscribe" class="btn" data-toggle="modal" href="#subscriptionmodal">Ilmoittaudu</button>
-    			
-    			<!-- Start subscription modal -->
-    			{% include 'ProdekoIlmoBundle:Ilmo:registration.html.twig' %}
-    			<!-- End subscription modal -->
-    			
-    			{% for registration in registrations %}
-					<div class="row">
-						{{ registration.firstName }}
-				    </div>
-				{% endfor %}
-				
+		<div id="content">
+			<div class="row">
+				<div class="span12">
+	    			<h2 id="eventtitle">{{ event.name }}</h2>
+	    			<p id="eventtime">{{ event.takesPlace | date("m/d/Y") }}</p>
+	    			<p id="eventsummary">{{ event.summary }}</p>
+	    			<button id="eventsubscribe" class="btn" data-toggle="modal" href="#subscriptionmodal">Ilmoittaudu</button>
+	    			
+	    			<!-- Start subscription modal -->
+	    			{% include 'ProdekoIlmoBundle:Ilmo:registration.html.twig' %}
+	    			<!-- End subscription modal -->
+				</div>
+    		</div>
+    		<div class="row">
+    			<div class="span6" id="registered">
+    				<h3>Ilmoittautuneet:</h3>
+    				<table class="table table-striped table-bordered table-condensed">
+    					<thead>
+    						<tr>
+    							<th>Etunimi</th>
+    							<th>Sukuimi</th>
+    						</tr>
+    					</thead>
+    					<tbody>
+			    			{% for registration in registrations %}
+			    				<tr>
+									<td>{{ registration.firstName }}</td>
+									<td>{{ registration.lastName }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
     		</div>
     	</div>
     	{% include 'ProdekoIlmoBundle:Ilmo:footer.html.twig' %}
