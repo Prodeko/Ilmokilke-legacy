@@ -45,7 +45,9 @@ class AdminController extends IlmoController
 		$em->persist($event);
 		$em->flush();
 		
-		return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
+		return $this->render('ProdekoIlmoBundle:Ilmo:createEvent.html.twig', array(
+				'form' => $form->createView()));
+//		return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
 
 	}
 }

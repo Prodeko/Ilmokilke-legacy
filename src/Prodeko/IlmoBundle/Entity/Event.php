@@ -32,17 +32,16 @@ class Event
     /**
      * @var datetime $takes_place
      */
-    private $takes_place;
 
 
     /**
      * Set takes_place
-     *
+     * MUUTTUJIEN MÄÄRITTELY ALAREUNASSA
      * @param datetime $takesPlace
      */
     public function setTakesPlace($takesPlace)
     {
-        $this->takes_place = $takesPlace;
+        $this->takesPlace = $takesPlace;
     }
 
     /**
@@ -52,13 +51,11 @@ class Event
      */
     public function getTakesPlace()
     {
-        return $this->takes_place;
+        return $this->takesPlace;
     }
     /**
      * @var datetime $registration_starts
      */
-    private $registration_starts;
-
 
     /**
      * Set registration_starts
@@ -67,7 +64,7 @@ class Event
      */
     public function setRegistrationStarts($registrationStarts)
     {
-        $this->registration_starts = $registrationStarts;
+        $this->registrationStarts = $registrationStarts;
     }
 
     /**
@@ -77,12 +74,12 @@ class Event
      */
     public function getRegistrationStarts()
     {
-        return $this->registration_starts;
+        return $this->registrationStarts;
     }
     /**
      * @var datetime $registration_ends
      */
-    private $registration_ends;
+    private $registrationEnds;
 
     /**
      * @var string $location
@@ -107,7 +104,7 @@ class Event
      */
     public function setRegistrationEnds($registrationEnds)
     {
-        $this->registration_ends = $registrationEnds;
+        $this->registrationEnds = $registrationEnds;
     }
 
     /**
@@ -117,7 +114,7 @@ class Event
      */
     public function getRegistrationEnds()
     {
-        return $this->registration_ends;
+        return $this->registrationEnds;
     }
 
     /**
@@ -271,8 +268,7 @@ class Event
     /**
      * @var datetime $registrationEnds
      */
-    private $registrationEnds;
-
+    
     /**
      * @var Prodeko\IlmoBundle\Entity\FreeTextField
      */
