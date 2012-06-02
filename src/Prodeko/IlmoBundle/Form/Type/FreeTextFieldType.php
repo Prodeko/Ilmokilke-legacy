@@ -4,25 +4,21 @@ namespace Prodeko\IlmoBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class RegistrationType extends AbstractType
+class FreeTextFieldType extends AbstractType
 {
 	public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder->add('firstName', 'text');
-        $builder->add('lastName', 'text');
-        $builder->add('email', 'email');
-        $builder->add('allergies', 'text', array('required' => false));
-        
+        $builder->add('name', 'text');
     }
     //Tällanen funktio pitää jostain syystä olla, palauttaa formin "nimen"
     public function getName()
     {
-        return 'registration';
+        return 'freetextfield';
     }
     public function getDefaultOptions(array $options)
     {
     	return array(
-    			'data_class' => 'Prodeko\IlmoBundle\Entity\Registration',
+    			'data_class' => 'Prodeko\IlmoBundle\Entity\FreeTextField',
     	);
     }
     

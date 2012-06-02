@@ -15,6 +15,12 @@ class EventType extends AbstractType
 		$builder->add('registrationStarts', "datetime");
 		$builder->add('registrationEnds', "datetime");
 		$builder->add('location', "text");
+		$builder->add('freeTextFields', 'collection', array(
+				'type' => new FreeTextFieldType(),
+				'allow_add' => true,
+				'allow_delete' => true,
+				'by_reference' => false,
+		));
     }
     //Tällanen funktio pitää jostain syystä olla, palauttaa formin "nimen"
     public function getName()
