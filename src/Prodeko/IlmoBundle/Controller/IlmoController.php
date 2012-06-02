@@ -21,9 +21,10 @@ class IlmoController extends Controller
 	{
 		//TODO: implement list controller
 		$repository = $this->getDoctrine()->getRepository('ProdekoIlmoBundle:Event');
+		$now = new \DateTime();
 		$query = $repository->createQueryBuilder('e')
-   			->where('e.takesPlace < :now')
-	    	->setParameter('now', new \DateTime())
+   			->where('e.takesPlace > :now')
+	    	->setParameter('now', $now)
 	    	->getQuery();
 
 		$events = $query->getResult();
