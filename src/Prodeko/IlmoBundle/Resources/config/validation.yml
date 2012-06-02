@@ -1,8 +1,14 @@
+# Automaattisen lomakkeen tarkastuksen ehdot määritellään täällä
 Prodeko\IlmoBundle\Entity\Registration:
     properties:
         firstName:
-            - NotBlank: ~
+            - NotBlank: 
+                message: Pakollinen kenttä!
         lastName:
-            - NotBlank: ~
+            - NotBlank: 
+                message: Pakollinen kenttä!
         email:
-            - NotBlank: ~
+            - NotBlank:
+                message: Pakollinen kenttä!
+            - Email:
+                message: Virheellinen osoite!

@@ -7,5 +7,7 @@ $(function() {
 	} else {
 		//Jos virheitä on tullut, tee lomakkeesta modaali ja näytä se.
 		$("#subscriptionmodal").modal('show');
+		//Lisää jokaiselle virheitä sisältävälle fieldsetille luokka 'error' (muuttaa ne punaisiksi)
+		$('.formerror:parent').closest('fieldset').addClass('error')
 	}
 });

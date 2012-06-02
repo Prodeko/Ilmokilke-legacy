@@ -1,3 +1,5 @@
+{% form_theme form 'ProdekoIlmoBundle:Form:ilmo.formtheme.html.twig' %}
+
 <div class="modal" id="subscriptionmodal" style="display: none">
 	<form action="{{ path('show', { 'id': event.id }) }}" method="post" {{ form_enctype(form) }} novalidate="novalidate" class="form-horizontal">
 		<div class="modal-header">
@@ -5,35 +7,41 @@
 			<h3>Ilmoittaudu tapahtumaan {{ event.name }}</h3>
 		</div>
 		<div class="modal-body">
-			<fieldset>
-				<div class="formerror">{{ form_errors(form) }}</div>
+				<div>{{ form_errors(form) }}</div>
 	
-				<div>
-				    {{ form_label(form.firstName, 'Etunimi') }}
-				    <div class="formerror">{{ form_errors(form.firstName) }}</div>
-				    {{ form_widget(form.firstName) }}
-				</div>
+				<fieldset class="control-group">
+				    {{ form_label(form.firstName, 'Etunimi', { 'attr': {'class': 'control-label'}}) }}
+				    <div class="controls">
+				    	{{ form_widget(form.firstName) }}
+				    	{{ form_errors(form.firstName) }}
+				    </div>
+				</fieldset>
 				
-				<div>
-				    {{ form_label(form.lastName, 'Sukunimi') }}
-				    <div class="formerror">{{ form_errors(form.lastName) }}</div>
-				    {{ form_widget(form.lastName) }}
-				</div>
+				<fieldset class="control-group">
+				    {{ form_label(form.lastName, 'Sukunimi', { 'attr': {'class': 'control-label'}}) }}
+				    <div class="controls">
+				    	{{ form_widget(form.lastName) }}
+				    	{{ form_errors(form.lastName) }}
+				    </div>
+				</fieldset>
 				
-				<div>
-				    {{ form_label(form.email, 'Sähköposti') }}
-				    <div class="formerror">{{ form_errors(form.email) }}</div>
-				    {{ form_widget(form.email) }}
-				</div>
+				<fieldset class="control-group">
+				    {{ form_label(form.email, 'Sähköposti', { 'attr': {'class': 'control-label'}}) }}
+				    <div class="controls">
+				    	{{ form_widget(form.email) }}
+				    	{{ form_errors(form.email) }}
+				    </div>
+				</fieldset>
 				
-				<div>
-				    {{ form_label(form.allergies, 'Allergiat') }}
-				    <div class="formerror">{{ form_errors(form.allergies) }}</div>
-				    {{ form_widget(form.allergies) }}
-				</div>
+				<fieldset class="control-group">
+				    {{ form_label(form.allergies, 'Allergiat', { 'attr': {'class': 'control-label'}}) }}
+				    <div class="controls">
+				    	{{ form_widget(form.allergies) }}
+				    	{{ form_errors(form.allergies) }}
+				    </div>
+				</fieldset>
 				
 				{{ form_rest(form) }}
-			</fieldset>
 			
 						    
 		</div>

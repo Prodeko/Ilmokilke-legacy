@@ -1,0 +1,13 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block field_errors %}
+{% spaceless %}
+<span class="help-inline formerror">
+	{% if errors|length > 0 %}
+		{% for error in errors %}
+            {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}
+	    {% endfor %}
+	{% endif %}
+</span>
+{% endspaceless %}
+{% endblock field_errors %}
