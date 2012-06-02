@@ -1,17 +1,15 @@
-{% extends '::base.html.twig' %}
-
-{% block stylesheets %}
-	<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
-{% endblock %}
+{% extends 'ProdekoIlmoBundle:Ilmo:base.html.twig' %}
 
 {% block title %}
 	Vitun ilmokilke
 {% endblock %}
 
 {% block body %}
-<form action="{{ path('createEvent') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
-
-    <input type="submit" />
-</form>
+<div class="container">
+	<form action="{{ path('createEvent') }}" method="post" {{ form_enctype(form) }}>
+	    {{ form_widget(form) }}
+	
+	    <input type="submit" />
+	</form>
+</div>
 {% endblock %}
