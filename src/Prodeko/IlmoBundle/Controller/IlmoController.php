@@ -22,7 +22,7 @@ class IlmoController extends Controller
 		//TODO: implement list controller
 		$repository = $this->getDoctrine()->getRepository('ProdekoIlmoBundle:Event');
 		$query = $repository->createQueryBuilder('e')
-   			->where('e.takesPlace > :now')
+   			->where('e.takesPlace < :now')
 	    	->setParameter('now', new \DateTime())
 	    	->getQuery();
 
