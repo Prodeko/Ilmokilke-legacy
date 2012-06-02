@@ -21,14 +21,13 @@ class IlmoController extends Controller
 	{
 		//TODO: implement list controller
 		$repository = $this->getDoctrine()->getRepository('ProdekoIlmoBundle:Event');
-		$allEvents = $repository->findAll();
-		//jos admin niin näyettään kaikki, alla oleva jos ei
-		$events = array();
-		foreach ($events as $event) {
-			if ($event->isOpen()) {
-				$events[] = $event;
-			}
-		}		
+		$query = $repository->createQueryBuilder('e')
+   			->where('e.takesPlace > :now')
+	    	->setParameter('now', new \DateTime())
+	    	->getQuery();
+
+		$events = $query->getResult();
+
 		return $this->render('ProdekoIlmoBundle:Ilmo:eventlist.html.twig', array('list' => $events));
 	}
 	

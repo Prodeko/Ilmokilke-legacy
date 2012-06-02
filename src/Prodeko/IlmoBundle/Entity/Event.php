@@ -11,7 +11,8 @@ class Event
 {
 	public function isOpen() {
 		$now = new \DateTime();
-		return $this->registrationStarts->add(new \DateInterval('PT3H'))  < $now < $this->registration_ends ? true : false; 
+		$interval = new \DateInterval();
+		return ($this->registrationStarts->add(new \DateInterval(PT3H))  < $now && $now < $this->registration_ends) ? true : false; 
 	}
     /**
      * @var integer $id
