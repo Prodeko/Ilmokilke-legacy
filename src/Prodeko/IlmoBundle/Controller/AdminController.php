@@ -21,33 +21,41 @@ class AdminController extends IlmoController
 {
 	
 	// Näyttää lomakkeen jolla luodaan tapahtuma
-	public function createEventFormAction() 
+	public function createEventFormAction($id, Request $request) 
 	{
-		$event = new Event();
+	
+		if ($id != 0) {
+			$event = $this->getDoctrine()
+			->getRepository('ProdekoIlmoBundle:Event')
+			->findOneBy(array('id' => $id));	
+		}
+		else {
+			$event = new Event();
+		}
+		if ($request->getMethod() == 'POST') {	
+			$form = $this->createForm(new EventType(), $event);
+			$form->bindRequest($request);
+			$event = $form->getData();
+		
+			$em = $this->getDoctrine()->getEntityManager();
+			$em->persist($event);
+			$em->flush();
+		}
 		//Tee ilmoittautumislomake, määrittely löytyy Prodeko\IlmoBundle\Form\Type\EventType
 		$form = $this->createForm(new EventType(), $event);
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:createEvent.html.twig', array(
-				'form' => $form->createView(),
+				'form' => $form->createView(), 'id' => $id
 		));
 	}
 	
 	
 	public function createEventAction(Request $r)
 	{
-		$event = new Event();
-		$form = $this->createForm(new EventType(), $event);
+		$form = $this->createForm(new EventType(), new Event());
 		
-		$form->bindRequest($r);
-		$event = $form->getData();
 		
-		$em = $this->getDoctrine()->getEntityManager();
-		$em->persist($event);
-		$em->flush();
-		
-		return $this->render('ProdekoIlmoBundle:Ilmo:createEvent.html.twig', array(
-				'form' => $form->createView()));
-//		return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
+		return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
 
 	}
 }

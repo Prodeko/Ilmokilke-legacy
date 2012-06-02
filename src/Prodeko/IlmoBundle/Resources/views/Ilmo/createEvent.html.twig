@@ -6,7 +6,7 @@
 
 {% block body %}
 <div class="container">
-	<form action="{{ path('createEvent') }}" method="post" {{ form_enctype(form) }}>
+	<form action="{{ path('create', { 'id': id }) }}" method="post" {{ form_enctype(form) }}>
 	    {{ form_widget(form) }}
 	
 	    <input type="submit" />

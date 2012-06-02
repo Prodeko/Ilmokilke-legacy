@@ -7,8 +7,8 @@ show:
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:show }
 
 create:
-    pattern: /create/
-    defaults: { _controller: ProdekoIlmoBundle:Admin:createEventForm }
+    pattern: /create/{id}
+    defaults: { _controller: ProdekoIlmoBundle:Admin:createEventForm, id: 0 }
 
 createEvent:
     pattern: /createEvent/
