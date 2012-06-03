@@ -1,0 +1,35 @@
+ilmokilke: Ilmokilke 2.0
+title: Ilmokilke 2.0
+
+header:
+  registrant:
+    list: Ilmoittautuneet
+  event:
+    sidebar: Tässä tapahtumasivun teksti
+  list:
+    sidebar: Tässä etusivun teksti
+
+events.upcoming: Tulevat tapahtumat
+
+fields.additional: Lisäkentät
+
+registration:
+  open: Ilmoittautuminen auki
+  ended: Ilmoittautuminen päättynyt
+  period: Ilmoittautumisaika
+  not.yet.open: Ilmoittautuminen ei vielä auki
+  
+register: Ilmoittaudu
+close: Sulje
+
+register.for.event: Ilmoittaudu tapahtumaan
+
+    
+time: Aika
+time.at: klo
+
+location: Paikka
+
+name:
+  first: Etunimi
+  last: Sukunimi

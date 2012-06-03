@@ -1,16 +1,33 @@
 list:
-    pattern: /list/
-    defaults: { _controller: ProdekoIlmoBundle:Ilmo:list }
-    
+    pattern: /{_locale}/list/
+    defaults: { _controller: ProdekoIlmoBundle:Ilmo:list, _locale: fi }
+    requirements:
+      _locale: en|fi
 show:
-    pattern: /show/{id}
-    defaults: { _controller: ProdekoIlmoBundle:Ilmo:show }
-
+    pattern: /{_locale}/show/{id}
+    defaults: { _controller: ProdekoIlmoBundle:Ilmo:show, _locale: fi  }
+    requirements:
+      _locale: en|fi
+      
 create:
-    pattern: /create/{id}
-    defaults: { _controller: ProdekoIlmoBundle:Admin:createEventForm, id: 0 }
-
+    pattern: /{_locale}/create/{id}
+    defaults: { _controller: ProdekoIlmoBundle:Admin:createEventForm, id: 0, _locale: fi  }
+    requirements:
+      _locale: en|fi
+      
 createEvent:
-    pattern: /createEvent/
-    defaults: { _controller: ProdekoIlmoBundle:Admin:createEvent }
-    
+    pattern: /{_locale}/createEvent
+    defaults: { _controller: ProdekoIlmoBundle:Admin:createEvent, _locale: fi  }
+    requirements:
+      _locale: en|fi
+
+
+
+######### kun localea ei anneta URL:ssa #########
+
+list_default:
+  pattern: /list
+  defaults:  
+      _controller: FrameworkBundle:Redirect:redirect
+      route: list
+      permanent: true

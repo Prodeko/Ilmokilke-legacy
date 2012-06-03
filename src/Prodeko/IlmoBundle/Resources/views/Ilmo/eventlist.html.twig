@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block title %}
-	Vitun ilmokilke
+	{{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -13,14 +13,14 @@
 <div class="container">
 		<div class="row">
 			<div class="span9" id="title">
-				<h1>Ilmokilke</h1>
+				<h1>{% trans %}ilmokilke{% endtrans %}</h1>
 			</div>
 			<div class="span3">
-				<h3>T&auml;h&auml;n voisi kirjoittaa jotain</h3>
+				<h3>{% trans %}header.list.sidebar{% endtrans %}</h3>
 			</div>
 		</div>
 
-<h2>Ilmoittautuminen k&aumlynniss&auml</h2>
+<h2>{% trans %}registration.open{% endtrans %}</h2>
 {% for event in activeEvents %}
 	<div class="row" id="content">
 			<div class="span6">
@@ -30,7 +30,7 @@
     </div>
 {% endfor %}
 
-<h2>Tulevia tapahtumia</h2>
+<h2>{% trans %}events.upcoming{% endtrans %}</h2>
 {% for event in upcomingEvents %}
 	<div class="row" id="content">
 			<div class="span6">
@@ -40,7 +40,7 @@
     </div>
 {% endfor %}
 
-<h2>Ilmoittautuminen p&auml&aumlttynyt</h2>
+<h2>{% trans %}registration.ended{% endtrans %}</h2>
 {% for event in pastEvents %}
 	<div class="row" id="content">
 			<div class="span6">
