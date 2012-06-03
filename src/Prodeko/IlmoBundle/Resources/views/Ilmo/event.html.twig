@@ -18,10 +18,20 @@
 			<div class="row">
 				<div class="span12">
 	    			<h2 id="eventtitle">{{ event.name }}</h2>
-	    			<p id="eventtime">{{ event.takesPlace | date("d.m.Y G:i") }}</p>
+	    				<div class="row">
+    						<div class="span4">
+    							<p id="eventtime">Aika: {{ event.takesPlace | date("j.n.y") }} klo {{ event.takesPlace | date("G:i") }}</p>
+    							<p id="eventlocation">Paikka: {{ event.location }}</p>
+    						</div>
+    						<div class="span8">
+    							<p id="registrationPeriod">Ilmoittautumisaika: {{ event.registrationStarts | date("j.n.y G:i") }} - {{ event.registrationEnds | date("j.n.y G:i") }}</p>
+    							<p id="registrationOpen">{% if isOpen %}Ilmoittautuminen on auki!{% else %}Ilmoittautuminen ei ole auki!{% endif %}</p>
+    						</div>
+	    				</div>
+	    			
 	    			<p id="eventsummary">{{ event.summary }}</p>
+	    			<p id="eventdescription">{{ event.description }}</p>
 	    			{% if isOpen %}<button id="eventsubscribe" class="btn" data-toggle="modal" href="#subscriptionmodal">Ilmoittaudu</button>
-	    			Auki on vittu
 	    			<!-- Start subscription modal -->
 	    			{% include 'ProdekoIlmoBundle:Ilmo:registration.html.twig' %}
 	    			<!-- End subscription modal -->
