@@ -2,12 +2,12 @@ list:
     pattern: /{_locale}/list/
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:list, _locale: fi }
     requirements:
-      _locale: en|fi
+      _locale: en|fi|spurdo
 show:
     pattern: /{_locale}/show/{id}
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:show, _locale: fi  }
     requirements:
-      _locale: en|fi
+      _locale: en|fi|spurdo
       
 create:
     pattern: /{_locale}/create/{id}

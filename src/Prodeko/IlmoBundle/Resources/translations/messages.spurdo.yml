@@ -1,0 +1,35 @@
+ilmokilke: Ilmogilge
+title: Ilmogilge
+
+header:
+  registrant:
+    list: Ilmoiddauduneed x--DD
+  event:
+    sidebar: Ei viddu mage x--DDD
+  list:
+    sidebar: Viddu, Viljamin veli tehny ebin ilmogilggeen :---D:DDD
+
+events.upcoming: Dulevad dabahdumad :--D:DD
+
+fields.additional: Sprölögendäd ::DD:DD
+
+registration:
+  open: Ilmo augi :D::DD
+  ended: Fug :DD Ilmo giinni :D
+  period: Ilmoiddaudumisaiga :DDD
+  not.yet.open: Fug :D Ei voi vielä ilmoda :DDD
+  
+register: Ilmoiddaudu :D 
+close: Sulje
+
+register.for.event: Ilmoiddaudu dabahdumaan x--DD:DDD
+
+    
+time: Aiga
+time.at: glo
+
+location: Baigga
+
+name:
+  first: Edunimi :DDDD
+  last: Sugunimi :D
