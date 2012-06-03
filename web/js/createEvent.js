@@ -38,7 +38,7 @@ jQuery(document).ready(function() {
 	
     // add a delete link to all of the existing field form li elements
     collectionHolder.find('li').each(function() {
-        addTagFormDeleteLink($(this));
+        addFieldFormDeleteLink($(this));
     });
 	    
     // add the "add a field" anchor and li to the tags ul

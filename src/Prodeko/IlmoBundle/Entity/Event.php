@@ -241,9 +241,9 @@ class Event
     /**
      * Set freeTextFields
      *
-     * @param Doctrine\Common\Collections\ArrayCollection $freeTextFields
+     * @param $freeTextFields
      */
-    public function setFreeTextFields(ArrayCollection $freeTextFields)
+    public function setFreeTextFields( $freeTextFields)
     {
     	$this->freeTextFields = $freeTextFields;
     }
