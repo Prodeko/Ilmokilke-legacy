@@ -20,7 +20,28 @@
 			</div>
 		</div>
 
-{% for event in list %}
+<h2>Ilmoittautuminen k&aumlynniss&auml</h2>
+{% for event in activeEvents %}
+	<div class="row" id="content">
+			<div class="span6">
+			<a href={{ path('show', {'id': event.id}) }}><h2 rel="popover" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
+			<p>{{ event.takesPlace | date("d.m.Y G:i") }}</p>
+			</div>
+    </div>
+{% endfor %}
+
+<h2>Tulevia tapahtumia</h2>
+{% for event in upcomingEvents %}
+	<div class="row" id="content">
+			<div class="span6">
+			<a href={{ path('show', {'id': event.id}) }}><h2 rel="popover" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
+			<p>{{ event.takesPlace | date("d.m.Y G:i") }}</p>
+			</div>
+    </div>
+{% endfor %}
+
+<h2>Ilmoittautuminen p&auml&aumlttynyt</h2>
+{% for event in pastEvents %}
 	<div class="row" id="content">
 			<div class="span6">
 			<a href={{ path('show', {'id': event.id}) }}><h2 rel="popover" data-content="{{ event.summary }}">{{ event.name }}</h2></a>

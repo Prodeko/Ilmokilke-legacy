@@ -3,12 +3,23 @@
 namespace Prodeko\IlmoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Prodeko\IlmoBundle\Entity\Event
  */
 class Event
 {
+	public function __construct()
+	{
+		$this->freeTextFields = new ArrayCollection();
+		$this->registrations = new ArrayCollection();
+	}
+	
+	public function isOpen() {
+		$now = new \DateTime();
+		return ($this->registrationStarts  < $now && $now < $this->registrationEnds) ? true : false; 
+	}
     /**
      * @var integer $id
      */
@@ -27,17 +38,16 @@ class Event
     /**
      * @var datetime $takes_place
      */
-    private $takes_place;
 
 
     /**
      * Set takes_place
-     *
+     * MUUTTUJIEN MÄÄRITTELY ALAREUNASSA
      * @param datetime $takesPlace
      */
     public function setTakesPlace($takesPlace)
     {
-        $this->takes_place = $takesPlace;
+        $this->takesPlace = $takesPlace;
     }
 
     /**
@@ -47,13 +57,11 @@ class Event
      */
     public function getTakesPlace()
     {
-        return $this->takes_place;
+        return $this->takesPlace;
     }
     /**
      * @var datetime $registration_starts
      */
-    private $registration_starts;
-
 
     /**
      * Set registration_starts
@@ -62,7 +70,7 @@ class Event
      */
     public function setRegistrationStarts($registrationStarts)
     {
-        $this->registration_starts = $registrationStarts;
+        $this->registrationStarts = $registrationStarts;
     }
 
     /**
@@ -72,12 +80,12 @@ class Event
      */
     public function getRegistrationStarts()
     {
-        return $this->registration_starts;
+        return $this->registrationStarts;
     }
     /**
      * @var datetime $registration_ends
      */
-    private $registration_ends;
+    private $registrationEnds;
 
     /**
      * @var string $location
@@ -102,7 +110,7 @@ class Event
      */
     public function setRegistrationEnds($registrationEnds)
     {
-        $this->registration_ends = $registrationEnds;
+        $this->registrationEnds = $registrationEnds;
     }
 
     /**
@@ -112,7 +120,7 @@ class Event
      */
     public function getRegistrationEnds()
     {
-        return $this->registration_ends;
+        return $this->registrationEnds;
     }
 
     /**
@@ -179,10 +187,6 @@ class Event
      */
     private $registrations;
 
-    public function __construct()
-    {
-        $this->registrations = new \Doctrine\Common\Collections\ArrayCollection();
-    }
     
     /**
      * Add registrations
@@ -206,32 +210,42 @@ class Event
     /**
      * @var Prodeko\IlmoBundle\Entity\FreeTextField
      */
-    private $free_text_fields;
+    private $freeTextFields;
 
 
     /**
-     * Add free_text_fields
+     * Add freeTextFields
      *
      * @param Prodeko\IlmoBundle\Entity\FreeTextField $freeTextFields
      */
     public function addFreeTextField(\Prodeko\IlmoBundle\Entity\FreeTextField $freeTextFields)
     {
-        $this->free_text_fields[] = $freeTextFields;
+        $this->freeTextFields[] = $freeTextFields;
     }
 
     /**
-     * Get free_text_fields
+     * Get freeTextFields
      *
      * @return Doctrine\Common\Collections\Collection 
      */
     public function getFreeTextFields()
     {
-        return $this->free_text_fields;
+        return $this->freeTextFields;
     }
     /**
      * @var string $name
      */
     private $name;
+    
+    /**
+     * Set freeTextFields
+     *
+     * @param $freeTextFields
+     */
+    public function setFreeTextFields( $freeTextFields)
+    {
+    	$this->freeTextFields = $freeTextFields;
+    }
 
 
     /**
@@ -266,12 +280,7 @@ class Event
     /**
      * @var datetime $registrationEnds
      */
-    private $registrationEnds;
-
-    /**
-     * @var Prodeko\IlmoBundle\Entity\FreeTextField
-     */
-    private $freeTextFields;
+    
 
 
 }
