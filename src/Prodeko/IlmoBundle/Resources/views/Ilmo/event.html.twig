@@ -1,7 +1,7 @@
 {% extends 'ProdekoIlmoBundle:Ilmo:base.html.twig' %}
 
 {% block title %}
-	Vitun ilmokilke
+	{{ parent() }} - {{ event.name }}
 {% endblock %}
 
 {% block body %}
@@ -20,11 +20,12 @@
 	    			<h2 id="eventtitle">{{ event.name }}</h2>
 	    			<p id="eventtime">{{ event.takesPlace | date("d.m.Y G:i") }}</p>
 	    			<p id="eventsummary">{{ event.summary }}</p>
-	    			<button id="eventsubscribe" class="btn" data-toggle="modal" href="#subscriptionmodal">Ilmoittaudu</button>
-	    			
+	    			{% if isOpen %}<button id="eventsubscribe" class="btn" data-toggle="modal" href="#subscriptionmodal">Ilmoittaudu</button>
+	    			Auki on vittu
 	    			<!-- Start subscription modal -->
 	    			{% include 'ProdekoIlmoBundle:Ilmo:registration.html.twig' %}
 	    			<!-- End subscription modal -->
+	    			{% endif %}
 				</div>
     		</div>
     		<div class="row">
