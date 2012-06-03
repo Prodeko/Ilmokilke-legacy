@@ -36,11 +36,10 @@ class IlmoController extends Controller
 	public function showAction($id, Request $request)
 	{
 		//Hae tapahtuma URI:sta tulleen id:n perusteella
-		//TODO: Tarkasta, onko tapahtuma auki. Tallennusta ei myöskään pidä tehdä, jos tapahtuma on kiinni.
 		$event = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Event')
 			->findOneBy(array('id' => $id));
-		$open = $event->isOpen();
+		$eventIsOpen = $event->isOpen();
 		//Hae kyseiseen tapahtumaan liittyvät ilmoittautumiset
 		$registrations = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Registration')
@@ -53,8 +52,8 @@ class IlmoController extends Controller
 		//Jos sivu on haettu POSTilla, on kyseessä ilmoittautumisen käsittely
 		if ($request->getMethod() == 'POST') {
 			$form->bindRequest($request);
-			//Tarkasta lomake, isValid näyttää automaattisesti errorit, jos niitä on
-			if ($form->isValid()) {
+			//Tarkasta lomake, isValid näyttää automaattisesti errorit, jos niitä on. Älä myöskään tallenna ilmoittautumista, jos ilmo ei ole auki.
+			if ($form->isValid() && $eventIsOpen) {
 				//Lisää lomakkeelta tulleet tiedot registration-olioon
 				$registration = $form->getData();
 				$time = new \DateTime();
@@ -74,7 +73,7 @@ class IlmoController extends Controller
 				'registrations' => $registrations,
 				'form' => $form->createView(),
 				'id' => $id,
-				'isOpen' => $open
+				'isOpen' => $eventIsOpen
 				);
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);
