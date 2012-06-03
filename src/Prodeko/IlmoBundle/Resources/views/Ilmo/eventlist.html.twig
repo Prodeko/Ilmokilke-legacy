@@ -23,8 +23,8 @@
 {% for event in list %}
 	<div class="row" id="content">
 			<div class="span6">
-			<h2 rel="popover" data-content="{{ event.summary }}">{{ event.name }}</h2>
-			<p>{{ event.takesPlace | date("m/d/Y") }}</p>
+			<a href={{ path('show', {'id': event.id}) }}><h2 rel="popover" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
+			<p>{{ event.takesPlace | date("d.m.Y G:i") }}</p>
 			</div>
     </div>
 {% endfor %}
