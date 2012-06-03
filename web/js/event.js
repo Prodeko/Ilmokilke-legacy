@@ -10,4 +10,9 @@ $(function() {
 		//Lisää jokaiselle virheitä sisältävälle fieldsetille luokka 'error' (muuttaa ne punaisiksi)
 		$('.formerror:parent').closest('fieldset').addClass('error');
 	}
+	
+	//Disabloi ilmoittautumisnappula lomakketta lähettäessä, estää tuplailmoittautumisen vahingossa.
+	$('form').submit(function(){
+	    $('input[type=submit]', this).attr('disabled', 'disabled');
+	});
 });
