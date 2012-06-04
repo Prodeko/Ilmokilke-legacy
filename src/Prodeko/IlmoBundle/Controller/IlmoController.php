@@ -31,7 +31,7 @@ class IlmoController extends Controller
 
 		$upcomingEvents = $query->getResult();
 		
-		//Listaa tapahtumat, joiden ilmo on k�ynniss�
+		//Listaa tapahtumat, joiden ilmo on käynnissä
 		$query = $repository->createQueryBuilder('e')
 			->where('e.registrationStarts < :now')
 			->andWhere('e.registrationEnds > :now')
@@ -105,9 +105,18 @@ class IlmoController extends Controller
 	{
 		//Poistaa ilmoittautumisen annetulla id:llä. Tähän pitää tehdä varmennussysteemit.
 		$em = $this->getDoctrine()->getEntityManager();
-		$registration = $this->getRepository('ProdekoIlmoBundle:Registration')->find($id);
+		$registration = $this->getDoctrine()
+			->getRepository('ProdekoIlmoBundle:Registration')
+			->findOneBy(array('id' => $id));
+		if (!$registration) {
+			//Heitä etusivulle, jos ilmoittautumista ei löydy
+			return $this->redirect($this->generateUrl("list"));
+		}
+		$event = $registration->getEvent();
 		$em->remove($registration);
 		$em->flush();
+		//Ohjaa tarkastelemaan tapahtumaa
+		return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
 	}
 
 }
