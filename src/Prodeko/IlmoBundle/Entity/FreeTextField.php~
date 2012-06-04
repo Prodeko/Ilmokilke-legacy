@@ -103,29 +103,30 @@ class FreeTextField
     {
         return $this->entries;
     }
+
     /**
-     * @var boolean $private
+     * @var boolean $flagPrivate
      */
-    private $private;
+    private $flagPrivate = true;
 
 
     /**
-     * Set private
+     * Set flagPrivate
      *
-     * @param boolean $private
+     * @param boolean $flagPrivate
      */
-    public function setPrivate($private)
+    public function setFlagPrivate($flagPrivate)
     {
-        $this->private = $private;
+        $this->flagPrivate = $flagPrivate;
     }
 
     /**
-     * Get private
+     * Get flagPrivate
      *
      * @return boolean 
      */
-    public function getPrivate()
+    public function getFlagPrivate()
     {
-        return $this->private;
+        return $this->flagPrivate;
     }
 }

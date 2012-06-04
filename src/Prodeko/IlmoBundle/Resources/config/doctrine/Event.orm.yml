@@ -31,7 +31,12 @@ Prodeko\IlmoBundle\Entity\Event:
     freeTextFields:
       targetEntity: FreeTextField
       cascade:      [persist]
-      
+
+  #N.B this does not reference a Quota object directly
+  oneToMany:
+    quotas:
+      targetEntity: QuotaInEvent
+      mappedBy: event
   oneToMany:
     registrations:
       targetEntity: Registration
