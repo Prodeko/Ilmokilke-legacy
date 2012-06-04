@@ -30,7 +30,6 @@
 	    				</div>
 	    			
 	    			<p id="eventsummary">{{ event.summary }}</p>
-	    			<p id="eventdescription">{{ event.description }}</p>
 	    			{% if isOpen %}<button id="eventsubscribe" class="btn" data-toggle="modal" href="#subscriptionmodal">{% trans %}register{% endtrans %}</button>
 	    			<!-- Start subscription modal -->
 	    			{% include 'ProdekoIlmoBundle:Ilmo:registration.html.twig' %}
