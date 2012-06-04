@@ -30,7 +30,6 @@
 	    				</div>
 	    			
 	    			<p id="eventsummary">{{ event.summary }}</p>
-	    			<p id="eventdescription">{{ event.description }}</p>
 	    			{% if isOpen %}<button id="eventsubscribe" class="btn" data-toggle="modal" href="#subscriptionmodal">{% trans %}register{% endtrans %}</button>
 	    			<!-- Start subscription modal -->
 	    			{% include 'ProdekoIlmoBundle:Ilmo:registration.html.twig' %}
@@ -39,6 +38,9 @@
 				</div>
     		</div>
     		<div class="row">
+    			<div class="span6" id="eventdescription">
+    				<p>{{ event.description }}</p>
+    			</div>
     			<div class="span6" id="registered">
     				<h3>{% trans %}header.registrant.list{% endtrans %}</h3>
     				<table class="table table-striped table-bordered table-condensed">

@@ -32,17 +32,21 @@ class AdminController extends IlmoController
 		else {
 			$event = new Event();
 		}
+		//Tee ilmoittautumislomake, määrittely löytyy Prodeko\IlmoBundle\Form\Type\EventType
+		$form = $this->createForm(new EventType(), $event);
+		
 		if ($request->getMethod() == 'POST') {	
-			$form = $this->createForm(new EventType(), $event);
+			//Jos kyseessä on lähetetyn lomakkeen käsittely, anna lomakkeesta tulleet arvot eventille
 			$form->bindRequest($request);
 			$event = $form->getData();
-		
+			//Tallenna tapahtuma
 			$em = $this->getDoctrine()->getEntityManager();
 			$em->persist($event);
 			$em->flush();
+			//Ohjaa tarkastelemaan luotua tapahtumaa
+			return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
 		}
-		//Tee ilmoittautumislomake, määrittely löytyy Prodeko\IlmoBundle\Form\Type\EventType
-		$form = $this->createForm(new EventType(), $event);
+		
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:createEvent.html.twig', array(
 				'form' => $form->createView(), 'id' => $id

@@ -100,6 +100,15 @@ class IlmoController extends Controller
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);
 	}
+	
+	public function removeRegistrationAction($id, Request $request) 
+	{
+		//Poistaa ilmoittautumisen annetulla id:llä. Tähän pitää tehdä varmennussysteemit.
+		$em = $this->getDoctrine()->getEntityManager();
+		$registration = $this->getRepository('ProdekoIlmoBundle:Registration')->find($id);
+		$em->remove($registration);
+		$em->flush();
+	}
 
 }
 ?>
