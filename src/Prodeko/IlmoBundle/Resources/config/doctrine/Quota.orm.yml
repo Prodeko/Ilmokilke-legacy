@@ -1,0 +1,16 @@
+Prodeko\IlmoBundle\Entity\Quota:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    name:
+      type: string
+    yearOfStudiesValue:
+      type: integer
+      unique: true
+      nullable: true
+  lifecycleCallbacks: {  }

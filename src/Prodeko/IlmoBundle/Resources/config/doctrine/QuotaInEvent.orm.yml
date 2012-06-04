@@ -1,0 +1,20 @@
+Prodeko\IlmoBundle\Entity\QuotaInEvent:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    size:
+      type: integer
+
+  manyToOne:
+    event:
+      targetEntity: Event
+      inversedBy: quotas
+  manyToOne:
+    quota:
+      targetEntity: Quota
+  lifecycleCallbacks: {  }
