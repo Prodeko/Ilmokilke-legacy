@@ -1,0 +1,35 @@
+ilmokilke: The Ilmo Machine 2.0
+title: The Ilmo Machine 2.0
+
+header:
+  registrant:
+    list: Registrants
+  event:
+    sidebar: English text for event page sidebar
+  list:
+    sidebar: English text on front page
+
+events.upcoming: Upcoming events
+
+fields.additional: Additional fields
+
+registration:
+  open: Registration open
+  ended: Registration ended
+  period: Registration period
+  not.yet.open: Registration not yet open
+  
+register: Register
+close: Close
+
+register.for.event: Register for event
+
+    
+time: Time
+time.at: at
+
+location: Location
+
+name:
+  first: First name
+  last: Last name

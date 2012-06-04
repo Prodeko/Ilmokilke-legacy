@@ -103,4 +103,29 @@ class FreeTextField
     {
         return $this->entries;
     }
+    /**
+     * @var boolean $private
+     */
+    private $private;
+
+
+    /**
+     * Set private
+     *
+     * @param boolean $private
+     */
+    public function setPrivate($private)
+    {
+        $this->private = $private;
+    }
+
+    /**
+     * Get private
+     *
+     * @return boolean 
+     */
+    public function getPrivate()
+    {
+        return $this->private;
+    }
 }

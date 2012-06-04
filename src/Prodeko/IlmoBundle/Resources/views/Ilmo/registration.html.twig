@@ -4,7 +4,7 @@
 	<form action="{{ path('show', { 'id': event.id }) }}" method="post" {{ form_enctype(form) }} novalidate="novalidate" class="form-horizontal">
 		<div class="modal-header">
 			<button class="close" data-dismiss="modal">&times;</button>
-			<h3>Ilmoittaudu tapahtumaan {{ event.name }}</h3>
+			<h3>{% trans %}register.for.event{% endtrans %} {{ event.name }}</h3>
 		</div>
 		<div class="modal-body">
 				<div>{{ form_errors(form) }}</div>
@@ -46,7 +46,7 @@
 						    
 		</div>
 		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Sulje</a>
+			<a href="#" class="btn" data-dismiss="modal">{% trans %}close{% endtrans %}</a>
 			<input type="submit" class="btn btn-info" value="Ilmoittaudu!" />
 		</div>
 	</form>

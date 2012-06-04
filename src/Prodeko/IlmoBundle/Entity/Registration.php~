@@ -237,4 +237,24 @@ class Registration
     private $registrationTime;
 
 
+
+    /**
+     * Set registrationTime
+     *
+     * @param datetime $registrationTime
+     */
+    public function setRegistrationTime($registrationTime)
+    {
+        $this->registrationTime = $registrationTime;
+    }
+
+    /**
+     * Get registrationTime
+     *
+     * @return datetime 
+     */
+    public function getRegistrationTime()
+    {
+        return $this->registrationTime;
+    }
 }

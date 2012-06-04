@@ -22,14 +22,36 @@ class IlmoController extends Controller
 		//TODO: implement list controller
 		$repository = $this->getDoctrine()->getRepository('ProdekoIlmoBundle:Event');
 		$now = new \DateTime();
+		
+		//Listaa tapahtumat, joiden ilmo on tulevaisuudessa
 		$query = $repository->createQueryBuilder('e')
-   			->where('e.takesPlace > :now')
+   			->where('e.registrationStarts > :now')
 	    	->setParameter('now', $now)
 	    	->getQuery();
 
-		$events = $query->getResult();
-
-		return $this->render('ProdekoIlmoBundle:Ilmo:eventlist.html.twig', array('list' => $events));
+		$upcomingEvents = $query->getResult();
+		
+		//Listaa tapahtumat, joiden ilmo on k‰ynniss‰
+		$query = $repository->createQueryBuilder('e')
+			->where('e.registrationStarts < :now')
+			->andWhere('e.registrationEnds > :now')
+			->setParameter('now', $now)
+			->getQuery();
+		$activeEvents = $query->getResult();
+		
+		
+		//Listaa tapahtumia, joiden ilmo on jo sulkeutunut
+		$query = $repository->createQueryBuilder('e')
+			->where('e.registrationEnds < :now')
+			->setParameter('now', $now)
+			->getQuery();
+		$pastEvents = $query->getResult();
+		
+		return $this->render('ProdekoIlmoBundle:Ilmo:eventlist.html.twig',
+				array('activeEvents' => $activeEvents,
+					  'upcomingEvents' => $upcomingEvents,
+					  'pastEvents' => $pastEvents)
+				);
 	}
 	
 	//N√§ytt√§√§ yhden tapahtuman tiedot

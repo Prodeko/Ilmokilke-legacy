@@ -1,7 +1,7 @@
 {% extends 'ProdekoIlmoBundle:Ilmo:base.html.twig' %}
 
 {% block title %}
-	Vitun ilmokilke
+{{ parent() }} - {% trans %}event.create{% endtrans %}
 {% endblock %}
 
 {% block body %}
@@ -15,7 +15,7 @@
 	    {{ form_row(form.registrationEnds) }}
 	    {{ form_row(form.location) }}
 		
-		<h3>Lisäkentät</h3>
+		<h3>{% trans %}fields.additional{% endtrans %}</h3>
 		<ul class="freeTextFields" data-prototype="{{ form_widget(form.freeTextFields.get('prototype')) | e }}">
     		{% for freeTextField in form.freeTextFields %}
        	    	<li>{{ form_row(freeTextField.name) }}</li>

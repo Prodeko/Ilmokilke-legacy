@@ -9,6 +9,9 @@ Prodeko\IlmoBundle\Entity\FreeTextField:
         strategy: AUTO
     name:
       type: string
+    flagPrivate:
+      type: boolean
+      
     
     #this might be unneccessary?
     description:
