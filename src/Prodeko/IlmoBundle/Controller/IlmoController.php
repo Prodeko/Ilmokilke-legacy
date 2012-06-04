@@ -2,6 +2,8 @@
 namespace Prodeko\IlmoBundle\Controller;
 
 
+use Prodeko\IlmoBundle\Entity\FreeTextEntry;
+
 use Prodeko\IlmoBundle\Form\Type\RegistrationType;
 
 use Prodeko\IlmoBundle\Entity\Event;
@@ -66,9 +68,20 @@ class IlmoController extends Controller
 		$registrations = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Registration')
 			->findBy(array('event' => $id));
+		
 		//Luo uusi ilmoittautumisolio ja liitä sille kyseinen tapahtuma
 		$registration = new Registration();
 		$registration->setEvent($event);
+		
+		$freeTextFields = $event->getFreeTextFields();
+		foreach ($freeTextFields as $freeTextField) {
+			$entry = new FreeTextEntry();
+			$entry->setField($freeTextField);
+			$entry->setRegistration($registration);
+			$registration->addFreeTextEntry($entry);
+		}
+		
+		
 		//Tee ilmoittautumislomake, määrittely löytyy Prodeko\IlmoBundle\Form\Type\RegistrationType
 		$form = $this->createForm(new RegistrationType(), $registration);
 		//Jos sivu on haettu POSTilla, on kyseessä ilmoittautumisen käsittely

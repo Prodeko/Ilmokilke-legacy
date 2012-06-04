@@ -231,6 +231,16 @@ class Registration
     {
         return $this->freeTextEntries;
     }
+    
+    /**
+     * Set freeTextEntries
+     *
+     * @param $freeTextEntries
+     */
+    public function setFreeTextEntries( $freeTextEntries)
+    {
+    	$this->freeTextEntries = $freeTextEntries;
+    }
     /**
      * @var datetime $registrationTime
      */

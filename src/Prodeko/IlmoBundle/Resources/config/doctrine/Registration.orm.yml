@@ -30,4 +30,5 @@ Prodeko\IlmoBundle\Entity\Registration:
     freeTextEntries:
       targetEntity: FreeTextEntry
       mappedBy: registration
+      cascade: [persist]
   lifecycleCallbacks: {  }

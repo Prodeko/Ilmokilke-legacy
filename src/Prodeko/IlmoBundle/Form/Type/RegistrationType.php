@@ -12,6 +12,10 @@ class RegistrationType extends AbstractType
         $builder->add('lastName', 'text');
         $builder->add('email', 'email');
         $builder->add('allergies', 'text', array('required' => false));
+        $builder->add('freeTextEntries', 'collection', array(
+        		'type' => new FreeTextEntryType(),
+        		'by_reference' => false,
+        ));
         
     }
     //Tällanen funktio pitää jostain syystä olla, palauttaa formin "nimen"
