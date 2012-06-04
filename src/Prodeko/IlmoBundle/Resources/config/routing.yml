@@ -13,13 +13,13 @@ create:
     pattern: /{_locale}/create/{id}
     defaults: { _controller: ProdekoIlmoBundle:Admin:createEventForm, id: 0, _locale: fi  }
     requirements:
-      _locale: en|fi
+      _locale: en|fi|spurdo
       
 createEvent:
     pattern: /{_locale}/createEvent
     defaults: { _controller: ProdekoIlmoBundle:Admin:createEvent, _locale: fi  }
     requirements:
-      _locale: en|fi
+      _locale: en|fi|spurdo
 
 
 
