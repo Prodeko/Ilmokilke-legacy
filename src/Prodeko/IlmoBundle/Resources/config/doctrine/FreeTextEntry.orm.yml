@@ -13,8 +13,8 @@ Prodeko\IlmoBundle\Entity\FreeTextEntry:
     field:
       targetEntity: FreeTextField
       inversedBy: entries
-  manyToOne:
     registration:
       targetEntity: Registration
       inversedBy: freeTextEntries
+      
   lifecycleCallbacks: {  }

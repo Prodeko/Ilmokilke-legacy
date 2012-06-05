@@ -22,5 +22,6 @@ Prodeko\IlmoBundle\Entity\FreeTextField:
     entries:
       targetEntity: FreeTextEntry
       mappedBy: field
+      cascade: [persist]
       
   lifecycleCallbacks: {  }

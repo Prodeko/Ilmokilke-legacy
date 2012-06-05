@@ -73,10 +73,13 @@ class IlmoController extends Controller
 		$registration = new Registration();
 		$registration->setEvent($event);
 		
+		//Hae tapahtuman vapaatekstikentät
 		$freeTextFields = $event->getFreeTextFields();
 		foreach ($freeTextFields as $freeTextField) {
+			//Lisää entry-olio jokaiselle vapaatekstikentälle
 			$entry = new FreeTextEntry();
 			$entry->setField($freeTextField);
+			$freeTextField->addFreeTextEntry($entry);
 			$entry->setRegistration($registration);
 			$registration->addFreeTextEntry($entry);
 		}
