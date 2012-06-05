@@ -129,7 +129,11 @@ class IlmoController extends Controller
 			return $this->redirect($this->generateUrl("list"));
 		}
 		$event = $registration->getEvent();
+		$freeTextEntries = $registration->getFreeTextEntries();
 		$em->remove($registration);
+		foreach ($freeTextEntries as $freeTextEntry) {
+			$em->remove($freeTextEntry);
+		}
 		$em->flush();
 		//Ohjaa tarkastelemaan tapahtumaa
 		return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
