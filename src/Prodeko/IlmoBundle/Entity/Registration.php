@@ -213,4 +213,29 @@ class Registration
     {
         return $this->event;
     }
+    /**
+     * @var Prodeko\IlmoBundle\Entity\MultipleChoiceEntry
+     */
+    private $multipleChoiceEntries;
+
+
+    /**
+     * Add multipleChoiceEntries
+     *
+     * @param Prodeko\IlmoBundle\Entity\MultipleChoiceEntry $multipleChoiceEntries
+     */
+    public function addMultipleChoiceEntry(\Prodeko\IlmoBundle\Entity\MultipleChoiceEntry $multipleChoiceEntries)
+    {
+        $this->multipleChoiceEntries[] = $multipleChoiceEntries;
+    }
+
+    /**
+     * Get multipleChoiceEntries
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getMultipleChoiceEntries()
+    {
+        return $this->multipleChoiceEntries;
+    }
 }

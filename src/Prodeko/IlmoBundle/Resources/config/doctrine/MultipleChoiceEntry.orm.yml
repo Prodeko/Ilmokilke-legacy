@@ -1,0 +1,17 @@
+Prodeko\IlmoBundle\Entity\MultipleChoiceEntry:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    selection:
+      type: integer
+  manyToOne:
+    registration:
+      targetEntity: Registration
+    field:
+      targetEntity: MultipleChoiceField
+  lifecycleCallbacks: {  }
