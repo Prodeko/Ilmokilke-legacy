@@ -29,6 +29,7 @@ class IlmoController extends Controller
 		$query = $repository->createQueryBuilder('e')
    			->where('e.registrationStarts > :now')
 	    	->setParameter('now', $now)
+	    	->orderBy('e.registrationStarts', 'ASC')
 	    	->getQuery();
 
 		$upcomingEvents = $query->getResult();
@@ -38,6 +39,7 @@ class IlmoController extends Controller
 			->where('e.registrationStarts < :now')
 			->andWhere('e.registrationEnds > :now')
 			->setParameter('now', $now)
+			->orderBy('e.takesPlace', 'ASC')
 			->getQuery();
 		$activeEvents = $query->getResult();
 		
@@ -45,6 +47,7 @@ class IlmoController extends Controller
 		//Listaa tapahtumia, joiden ilmo on jo sulkeutunut
 		$query = $repository->createQueryBuilder('e')
 			->where('e.registrationEnds < :now')
+			->andWhere('e.takesPlace > :now')
 			->setParameter('now', $now)
 			->getQuery();
 		$pastEvents = $query->getResult();

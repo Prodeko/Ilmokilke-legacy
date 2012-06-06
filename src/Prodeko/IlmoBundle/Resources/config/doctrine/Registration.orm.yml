@@ -31,4 +31,7 @@ Prodeko\IlmoBundle\Entity\Registration:
       targetEntity: FreeTextEntry
       mappedBy: registration
       cascade: [persist]
+    multipleChoiceEntries:
+      targetEntity: MultipleChoiceEntry
+      mappedBy: registration
   lifecycleCallbacks: {  }
