@@ -78,6 +78,7 @@ class IlmoController extends Controller
 		
 		//Hae tapahtuman vapaatekstikentät
 		$freeTextFields = $event->getFreeTextFields();
+		$fieldNames = array();
 		foreach ($freeTextFields as $freeTextField) {
 			//Lisää entry-olio jokaiselle vapaatekstikentälle
 			$entry = new FreeTextEntry();
@@ -85,6 +86,7 @@ class IlmoController extends Controller
 			$freeTextField->addFreeTextEntry($entry);
 			$entry->setRegistration($registration);
 			$registration->addFreeTextEntry($entry);
+			$fieldNames[] = $freeTextField->getName();
 		}
 		
 		
@@ -114,7 +116,8 @@ class IlmoController extends Controller
 				'registrations' => $registrations,
 				'form' => $form->createView(),
 				'id' => $id,
-				'isOpen' => $eventIsOpen
+				'isOpen' => $eventIsOpen,
+				'fieldNames' => $fieldNames
 				);
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);
