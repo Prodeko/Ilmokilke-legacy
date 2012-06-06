@@ -41,7 +41,17 @@
 				    </div>
 				</fieldset>
 				
-				{{ form_rest(form) }}
+				{% for entry in form.freeTextEntries %}
+		{#		{{ dump(entry) }}  ei toimi!  #}
+				
+					<fieldset class="control-group">
+					    {{ form_label(entry.content, 'JOTAIN VITTU TÄHÄN', { 'attr': {'class': 'control-label'}}) }}
+					    <div class="controls">
+					    	{{ form_widget(entry.content) }}
+					    	{{ form_errors(entry.content) }}
+					    </div>
+					</fieldset> 
+				{% endfor %}
 			
 						    
 		</div>

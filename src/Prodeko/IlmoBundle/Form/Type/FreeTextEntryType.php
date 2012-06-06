@@ -8,7 +8,7 @@ class FreeTextEntryType extends AbstractType
 {
 	public function buildForm(FormBuilder $builder, array $options)
 	{
-		$builder->add('content', 'text');
+		$builder->add('content', 'textarea', array('required' => false));
 	}
 	//Tällanen funktio pitää jostain syystä olla, palauttaa formin "nimen"
 	public function getName()
