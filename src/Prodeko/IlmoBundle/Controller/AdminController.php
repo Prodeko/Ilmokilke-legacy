@@ -53,8 +53,31 @@ class AdminController extends IlmoController
 		));
 	}
 	
+	public function adminRegistrationsAction($id, Request $request) // Täydellinen lista ilmoittautuneista admineille
+	{
+		$event = $this->getDoctrine()
+			->getRepository('ProdekoIlmoBundle:Event')
+			->findOneBy(array('id' => $id));
+		
+		$registrations = $event->getRegistrations();
+		$freeTextFields = $event->getFreeTextFields();
+		
+		return $this->render('ProdekoIlmoBundle:Ilmo:adminRegistrations.html.twig', array(
+				'event' => $event,
+				'registrations' => $registrations,
+				'freeTextFields' => $freeTextFields
+		));
+		
+	}
 	
-	public function createEventAction(Request $r)
+	
+	
+	
+	
+	
+	
+	
+	public function createEventAction(Request $r)  //Tämän voinee jo poistaa???
 	{
 		$form = $this->createForm(new EventType(), new Event());
 		

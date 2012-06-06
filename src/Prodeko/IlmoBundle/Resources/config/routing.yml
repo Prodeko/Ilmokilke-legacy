@@ -26,6 +26,12 @@ removeRegistration:
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:removeRegistration, _locale: fi  }
     requirements:
       _locale: en|fi
+      
+adminRegistrations:
+    pattern: /{_locale}/adminRegistrations/{id}
+    defaults: { _controller: ProdekoIlmoBundle:Admin:adminRegistrations, _locale: fi  }
+    requirements:
+      _locale: en|fi|spurdo
 
 
 ######### kun localea ei anneta URL:ssa #########
