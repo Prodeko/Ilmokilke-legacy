@@ -21,6 +21,19 @@
        	    	<li>{{ form_row(freeTextField.name) }}</li>
         	{% endfor %}
 		</ul>
+		<table>
+		<tr>
+			<th>{% trans %}nimi{% endtrans %}</th>
+			<th>{% trans %}koko{% endtrans %}</th>
+		</tr>	
+			{% for quota in form.quotas %}
+				<tr>
+					<td>{{ form_row(quota.name) }}</td>
+					<td>{{ form_row(quota.size) }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+		
 		
 	    <input type="submit" />
 	</form>

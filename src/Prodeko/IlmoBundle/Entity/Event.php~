@@ -14,6 +14,8 @@ class Event
 	{
 		$this->freeTextFields = new ArrayCollection();
 		$this->registrations = new ArrayCollection();
+		$this->kiltisilmo = true; //Poista tämä, jos sallitaan kiltisilmottomat
+								  //tapahtumat
 	}
 	
 	public function isOpen() {
@@ -283,4 +285,29 @@ class Event
     
 
 
+    /**
+     * @var boolean $kiltisilmo
+     */
+    private $kiltisilmo;
+
+
+    /**
+     * Set kiltisilmo
+     *
+     * @param boolean $kiltisilmo
+     */
+    public function setKiltisilmo($kiltisilmo)
+    {
+        $this->kiltisilmo = $kiltisilmo;
+    }
+
+    /**
+     * Get kiltisilmo
+     *
+     * @return boolean 
+     */
+    public function getKiltisilmo()
+    {
+        return $this->kiltisilmo;
+    }
 }

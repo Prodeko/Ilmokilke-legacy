@@ -34,6 +34,7 @@ class Quota
     {
         return $this->id;
     }
+    
 
     /**
      * Set name
@@ -73,5 +74,84 @@ class Quota
     public function getYearOfStudiesValue()
     {
         return $this->yearOfStudiesValue;
+    }
+    /**
+     * @var integer $size
+     */
+    private $size;
+
+    /**
+     * @var Prodeko\IlmoBundle\Entity\Registration
+     */
+    private $registrations;
+
+    /**
+     * @var Prodeko\IlmoBundle\Entity\Event
+     */
+    private $event;
+
+    public function __construct()
+    {
+        $this->registrations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Set size
+     *
+     * @param integer $size
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+    }
+
+    /**
+     * Get size
+     *
+     * @return integer 
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * Add registrations
+     *
+     * @param Prodeko\IlmoBundle\Entity\Registration $registrations
+     */
+    public function addRegistration(\Prodeko\IlmoBundle\Entity\Registration $registrations)
+    {
+        $this->registrations[] = $registrations;
+    }
+
+    /**
+     * Get registrations
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getRegistrations()
+    {
+        return $this->registrations;
+    }
+
+    /**
+     * Set event
+     *
+     * @param Prodeko\IlmoBundle\Entity\Event $event
+     */
+    public function setEvent(\Prodeko\IlmoBundle\Entity\Event $event)
+    {
+        $this->event = $event;
+    }
+
+    /**
+     * Get event
+     *
+     * @return Prodeko\IlmoBundle\Entity\Event 
+     */
+    public function getEvent()
+    {
+        return $this->event;
     }
 }

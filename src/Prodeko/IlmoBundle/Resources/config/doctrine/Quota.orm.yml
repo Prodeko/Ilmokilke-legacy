@@ -11,6 +11,16 @@ Prodeko\IlmoBundle\Entity\Quota:
       type: string
     yearOfStudiesValue:
       type: integer
-      unique: true
       nullable: true
+    size:
+      type: integer
+  manyToOne:
+    event:
+      targetEntity: Event
+      inversedBy: quotas
+      cascade: [persist]
+  oneToMany:
+    registrations:
+      targetEntity: Registration
+      mappedBy: quota
   lifecycleCallbacks: {  }

@@ -14,6 +14,9 @@ class Event
 	{
 		$this->freeTextFields = new ArrayCollection();
 		$this->registrations = new ArrayCollection();
+		$this->quotas = new ArrayCollection();
+		$this->kiltisilmo = true; //Poista tämä, jos sallitaan kiltisilmottomat
+								  //tapahtumat
 	}
 	
 	public function isOpen() {
@@ -283,4 +286,63 @@ class Event
     
 
 
+    /**
+     * @var boolean $kiltisilmo
+     */
+    private $kiltisilmo;
+
+
+    /**
+     * Set kiltisilmo
+     *
+     * @param boolean $kiltisilmo
+     */
+    public function setKiltisilmo($kiltisilmo)
+    {
+        $this->kiltisilmo = $kiltisilmo;
+    }
+
+    /**
+     * Get kiltisilmo
+     *
+     * @return boolean 
+     */
+    public function getKiltisilmo()
+    {
+        return $this->kiltisilmo;
+    }
+    /**
+     * @var Prodeko\IlmoBundle\Entity\Quota
+     */
+    private $quotas;
+
+
+    /**
+     * Add quotas
+     *
+     * @param Prodeko\IlmoBundle\Entity\Quota $quotas
+     */
+    public function addQuota(\Prodeko\IlmoBundle\Entity\Quota $quota)
+    {
+        $this->quotas[] = $quota;
+    }
+
+    /**
+     * Get quotas
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getQuotas()
+    {
+        return $this->quotas;
+    }
+    
+    /**
+     * Set quotas
+     * @param unknown_type $quotas
+     */
+    public function setQuotas($quotas)
+    {
+    	$this->quotas = $quotas;
+    }
 }
