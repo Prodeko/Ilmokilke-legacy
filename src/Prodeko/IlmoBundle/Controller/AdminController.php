@@ -61,6 +61,17 @@ class AdminController extends IlmoController
 		
 		$registrations = $event->getRegistrations();
 		$freeTextFields = $event->getFreeTextFields();
+		foreach ($registrations as $registration) {
+			foreach ($registration->getFreeTextEntries() as $entry) {
+				$field = $entry->getField();
+				$events = $field->getEvents(); //Voisiko tämän tehdä jollain querybuilderilla? Nyt jos on sata ilmoittautunutta, joista jokaisella on viisi entryä, joista jokaisella on field, jolla on vitusti tapahtumia, niin tässä menee joku miljoona vuotta iteroida.
+				foreach ($events as $testevent) {
+					if ($testevent == $event) {
+						$registration->getFreeTextEntries()->removeElement($entry);
+					}
+				}
+			}
+		}
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:adminRegistrations.html.twig', array(
 				'event' => $event,

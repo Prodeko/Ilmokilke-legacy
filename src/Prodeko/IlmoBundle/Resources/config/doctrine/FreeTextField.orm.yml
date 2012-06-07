@@ -22,6 +22,11 @@ Prodeko\IlmoBundle\Entity\FreeTextField:
     entries:
       targetEntity: FreeTextEntry
       mappedBy: field
-      cascade: [persist]
+      cascade: ["persist"]
+  manyToMany:
+    events:
+      targetEntity: Event
+      cascade: ["persist"]
+      mappedBy: freeTextFields
       
   lifecycleCallbacks: {  }

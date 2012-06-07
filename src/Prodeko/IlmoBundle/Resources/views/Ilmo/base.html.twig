@@ -11,6 +11,7 @@
     <body>
         {% block body %}{% endblock %}
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{ asset('js/jQuery-1.7.1.min.js') }}"><\/script>')</script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>

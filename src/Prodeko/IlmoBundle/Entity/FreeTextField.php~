@@ -13,7 +13,11 @@ class FreeTextField
      * @var integer $id
      */
     private $id;
-
+	
+    /**
+     * @var Prodeko\IlmoBundle\Entity\Event
+     */
+    private $events;
 
     /**
      * Get id
@@ -128,5 +132,35 @@ class FreeTextField
     public function getFlagPrivate()
     {
         return $this->flagPrivate;
+    }
+
+    /**
+     * Add events
+     *
+     * @param Prodeko\IlmoBundle\Entity\Event $events
+     */
+    public function addEvent(\Prodeko\IlmoBundle\Entity\Event $events)
+    {
+        $this->events[] = $events;
+    }
+
+    /**
+     * Get events
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+    
+    /**
+     * Set events
+     *
+     * @param $events
+     */
+    public function setEvents( $events)
+    {
+    	$this->events = $events;
     }
 }

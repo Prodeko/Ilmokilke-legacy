@@ -30,7 +30,8 @@ Prodeko\IlmoBundle\Entity\Event:
   manyToMany:
     freeTextFields:
       targetEntity: FreeTextField
-      cascade:      [persist]
+      inversedBy: events
+      cascade: ["persist"]
 
   #N.B this does not reference a Quota object directly
   oneToMany:
