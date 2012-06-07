@@ -9,6 +9,7 @@ Prodeko\IlmoBundle\Entity\FreeTextEntry:
         strategy: AUTO
     content:
       type: text
+      nullable: TRUE
   manyToOne:
     field:
       targetEntity: FreeTextField
