@@ -43,7 +43,8 @@
 									{% for entry in registration.freeTextEntries %}
     									<td>{{ entry.content }}</td>
     								{% endfor %}
-    								<td><a class="close" href="{{ path('removeRegistration', {'id': registration.id}) }}">&times;</a></td>
+    								{# TODO: Token-systeemi poistamiseen ja joku alertti (Haluatko varmasti poistaa ilmoittautumisen? etc.) #}
+    								<td class="removeReg"><a class="close" href="{{ path('removeRegistration', {'id': registration.id}) }}">&times;</a></td>
 								</tr>
 							{% endfor %}
 						</tbody>

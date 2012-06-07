@@ -142,6 +142,7 @@ class IlmoController extends Controller
 		}
 		$em->flush();
 		//Ohjaa tarkastelemaan tapahtumaa
+		//TODO: Ohjaa takaisin adminin ilmoittautumiset - näkymään, jos pyyntö tullut sieltä.
 		return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
 	}
 

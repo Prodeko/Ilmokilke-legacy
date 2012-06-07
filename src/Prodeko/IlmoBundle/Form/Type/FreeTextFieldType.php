@@ -9,6 +9,7 @@ class FreeTextFieldType extends AbstractType
 	public function buildForm(FormBuilder $builder, array $options)
     {
         $builder->add('name', 'text');
+        $builder->add('flagPrivate', 'checkbox', array('required' => false));
     }
     //Tällanen funktio pitää jostain syystä olla, palauttaa formin "nimen"
     public function getName()
