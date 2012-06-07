@@ -27,18 +27,20 @@ Prodeko\IlmoBundle\Entity\Event:
       length: 160
     description:
       type: text
+    kiltisilmo:
+      type: boolean
+      nullable: true
   manyToMany:
     freeTextFields:
       targetEntity: FreeTextField
       cascade:      [persist]
 
-  #N.B this does not reference a Quota object directly
-  oneToMany:
-    quotas:
-      targetEntity: QuotaInEvent
-      mappedBy: event
   oneToMany:
     registrations:
       targetEntity: Registration
       mappedBy: event
+    quotas:
+      targetEntity: Quota
+      mappedBy: event
+      cascade: [persist]
   lifecycleCallbacks: {  }

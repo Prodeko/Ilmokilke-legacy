@@ -18,13 +18,16 @@ Prodeko\IlmoBundle\Entity\Registration:
     allergies:
       type: string
       nullable: TRUE
-  manyToOne:
-    person:
-      targetEntity: Person
-      inversedBy: registrations
+
   manyToOne:
     event:
       targetEntity: Event
+      inversedBy: registrations
+    person:
+      targetEntity: Person
+      inversedBy: registrations
+    quota:
+      targetEntity: Quota
       inversedBy: registrations
   oneToMany:
     freeTextEntries:

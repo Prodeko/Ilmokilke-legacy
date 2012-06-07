@@ -20,7 +20,15 @@ class EventType extends AbstractType
 				'allow_add' => true,
 				'allow_delete' => true,
 				'by_reference' => false,
-		));
+				)
+		);
+		$builder->add('quotas', 'collection', array(
+				'type' => new QuotaType(),
+				'allow_add' => true,
+				'allow_delete' => true,
+				'by_reference' => false,
+				)
+		);
     }
     //Tällanen funktio pitää jostain syystä olla, palauttaa formin "nimen"
     public function getName()

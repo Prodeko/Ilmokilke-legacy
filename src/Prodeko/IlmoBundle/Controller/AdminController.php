@@ -2,6 +2,8 @@
 namespace Prodeko\IlmoBundle\Controller;
 
 
+use Prodeko\IlmoBundle\Entity\Quota;
+
 use Prodeko\IlmoBundle\Form\Type\RegistrationType;
 use Prodeko\IlmoBundle\Form\Type\EventType;
 
@@ -31,6 +33,18 @@ class AdminController extends IlmoController
 		}
 		else {
 			$event = new Event();
+			$quota_names = array('I','II','III','IV','N');
+			
+			for($i=1;$i<=5;$i++) {
+				$quota = new Quota();
+				$quota->setYearOfStudiesValue($i);
+				$quota->setName($quota_names[$i-1]);
+				$quota->setEvent($event);
+				$event->addQuota($quota);
+			}
+			
+				
+			
 		}
 		//Tee ilmoittautumislomake, määrittely löytyy Prodeko\IlmoBundle\Form\Type\EventType
 		$form = $this->createForm(new EventType(), $event);
