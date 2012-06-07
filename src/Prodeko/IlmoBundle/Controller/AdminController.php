@@ -65,7 +65,8 @@ class AdminController extends IlmoController
 		return $this->render('ProdekoIlmoBundle:Ilmo:adminRegistrations.html.twig', array(
 				'event' => $event,
 				'registrations' => $registrations,
-				'freeTextFields' => $freeTextFields
+				'freeTextFields' => $freeTextFields,
+				'isOpen' => $event->isOpen()
 		));
 		
 	}

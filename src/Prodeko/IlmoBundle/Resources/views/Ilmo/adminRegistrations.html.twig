@@ -8,7 +8,16 @@
 	<div class="container">
 		<div id="content">
 			<div class="row" id="title">
-    			<h2>{{ event.name }}</h2>
+				<div class="span9">
+	    			<h2>{{ event.name }}</h2>
+	    			<p>
+	    				{% if isOpen %}
+	    					Ilmoittautuminen tähän tapahtumaan on auki! Ilmoittautuminen sulkeutuu {{ event.registrationEnds | date("G:i j.n.y") }}.
+	    				{% else %}
+	    					Ilmoittautuminen tähän tapahtumaan on kiinni. Ilmoittautumisaika: {{ event.registrationStarts | date("j.n.y G:i") }} - {{ event.registrationEnds | date("j.n.y G:i") }}
+	    				{% endif %}
+	    			<p>
+    			</div>
     		</div>
     		<div class="row">
     			<div class="span10" id="registered">
@@ -22,6 +31,7 @@
     							{% for field in freeTextFields %}
     								<th>{{ field.name }}</th>
     							{% endfor %}
+    							<th>Poista</th>
     						</tr>
     					</thead>
     					<tbody>
@@ -33,6 +43,7 @@
 									{% for entry in registration.freeTextEntries %}
     									<td>{{ entry.content }}</td>
     								{% endfor %}
+    								<td><a class="close" href="{{ path('removeRegistration', {'id': registration.id}) }}">&times;</a></td>
 								</tr>
 							{% endfor %}
 						</tbody>
