@@ -51,6 +51,11 @@
 					    </div>
 					</fieldset> 
 				{% endfor %}
+				<ul>
+				{% for quotaName in quotaNames %}
+					<li>{{ quotaName }}</li>
+				{% endfor %}
+				</ul>
 				{# Älä poista form_restiä, se luo lomakkeen varmistustokenin #}
 				{{ form_rest(form) }}
 			

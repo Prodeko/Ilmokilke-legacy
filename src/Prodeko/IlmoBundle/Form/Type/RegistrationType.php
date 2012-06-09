@@ -15,6 +15,15 @@ class RegistrationType extends AbstractType
         $builder->add('freeTextEntries', 'collection', array(
         		'type' => new FreeTextEntryType(),
         		'by_reference' => false,
+        		)
+        	);
+        $builder->add('quota', 'entity', array(
+        		'class' => 'ProdekoIlmoBundle:Quota',
+        		'query_builder' => function($repository) 
+        						{
+        						   return $repository->createQueryBuilder('p')->orderBy('p.name','ASC');
+        						},
+        		'property' => 'name',
         ));
         
     }
