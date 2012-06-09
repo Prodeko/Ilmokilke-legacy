@@ -89,9 +89,16 @@ class IlmoController extends Controller
 			$fieldNames[] = $freeTextField->getName();
 		}
 		
+		//Hae tapahtuman kiintiöiden nimet
+		$quotas = $event->getQuotas();
+		$quotaNames = array();
+		foreach ($quotas as $quota) {
+			$quotaNames[] = $quota->getName();
+		}
 		
 		//Tee ilmoittautumislomake, määrittely löytyy Prodeko\IlmoBundle\Form\Type\RegistrationType
-		$form = $this->createForm(new RegistrationType(), $registration);
+		$form = $this->createForm(new RegistrationType($event), $registration);
+		
 		//Jos sivu on haettu POSTilla, on kyseessä ilmoittautumisen käsittely
 		if ($request->getMethod() == 'POST') {
 			$form->bindRequest($request);
@@ -117,7 +124,8 @@ class IlmoController extends Controller
 				'form' => $form->createView(),
 				'id' => $id,
 				'isOpen' => $eventIsOpen,
-				'fieldNames' => $fieldNames
+				'fieldNames' => $fieldNames,
+				'quotaNames' => $quotaNames
 				);
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);
