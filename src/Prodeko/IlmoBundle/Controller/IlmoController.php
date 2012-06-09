@@ -97,7 +97,7 @@ class IlmoController extends Controller
 		}
 		
 		//Tee ilmoittautumislomake, määrittely löytyy Prodeko\IlmoBundle\Form\Type\RegistrationType
-		$form = $this->createForm(new RegistrationType(), $registration);
+		$form = $this->createForm(new RegistrationType($event), $registration);
 		
 		//Jos sivu on haettu POSTilla, on kyseessä ilmoittautumisen käsittely
 		if ($request->getMethod() == 'POST') {

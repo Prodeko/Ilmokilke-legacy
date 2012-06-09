@@ -51,11 +51,14 @@
 					    </div>
 					</fieldset> 
 				{% endfor %}
-				<ul>
-				{% for quotaName in quotaNames %}
-					<li>{{ quotaName }}</li>
-				{% endfor %}
-				</ul>
+				
+				<fieldset>
+					{{ form_label(form.quota, 'Kiintiö', { 'attr': {'class': 'control-label'} } ) }}
+					<div>
+						{{ form_widget(form.quota) }}
+						{{ form_errors(form.quota) }}
+					</div>
+				</fieldset>
 				{# Älä poista form_restiä, se luo lomakkeen varmistustokenin #}
 				{{ form_rest(form) }}
 			
