@@ -43,7 +43,7 @@ class Registration
      * @var Prodeko\IlmoBundle\Entity\FreeTextEntry
      */
     private $freeTextEntries;
-
+    
     /**
      * @var Prodeko\IlmoBundle\Entity\Event
      */
@@ -52,6 +52,7 @@ class Registration
     public function __construct()
     {
         $this->freeTextEntries = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->multipleChoiceEntries = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**

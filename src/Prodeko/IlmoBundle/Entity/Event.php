@@ -13,6 +13,7 @@ class Event
 	public function __construct()
 	{
 		$this->freeTextFields = new ArrayCollection();
+		$this->multipleChoiceFields = new ArrayCollection();
 		$this->registrations = new ArrayCollection();
 		$this->quotas = new ArrayCollection();
 		$this->kiltisilmo = true; //Poista tämä, jos sallitaan kiltisilmottomat
@@ -250,6 +251,41 @@ class Event
     	$this->freeTextFields = $freeTextFields;
     }
 
+    /**
+     * @var Prodeko\IlmoBundle\Entity\MultipleChoiceField
+     */
+    private $multipleChoiceFields;
+    
+    
+    /**
+     * Add multipleChoiceFields
+     *
+     * @param Prodeko\IlmoBundle\Entity\MultipleChoiceField $multipleChoiceFields
+     */
+    public function addMultipleChoiceField(\Prodeko\IlmoBundle\Entity\MultipleChoiceField $multipleChoiceFields)
+    {
+    	$this->multipleChoiceFields[] = $multipleChoiceFields;
+    }
+    
+    /**
+     * Get multipleChoiceFields
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getMultipleChoiceFields()
+    {
+    	return $this->multipleChoiceFields;
+    }
+    
+    /**
+     * Set multipleChoiceFields
+     *
+     * @param $multipleChoiceFields
+     */
+    public function setMultipleChoiceFields( $multipleChoiceFields)
+    {
+    	$this->multipleChoiceFields = $multipleChoiceFields;
+    }
 
     /**
      * Set name

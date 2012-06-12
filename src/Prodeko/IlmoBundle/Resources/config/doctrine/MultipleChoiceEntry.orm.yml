@@ -12,6 +12,9 @@ Prodeko\IlmoBundle\Entity\MultipleChoiceEntry:
   manyToOne:
     registration:
       targetEntity: Registration
+      inversedBy: multipleChoiceEntries
     field:
       targetEntity: MultipleChoiceField
+      inversedBy: entries
+      
   lifecycleCallbacks: {  }

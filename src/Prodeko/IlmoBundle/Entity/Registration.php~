@@ -238,4 +238,54 @@ class Registration
     {
         return $this->multipleChoiceEntries;
     }
+    /**
+     * @var Prodeko\IlmoBundle\Entity\Person
+     */
+    private $person;
+
+    /**
+     * @var Prodeko\IlmoBundle\Entity\Quota
+     */
+    private $quota;
+
+
+    /**
+     * Set person
+     *
+     * @param Prodeko\IlmoBundle\Entity\Person $person
+     */
+    public function setPerson(\Prodeko\IlmoBundle\Entity\Person $person)
+    {
+        $this->person = $person;
+    }
+
+    /**
+     * Get person
+     *
+     * @return Prodeko\IlmoBundle\Entity\Person 
+     */
+    public function getPerson()
+    {
+        return $this->person;
+    }
+
+    /**
+     * Set quota
+     *
+     * @param Prodeko\IlmoBundle\Entity\Quota $quota
+     */
+    public function setQuota(\Prodeko\IlmoBundle\Entity\Quota $quota)
+    {
+        $this->quota = $quota;
+    }
+
+    /**
+     * Get quota
+     *
+     * @return Prodeko\IlmoBundle\Entity\Quota 
+     */
+    public function getQuota()
+    {
+        return $this->quota;
+    }
 }

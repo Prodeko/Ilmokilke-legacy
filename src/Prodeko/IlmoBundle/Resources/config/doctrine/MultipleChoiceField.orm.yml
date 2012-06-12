@@ -11,4 +11,18 @@ Prodeko\IlmoBundle\Entity\MultipleChoiceField:
       type: string
     choices:
       type: array
+    flagPrivate:
+      type: boolean
+      
+  oneToMany:
+    entries:
+      targetEntity: MultipleChoiceEntry
+      mappedBy: field
+      cascade: ["persist"]
+  manyToMany:
+    events:
+      targetEntity: Event
+      cascade: ["persist"]
+      mappedBy: multipleChoiceFields
+      
   lifecycleCallbacks: {  }

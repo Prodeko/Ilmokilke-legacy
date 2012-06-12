@@ -13,7 +13,9 @@ class Event
 	public function __construct()
 	{
 		$this->freeTextFields = new ArrayCollection();
+		$this->multipleChoiceFields = new ArrayCollection();
 		$this->registrations = new ArrayCollection();
+		$this->quotas = new ArrayCollection();
 		$this->kiltisilmo = true; //Poista tämä, jos sallitaan kiltisilmottomat
 								  //tapahtumat
 	}
@@ -249,6 +251,41 @@ class Event
     	$this->freeTextFields = $freeTextFields;
     }
 
+    /**
+     * @var Prodeko\IlmoBundle\Entity\MultipleChoiceField
+     */
+    private $multipleChoiceFields;
+    
+    
+    /**
+     * Add multipleChoiceFields
+     *
+     * @param Prodeko\IlmoBundle\Entity\MultipleChoiceField $multipleChoiceFields
+     */
+    public function addMultipleChoiceField(\Prodeko\IlmoBundle\Entity\MultipleChoiceField $multipleChoiceFields)
+    {
+    	$this->multipleChoiceFields[] = $multipleChoiceFields;
+    }
+    
+    /**
+     * Get multipleChoiceFields
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getMultipleChoiceFields()
+    {
+    	return $this->multipleChoiceFields;
+    }
+    
+    /**
+     * Set multipleChoiceFields
+     *
+     * @param $multipleChoiceFields
+     */
+    public function setMultipleChoiceFields( $multipleChoiceFields)
+    {
+    	$this->multipleChoiceFields = $multipleChoiceFields;
+    }
 
     /**
      * Set name
@@ -309,5 +346,39 @@ class Event
     public function getKiltisilmo()
     {
         return $this->kiltisilmo;
+    }
+    /**
+     * @var Prodeko\IlmoBundle\Entity\Quota
+     */
+    private $quotas;
+
+
+    /**
+     * Add quotas
+     *
+     * @param Prodeko\IlmoBundle\Entity\Quota $quotas
+     */
+    public function addQuota(\Prodeko\IlmoBundle\Entity\Quota $quota)
+    {
+        $this->quotas[] = $quota;
+    }
+
+    /**
+     * Get quotas
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getQuotas()
+    {
+        return $this->quotas;
+    }
+    
+    /**
+     * Set quotas
+     * @param unknown_type $quotas
+     */
+    public function setQuotas($quotas)
+    {
+    	$this->quotas = $quotas;
     }
 }

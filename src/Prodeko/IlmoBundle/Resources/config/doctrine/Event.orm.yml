@@ -35,6 +35,10 @@ Prodeko\IlmoBundle\Entity\Event:
       targetEntity: FreeTextField
       inversedBy: events
       cascade: ["persist"]
+    multipleChoiceFields:
+      targetEntity: MultipleChoiceField
+      inversedBy: events
+      cascade: ["persist"]
 
   oneToMany:
     registrations:

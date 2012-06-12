@@ -37,4 +37,6 @@ Prodeko\IlmoBundle\Entity\Registration:
     multipleChoiceEntries:
       targetEntity: MultipleChoiceEntry
       mappedBy: registration
+      cascade: [persist]
+      
   lifecycleCallbacks: {  }
