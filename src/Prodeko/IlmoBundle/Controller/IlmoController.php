@@ -10,11 +10,14 @@ use Prodeko\IlmoBundle\Entity\Event;
 
 use Prodeko\IlmoBundle\Entity\Registration;
 
+use Prodeko\IlmoBundle\Helpers\Helpers;
+
 use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
+
 
 class IlmoController extends Controller
 {
@@ -71,41 +74,13 @@ class IlmoController extends Controller
 		$queue = array();
 		
 		//Hae kiintiöittäin ilmoittautumiset
+		$registrationStruct = Helpers::getRegistrationsByQuota($event, 
+				$this->getDoctrine()->getRepository('ProdekoIlmoBundle:Registration'));
+		$registrations = $registrationStruct['registrations'];
+		$queue = $registrationStruct['queue'];
+		
 		$quotas = $event->getQuotas();
-		foreach ($quotas as $quota) {
-			$quotaSize = $quota->getSize();
-			$repository = $this->getDoctrine()->getRepository('ProdekoIlmoBundle:Registration');
-			$registrationsInCurrentQuota = $repository->createQueryBuilder('r')
-				->where('r.quota = :quota')
-				->setParameter('quota', $quota->getId())
-				->orderBy('r.registrationTime', 'ASC')
-				->setMaxResults($quotaSize) // rajoitetaan kiintiön kokoon
-				->getQuery()
-				->getResult();
-			$totalRegistrationsInCurrentQuota =  
-					count(
-						$repository->createQueryBuilder('r')
-							->where('r.quota = :quota')
-							->setParameter('quota', $quota->getId())
-							->orderBy('r.registrationTime', 'ASC')
-							->getQuery()
-							->getResult()
-					);
-			//Haetaan jonossa olevat ilmot nykyisessä kiintiössä
-			if ($totalRegistrationsInCurrentQuota > $quotaSize) {
-				$queueInCurrentQuota = $repository->createQueryBuilder('r')
-				->where('r.quota = :quota')
-				->setParameter('quota', $quota->getId())
-				->orderBy('r.registrationTime', 'DESC')
-				->setMaxResults($totalRegistrationsInCurrentQuota - $quotaSize)
-				->getQuery()
-				->getResult();
-				$queue = array_merge($queue, $queueInCurrentQuota);
-			}
-			usort($queue, array('\Prodeko\IlmoBundle\Entity\Registration', 'compareByRegistrationTime'));
-			$registrations[$quota->getName()] = $registrationsInCurrentQuota;
-			
-		}
+		
 		usort($queue, array('\Prodeko\IlmoBundle\Entity\Registration', 'compareByRegistrationTime'));
 		//Luo uusi ilmoittautumisolio ja liitä sille kyseinen tapahtuma
 		$registration = new Registration();

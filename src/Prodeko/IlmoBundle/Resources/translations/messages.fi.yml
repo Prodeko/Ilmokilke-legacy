@@ -30,6 +30,7 @@ time.at: klo
 
 location: Paikka
 
-name:
-  first: Etunimi
-  last: Sukunimi
+
+name: Nimi
+name.first: Etunimi
+name.last: Sukunimi

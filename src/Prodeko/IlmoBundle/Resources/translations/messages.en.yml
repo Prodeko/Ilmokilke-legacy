@@ -30,6 +30,6 @@ time.at: at
 
 location: Location
 
-name:
-  first: First name
-  last: Last name
+name: Name
+name.first: First name
+name.last: Last name
