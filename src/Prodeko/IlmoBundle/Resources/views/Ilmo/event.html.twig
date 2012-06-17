@@ -54,11 +54,14 @@
     						</tr>
     					</thead>
     					<tbody>
-			    			{% for registration in registrations %}
-			    				<tr>
-									<td>{{ registration.firstName }}</td>
-									<td>{{ registration.lastName }}</td>
-								</tr>
+			    			{% for quota in registrations %}
+			    				<h2>jokukiintiö</h2>
+			    				{% for registration in quota %}
+				    				<tr>
+										<td>{{ registration.firstName }}</td>
+										<td>{{ registration.lastName }}</td>
+									</tr>
+								{% endfor %}
 							{% endfor %}
 						</tbody>
 					</table>

@@ -83,14 +83,13 @@ class IlmoController extends Controller
 			$registrations[$quota->getName()] = $registrationsInCurrentQuota;
 		}
 		//Hae kyseiseen tapahtumaan liittyvät ilmoittautumiset
- 		$registrations = $this->getDoctrine()
+ 		/* $registrations = $this->getDoctrine()
  			->getRepository('ProdekoIlmoBundle:Registration')
- 			->findBy(array('event' => $id));
+ 			->findBy(array('event' => $id)); */
 		
 		//Luo uusi ilmoittautumisolio ja liitä sille kyseinen tapahtuma
 		$registration = new Registration();
 		$registration->setEvent($event);
-		
 		//Hae tapahtuman vapaatekstikentät
 		$freeTextFields = $event->getFreeTextFields();
 		$fieldNames = array();
