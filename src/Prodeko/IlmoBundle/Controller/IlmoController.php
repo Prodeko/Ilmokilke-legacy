@@ -67,10 +67,25 @@ class IlmoController extends Controller
 			->getRepository('ProdekoIlmoBundle:Event')
 			->findOneBy(array('id' => $id));
 		$eventIsOpen = $event->isOpen();
+		$registrations = array();
+		
+		$quotas = $event->getQuotas();
+		foreach ($quotas as $quota) {
+			$quotaSize = $quota->getSize();
+			$repository = $this->getDoctrine()->getRepository('ProdekoIlmoBundle:Registration');
+			$registrationsInCurrentQuota = $repository->createQueryBuilder('r')
+				->where('r.quota = :quota')
+				->setParameter('quota', $quota->getId())
+				->orderBy('r.registrationTime', 'ASC')
+				->setMaxResults($quotaSize)
+				->getQuery()
+				->getResult();
+			$registrations[$quota->getName()] = $registrationsInCurrentQuota;
+		}
 		//Hae kyseiseen tapahtumaan liittyvät ilmoittautumiset
-		$registrations = $this->getDoctrine()
-			->getRepository('ProdekoIlmoBundle:Registration')
-			->findBy(array('event' => $id));
+ 		$registrations = $this->getDoctrine()
+ 			->getRepository('ProdekoIlmoBundle:Registration')
+ 			->findBy(array('event' => $id));
 		
 		//Luo uusi ilmoittautumisolio ja liitä sille kyseinen tapahtuma
 		$registration = new Registration();
@@ -90,7 +105,7 @@ class IlmoController extends Controller
 		}
 		
 		//Hae tapahtuman kiintiöiden nimet
-		$quotas = $event->getQuotas();
+		
 		$quotaNames = array();
 		foreach ($quotas as $quota) {
 			$quotaNames[] = $quota->getName();
