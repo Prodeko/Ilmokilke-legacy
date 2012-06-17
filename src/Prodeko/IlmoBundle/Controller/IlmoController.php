@@ -69,6 +69,7 @@ class IlmoController extends Controller
 		$eventIsOpen = $event->isOpen();
 		$registrations = array();
 		
+		//Hae kiintiöittäin ilmoittautumiset
 		$quotas = $event->getQuotas();
 		foreach ($quotas as $quota) {
 			$quotaSize = $quota->getSize();
@@ -77,16 +78,12 @@ class IlmoController extends Controller
 				->where('r.quota = :quota')
 				->setParameter('quota', $quota->getId())
 				->orderBy('r.registrationTime', 'ASC')
-				->setMaxResults($quotaSize)
+				->setMaxResults($quotaSize) // rajoitetaan kiintiön kokoon
 				->getQuery()
 				->getResult();
 			$registrations[$quota->getName()] = $registrationsInCurrentQuota;
 		}
-		//Hae kyseiseen tapahtumaan liittyvät ilmoittautumiset
- 		/* $registrations = $this->getDoctrine()
- 			->getRepository('ProdekoIlmoBundle:Registration')
- 			->findBy(array('event' => $id)); */
-		
+
 		//Luo uusi ilmoittautumisolio ja liitä sille kyseinen tapahtuma
 		$registration = new Registration();
 		$registration->setEvent($event);
