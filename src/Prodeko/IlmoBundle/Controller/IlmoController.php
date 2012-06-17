@@ -68,6 +68,7 @@ class IlmoController extends Controller
 			->findOneBy(array('id' => $id));
 		$eventIsOpen = $event->isOpen();
 		$registrations = array();
+		$queue = array();
 		
 		//Hae kiintiöittäin ilmoittautumiset
 		$quotas = $event->getQuotas();
@@ -81,9 +82,31 @@ class IlmoController extends Controller
 				->setMaxResults($quotaSize) // rajoitetaan kiintiön kokoon
 				->getQuery()
 				->getResult();
+			$totalRegistrationsInCurrentQuota =  
+					count(
+						$repository->createQueryBuilder('r')
+							->where('r.quota = :quota')
+							->setParameter('quota', $quota->getId())
+							->orderBy('r.registrationTime', 'ASC')
+							->getQuery()
+							->getResult()
+					);
+			//Haetaan jonossa olevat ilmot nykyisessä kiintiössä
+			if ($totalRegistrationsInCurrentQuota > $quotaSize) {
+				$queueInCurrentQuota = $repository->createQueryBuilder('r')
+				->where('r.quota = :quota')
+				->setParameter('quota', $quota->getId())
+				->orderBy('r.registrationTime', 'DESC')
+				->setMaxResults($totalRegistrationsInCurrentQuota - $quotaSize)
+				->getQuery()
+				->getResult();
+				$queue = array_merge($queue, $queueInCurrentQuota);
+			}
+			usort($queue, array('\Prodeko\IlmoBundle\Entity\Registration', 'compareByRegistrationTime'));
 			$registrations[$quota->getName()] = $registrationsInCurrentQuota;
+			
 		}
-
+		usort($queue, array('\Prodeko\IlmoBundle\Entity\Registration', 'compareByRegistrationTime'));
 		//Luo uusi ilmoittautumisolio ja liitä sille kyseinen tapahtuma
 		$registration = new Registration();
 		$registration->setEvent($event);
@@ -132,6 +155,7 @@ class IlmoController extends Controller
 		$variables = array(
 				'event' => $event,
 				'registrations' => $registrations,
+				'queue' => $queue,
 				'form' => $form->createView(),
 				'id' => $id,
 				'isOpen' => $eventIsOpen,

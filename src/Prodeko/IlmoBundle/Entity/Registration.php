@@ -289,4 +289,14 @@ class Registration
     {
         return $this->quota;
     }
+    
+    public static function compareByRegistrationTime($registration1, $registration2)
+    {
+    	$time1 = $registration1->getRegistrationTime();
+    	$time2 = $registration2->getRegistrationTime();
+    	if($time1 == $time2) {
+    		return 0;
+    	}
+    	return ($time1 > $time2) ? 1 : -1;
+    }
 }
