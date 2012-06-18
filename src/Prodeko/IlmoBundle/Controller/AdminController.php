@@ -59,9 +59,6 @@ class AdminController extends IlmoController
 			}
 				
 		}
-		$mcField = new MultipleChoiceField();
-		$event->addMultipleChoiceField($mcField);
-		
 		
 		//Tee ilmoittautumislomake, määrittely löytyy Prodeko\IlmoBundle\Form\Type\EventType
 		$form = $this->createForm(new EventType(), $event);

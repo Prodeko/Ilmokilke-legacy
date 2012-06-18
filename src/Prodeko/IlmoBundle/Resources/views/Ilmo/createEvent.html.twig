@@ -18,9 +18,9 @@
 		<div class="row">
 			<div class="span5">
 				<h3>{% trans %}fields.additional{% endtrans %}</h3>
-				<div class="well freeTextFields" data-prototype="{{ form_widget(form.freeTextFields.get('prototype')) | e }}">
+				<div class="freeTextFields" data-prototype="{{ form_widget(form.freeTextFields.get('prototype')) | e }}"> 
 		    		{% for field in form.freeTextFields %}
-		    			<div class="freeTextField">
+		    			<div class="well freeTextField"> {# well-luokka antaa bootstrapista "upotetun" muotoilun #}
 			       	    	{{ form_row(field.name) }}
 			       	    	{{ form_row(field.flagPrivate) }}
 		       	    	</div>
@@ -30,13 +30,15 @@
 			
 			<div class="span5">
 				<h3>monivalintakentät:</h3>
-				<ul class="multipleChoiceFields" data-prototype="{{ form_widget(form.multipleChoiceFields.get('prototype')) | e }}">
+				<div class="multipleChoiceFields" data-prototype="{{ form_widget(form.multipleChoiceFields.get('prototype')) | e }}">
 		    		{% for field in form.multipleChoiceFields %}
-		       	    	<li>{{ form_row(field.name) }}</li>
-		       	    	<li>{{ form_row(field.choices) }}</li>
-		       	    	<li>{{ form_row(field.flagPrivate) }}</li>
+		       	    	<div class="well multipleChoiceField">
+			       	    	{{ form_row(field.name) }}
+			       	    	{{ form_row(field.flagPrivate) }}
+			       	    	{{ form_row(field.choices) }}
+		       	    	</div>
 		        	{% endfor %}
-				</ul>
+				</div>
 			</div>
 		</div>
 		

@@ -1,5 +1,5 @@
 jQuery(document).ready(function() {
-	function addFieldForm(fieldsDiv, $newLinkDiv, divClass) { // Funktio lisää annettuun kenttälistaan annetun 
+	function addFieldForm(fieldsDiv, $newLinkDiv, htmlClass) { // Funktio lisää annettuun kenttälistaan annetun 
 	    // Get the data-prototype we explained earlier
 	    var prototype = fieldsDiv.attr('data-prototype');
 	
@@ -7,8 +7,8 @@ jQuery(document).ready(function() {
 	    // instead be a number based on the current collection's length.
 	    var newForm = prototype.replace(/\$\$name\$\$/g, fieldsDiv.children().length);
 	
-	    // Display the form in the page in an li, before the "Add a tag" link li
-	    var $newFormDiv = $('<div class="' + divclass + '"></div>').append(newForm);
+	    // Display the form in the page in a div, before the "Add a field" link div
+	    var $newFormDiv = $('<div class="well ' + htmlClass + '"></div>').append(newForm);
 	    $newLinkDiv.before($newFormDiv);
 	    
 	    // add a delete link to the new form
@@ -16,10 +16,10 @@ jQuery(document).ready(function() {
 	}
 	
 	function addDeleteLink($fieldFormDiv) {	// Funktio lisää annettuun diviin nappulan, jolla sen voi poistaa
-	    var $removeFormLink = $('<a href="#" class="btn">Poista tämä kenttä</a>');
-	    $fieldFormDiv.append($removeFormLink);
+	    var $removeFormButton = $('<button href="#" class="close">&times;</button>');
+	    $fieldFormDiv.prepend($removeFormButton);
 
-	    $removeFormLink.on('click', function(e) {
+	    $removeFormButton.on('click', function(e) {
 	        // prevent the link from creating a "#" on the URL
 	        e.preventDefault();
 
@@ -28,29 +28,37 @@ jQuery(document).ready(function() {
 	    });
 	}
 	
-	// Get the div that holds the collection of tags
+	function addAddButton(fieldsDiv, text, buttonHtmlClass, formDivHtmlClass) { // Lisää lisäysnappulan annetulla sisällöllä annettuun diviin.
+		var $addButton = $('<a href="#" class="btn ' + buttonHtmlClass + '">' + text + '</a>');
+		var $addButtonDiv = $('<div></div>').append($addButton);
+		
+		fieldsDiv.append($addButtonDiv);
+		
+		$addButton.on('click', function(e) {
+	        // prevent the link from creating a "#" on the URL
+	        e.preventDefault();
+
+	        // add a new tag form (see next code block)
+	        addFieldForm(fieldsDiv, $addButtonDiv, formDivHtmlClass);
+	    });
+		
+	}
+	
+	// Get the div that holds the collection of fields
 	var freeTextFieldsDiv = $('div.freeTextFields');
+	var multipleChoiceFieldsDiv = $('div.multipleChoiceFields');
 	
-	// setup an "add a field" link
-	var $addTextFieldLink = $('<a href="#" class="btn add_field_link">Lisää teksikenttä</a>');
-	var $newTextFieldLinkDiv = $('<div></div>').append($addTextFieldLink);
-	
-	
-    // add a delete link to all of the existing field form li elements
+    // Lisää poistonappulat kaikille olemassaoleville kentille.
     freeTextFieldsDiv.find('div.freeTextField').each(function() {
         addDeleteLink($(this));
     });
-	    
-    // add the "add a field" anchor and div to the fields div
-    freeTextFieldsDiv.append($newLinkDiv);
-
-    $addTextFieldLink.on('click', function(e) {
-        // prevent the link from creating a "#" on the URL
-        e.preventDefault();
-
-        // add a new tag form (see next code block)
-        addFieldForm(freeTextFieldsDiv, $newTextFieldLinkDiv, 'freeTextField');
+    multipleChoiceFieldsDiv.find('div.multipleChoiceField').each(function() {
+        addDeleteLink($(this));
     });
+	    
+    // Lisää "lisää kenttä" -nappulat teksti- ja monivalintakentille.
+    addAddButton(freeTextFieldsDiv, 'Lisää tekstikenttä', 'add_textfield_button', 'freeTextField');
+    addAddButton(multipleChoiceFieldsDiv, 'Lisää monivalintakenttä', 'add_mcfield_button', 'multipleChoiceField');
 });
 
 
