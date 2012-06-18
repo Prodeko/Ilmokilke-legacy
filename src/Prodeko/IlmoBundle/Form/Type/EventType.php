@@ -1,6 +1,8 @@
 <?php
 namespace Prodeko\IlmoBundle\Form\Type;
 
+use Prodeko\IlmoBundle\Entity\MultipleChoiceField;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
@@ -22,6 +24,15 @@ class EventType extends AbstractType
 				'by_reference' => false,
 				)
 		);
+		
+		$builder->add('multipleChoiceFields', 'collection', array(
+				'type' => new MultipleChoiceFieldType($this->em),
+				'allow_add' => true,
+				'allow_delete' => true,
+				'by_reference' => false,
+				)
+		);
+		
 		$builder->add('quotas', 'collection', array(
 				'type' => new QuotaType(),
 				'allow_add' => true,
@@ -30,6 +41,7 @@ class EventType extends AbstractType
 				)
 		);
     }
+    
     //Tällanen funktio pitää jostain syystä olla, palauttaa formin "nimen"
     public function getName()
     {

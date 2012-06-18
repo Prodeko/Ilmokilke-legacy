@@ -5,3 +5,7 @@ services:
 #    prodeko_ilmo.example:
 #        class: %prodeko_ilmo.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    prodeko_ilmo.type.choices_selector:
+        class: Prodeko\IlmoBundle\Form\Type\ChoicesSelectorType
+        tags:
+            - { name: form.type, alias: choices_selector }
