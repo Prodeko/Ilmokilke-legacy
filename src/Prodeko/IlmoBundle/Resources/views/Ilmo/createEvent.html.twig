@@ -15,23 +15,30 @@
 	    {{ form_row(form.registrationEnds) }}
 	    {{ form_row(form.location) }}
 		
-		<h3>{% trans %}fields.additional{% endtrans %}</h3>
-		<ul class="freeTextFields" data-prototype="{{ form_widget(form.freeTextFields.get('prototype')) | e }}">
-    		{% for field in form.freeTextFields %}
-       	    	<li>{{ form_row(field.name) }}</li>
-       	    	<li>{{ form_row(field.choices) }}</li>
-       	    	<li>{{ form_row(field.flagPrivate) }}</li>
-        	{% endfor %}
-		</ul>
-		
-		<h3>monivalintakentät:</h3>
-		<ul class="multipleChoiceFields" data-prototype="{{ form_widget(form.multipleChoiceFields.get('prototype')) | e }}">
-    		{% for field in form.multipleChoiceFields %}
-       	    	<li>{{ form_row(field.name) }}</li>
-       	    	<li>{{ form_row(field.choices) }}</li>
-       	    	<li>{{ form_row(field.flagPrivate) }}</li>
-        	{% endfor %}
-		</ul>
+		<div class="row">
+			<div class="span5">
+				<h3>{% trans %}fields.additional{% endtrans %}</h3>
+				<div class="well freeTextFields" data-prototype="{{ form_widget(form.freeTextFields.get('prototype')) | e }}">
+		    		{% for field in form.freeTextFields %}
+		    			<div class="freeTextField">
+			       	    	{{ form_row(field.name) }}
+			       	    	{{ form_row(field.flagPrivate) }}
+		       	    	</div>
+		        	{% endfor %}
+				</div>
+			</div>
+			
+			<div class="span5">
+				<h3>monivalintakentät:</h3>
+				<ul class="multipleChoiceFields" data-prototype="{{ form_widget(form.multipleChoiceFields.get('prototype')) | e }}">
+		    		{% for field in form.multipleChoiceFields %}
+		       	    	<li>{{ form_row(field.name) }}</li>
+		       	    	<li>{{ form_row(field.choices) }}</li>
+		       	    	<li>{{ form_row(field.flagPrivate) }}</li>
+		        	{% endfor %}
+				</ul>
+			</div>
+		</div>
 		
 		<table>
 		<tr>

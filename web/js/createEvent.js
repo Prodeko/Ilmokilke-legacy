@@ -1,55 +1,55 @@
 jQuery(document).ready(function() {
-	function addFieldForm(collectionHolder, $newLinkLi) {
+	function addFieldForm(fieldsDiv, $newLinkDiv, divClass) { // Funktio lisää annettuun kenttälistaan annetun 
 	    // Get the data-prototype we explained earlier
-	    var prototype = collectionHolder.attr('data-prototype');
+	    var prototype = fieldsDiv.attr('data-prototype');
 	
 	    // Replace '$$name$$' in the prototype's HTML to
 	    // instead be a number based on the current collection's length.
-	    var newForm = prototype.replace(/\$\$name\$\$/g, collectionHolder.children().length);
+	    var newForm = prototype.replace(/\$\$name\$\$/g, fieldsDiv.children().length);
 	
 	    // Display the form in the page in an li, before the "Add a tag" link li
-	    var $newFormLi = $('<li></li>').append(newForm);
-	    $newLinkLi.before($newFormLi);
+	    var $newFormDiv = $('<div class="' + divclass + '"></div>').append(newForm);
+	    $newLinkDiv.before($newFormDiv);
 	    
 	    // add a delete link to the new form
-	    addFieldFormDeleteLink($newFormLi);
+	    addDeleteLink($newFormDiv);
 	}
 	
-	function addFieldFormDeleteLink($fieldFormLi) {
-	    var $removeFormA = $('<a href="#">Poista tämä kenttä</a>');
-	    $fieldFormLi.append($removeFormA);
+	function addDeleteLink($fieldFormDiv) {	// Funktio lisää annettuun diviin nappulan, jolla sen voi poistaa
+	    var $removeFormLink = $('<a href="#" class="btn">Poista tämä kenttä</a>');
+	    $fieldFormDiv.append($removeFormLink);
 
-	    $removeFormA.on('click', function(e) {
+	    $removeFormLink.on('click', function(e) {
 	        // prevent the link from creating a "#" on the URL
 	        e.preventDefault();
 
 	        // remove the li for the field form
-	        $fieldFormLi.remove();
+	        $fieldFormDiv.remove();
 	    });
 	}
 	
 	// Get the div that holds the collection of tags
-	var collectionHolder = $('ul.freeTextFields');
+	var freeTextFieldsDiv = $('div.freeTextFields');
 	
 	// setup an "add a field" link
-	var $addFieldLink = $('<a href="#" class="add_field_link">Lisää kenttä</a>');
-	var $newLinkLi = $('<li></li>').append($addFieldLink);
+	var $addTextFieldLink = $('<a href="#" class="btn add_field_link">Lisää teksikenttä</a>');
+	var $newTextFieldLinkDiv = $('<div></div>').append($addTextFieldLink);
 	
 	
     // add a delete link to all of the existing field form li elements
-    collectionHolder.find('li').each(function() {
-        addFieldFormDeleteLink($(this));
+    freeTextFieldsDiv.find('div.freeTextField').each(function() {
+        addDeleteLink($(this));
     });
 	    
-    // add the "add a field" anchor and li to the tags ul
-    collectionHolder.append($newLinkLi);
+    // add the "add a field" anchor and div to the fields div
+    freeTextFieldsDiv.append($newLinkDiv);
 
-    $addFieldLink.on('click', function(e) {
+    $addTextFieldLink.on('click', function(e) {
         // prevent the link from creating a "#" on the URL
         e.preventDefault();
 
         // add a new tag form (see next code block)
-        addFieldForm(collectionHolder, $newLinkLi);
+        addFieldForm(freeTextFieldsDiv, $newTextFieldLinkDiv, 'freeTextField');
     });
 });
 
