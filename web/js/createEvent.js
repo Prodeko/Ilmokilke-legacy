@@ -8,7 +8,7 @@ jQuery(document).ready(function() {
 	    var newForm = prototype.replace(/\$\$name\$\$/g, fieldsDiv.children().length);
 	
 	    // Display the form in the page in a div, before the "Add a field" link div
-	    var $newFormDiv = $('<div class="well ' + htmlClass + '"></div>').append(newForm);
+	    var $newFormDiv = $('<div class="well form-inline ' + htmlClass + '"></div>').append(newForm);
 	    $newLinkDiv.before($newFormDiv);
 	    
 	    // add a delete link to the new form

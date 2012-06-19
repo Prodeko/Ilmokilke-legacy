@@ -18,11 +18,15 @@
 		<div class="row">
 			<div class="span5">
 				<h3>{% trans %}fields.additional{% endtrans %}</h3>
-				<div class="freeTextFields" data-prototype="{{ form_widget(form.freeTextFields.get('prototype')) | e }}"> 
+				<div class="freeTextFields" data-prototype="{{ form_label(form.freeTextFields.get('prototype').name, 'Nimi') | e }} {{ form_widget(form.freeTextFields.get('prototype').name, {'attr': {'class': 'input-medium'}}) | e }} {{ form_errors(form.freeTextFields.get('prototype').name) | e }} {{ form_label(form.freeTextFields.get('prototype').flagPrivate, 'Yksityinen') | e }} {{ form_widget(form.freeTextFields.get('prototype').flagPrivate) | e }} {{ form_errors(form.freeTextFields.get('prototype').flagPrivate) | e }}">
 		    		{% for field in form.freeTextFields %}
-		    			<div class="well freeTextField"> {# well-luokka antaa bootstrapista "upotetun" muotoilun #}
-			       	    	{{ form_row(field.name) }}
-			       	    	{{ form_row(field.flagPrivate) }}
+		    			<div class="well form-inline freeTextField"> {# well-luokka antaa bootstrapista "upotetun" muotoilun #}
+		       	    		{{ form_label(field.name, "Nimi") }}
+					    	{{ form_widget(field.name, {'attr': {'class': 'input-medium'}}) }}
+					    	{{ form_errors(field.name) }}
+							{{ form_label(field.flagPrivate, "Yksityinen") }}
+					    	{{ form_widget(field.flagPrivate) }}
+					    	{{ form_errors(field.flagPrivate) }}
 		       	    	</div>
 		        	{% endfor %}
 				</div>

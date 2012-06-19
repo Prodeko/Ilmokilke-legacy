@@ -9,3 +9,8 @@ services:
         class: Prodeko\IlmoBundle\Form\Type\ChoicesSelectorType
         tags:
             - { name: form.type, alias: choices_selector }
+    prodeko_ilmo.twig.extension.debug:
+        class: Twig_Extension_Debug
+        tags:
+             - { name: 'twig.extension' }
+        
