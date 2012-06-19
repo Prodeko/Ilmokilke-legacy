@@ -2,6 +2,8 @@
 namespace Prodeko\IlmoBundle\Controller;
 
 
+use Prodeko\IlmoBundle\Entity\MultipleChoiceEntry;
+
 use Prodeko\IlmoBundle\Entity\FreeTextEntry;
 
 use Prodeko\IlmoBundle\Form\Type\RegistrationType;
@@ -97,9 +99,17 @@ class IlmoController extends Controller
 			$fieldNames[] = $freeTextField->getName();
 		}
 		
+		$multipleChoiceFields = $event->getMultipleChoiceFields();
+		foreach ($multipleChoiceFields as $multipleChoiceField) {
+			//Lisää entry-olio jokaiselle vapaatekstikentälle
+			$entry = new MultipleChoiceEntry();
+			$entry->setField($multipleChoiceField);
+			$multipleChoiceField->addMultipleChoiceEntry($entry);
+			$entry->setRegistration($registration);
+			$registration->addMultipleChoiceEntry($entry);
+		}
+		
 		//Hae tapahtuman kiintiöiden nimet
-		
-		
 		$quotaNames = array();
 		foreach ($quotas as $quota) {
 			$quotaNames[] = $quota->getName();

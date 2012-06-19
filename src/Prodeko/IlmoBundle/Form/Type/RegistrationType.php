@@ -11,6 +11,7 @@ class RegistrationType extends AbstractType
 	
 	public function __construct(\Prodeko\IlmoBundle\Entity\Event $event) {
 		$this->event = $event;
+		$this->mcFieldIndex = 0;
 	}
 	
 	public function buildForm(FormBuilder $builder, array $options)
@@ -22,10 +23,10 @@ class RegistrationType extends AbstractType
         $builder->add('email', 'email');
         $builder->add('allergies', 'text', array('required' => false));
         $builder->add('freeTextEntries', 'collection', array(
-        		'type' => new FreeTextEntryType(),
-        		'by_reference' => false,
-        		)
-        	);
+        	'type' => new FreeTextEntryType(),
+        	'by_reference' => false,
+        ));
+        
         $builder->add('quota', 'entity', array(
         		'class' => 'ProdekoIlmoBundle:Quota',
         		'query_builder' => function($repository) use ($event) 
@@ -36,7 +37,10 @@ class RegistrationType extends AbstractType
         		'property' => 'name',
         		'expanded' => 'true'
         ));
-
+        $builder->add('multipleChoiceEntries', 'collection', array(
+        	'type' => new MultipleChoiceEntryType($event, $this->mcFieldIndexer()),
+        	'by_reference' => false,
+        ));
         
     }
     //Tällanen funktio pitää jostain syystä olla, palauttaa formin "nimen"
@@ -49,6 +53,14 @@ class RegistrationType extends AbstractType
     	return array(
     			'data_class' => 'Prodeko\IlmoBundle\Entity\Registration',
     	);
+    }
+    
+    private $mcFieldIndex;
+    
+    private function mcFieldIndexer() { // Funktio päivittää monivalintakenttien indeksin ja palauttaa sen, jossa ollaan nyt menossa.
+    	$old = $this->mcFieldIndex;
+    	$this->mcFieldIndex = $this->mcFieldIndex + 1;
+    	return $old;
     }
     
 }
