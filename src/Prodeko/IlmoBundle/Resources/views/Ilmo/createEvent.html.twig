@@ -15,12 +15,33 @@
 	    {{ form_row(form.registrationEnds) }}
 	    {{ form_row(form.location) }}
 		
-		<h3>{% trans %}fields.additional{% endtrans %}</h3>
-		<ul class="freeTextFields" data-prototype="{{ form_widget(form.freeTextFields.get('prototype')) | e }}">
-    		{% for freeTextField in form.freeTextFields %}
-       	    	<li>{{ form_row(freeTextField.name) }}</li>
-        	{% endfor %}
-		</ul>
+		<div class="row">
+			<div class="span5">
+				<h3>{% trans %}fields.additional{% endtrans %}</h3>
+				<div class="freeTextFields" data-prototype="{{ form_widget(form.freeTextFields.get('prototype')) | e }}"> 
+		    		{% for field in form.freeTextFields %}
+		    			<div class="well freeTextField"> {# well-luokka antaa bootstrapista "upotetun" muotoilun #}
+			       	    	{{ form_row(field.name) }}
+			       	    	{{ form_row(field.flagPrivate) }}
+		       	    	</div>
+		        	{% endfor %}
+				</div>
+			</div>
+			
+			<div class="span5">
+				<h3>monivalintakentät:</h3>
+				<div class="multipleChoiceFields" data-prototype="{{ form_widget(form.multipleChoiceFields.get('prototype')) | e }}">
+		    		{% for field in form.multipleChoiceFields %}
+		       	    	<div class="well multipleChoiceField">
+			       	    	{{ form_row(field.name) }}
+			       	    	{{ form_row(field.flagPrivate) }}
+			       	    	{{ form_row(field.choices) }}
+		       	    	</div>
+		        	{% endfor %}
+				</div>
+			</div>
+		</div>
+		
 		<table>
 		<tr>
 			<th>{% trans %}nimi{% endtrans %}</th>

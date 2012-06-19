@@ -2,6 +2,8 @@
 namespace Prodeko\IlmoBundle\Controller;
 
 
+use Prodeko\IlmoBundle\Entity\MultipleChoiceField;
+
 use Prodeko\IlmoBundle\Entity\FreeTextEntry;
 
 use Prodeko\IlmoBundle\Entity\Quota;
@@ -27,7 +29,7 @@ class AdminController extends IlmoController
 	// Näyttää lomakkeen jolla luodaan tapahtuma
 	public function createEventFormAction($id, Request $request) 
 	{
-	
+		// $state-muuttujan arvot siis: 1=Uuden tapahtuman luonti, 2=Tapahtuman muokkaus, ei vielä ilmoittautuneita, 3=Tapahtuman muokkaus, ilmoittautumisia jo tullut.
 		if ($id != 0) {
 			$event = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Event')
@@ -55,19 +57,20 @@ class AdminController extends IlmoController
 				$quota->setEvent($event);
 				$event->addQuota($quota);
 			}
-			
 				
-			
 		}
+		
 		//Tee ilmoittautumislomake, määrittely löytyy Prodeko\IlmoBundle\Form\Type\EventType
 		$form = $this->createForm(new EventType(), $event);
 		
 		//Jos kyseessä on lomakkeen käsittely, eikä lomakkeen näyttö
 		if ($request->getMethod() == 'POST') {
 			
+			$em = $this->getDoctrine()->getEntityManager();
+			
 			if ($state == 3) { // Eli jos muokataan tapahtumaa, jossa on ilmoittautumisia
 				$originalFields = Array();
-				// Tallenna alkuperäiset kentät
+				// Tallenna alkuperäiset kentät ennen kuin formista tuleet tiedot luetaan event-muuttujaan
 				foreach ($event->getFreeTextFields() as $field) $originalFields[] = $field;
 			}
 			
@@ -77,7 +80,7 @@ class AdminController extends IlmoController
 			//Anna lomakkeesta tulleet arvot eventille
 			$form->bindRequest($request);
 			$event = $form->getData();
-			$em = $this->getDoctrine()->getEntityManager();
+			
 			
 			if ($state == 3) { // Aloita kenttien lisäyksen ja poiston käsittely
 							   // Tämä on relevanttia vain jos muokataan tapahtumaa, jolla on ilmoittautumisia.
