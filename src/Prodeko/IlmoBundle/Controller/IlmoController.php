@@ -24,7 +24,6 @@ class IlmoController extends Controller
 	//listaa kaikki tapahtumat
 	public function listAction()
 	{
-		//TODO: implement list controller
 		$repository = $this->getDoctrine()->getRepository('ProdekoIlmoBundle:Event');
 		$now = new \DateTime();
 		
@@ -99,6 +98,7 @@ class IlmoController extends Controller
 		}
 		
 		//Hae tapahtuman kiintiöiden nimet
+		
 		
 		$quotaNames = array();
 		foreach ($quotas as $quota) {
