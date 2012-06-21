@@ -101,7 +101,7 @@ class IlmoController extends Controller
 		
 		$multipleChoiceFields = $event->getMultipleChoiceFields();
 		foreach ($multipleChoiceFields as $multipleChoiceField) {
-			//Lisää entry-olio jokaiselle vapaatekstikentälle
+			//Lisää entry-olio jokaiselle monivalintakentälle
 			$entry = new MultipleChoiceEntry();
 			$entry->setField($multipleChoiceField);
 			$multipleChoiceField->addMultipleChoiceEntry($entry);
@@ -159,15 +159,17 @@ class IlmoController extends Controller
 			->getRepository('ProdekoIlmoBundle:Registration')
 			->findOneBy(array('id' => $id));
 		if (!$registration) {
-			//Heitä etusivulle, jos ilmoittautumista ei löydy
+			//Heitä etusivulle, jos ilmoittautumista ei löydy annetulla id:llä.
 			return $this->redirect($this->generateUrl("list"));
 		}
 		$event = $registration->getEvent();
-		$freeTextEntries = $registration->getFreeTextEntries();
+		
+		// Poista ilmoittautumisen vapaateksti- ja monivalintaentryt
+		foreach ($registration->getFreeTextEntries() as $freeTextEntry) $em->remove($freeTextEntry);
+		foreach ($registration->getMultipleChoiceEntries() as $multipleChoiceEntry) $em->remove($multipleChoiceEntry);
+		
+		// Poista itse ilmoittautuminen ja tallenna.
 		$em->remove($registration);
-		foreach ($freeTextEntries as $freeTextEntry) {
-			$em->remove($freeTextEntry);
-		}
 		$em->flush();
 		//Ohjaa tarkastelemaan tapahtumaa
 		//TODO: Ohjaa takaisin adminin ilmoittautumiset - näkymään, jos pyyntö tullut sieltä.
