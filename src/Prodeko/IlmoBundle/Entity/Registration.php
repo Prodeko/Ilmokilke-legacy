@@ -239,6 +239,17 @@ class Registration
     {
         return $this->multipleChoiceEntries;
     }
+    
+    /**
+     * Set multipleChoiceEntries
+     *
+     * @param $multipleChoiceEntries
+     */
+    public function setMultipleChoiceEntries($multipleChoiceEntries)
+    {
+    	$this->multipleChoiceEntries = $multipleChoiceEntries;
+    }
+    
     /**
      * @var Prodeko\IlmoBundle\Entity\Person
      */

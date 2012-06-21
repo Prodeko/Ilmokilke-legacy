@@ -6,16 +6,20 @@ use Symfony\Component\Form\FormBuilder;
 
 class MultipleChoiceEntryType extends AbstractType
 {
-	private $field;
+	private $index; // Pitää kirjaa siitä, kuinka mones kenttä menossa
 	
-	public function __construct($event, $index) { // Hakee luotavaan entryyn liittyvän kentän
-		$mcFields = $event->getMultipleChoiceFields()->getSnapshot();
-		$this->field = $mcFields[$index];
+	private $fields; // Array tähän tapahtumaan liittyvistä monivalintakentistä.
+	
+	public function __construct($event) {
+		$this->fields = $event->getMultipleChoiceFields()->getSnapshot();
+		$this->index = 0;
 	}
 	
 	public function buildForm(FormBuilder $builder, array $options)
 	{
-		$builder->add('selection', 'choice', array('choices' => $this->field->getChoices(), 'label' => $this->field->getName()));
+		$field = $this->fields[$this->index];
+		$builder->add('selection', 'choice', array('choices' => $field->getChoices(), 'label' => $field->getName()));
+		$this->index++;
 	}
 	//Tällanen funktio pitää jostain syystä olla, palauttaa formin "nimen"
 	public function getName()

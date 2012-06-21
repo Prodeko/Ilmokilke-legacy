@@ -38,7 +38,7 @@ class RegistrationType extends AbstractType
         		'expanded' => 'true'
         ));
         $builder->add('multipleChoiceEntries', 'collection', array(
-        	'type' => new MultipleChoiceEntryType($event, $this->mcFieldIndexer()),
+        	'type' => new MultipleChoiceEntryType($event),
         	'by_reference' => false,
         ));
         
