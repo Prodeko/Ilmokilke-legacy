@@ -18,7 +18,12 @@ class MultipleChoiceEntryType extends AbstractType
 	public function buildForm(FormBuilder $builder, array $options)
 	{
 		$field = $this->fields[$this->index];
-		$builder->add('selection', 'choice', array('choices' => $field->getChoices(), 'label' => $field->getName()));
+		$choices = array();
+		foreach ($field->getChoices() as $choice) {
+			$choices[$choice] = $choice; // Tallennetaan vaihtoehdot niin, että avaimet ja arvot ovat samat => valinnat tallentuvat tekstinä multipleChoiceEntry-tauluun
+		}
+		$expanded = (count($choices) < 4 ? true : false); // Extended määrää, näytetäänkö kenttä radiobuttoneina vai valintalistana.
+		$builder->add('selection', 'choice', array('choices' => $choices, 'label' => $field->getName(), 'expanded' => $expanded));
 		$this->index++;
 	}
 	//Tällanen funktio pitää jostain syystä olla, palauttaa formin "nimen"

@@ -8,7 +8,7 @@ Prodeko\IlmoBundle\Entity\MultipleChoiceEntry:
       generator:
         strategy: AUTO
     selection:
-      type: integer
+      type: string
   manyToOne:
     registration:
       targetEntity: Registration

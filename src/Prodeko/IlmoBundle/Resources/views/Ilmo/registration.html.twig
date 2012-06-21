@@ -62,9 +62,9 @@
 					</fieldset> 
 				{% endfor %}
 				
-				<fieldset>
+				<fieldset class="control-group">
 					{{ form_label(form.quota, 'Kiintiö', { 'attr': {'class': 'control-label'} } ) }}
-					<div>
+					<div class="controls">
 						{{ form_widget(form.quota) }}
 						{{ form_errors(form.quota) }}
 					</div>

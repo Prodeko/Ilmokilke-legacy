@@ -25,7 +25,7 @@ class MultipleChoiceEntry
         return $this->id;
     }
     /**
-     * @var integer $selection
+     * @var string $selection
      */
     private $selection;
 
@@ -43,7 +43,7 @@ class MultipleChoiceEntry
     /**
      * Set selection
      *
-     * @param integer $selection
+     * @param string $selection
      */
     public function setSelection($selection)
     {
@@ -53,7 +53,7 @@ class MultipleChoiceEntry
     /**
      * Get selection
      *
-     * @return integer 
+     * @return string 
      */
     public function getSelection()
     {
