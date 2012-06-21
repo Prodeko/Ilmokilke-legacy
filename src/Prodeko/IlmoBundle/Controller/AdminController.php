@@ -151,14 +151,13 @@ class AdminController extends IlmoController
 		$event = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Event')
 			->findOneBy(array('id' => $id));
+		if (!$event) { echo "Ei vittu löydy!"; die; } // TODO: joku parempi exceptionhandlaus näihin.
 		
 		$registrations = $event->getRegistrations();
-		$freeTextFields = $event->getFreeTextFields();
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:adminRegistrations.html.twig', array(
 				'event' => $event,
 				'registrations' => $registrations,
-				'freeTextFields' => $freeTextFields,
 				'isOpen' => $event->isOpen()
 		));
 		

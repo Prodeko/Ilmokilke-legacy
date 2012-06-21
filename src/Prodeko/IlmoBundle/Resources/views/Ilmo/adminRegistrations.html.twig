@@ -28,7 +28,10 @@
     							<th>{% trans %}name.first{% endtrans %}</th>
     							<th>{% trans %}name.last{% endtrans %}</th>
     							<th>email</th>
-    							{% for field in freeTextFields %}
+    							{% for field in event.freeTextFields %}
+    								<th>{{ field.name }}</th>
+    							{% endfor %}
+    							{% for field in event.multipleChoiceFields %}
     								<th>{{ field.name }}</th>
     							{% endfor %}
     							<th>Poista</th>
@@ -42,6 +45,9 @@
 									<td>{{ registration.email }}</td>
 									{% for entry in registration.freeTextEntries %}
     									<td>{{ entry.content }}</td>
+    								{% endfor %}
+    								{% for entry in registration.multipleChoiceEntries %}
+    									<td>{{ entry.selection }}</td>
     								{% endfor %}
     								{# TODO: Token-systeemi poistamiseen ja joku alertti (Haluatko varmasti poistaa ilmoittautumisen? etc.) #}
     								<td class="removeReg"><a class="close" href="{{ path('removeRegistration', {'id': registration.id}) }}">&times;</a></td>
