@@ -23,6 +23,8 @@ use Prodeko\IlmoBundle\Controller\IlmoController;
 
 use Symfony\Component\HttpFoundation\Response;
 
+use Prodeko\IlmoBundle\Helpers\Helpers;
+
 class AdminController extends IlmoController
 {
 	
@@ -69,9 +71,11 @@ class AdminController extends IlmoController
 			$em = $this->getDoctrine()->getEntityManager();
 			
 			if ($state == 3) { // Eli jos muokataan tapahtumaa, jossa on ilmoittautumisia
-				$originalFields = Array();
+				$originalTextFields = Array();
+				$originalMcFields = Array();
 				// Tallenna alkuperäiset kentät ennen kuin formista tuleet tiedot luetaan event-muuttujaan
-				foreach ($event->getFreeTextFields() as $field) $originalFields[] = $field;
+				foreach ($event->getFreeTextFields() as $field) $originalTextFields[] = $field;
+				foreach ($event->getMultipleChoiceFields() as $field) $originalMcFields[] = $field;
 			}
 			
 			
@@ -82,55 +86,20 @@ class AdminController extends IlmoController
 			$event = $form->getData();
 			
 			
-			if ($state == 3) { // Aloita kenttien lisäyksen ja poiston käsittely
-							   // Tämä on relevanttia vain jos muokataan tapahtumaa, jolla on ilmoittautumisia.
-				$newFields = Array();
-				$deletedFields = $originalFields;
-				foreach ($event->getFreeTextFields() as $key => $field) {
-					//Fieldillä on id <=> se on tallennettu tietokantaan <=> Se on pysynyt olemassaolevana.
-					if ($field->getId()) {
-						foreach ($deletedFields as $toDel) {
-							//Etsii sen kentän alkuperäisten listasta, jota uusi kenttä vastaa.
-							if ($toDel->getId() === $field->getId()) {
-								//Poista kenttä deletedFields-listasta.
-								unset($deletedFields[$key]);
-							}
-						}
-					} else {
-						//Jos fieldillä ei ole idiä, sen on oltava uusi.
-						$newFields[] = $field;
-					}
-				}
+			if ($state == 3) { 
+				 /* Kenttien lisäyksen ja poiston käsittely
+				 	Tämä on relevanttia vain jos muokataan tapahtumaa, jolla on ilmoittautumisia. */
+				
+				// Käytä helperseissä määriteltyä funktiota määrittämään lisätyt ja poistetut kentät.
+				list($newTextFields, $deletedTextFields) = Helpers::filterFields($originalTextFields, $event->getFreeTextFields());
+				list($newMcFields, $deletedMcFields) = Helpers::filterFields($originalMcFields, $event->getMultipleChoiceFields());
 				
 				// Lisää jokaiselle uudelle kentälle ilmoitukset kaikkiin olemassaoleviin ilmoittautumisiin, että kenttää ei ole täytetty.
-				foreach ($newFields as $newField) {
-					foreach ($registrations as $registration) {
-						// Luo entry, anna sille ominaisuudet ja tallenna se
-						$entry = new FreeTextEntry();
-						$entry->setContent('###ERROR###'); // Tai jotain...
-						$entry->setField($newField);
-						$entry->setRegistration($registration);
-						$em->persist($entry);
-					}
-				}
+				$em = Helpers::addDummyValues(array_merge($newTextFields, $newMcFields), $registrations, $em, "Ei täytetty");
 				
-				// Poista kaikkien poistuneiden fieldien entryt (ei poista fieldejä, koska fieldien kierrätys)
-				foreach ($deletedFields as $toDel) {
-					$toDelId = $toDel->getId();
-					// Etsi esimmäiseltä ilmoittautuneelta se entry, joka vastaa poistettavaa kenttää
-					foreach ($registrations[0]->getFreeTextEntries() as $key => $entry) {
-						if ($entry->getField()->getId() === $toDelId) {
-							// Kun kenttä löytyy, tallenna sen avain ja lopeta etsiminen.
-							$delKey = $key;
-							break;
-						}	
-					}
-					// Poista jokaiselta ilmoittautuneelta kyseinen entry.
-					foreach ($registrations as $registration) {
-						$entries = $registration->getFreeTextEntries();
-						$em->remove($entries[$delKey]);
-					}
-				}
+				// Poista kaikkien poistuneiden fieldien entryt (ei poista fieldejä, koska fieldien kierrätys
+				$em = Helpers::deleteEntries(array_merge($deletedMcFields, $deletedTextFields), $registrations, $em);
+				
 			} // Lopeta kenttien lisäyksen ja poiston käsittely
 			
 			//Tallenna tapahtuma
@@ -163,20 +132,5 @@ class AdminController extends IlmoController
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	public function createEventAction(Request $r)  //Tämän voinee jo poistaa???
-	{
-		$form = $this->createForm(new EventType(), new Event());
-		
-		
-		return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
-
-	}
 }
 ?>
