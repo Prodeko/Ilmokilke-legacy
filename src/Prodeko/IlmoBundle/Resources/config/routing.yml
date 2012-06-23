@@ -22,7 +22,7 @@ createEvent:
       _locale: en|fi|spurdo
 
 removeRegistration:
-    pattern: /{_locale}/remove/{id}
+    pattern: /{_locale}/remove/{token}
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:removeRegistration, _locale: fi  }
     requirements:
       _locale: en|fi
@@ -32,6 +32,10 @@ adminRegistrations:
     defaults: { _controller: ProdekoIlmoBundle:Admin:adminRegistrations, _locale: fi  }
     requirements:
       _locale: en|fi|spurdo
+      
+registrationSuccess:
+    pattern: /success/{token}/
+    defaults: { _controller: ProdekoIlmoBundle:Ilmo:registrationSuccess }
 
 
 ######### kun localea ei anneta URL:ssa #########

@@ -127,14 +127,15 @@ class IlmoController extends Controller
 				$registration = $form->getData();
 				$time = new \DateTime();
 				$registration->setRegistrationTime($time);
-				$registration->setToken(Helpers::getRegistrationToken($registration));
+				$token = Helpers::getRegistrationToken($registration);
+				$registration->setToken($token);
 				//Tallenna ilmoittautuminen tietokantaan ja ohjaa takaisin sivulle
 				//TODO: Joku 'ilmoittautuminen onnistunut' -viesti, ajaxilla? parametri urlissa?
 				$em = $this->getDoctrine()->getEntityManager();
 				$em->persist($registration);
 				$em->flush();
 			
-				return $this->redirect($this->generateUrl('show', array('id' => $id)));
+				return $this->redirect($this->generateUrl('registrationSuccess', array('token' => $token)));
 			}
 		}
 		//Anna templatelle muuttujat 
@@ -152,13 +153,13 @@ class IlmoController extends Controller
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);
 	}
 	
-	public function removeRegistrationAction($id, Request $request) 
+	public function removeRegistrationAction($token, Request $request) 
 	{
 		//Poistaa ilmoittautumisen annetulla id:llä. Tähän pitää tehdä varmennussysteemit.
 		$em = $this->getDoctrine()->getEntityManager();
 		$registration = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Registration')
-			->findOneBy(array('id' => $id));
+			->findOneBy(array('token' => $token));
 		if (!$registration) {
 			//Heitä etusivulle, jos ilmoittautumista ei löydy annetulla id:llä.
 			return $this->redirect($this->generateUrl("list"));
@@ -175,6 +176,12 @@ class IlmoController extends Controller
 		//Ohjaa tarkastelemaan tapahtumaa
 		//TODO: Ohjaa takaisin adminin ilmoittautumiset - näkymään, jos pyyntö tullut sieltä.
 		return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
+	}
+	
+	public function registrationSuccessAction($token, Request $request)
+	{
+		$str = '<h1>Great success!</h1><br/><p>Token on '. $token;
+		return new Response($str, 200, array());
 	}
 
 }

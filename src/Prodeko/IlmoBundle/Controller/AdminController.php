@@ -44,7 +44,8 @@ class AdminController extends IlmoController
 					$state = 2; // Muokkaus, ei ilmoittautumisia.
 				}
 			} else {
-				echo "Ei löydy tapahtumaa!"; die; //TODO: Tähän ehkä joku exception handling
+				throw $this->createNotFoundException('Tapahtumaa ei löydy');
+				//echo "Ei löydy tapahtumaa!"; die; //TODO: Tähän ehkä joku exception handling
 			}
 		}
 		else {
@@ -120,7 +121,7 @@ class AdminController extends IlmoController
 		$event = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Event')
 			->findOneBy(array('id' => $id));
-		if (!$event) { echo "Ei vittu löydy!"; die; } // TODO: joku parempi exceptionhandlaus näihin.
+		if (!$event) { throw $this->createNotFoundException('Tapahtumaa ei löydy');} // TODO: joku parempi exceptionhandlaus näihin.
 		
 		$registrations = $event->getRegistrations();
 		
