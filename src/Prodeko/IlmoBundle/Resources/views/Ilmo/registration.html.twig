@@ -71,8 +71,11 @@
 				</fieldset>
 				{# Älä poista form_restiä, se luo lomakkeen varmistustokenin #}
 				{{ form_rest(form) }}
-			
-						    
+				
+				{# tätä prototyyppiä ei näytetä, se toimii vain esimerkkinä kaikille luotaville pseudo-radiobutton-diveille #}
+				<div id="radiobuttons-prototype" class="btn-group" data-toggle="buttons-radio" style="display: none">
+					<button class="btn" type="button"></button>
+				</div>
 		</div>
 		<div class="modal-footer">
 			<a href="#" class="btn" data-dismiss="modal">{% trans %}close{% endtrans %}</a>
