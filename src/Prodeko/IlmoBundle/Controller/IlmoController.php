@@ -127,6 +127,7 @@ class IlmoController extends Controller
 				$registration = $form->getData();
 				$time = new \DateTime();
 				$registration->setRegistrationTime($time);
+				$registration->setToken(Helpers::getRegistrationToken($registration));
 				//Tallenna ilmoittautuminen tietokantaan ja ohjaa takaisin sivulle
 				//TODO: Joku 'ilmoittautuminen onnistunut' -viesti, ajaxilla? parametri urlissa?
 				$em = $this->getDoctrine()->getEntityManager();

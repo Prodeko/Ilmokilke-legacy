@@ -18,6 +18,8 @@ Prodeko\IlmoBundle\Entity\Registration:
     allergies:
       type: string
       nullable: TRUE
+    token:
+      type: string
 
   manyToOne:
     event:

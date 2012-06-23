@@ -160,4 +160,10 @@ class MultipleChoiceField
     {
     	$this->events = $events;
     }
+    /**
+     * @var Prodeko\IlmoBundle\Entity\Event
+     */
+    private $events;
+
+
 }

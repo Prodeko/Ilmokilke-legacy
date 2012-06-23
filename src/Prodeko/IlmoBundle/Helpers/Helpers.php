@@ -131,4 +131,15 @@ class Helpers {
 		return $em;
 	}
 	
+	public static function getRegistrationToken(Registration $registration) {
+		//käytetään ilmoittautuneen mailiosoitetta ja ilmoaikaa
+		$email = $registration->getEmail();
+		$timestamp = $registration->getRegistrationTime()->format('YmdHis');
+		$hashkey = $email . $timestamp;
+		//suolataan hash, ettei sen lähdettä pysty päättelemään 
+		$salt = sha1(rand());
+		$salt = substr($salt, 0, 3);
+		return base64_encode(sha1($hashkey . $salt));
+	}
+	
 }

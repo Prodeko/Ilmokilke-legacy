@@ -43,7 +43,7 @@ class Registration
      * @var Prodeko\IlmoBundle\Entity\FreeTextEntry
      */
     private $freeTextEntries;
-
+    
     /**
      * @var Prodeko\IlmoBundle\Entity\Event
      */
@@ -52,6 +52,7 @@ class Registration
     public function __construct()
     {
         $this->freeTextEntries = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->multipleChoiceEntries = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -238,6 +239,17 @@ class Registration
     {
         return $this->multipleChoiceEntries;
     }
+    
+    /**
+     * Set multipleChoiceEntries
+     *
+     * @param $multipleChoiceEntries
+     */
+    public function setMultipleChoiceEntries($multipleChoiceEntries)
+    {
+    	$this->multipleChoiceEntries = $multipleChoiceEntries;
+    }
+    
     /**
      * @var Prodeko\IlmoBundle\Entity\Person
      */
@@ -287,5 +299,15 @@ class Registration
     public function getQuota()
     {
         return $this->quota;
+    }
+    
+    public static function compareByRegistrationTime($registration1, $registration2)
+    {
+    	$time1 = $registration1->getRegistrationTime();
+    	$time2 = $registration2->getRegistrationTime();
+    	if($time1 == $time2) {
+    		return 0;
+    	}
+    	return ($time1 > $time2) ? 1 : -1;
     }
 }
