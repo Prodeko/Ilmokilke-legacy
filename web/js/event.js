@@ -48,6 +48,11 @@ $(function() {
 		replaceRadioButtons($(this), $prototype.clone());
 	});
 	
+	$("tr.registered").each(function() {
+		if ($(this).attr("data-content") != "") {
+			$(this).popover({'placement': 'left'});
+		}
+	});
 	
 	$('form').submit(function(){
 		//Disabloi ilmoittautumisnappula lomakketta lähettäessä, estää tuplailmoittautumisen vahingossa.
