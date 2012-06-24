@@ -180,8 +180,7 @@ class IlmoController extends Controller
 	
 	public function registrationSuccessAction($token, Request $request)
 	{
-		$str = '<h1>Great success!</h1><br/><p>Token on '. $token;
-		return new Response($str, 200, array());
+		return $this->render('ProdekoIlmoBundle:Ilmo:registrationSuccess.html.twig', array('token' => $token));
 	}
 
 }
