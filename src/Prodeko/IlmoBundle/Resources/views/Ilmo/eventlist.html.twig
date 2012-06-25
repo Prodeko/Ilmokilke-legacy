@@ -24,7 +24,7 @@
 {% for event in activeEvents %}
 	<div class="row" id="content">
 			<div class="span6">
-			<a href={{ path('show', {'id': event.id}) }}><h2 rel="popover" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
+			<a href={{ path('showFancy', {'id': event.id, 'name': event.name}) }}><h2 rel="popover" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
 			<p>{{ event.takesPlace | date("d.m.Y G:i") }}</p>
 			</div>
     </div>
@@ -34,7 +34,7 @@
 {% for event in upcomingEvents %}
 	<div class="row" id="content">
 			<div class="span6">
-			<a href={{ path('show', {'id': event.id}) }}><h2 rel="popover" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
+			<a href={{ path('showFancy', {'id': event.id, 'name': event.name}) }}><h2 rel="popover" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
 			<p>{{ event.takesPlace | date("d.m.Y G:i") }}</p>
 			</div>
     </div>
@@ -44,7 +44,7 @@
 {% for event in pastEvents %}
 	<div class="row" id="content">
 			<div class="span6">
-			<a href={{ path('show', {'id': event.id}) }}><h2 rel="popover" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
+			<a href={{ path('showFancy', {'id': event.id, 'name': event.name}) }}><h2 rel="popover" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
 			<p>{{ event.takesPlace | date("d.m.Y G:i") }}</p>
 			</div>
     </div>
