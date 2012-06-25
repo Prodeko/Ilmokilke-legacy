@@ -107,7 +107,7 @@ class AdminController extends IlmoController
 			$em->persist($event);
 			$em->flush();
 			//Ohjaa tarkastelemaan luotua tapahtumaa
-			return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
+			return $this->redirect($this->generateUrl("showFancy", array('id' => $event->getId(), 'name' => $event->getName())));
 		}
 		
 		
