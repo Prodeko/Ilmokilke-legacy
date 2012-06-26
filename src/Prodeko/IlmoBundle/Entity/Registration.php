@@ -335,29 +335,4 @@ class Registration
     {
         return $this->token;
     }
-    /**
-     * @var string $phone
-     */
-    private $phone;
-
-
-    /**
-     * Set phone
-     *
-     * @param string $phone
-     */
-    public function setPhone($phone)
-    {
-        $this->phone = $phone;
-    }
-
-    /**
-     * Get phone
-     *
-     * @return string 
-     */
-    public function getPhone()
-    {
-        return $this->phone;
-    }
 }

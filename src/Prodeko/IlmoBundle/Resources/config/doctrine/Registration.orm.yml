@@ -15,9 +15,6 @@ Prodeko\IlmoBundle\Entity\Registration:
       type: string
     email:
       type: string
-    phone:
-      type: string
-      nullable: TRUE
     allergies:
       type: string
       nullable: TRUE
