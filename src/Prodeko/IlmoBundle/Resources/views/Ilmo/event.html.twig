@@ -47,6 +47,15 @@
 					<div class="row">
 		    			<div class="span4" id="eventdescription">
 		    				<p>{{ event.description }}</p>
+		    				<h3>Vapaita paikkoja:</h3>
+		    				<table class="table table-striped">
+			    				{% for name, seats in freeSeatsByQuota %}
+			    				<tr>
+			    					<td>{{ name }}</td><td>{{ seats }}</td>
+		    					</tr>
+			    				{% endfor %}
+		    				</table>
+		    				
 		    			</div>
 		    			<div class="span5" id="registered">
 		    				<h3>{% trans %}header.registrant.list{% endtrans %}</h3>

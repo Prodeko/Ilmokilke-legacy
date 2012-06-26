@@ -61,6 +61,18 @@ class Helpers {
 			
 	}
 	
+	public static function getFreeSeatsByQuota(Event $event)
+	{
+		$quotas = $event->getQuotas();
+		$freeSeatsByQuota = array();
+		foreach ($quotas as $quota) {
+			$name = $quota->getName();
+			$freeSeats = $quota->getFreeSeats();
+			$freeSeatsByQuota[$name] = $freeSeats;
+		}
+		return $freeSeatsByQuota;
+	}
+	
 	// Palauttaa alkuperäisten ja muutettujen kenttien perusteella arrayt poistetuista ja lisätyistä kentistä.
 	public static function filterFields($original, $modified) { 
 		$new = array();

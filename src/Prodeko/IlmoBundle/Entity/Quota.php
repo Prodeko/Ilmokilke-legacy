@@ -2,6 +2,10 @@
 
 namespace Prodeko\IlmoBundle\Entity;
 
+use Doctrine\ORM\EntityRepository;
+
+use Doctrine\ORM\EntityManager;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -153,5 +157,11 @@ class Quota
     public function getEvent()
     {
         return $this->event;
+    }
+    
+    public function getFreeSeats()
+    {
+    	$registrants = count($this->registrations);
+    	return $this->size - $registrants;
     }
 }
