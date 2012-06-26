@@ -1,0 +1,16 @@
+{% extends 'ProdekoIlmoBundle:Ilmo:base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<h1>Great success!</h1>
+	<p>Ilmoittauduit onnistuneesti tapahtumaan</p>
+	<p>Voit poistaa ilmoittautumisesi tästä <a href={{ path('removeRegistration', {'token' : token}) }}>linkistä</a>.
+
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('js/createEvent.js') }}"></script>
+{% endblock %}
