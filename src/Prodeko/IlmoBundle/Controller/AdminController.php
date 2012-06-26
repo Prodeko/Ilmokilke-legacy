@@ -27,7 +27,9 @@ use Prodeko\IlmoBundle\Helpers\Helpers;
 
 class AdminController extends IlmoController
 {
-	
+	const STATE_NEW_EVENT = 1;
+	const STATE_OLD_EVENT_NO_REGISTRANTS = 2;
+	const STATE_OLD_EVENT_REGISTRANTS = 3;
 	// Näyttää lomakkeen jolla luodaan tapahtuma
 	public function createEventFormAction($id, Request $request) 
 	{
@@ -39,9 +41,9 @@ class AdminController extends IlmoController
 			if ($event) {
 				$registrations = $event->getRegistrations();
 				if ($registrations && count($registrations) > 0) {
-					$state = 3; // Sellaisen tapahtuman muokkaus, jolla on ilmoittautumisia.
+					$state = self::STATE_OLD_EVENT_REGISTRANTS; // Sellaisen tapahtuman muokkaus, jolla on ilmoittautumisia.
 				} else {
-					$state = 2; // Muokkaus, ei ilmoittautumisia.
+					$state = self::STATE_OLD_EVENT_NO_REGISTRANTS; // Muokkaus, ei ilmoittautumisia.
 				}
 			} else {
 				throw $this->createNotFoundException('Tapahtumaa ei löydy');
@@ -49,7 +51,7 @@ class AdminController extends IlmoController
 			}
 		}
 		else {
-			$state = 1; // Uuden tapahtuman luonti.
+			$state = self::STATE_NEW_EVENT; // Uuden tapahtuman luonti.
 			$event = new Event();
 			$quota_names = array('I','II','III','IV','N');
 			
@@ -71,7 +73,7 @@ class AdminController extends IlmoController
 			
 			$em = $this->getDoctrine()->getEntityManager();
 			
-			if ($state == 3) { // Eli jos muokataan tapahtumaa, jossa on ilmoittautumisia
+			if ($state == self::STATE_OLD_EVENT_REGISTRANTS) { // Eli jos muokataan tapahtumaa, jossa on ilmoittautumisia
 				$originalTextFields = Array();
 				$originalMcFields = Array();
 				// Tallenna alkuperäiset kentät ennen kuin formista tuleet tiedot luetaan event-muuttujaan
@@ -87,7 +89,7 @@ class AdminController extends IlmoController
 			$event = $form->getData();
 			
 			
-			if ($state == 3) { 
+			if ($state == self::STATE_OLD_EVENT_REGISTRANTS) { 
 				 /* Kenttien lisäyksen ja poiston käsittely
 				 	Tämä on relevanttia vain jos muokataan tapahtumaa, jolla on ilmoittautumisia. */
 				
