@@ -49,7 +49,7 @@
 // Active state
 .btn.active,
 .btn:active {
-  background-color: darken(@white, 10%);
+  background-color: @green;
   background-color: darken(@white, 15%) e("\9");
   background-image: none;
   outline: 0;
@@ -115,7 +115,9 @@
 .btn-info,
 .btn-info:hover,
 .btn-inverse,
-.btn-inverse:hover {
+.btn-inverse:hover, 
+.btn-radio,
+.btn-radio:hover {
   color: @white;
   text-shadow: 0 -1px 0 rgba(0,0,0,.25);
 }
@@ -127,6 +129,9 @@
 .btn-info.active,
 .btn-inverse.active {
   color: rgba(255,255,255,.75);
+}
+.btn-radio.active {
+  .buttonBackground(@btnRadioBackgroundActive, darken(@btnRadioBackgroundActive, 15%));
 }
 
 // Set the backgrounds
@@ -158,6 +163,9 @@
 // Inverse appears as dark gray
 .btn-inverse {
   .buttonBackground(@btnInverseBackground, @btnInverseBackgroundHighlight);
+}
+.btn-radio {
+  .buttonBackground(@btnRadioBackground, @btnRadioBackgroundHighlight);
 }
 
 
