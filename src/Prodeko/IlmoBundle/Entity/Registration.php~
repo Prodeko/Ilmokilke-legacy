@@ -310,4 +310,29 @@ class Registration
     	}
     	return ($time1 > $time2) ? 1 : -1;
     }
+    /**
+     * @var string $token
+     */
+    private $token;
+
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string 
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
 }
