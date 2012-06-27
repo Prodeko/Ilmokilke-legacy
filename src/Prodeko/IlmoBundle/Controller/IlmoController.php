@@ -137,7 +137,10 @@ class IlmoController extends Controller
 				$em->persist($registration);
 				$em->flush();
 			
-				return $this->redirect($this->generateUrl('registrationSuccess', array('token' => $token)));
+				return $this->forward('ProdekoIlmoBundle:Ilmo:sendConfirmationEmail',
+						array('eventId' => $event->getId(),
+							   'token' => $token,
+								'email' => $registration->getEmail()));
 			}
 		}
 		//Anna templatelle muuttujat 
@@ -154,6 +157,17 @@ class IlmoController extends Controller
 				);
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);
+	}
+	
+	public function sendConfirmationEmailAction($email, $token, $eventId, Request $request)
+	{
+		$message = \Swift_Message::newInstance()
+					->setSubject('Ilmoittautuminen tallennettu')
+					->setFrom('ilmogilge@gmail.com')
+					->setTo($email)
+					->setBody('Ime paskaa, http://ilmogilge.no-ip.org/app.php/fi/remove/' . $token);
+		$this->get('mailer')->send($message);
+		return $this->redirect($this->generateUrl('show', array('id' => $eventId )));
 	}
 	
 	public function removeRegistrationAction($token, Request $request) 
