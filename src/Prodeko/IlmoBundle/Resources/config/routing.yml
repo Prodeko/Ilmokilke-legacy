@@ -1,5 +1,5 @@
 list:
-    pattern: /{_locale}/list/
+    pattern: /{_locale}
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:list, _locale: fi }
     requirements:
       _locale: en|fi|spurdo

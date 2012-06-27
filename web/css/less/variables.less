@@ -91,9 +91,9 @@
 @btnInverseBackground:              @gray;
 @btnInverseBackgroundHighlight:     @grayDarker;
 
-@btnRadioBackground:				@green;
+@btnRadioBackground:				@blue;
 @btnRadioBackgroundHighlight:		darken(@btnRadioBackground, 15%);
-@btnRadioBackgroundActive:			@red;
+@btnRadioBackgroundActive:			@orange;
 
 
 // Forms
@@ -197,11 +197,11 @@
 // GRID
 // --------------------------------------------------
 
-// Default 940px grid
+// Default 940px grid (defaultit: 60px & 20 px, changed to 644 px max, approximately 2/3 size
 // -------------------------
 @gridColumns:             12;
-@gridColumnWidth:         60px;
-@gridGutterWidth:         20px;
+@gridColumnWidth:         40px;
+@gridGutterWidth:         12px;
 @gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
 
 // Fluid grid
