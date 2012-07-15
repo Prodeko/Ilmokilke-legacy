@@ -73,10 +73,14 @@
 								    		{% for registration in quota %}
 									    		{% set dataContent %}
 													{% for entry in registration.freeTextEntries %}
-														<p>{{ entry.content }}</p>
+														{% if not entry.field.flagPrivate %}
+															<p>{{ entry.field.name }}: {{ entry.content }}</p>
+														{% endif %}
 													{% endfor %}
 													{% for entry in registration.multipleChoiceEntries %}
-														<p>{{ entry.selection }}</p>
+														{% if not entry.field.flagPrivate %}
+														<p>{{ entry.field.name }}: {{ entry.selection }}</p>
+													{% endif %}
 													{% endfor %}
 												{% endset %}
 												<tr class="registered" data-content="{{ dataContent|e }}">
@@ -100,11 +104,15 @@
 								{% for registration in queue %}
 									{% set dataContent %}
 										{% for entry in registration.freeTextEntries %}
-											<p>{{ entry.content }}</p>
-										{% endfor %}
-										{% for entry in registration.multipleChoiceEntries %}
-											<p>{{ entry.selection }}</p>
-										{% endfor %}
+											{% if not entry.field.flagPrivate %}
+												<p>{{ entry.field.name }}: {{ entry.content }}</p>
+											{% endif %}
+								{% endfor %}
+								{% for entry in registration.multipleChoiceEntries %}
+									{% if not entry.field.flagPrivate %}
+										<p>{{ entry.field.name }}: {{ entry.selection }}</p>
+									{% endif %}
+								{% endfor %}
 									{% endset %}
 									<tr class="registered" data-content="{{ dataContent|e }}">
 										<td>{{ registration.firstName }} {{ registration.lastName }}</td>
