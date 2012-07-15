@@ -47,6 +47,7 @@ jQuery(document).ready(function() {
 	// Get the div that holds the collection of fields
 	var freeTextFieldsDiv = $('div.freeTextFields');
 	var multipleChoiceFieldsDiv = $('div.multipleChoiceFields');
+	var quotasDiv = $('div.quotas');
 	
     // Lisää poistonappulat kaikille olemassaoleville kentille.
     freeTextFieldsDiv.find('div.freeTextField').each(function() {
@@ -55,10 +56,14 @@ jQuery(document).ready(function() {
     multipleChoiceFieldsDiv.find('div.multipleChoiceField').each(function() {
         addDeleteLink($(this));
     });
+    quotasDiv.find('div.quota').each(function() {
+    	addDeleteLink($(this));
+    })
 	    
     // Lisää "lisää kenttä" -nappulat teksti- ja monivalintakentille.
     addAddButton(freeTextFieldsDiv, 'Lisää tekstikenttä', 'add_textfield_button', 'freeTextField');
     addAddButton(multipleChoiceFieldsDiv, 'Lisää monivalintakenttä', 'add_mcfield_button', 'multipleChoiceField');
+    addAddButton(quotasDiv, 'Lisää kiintiö', 'add_quota_button', 'quota');
 });
 
 

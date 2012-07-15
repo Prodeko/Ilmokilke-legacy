@@ -18,7 +18,13 @@
 		<div class="row">
 			<div class="span5">
 				<h3>{% trans %}fields.additional{% endtrans %}</h3>
-				<div class="freeTextFields" data-prototype="{{ form_label(form.freeTextFields.get('prototype').name, 'Nimi') | e }} {{ form_widget(form.freeTextFields.get('prototype').name, {'attr': {'class': 'input-medium'}}) | e }} {{ form_errors(form.freeTextFields.get('prototype').name) | e }} {{ form_label(form.freeTextFields.get('prototype').flagPrivate, 'Yksityinen') | e }} {{ form_widget(form.freeTextFields.get('prototype').flagPrivate, {'attr': {'checked': 'checked'}}) | e }} {{ form_errors(form.freeTextFields.get('prototype').flagPrivate) | e }}">
+				<div class="freeTextFields" data-prototype="
+					 {{ form_label(form.freeTextFields.get('prototype').name, 'Nimi') | e }}
+					 {{ form_widget(form.freeTextFields.get('prototype').name, {'attr': {'class': 'input-medium'}}) | e }}
+					 {{ form_errors(form.freeTextFields.get('prototype').name) | e }}
+					 {{ form_label(form.freeTextFields.get('prototype').flagPrivate, 'Piilotettu') | e }}
+					 {{ form_widget(form.freeTextFields.get('prototype').flagPrivate, {'attr': {'checked': 'checked'}}) | e }}
+					 {{ form_errors(form.freeTextFields.get('prototype').flagPrivate) | e }}">
 		    		{% for field in form.freeTextFields %}
 		    			<div class="well form-inline freeTextField"> {# well-luokka antaa bootstrapista "upotetun" muotoilun #}
 		       	    		{{ form_label(field.name, "Nimi") }}
@@ -34,31 +40,52 @@
 			
 			<div class="span5">
 				<h3>monivalintakentät:</h3>
-				<div class="multipleChoiceFields" data-prototype="{{ form_widget(form.multipleChoiceFields.get('prototype')) | e }}">
+				<div class="multipleChoiceFields" data-prototype="
+					{{ form_label(form.multipleChoiceFields.get('prototype').name, 'Nimi') | e }}
+					{{ form_widget(form.multipleChoiceFields.get('prototype').name, {'attr': {'class': 'input-medium'}}) | e }}
+					{{ form_errors(form.multipleChoiceFields.get('prototype').name) | e }}
+					{{ form_label(form.multipleChoiceFields.get('prototype').flagPrivate, 'Piilotettu') | e }}
+					{{ form_widget(form.multipleChoiceFields.get('prototype').flagPrivate, {'attr': {'checked': 'checked'}}) | e }}
+					{{ form_errors(form.multipleChoiceFields.get('prototype').flagPrivate) | e }} <br/> {# TODO: tee tämä jotenkin muuten #}
+					{{ form_label(form.multipleChoiceFields.get('prototype').choices, 'Vaihtoehdot (erottele puolipisteellä)') | e }}
+					{{ form_widget(form.multipleChoiceFields.get('prototype').choices, {'attr': {'class': 'input-medium'}}) | e }}
+					{{ form_errors(form.multipleChoiceFields.get('prototype').choices) | e }}">
+					
 		    		{% for field in form.multipleChoiceFields %}
 		       	    	<div class="well multipleChoiceField">
-			       	    	{{ form_row(field.name) }}
-			       	    	{{ form_row(field.flagPrivate) }}
-			       	    	{{ form_row(field.choices) }}
+							{{ form_label(field.name, 'Nimi') }}
+							{{ form_widget(field.name, {'attr': {'class': 'input-medium'}}) }}
+							{{ form_errors(field.name) }}
+							{{ form_label(field.flagPrivate, 'Piilotettu') }}
+							{{ form_widget(field.flagPrivate, {'attr': {'checked': 'checked'}}) }}
+							{{ form_errors(field.flagPrivate) }}
+							{{ form_label(field.choices, 'Vaihtoehdot (erottele puolipisteellä)') }}
+							{{ form_widget(field.choices, {'attr': {'class': 'input-medium'}}) }}
+							{{ form_errors(field.choices) }}
 		       	    	</div>
 		        	{% endfor %}
 				</div>
 			</div>
 		</div>
-		
-		<table>
-		<tr>
-			<th>{% trans %}nimi{% endtrans %}</th>
-			<th>{% trans %}koko{% endtrans %}</th>
-		</tr>	
+		<div class="quotas" data-prototype="
+			{{ form_label(form.quotas.get('prototype').name, 'Nimi') | e }}
+			{{ form_widget(form.quotas.get('prototype').name, {'attr': {'class': 'input-medium'}}) | e }}
+			{{ form_errors(form.quotas.get('prototype').name) | e }}
+			{{ form_label(form.quotas.get('prototype').size, 'Koko') | e }}
+			{{ form_widget(form.quotas.get('prototype').size, {'attr': {'class': 'input-medium'}}) | e }}
+			{{ form_errors(form.quotas.get('prototype').size) | e }}">
+			
 			{% for quota in form.quotas %}
-				<tr>
-					<td>{{ form_row(quota.name) }}</td>
-					<td>{{ form_row(quota.size) }}</td>
-				</tr>
+				<div class="well quota">
+					{{ form_label(quota.name, 'Nimi') }}
+					{{ form_widget(quota.name, {'attr': {'class': 'input-medium'}}) }}
+					{{ form_errors(quota.name) }}
+					{{ form_label(quota.size, 'Koko') }}
+					{{ form_widget(quota.size) }}
+					{{ form_errors(quota.size) }}
+				</div>
 			{% endfor %}
-		</table>
-		
+		</div>
 	    <input type="submit" />
 	</form>
 </div>
