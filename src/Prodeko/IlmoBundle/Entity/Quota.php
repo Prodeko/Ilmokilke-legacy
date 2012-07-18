@@ -162,6 +162,16 @@ class Quota
     public function getFreeSeats()
     {
     	$registrants = count($this->registrations);
-    	return $this->size - $registrants;
+    	if($registrants < $this->size) {
+    		return $this->size - $registrants;
+    	}
+    	else {
+    		return 0;
+    	}
+    }
+    
+    public function getFill()
+    {
+    	return 100 - 100*$this->getFreeSeats() / $this->size;
     }
 }
