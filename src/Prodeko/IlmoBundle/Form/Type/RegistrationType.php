@@ -22,10 +22,19 @@ class RegistrationType extends AbstractType
         $builder->add('lastName', 'text');
         $builder->add('email', 'email');
         $builder->add('allergies', 'text', array('required' => false));
-        $builder->add('freeTextEntries', 'collection', array(
-        	'type' => new FreeTextEntryType(),
-        	'by_reference' => false,
-        ));
+        if($event->hasFreeTextFields()) {
+        	$builder->add('freeTextEntries', 'collection', array(
+        			'type' => new FreeTextEntryType(),
+        			'by_reference' => false,
+        	));
+        }
+        if($event->hasMultipleChoiceFields()) {
+        	$builder->add('multipleChoiceEntries', 'collection', array(
+        			'type' => new MultipleChoiceEntryType($event),
+        			'by_reference' => false,
+        	));
+        }
+        
         
         $builder->add('quota', 'entity', array(
         		'class' => 'ProdekoIlmoBundle:Quota',
@@ -37,10 +46,7 @@ class RegistrationType extends AbstractType
         		'property' => 'name',
         		'expanded' => 'true'
         ));
-        $builder->add('multipleChoiceEntries', 'collection', array(
-        	'type' => new MultipleChoiceEntryType($event),
-        	'by_reference' => false,
-        ));
+        
         
     }
     //Tällanen funktio pitää jostain syystä olla, palauttaa formin "nimen"

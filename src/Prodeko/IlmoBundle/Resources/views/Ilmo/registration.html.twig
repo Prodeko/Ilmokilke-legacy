@@ -40,27 +40,29 @@
 				    	{{ form_errors(form.allergies) }}
 				    </div>
 				</fieldset>
-				
-				{% for entry in form.freeTextEntries %}
-					{# Loop.index0 sisältää tämänhetkisen iteraation numeron nollasta alkaen, fieldNames kenttien nimet #}
-					<fieldset class="control-group">
-					    {{ form_label(entry.content, fieldNames[loop.index0], { 'attr': {'class': 'control-label'}}) }}
-					    <div class="controls">
-					    	{{ form_widget(entry.content) }}
-					    	{{ form_errors(entry.content) }}
-					    </div>
-					</fieldset> 
-				{% endfor %}
-				
-				{% for entry in form.multipleChoiceEntries %}
-					<fieldset class="control-group">
-					    {{ form_label(entry.selection, NULL, { 'attr': {'class': 'control-label'}}) }} {# NULL - arvo tarkoittaa, että labeli haetaan bäkendiltä, jossa se on määritelty #}
-					    <div class="controls">
-					    	{{ form_widget(entry.selection) }}
-					    	{{ form_errors(entry.selection) }}
-					    </div>
-					</fieldset> 
-				{% endfor %}
+				{% if form.freeTextEntries is defined%}
+					{% for entry in form.freeTextEntries %}
+						{# Loop.index0 sisältää tämänhetkisen iteraation numeron nollasta alkaen, fieldNames kenttien nimet #}
+						<fieldset class="control-group">
+						    {{ form_label(entry.content, fieldNames[loop.index0], { 'attr': {'class': 'control-label'}}) }}
+						    <div class="controls">
+						    	{{ form_widget(entry.content) }}
+						    	{{ form_errors(entry.content) }}
+						    </div>
+						</fieldset> 
+					{% endfor %}
+				{% endif %}
+				{% if form.multipleChoiceEntries is defined %}
+					{% for entry in form.multipleChoiceEntries %}
+						<fieldset class="control-group">
+						    {{ form_label(entry.selection, NULL, { 'attr': {'class': 'control-label'}}) }} {# NULL - arvo tarkoittaa, että labeli haetaan bäkendiltä, jossa se on määritelty #}
+						    <div class="controls">
+						    	{{ form_widget(entry.selection) }}
+						    	{{ form_errors(entry.selection) }}
+						    </div>
+						</fieldset> 
+					{% endfor %}
+				{% endif %}
 				
 				<fieldset class="control-group">
 					{{ form_label(form.quota, 'Kiintiö', { 'attr': {'class': 'control-label'} } ) }}

@@ -381,4 +381,14 @@ class Event
     {
     	$this->quotas = $quotas;
     }
+    
+    public function hasFreeTextFields()
+    {
+    	return count($this->freeTextFields) > 0;
+    }
+    
+    public function hasMultipleChoiceFields()
+    {
+    	return count($this->multipleChoiceFields) > 0;
+    }
 }
