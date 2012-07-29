@@ -136,7 +136,8 @@ class Quota
      */
     public function getRegistrations()
     {
-        return $this->registrations;
+    	//palauttaa vain tapahtumaan mahtuneet
+        return $this->registrations->slice(0,$this->getSize());
     }
 
     /**
@@ -162,6 +163,26 @@ class Quota
     public function getFreeSeats()
     {
     	$registrants = count($this->registrations);
-    	return $this->size - $registrants;
+    	if($registrants < $this->size) {
+    		return $this->size - $registrants;
+    	}
+    	else {
+    		return 0;
+    	}
+    }
+    
+    public function hasFreeSeats()
+    {
+    	return $this->getFreeSeats() > 0;
+    }
+    
+    public function getQueueLength()
+    {
+    	return $this->registrations->count() - $this->getSize();
+    }
+    
+    public function getFill()
+    {
+    	return 100 - 100*$this->getFreeSeats() / $this->size;
     }
 }
