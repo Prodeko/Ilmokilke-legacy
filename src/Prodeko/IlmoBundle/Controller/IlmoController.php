@@ -75,16 +75,12 @@ class IlmoController extends Controller
 		$queue = array();
 		
 		//Hae kiintiöittäin ilmoittautumiset
-		$registrationStruct = Helpers::getRegistrationsByQuota($event, 
+		$queue = Helpers::getQueue($event, 
 				$this->getDoctrine()->getRepository('ProdekoIlmoBundle:Registration'));
-		$registrations = $registrationStruct['registrations'];
-		$queue = $registrationStruct['queue'];
 		usort($queue, array('\Prodeko\IlmoBundle\Entity\Registration', 'compareByRegistrationTime'));
 		
 		$quotas = $event->getQuotas();
-		
-		$freeSeatsByQuota = Helpers::getFreeSeatsByQuota($event);
-		
+
 		//Luo uusi ilmoittautumisolio ja liitä sille kyseinen tapahtuma
 		$registration = new Registration();
 		$registration->setEvent($event);
@@ -110,12 +106,7 @@ class IlmoController extends Controller
 			$entry->setRegistration($registration);
 			$registration->addMultipleChoiceEntry($entry);
 		}
-		
-		//Hae tapahtuman kiintiöiden nimet
-		$quotaNames = array();
-		foreach ($quotas as $quota) {
-			$quotaNames[] = $quota->getName();
-		}
+
 		
 		//Tee ilmoittautumislomake, määrittely löytyy Prodeko\IlmoBundle\Form\Type\RegistrationType
 		$form = $this->createForm(new RegistrationType($event), $registration);
@@ -152,8 +143,6 @@ class IlmoController extends Controller
 				'id' => $id,
 				'isOpen' => $eventIsOpen,
 				'fieldNames' => $fieldNames,
-				'quotaNames' => $quotaNames,
-				'freeSeatsByQuota' => $freeSeatsByQuota
 				);
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);
