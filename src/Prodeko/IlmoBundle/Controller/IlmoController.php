@@ -74,42 +74,19 @@ class IlmoController extends Controller
 		$registrations = array();
 		$queue = array();
 		
-		//Hae kiintiöittäin ilmoittautumiset
+		//Hae jonossa olevat ilmot
 		$queue = Helpers::getQueue($event, 
 				$this->getDoctrine()->getRepository('ProdekoIlmoBundle:Registration'));
 		usort($queue, array('\Prodeko\IlmoBundle\Entity\Registration', 'compareByRegistrationTime'));
 		
 		$quotas = $event->getQuotas();
-
+	
+		
 		//Luo uusi ilmoittautumisolio ja liitä sille kyseinen tapahtuma
 		$registration = Helpers::createRegistrationObject($event);
-	
 		//Tee ilmoittautumislomake, määrittely löytyy Prodeko\IlmoBundle\Form\Type\RegistrationType
 		$form = $this->createForm(new RegistrationType($event), $registration);
 		
-		//Jos sivu on haettu POSTilla, on kyseessä ilmoittautumisen käsittely
-		if ($request->getMethod() == 'POST') {
-			$form->bindRequest($request);
-			//Tarkasta lomake, isValid näyttää automaattisesti errorit, jos niitä on. Älä myöskään tallenna ilmoittautumista, jos ilmo ei ole auki.
-			if ($form->isValid() && $eventIsOpen) {
-				//Lisää lomakkeelta tulleet tiedot registration-olioon
-				$registration = $form->getData();
-				$time = new \DateTime();
-				$registration->setRegistrationTime($time);
-				$token = Helpers::getRegistrationToken($registration);
-				$registration->setToken($token);
-				//Tallenna ilmoittautuminen tietokantaan ja ohjaa takaisin sivulle
-				//TODO: Joku 'ilmoittautuminen onnistunut' -viesti, ajaxilla? parametri urlissa?
-				$em = $this->getDoctrine()->getEntityManager();
-				$em->persist($registration);
-				$em->flush();
-			
-				return $this->forward('ProdekoIlmoBundle:Ilmo:sendConfirmationEmail',
-						array('eventId' => $event->getId(),
-							   'token' => $token,
-								'email' => $registration->getEmail()));
-			}
-		}
 		//Anna templatelle muuttujat 
 		$variables = array(
 				'event' => $event,
@@ -121,6 +98,47 @@ class IlmoController extends Controller
 				);
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);
+	}
+	
+	/*
+	 * Tässä controllerissa käsitellään ilmoittautumisrequest,
+	 * joka lähetetään ilmoittautumisnapilla.
+	 */
+	public function registerAction(Request $request, $id)
+	{
+		//Jos sivu on haettu POSTilla, on kyseessä ilmoittautumisen käsittely
+		if ($request->getMethod() == 'POST') {
+			$event = $this->getDoctrine()
+							->getRepository('ProdekoIlmoBundle:Event')
+							->findOneBy(array('id' => $id));
+			//Luo uusi ilmoittautumisolio ja liitä sille kyseinen tapahtuma
+			$registration = Helpers::createRegistrationObject($event);
+			$form = $this->createForm(new RegistrationType($event), $registration);
+			$form->bindRequest($request);
+			//Tarkasta lomake, isValid näyttää automaattisesti errorit, jos niitä on. Älä myöskään tallenna ilmoittautumista, jos ilmo ei ole auki.
+			if ($form->isValid() && $event->isOpen()) {
+				//Lisää lomakkeelta tulleet tiedot registration-olioon
+				$registration = $form->getData();
+				$time = new \DateTime();
+				$registration->setRegistrationTime($time);
+				$token = Helpers::getRegistrationToken($registration);
+				$registration->setToken($token);
+				//Tallenna ilmoittautuminen tietokantaan ja ohjaa takaisin sivulle
+				//TODO: Joku 'ilmoittautuminen onnistunut' -viesti, ajaxilla? parametri urlissa?
+				$em = $this->getDoctrine()->getEntityManager();
+				$em->persist($registration);
+				$em->flush();
+					
+				return $this->forward('ProdekoIlmoBundle:Ilmo:sendConfirmationEmail',
+						array('eventId' => $event->getId(),
+								'token' => $token,
+								'email' => $registration->getEmail()));
+			}
+		}
+		else {
+			return $this->redirect($this->generateUrl('show',
+					array('id' => $id)));
+		}
 	}
 	
 	public function queueAction($id, Request $request)

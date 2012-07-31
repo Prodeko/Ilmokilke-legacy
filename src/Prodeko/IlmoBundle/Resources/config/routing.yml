@@ -3,12 +3,17 @@ list:
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:list, _locale: fi }
     requirements:
       _locale: en|fi|spurdo
+      
 show:
     pattern: /{_locale}/show/{id}
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:show, _locale: fi  }
     requirements:
       _locale: en|fi|spurdo
       
+register:
+    pattern: /{_locale}/register/{id}
+    defaults: { _controller: ProdekoIlmoBundle:Ilmo:register, _locale: fi }
+    
 queue:
     pattern: /{_locale}/queue/{id}
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:queue, _locale: fi }
@@ -18,15 +23,10 @@ create:
     defaults: { _controller: ProdekoIlmoBundle:Admin:createEventForm, id: 0, _locale: fi  }
     requirements:
       _locale: en|fi|spurdo
+      
 edit:
     pattern: /{_locale}/edit/{id}
     defaults: { _controller: ProdekoIlmoBundle:Admin:createEventForm, _locale: fi }
-    requirements:
-      _locale: en|fi|spurdo
-      
-createEvent:
-    pattern: /{_locale}/createEvent
-    defaults: { _controller: ProdekoIlmoBundle:Admin:createEvent, _locale: fi  }
     requirements:
       _locale: en|fi|spurdo
 

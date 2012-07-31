@@ -1,7 +1,7 @@
 {% form_theme form 'ProdekoIlmoBundle:Form:ilmo.formtheme.html.twig' %}
 
 <div class="modal" id="subscriptionmodal" style="display: none">
-	<form action="{{ path('show', { 'id': event.id }) }}" method="post" {{ form_enctype(form) }} novalidate="novalidate" class="form-horizontal">
+	<form action="{{ path('register', { 'id': event.id }) }}" method="post" {{ form_enctype(form) }} novalidate="novalidate" class="form-horizontal">
 		<div class="modal-header">
 			<button class="close" data-dismiss="modal">&times;</button>
 			<h3>{% trans %}register.for.event{% endtrans %} {{ event.name }}</h3>
