@@ -24,7 +24,7 @@ class RegistrationType extends AbstractType
         $builder->add('allergies', 'text', array('required' => false));
         if($event->hasFreeTextFields()) {
         	$builder->add('freeTextEntries', 'collection', array(
-        			'type' => new FreeTextEntryType(),
+        			'type' => new FreeTextEntryType($event),
         			'by_reference' => false,
         	));
         }
