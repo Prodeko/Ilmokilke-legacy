@@ -44,7 +44,7 @@
 					{% for entry in form.freeTextEntries %}
 						{# Loop.index0 sisältää tämänhetkisen iteraation numeron nollasta alkaen, fieldNames kenttien nimet #}
 						<fieldset class="control-group">
-						    {{ form_label(entry.content, fieldNames[loop.index0], { 'attr': {'class': 'control-label'}}) }}
+						    {{ form_label(entry.content, NULL, { 'attr': {'class': 'control-label'}}) }}
 						    <div class="controls">
 						    	{{ form_widget(entry.content) }}
 						    	{{ form_errors(entry.content) }}
