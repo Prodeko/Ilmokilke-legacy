@@ -129,13 +129,15 @@ class IlmoController extends Controller
 			     	  ->findOneBy(array('id' => $id));
 		
 		//Jos ilmo on alkanut, ohjataan tapahtumasivulle
-		if($event->registrationOpen() || $event->registrationEnded()) {
+		if($event->isOpen() || $event->registrationEnded()) {
 			return $this->redirect($this->generateUrl('show', array('id' => $id)));
 		}
+		$registration = Helpers::createRegistrationObject($event);
 		$form = $this->createForm(new RegistrationType($event), $registration);
 		
 		$variables = array(
-				'event' => $event);
+				'event' => $event,
+				'form' => $form->createView());
 		return $this->render('ProdekoIlmoBundle:Ilmo:queue.html.twig', $variables);
 	}
 	
