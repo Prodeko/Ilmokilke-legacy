@@ -82,32 +82,8 @@ class IlmoController extends Controller
 		$quotas = $event->getQuotas();
 
 		//Luo uusi ilmoittautumisolio ja liitä sille kyseinen tapahtuma
-		$registration = new Registration();
-		$registration->setEvent($event);
-		//Hae tapahtuman vapaatekstikentät
-		$freeTextFields = $event->getFreeTextFields();
-		$fieldNames = array();
-		foreach ($freeTextFields as $freeTextField) {
-			//Lisää entry-olio jokaiselle vapaatekstikentälle
-			$entry = new FreeTextEntry();
-			$entry->setField($freeTextField);
-			$freeTextField->addFreeTextEntry($entry);
-			$entry->setRegistration($registration);
-			$registration->addFreeTextEntry($entry);
-			$fieldNames[] = $freeTextField->getName();
-		}
-		
-		$multipleChoiceFields = $event->getMultipleChoiceFields();
-		foreach ($multipleChoiceFields as $multipleChoiceField) {
-			//Lisää entry-olio jokaiselle monivalintakentälle
-			$entry = new MultipleChoiceEntry();
-			$entry->setField($multipleChoiceField);
-			$multipleChoiceField->addMultipleChoiceEntry($entry);
-			$entry->setRegistration($registration);
-			$registration->addMultipleChoiceEntry($entry);
-		}
-
-		
+		$registration = Helpers::createRegistrationObject($event);
+	
 		//Tee ilmoittautumislomake, määrittely löytyy Prodeko\IlmoBundle\Form\Type\RegistrationType
 		$form = $this->createForm(new RegistrationType($event), $registration);
 		
@@ -142,10 +118,25 @@ class IlmoController extends Controller
 				'form' => $form->createView(),
 				'id' => $id,
 				'isOpen' => $eventIsOpen,
-				'fieldNames' => $fieldNames,
 				);
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);
+	}
+	
+	public function queueAction($id, Request $request)
+	{
+		$event = $this->getDoctrine()->getRepository('ProdekoIlmoBundle:Event')
+			     	  ->findOneBy(array('id' => $id));
+		
+		//Jos ilmo on alkanut, ohjataan tapahtumasivulle
+		if($event->registrationOpen() || $event->registrationEnded()) {
+			return $this->redirect($this->generateUrl('show', array('id' => $id)));
+		}
+		$form = $this->createForm(new RegistrationType($event), $registration);
+		
+		$variables = array(
+				'event' => $event);
+		return $this->render('ProdekoIlmoBundle:Ilmo:queue.html.twig', $variables);
 	}
 	
 	public function sendConfirmationEmailAction($email, $token, $eventId, Request $request)

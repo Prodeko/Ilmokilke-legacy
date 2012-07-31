@@ -360,4 +360,5 @@ class Registration
     {
         return $this->phone;
     }
+
 }

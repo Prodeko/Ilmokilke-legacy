@@ -44,7 +44,34 @@ class Helpers {
 			
 	}
 	
-
+	public static function createRegistrationObject(Event $event)
+	{
+		$registration = new Registration();
+		$registration->setEvent($event);
+		//Hae tapahtuman vapaatekstikentät
+		$freeTextFields = $event->getFreeTextFields();
+		$fieldNames = array();
+		foreach ($freeTextFields as $freeTextField) {
+			//Lisää entry-olio jokaiselle vapaatekstikentälle
+			$entry = new FreeTextEntry();
+			$entry->setField($freeTextField);
+			$freeTextField->addFreeTextEntry($entry);
+			$entry->setRegistration($registration);
+			$registration->addFreeTextEntry($entry);
+			$fieldNames[] = $freeTextField->getName();
+		}
+		
+		$multipleChoiceFields = $event->getMultipleChoiceFields();
+		foreach ($multipleChoiceFields as $multipleChoiceField) {
+			//Lisää entry-olio jokaiselle monivalintakentälle
+			$entry = new MultipleChoiceEntry();
+			$entry->setField($multipleChoiceField);
+			$multipleChoiceField->addMultipleChoiceEntry($entry);
+			$entry->setRegistration($registration);
+			$registration->addMultipleChoiceEntry($entry);
+		}
+		return $registration;
+	}
 	
 	// Palauttaa alkuperäisten ja muutettujen kenttien perusteella arrayt poistetuista ja lisätyistä kentistä.
 	public static function filterFields($original, $modified) { 
