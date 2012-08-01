@@ -29,6 +29,12 @@ edit:
     defaults: { _controller: ProdekoIlmoBundle:Admin:createEventForm, _locale: fi }
     requirements:
       _locale: en|fi|spurdo
+      
+export:
+    pattern: /{_locale}/export/{id}
+    defaults: { _controller: ProdekoIlmoBundle:Admin:export, _locale: fi }
+    requirements:
+      _locale: en|fi|spurdo
 
 removeRegistration:
     pattern: /{_locale}/remove/{token}

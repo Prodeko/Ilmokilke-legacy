@@ -141,6 +141,20 @@ class AdminController extends IlmoController
 		));
 		
 	}
-	
+	/*
+	 * Tuottaa ilmoittautuneiden listasta CSV-tiedoston
+	 * ladattavaksi.
+	 */
+	public function exportAction($id, Request $request)
+	{
+		$event = $this->getDoctrine()
+			->getRepository('ProdekoIlmoBundle:Event')
+			->findOneBy(array('id' => $id));
+		$filename = $id . ".csv";
+		$response = $this->render('ProdekoIlmoBundle:Ilmo:export.csv.twig', array('event' => $event));
+		$response->headers->set('Content-Type', 'text/css');
+		$response->headers->set('Content-Disposition', 'attachment; filename='.$filename);
+		return $response;
+	}	
 }
 ?>
