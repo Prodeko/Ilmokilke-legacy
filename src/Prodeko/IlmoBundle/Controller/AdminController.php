@@ -30,10 +30,13 @@ class AdminController extends IlmoController
 	const STATE_NEW_EVENT = 1;
 	const STATE_OLD_EVENT_NO_REGISTRANTS = 2;
 	const STATE_OLD_EVENT_REGISTRANTS = 3;
-	// Näyttää lomakkeen jolla luodaan tapahtuma
+	
+	/*
+	 * Luo lomakkeen, jota käytetään uuden tapahtuman luomisessa
+	 * sekä vanhan muokkaamisessa
+	 */
 	public function createEventFormAction($id, Request $request) 
 	{
-		// $state-muuttujan arvot siis: 1=Uuden tapahtuman luonti, 2=Tapahtuman muokkaus, ei vielä ilmoittautuneita, 3=Tapahtuman muokkaus, ilmoittautumisia jo tullut.
 		if ($id != 0) {
 			$event = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Event')
@@ -118,7 +121,11 @@ class AdminController extends IlmoController
 		));
 	}
 	
-	public function adminRegistrationsAction($id, Request $request) // Täydellinen lista ilmoittautuneista admineille
+	/*
+	 * Tuottaa adminia varten täydellisen listan ilmoittautuneista 
+	 * kaikkine kenttäsyötteineen. 
+	 */
+	public function adminRegistrationsAction($id, Request $request)
 	{
 		$event = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Event')

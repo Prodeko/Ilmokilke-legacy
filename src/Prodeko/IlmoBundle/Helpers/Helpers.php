@@ -22,12 +22,16 @@ use Prodeko\IlmoBundle\Entity\Registration;
 
 class Helpers {
 	
+	/*
+	 * Hakee argumenttina annetun tapahtuman jonossa olevat ilmot, 
+	 * so. kustakin kiintiöstä ne ilmot, jotka eivät mahtuneet kiintiöön
+	 */
 	public static function getQueue(Event $event, EntityRepository $repository)
 	{
 		$queue = array();
 		$quotas = $event->getQuotas();
 		foreach ($quotas as $quota) {
-			//Haetaan jonossa olevat ilmot nykyisessä kiintiössä
+			//Haetaan jonossa olevat ilmot kussakin kiintiössä
 			$quotaSize = $quota->getSize();
 			if (!$quota->hasFreeSeats()) {
 				$queueInCurrentQuota = $repository->createQueryBuilder('r')
@@ -44,6 +48,10 @@ class Helpers {
 			
 	}
 	
+	/*
+	 * Luo argumenttina annettuun tapahtumaan liittyvän ilmo-olion
+	 * vaadittavine kenttäsyöteolioineen.
+	 */
 	public static function createRegistrationObject(Event $event)
 	{
 		$registration = new Registration();
@@ -73,7 +81,9 @@ class Helpers {
 		return $registration;
 	}
 	
-	// Palauttaa alkuperäisten ja muutettujen kenttien perusteella arrayt poistetuista ja lisätyistä kentistä.
+	/*
+	 * Palauttaa alkuperäisten ja muutettujen kenttien perusteella arrayt poistetuista ja lisätyistä kentistä.
+	 */
 	public static function filterFields($original, $modified) { 
 		$new = array();
 		$deleted = $original;
@@ -93,7 +103,9 @@ class Helpers {
 		return array($new, $deleted);
 	}
 	
-	// Lisää annetuille kentille annetuille ilmoittautumisille dummy-entryt
+	/*
+	 * Lisää annetuille kentille annetuille ilmoittautumisille dummy-entryt
+	 */ 
 	public static function addDummyValues($fields, $registrations, EntityManager $em, $value) {
 		foreach ($fields as $field) {
 			// Selvitä kentän tyyppi
@@ -117,7 +129,9 @@ class Helpers {
 		}
 		return $em;
 	}
-
+	/*
+	 * TODO: tähän lyhyt kuvaus siitä, mitä funktio tekee
+	 */
 	public static function deleteEntries($fields, $registrations, EntityManager $em) {
 		foreach ($fields as $field) {
 			$id = $field->getId();
@@ -143,6 +157,11 @@ class Helpers {
 		return $em;
 	}
 	
+	/*
+	 * Palauttaa argumenttina annetun ilmo-olion hashin,
+	 * jota käytetään ilmoittautumisen poistamiseen
+	 * (ja muokkaamiseen?)
+	 */
 	public static function getRegistrationToken(Registration $registration) {
 		//käytetään ilmoittautuneen mailiosoitetta ja ilmoaikaa
 		$email = $registration->getEmail();

@@ -110,7 +110,10 @@ class IlmoController extends Controller
 			$registration = Helpers::createRegistrationObject($event);
 			$form = $this->createForm(new RegistrationType($event), $registration);
 			$form->bindRequest($request);
-			//Tarkasta lomake, isValid näyttää automaattisesti errorit, jos niitä on. Älä myöskään tallenna ilmoittautumista, jos ilmo ei ole auki.
+			
+			/* Tarkasta lomake, isValid näyttää automaattisesti errorit, jos niitä on. 
+			 * Älä myöskään tallenna ilmoittautumista, jos ilmo ei ole auki.
+			 */
 			if ($form->isValid() && $event->isOpen()) {
 				//Lisää lomakkeelta tulleet tiedot registration-olioon
 				$registration = $form->getData();
@@ -118,24 +121,42 @@ class IlmoController extends Controller
 				$registration->setRegistrationTime($time);
 				$token = Helpers::getRegistrationToken($registration);
 				$registration->setToken($token);
-				//Tallenna ilmoittautuminen tietokantaan ja ohjaa takaisin sivulle
-				//TODO: Joku 'ilmoittautuminen onnistunut' -viesti, ajaxilla? parametri urlissa?
+				
+				//Tallenna ilmoittautuminen tietokantaan
 				$em = $this->getDoctrine()->getEntityManager();
 				$em->persist($registration);
 				$em->flush();
-					
+				
+				//Lähetä vahvistusviesti
 				return $this->forward('ProdekoIlmoBundle:Ilmo:sendConfirmationEmail',
 						array('eventId' => $event->getId(),
 								'token' => $token,
 								'email' => $registration->getEmail()));
 			}
 		}
+		/*Jos register-routella on tehty GET-kutsu, ohjataan
+		tapahtumasivulle */
 		else {
 			return $this->redirect($this->generateUrl('show',
 					array('id' => $id)));
 		}
 	}
 	
+	/*Lähettää ilmoittautuneelle sähköpostitse vahvistusviestin,
+	 joka sisältää linkin ilmon poistamiseen */
+	public function sendConfirmationEmailAction($email, $token, $eventId, Request $request)
+	{
+		$message = \Swift_Message::newInstance()
+		->setSubject('Ilmoittautuminen tallennettu')
+		->setFrom('ilmogilge@gmail.com')
+		->setTo($email)
+		->setBody('Ime paskaa, http://ilmogilge.no-ip.org/app.php/fi/remove/' . $token);
+		$this->get('mailer')->send($message);
+		//TODO: näytä jonkinlainen viesti "ilmoittautuminen onnistui"
+		return $this->redirect($this->generateUrl('show', array('id' => $eventId )));
+	}
+	
+	/*Luo jononäkymän, jossa tapahtumiin jonotetaan (kiltisjono) */
 	public function queueAction($id, Request $request)
 	{
 		$event = $this->getDoctrine()->getRepository('ProdekoIlmoBundle:Event')
@@ -154,16 +175,7 @@ class IlmoController extends Controller
 		return $this->render('ProdekoIlmoBundle:Ilmo:queue.html.twig', $variables);
 	}
 	
-	public function sendConfirmationEmailAction($email, $token, $eventId, Request $request)
-	{
-		$message = \Swift_Message::newInstance()
-					->setSubject('Ilmoittautuminen tallennettu')
-					->setFrom('ilmogilge@gmail.com')
-					->setTo($email)
-					->setBody('Ime paskaa, http://ilmogilge.no-ip.org/app.php/fi/remove/' . $token);
-		$this->get('mailer')->send($message);
-		return $this->redirect($this->generateUrl('show', array('id' => $eventId )));
-	}
+	
 	
 	public function removeRegistrationAction($token, Request $request) 
 	{
