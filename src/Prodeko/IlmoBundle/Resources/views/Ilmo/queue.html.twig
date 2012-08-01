@@ -1,0 +1,17 @@
+{% extends 'ProdekoIlmoBundle:Ilmo:base.html.twig' %}
+
+{% block title %}
+	{{ parent() }} - {{ event.name }}
+{% endblock %}
+
+{% block body %}
+	<h1>Jono tapahtumaan</h1>
+	<h2>{{ event.name }}</h2>
+	<button id="eventsubscribe" class="btn" data-toggle="modal" href="#subscriptionmodal">{% trans %}register{% endtrans %}</button>
+    <!-- Start subscription modal -->
+    {% include 'ProdekoIlmoBundle:Ilmo:registration.html.twig' %}
+    <!-- End subscription modal -->
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('js/event.js') }}"></script>
+{% endblock %}
