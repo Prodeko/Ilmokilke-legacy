@@ -76,12 +76,12 @@
 			{{ form_errors(form.quotas.get('prototype').size) | e }}">
 			
 			{% for quota in form.quotas %}
-				<div class="well quota">
+				<div class="well quota form-inline">
 					{{ form_label(quota.name, 'Nimi') }}
-					{{ form_widget(quota.name, {'attr': {'class': 'input-medium'}}) }}
+					{{ form_widget(quota.name, {'attr': {'class': 'input-small'}}) }}
 					{{ form_errors(quota.name) }}
 					{{ form_label(quota.size, 'Koko') }}
-					{{ form_widget(quota.size) }}
+					{{ form_widget(quota.size, {'attr': {'class': 'input-small'}}) }}
 					{{ form_errors(quota.size) }}
 				</div>
 			{% endfor %}
