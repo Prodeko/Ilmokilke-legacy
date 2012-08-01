@@ -70,8 +70,6 @@ class IlmoController extends Controller
 		$event = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Event')
 			->findOneBy(array('id' => $id));
-		$eventIsOpen = $event->isOpen();
-		$registrations = array();
 		$queue = array();
 		
 		//Hae jonossa olevat ilmot
@@ -90,11 +88,8 @@ class IlmoController extends Controller
 		//Anna templatelle muuttujat 
 		$variables = array(
 				'event' => $event,
-				'registrations' => $registrations,
 				'queue' => $queue,
 				'form' => $form->createView(),
-				'id' => $id,
-				'isOpen' => $eventIsOpen,
 				);
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);

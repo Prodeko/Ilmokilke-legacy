@@ -53,6 +53,11 @@ $(function() {
 			$(this).popover({'placement': 'left'});
 		}
 	});
+	$("h2.event").each(function() {
+		if ($(this).attr("data-content") != "") {
+			$(this).popover({'placement': 'top'});
+		}
+	});
 	
 	$('form').submit(function(){
 		//Disabloi ilmoittautumisnappula lomakketta lähettäessä, estää tuplailmoittautumisen vahingossa.
