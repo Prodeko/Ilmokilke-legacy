@@ -22,7 +22,7 @@
 
 <h2>{% trans %}registration.open{% endtrans %}</h2>
 {% for event in activeEvents %}
-	<div class="row" id="content">
+	<div class="row">
 		<div class="span6">
 			<a href={{ path('show', {'id': event.id}) }}><h2 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
 			<p>{{ event.takesPlace | date("d.m.Y G:i") }}</p>
@@ -32,7 +32,7 @@
 
 <h2>{% trans %}events.upcoming{% endtrans %}</h2>
 {% for event in upcomingEvents %}
-	<div class="row" id="content">
+	<div class="row">
 			<div class="span6">
 				<div class="event">
 					<a href={{ path('show', {'id': event.id}) }}><h2 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
@@ -44,7 +44,7 @@
 
 <h2>{% trans %}registration.ended{% endtrans %}</h2>
 {% for event in pastEvents %}
-	<div class="row" id="content">
+	<div class="row">
 		<div class="span6">
 			<div class="event">
 				<a href={{ path('show', {'id': event.id}) }}><h2 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
