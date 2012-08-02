@@ -11,7 +11,9 @@ header:
 
 events.upcoming: Upcoming events
 
-fields.additional: Additional fields
+fields:
+  additional: Additional fields
+  multipleChoice: Multiple choice fields
 
 registration:
   open: Registration open

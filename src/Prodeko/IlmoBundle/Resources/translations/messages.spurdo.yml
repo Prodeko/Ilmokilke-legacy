@@ -11,8 +11,10 @@ header:
 
 events.upcoming: Dulevad dabahdumad :--D:DD
 
-fields.additional: Sprölögendäd ::DD:DD
-
+fields:
+  additional: Sprölögendäd ::DD:DD
+  multipleChoice: Monivalindagendäd :D::DD
+  
 registration:
   open: Ilmo augi :D::DD
   ended: Fug :DD Ilmo giinni :D

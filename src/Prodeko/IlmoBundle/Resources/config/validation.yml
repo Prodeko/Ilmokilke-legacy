@@ -12,3 +12,9 @@ Prodeko\IlmoBundle\Entity\Registration:
                 message: Pakollinen kenttä!
             - Email:
                 message: Virheellinen osoite!
+                
+Prodeko\IlmoBundle\Entity\Event:
+    properties:
+        registrationStarts:
+            - DateTime:
+                message: Virheellinen aika!

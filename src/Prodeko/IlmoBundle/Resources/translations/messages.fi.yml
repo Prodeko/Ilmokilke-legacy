@@ -11,7 +11,9 @@ header:
 
 events.upcoming: Tulevat tapahtumat
 
-fields.additional: Lisäkentät
+fields:
+  additional: Lisäkentät
+  multipleChoice: Monivalintakentät
 
 registration:
   open: Ilmoittautuminen auki

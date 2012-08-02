@@ -13,9 +13,15 @@ class EventType extends AbstractType
         $builder->add('name', 'text');
 		$builder->add('summary', 'textarea');
 		$builder->add('description', 'textarea');
-		$builder->add('takesPlace', "datetime");
-		$builder->add('registrationStarts', "datetime");
-		$builder->add('registrationEnds', "datetime");
+		$builder->add('takesPlace', "datetime", array(
+				'widget' => 'single_text',
+				'date_format' => 'dd.MM.yyyy hh.mm'));
+		$builder->add('registrationStarts', "datetime", array(
+				'widget' => 'single_text',
+				'date_format' => 'dd.MM.yyyy hh.mm'));
+		$builder->add('registrationEnds', "datetime", array(
+				'widget' => 'single_text',
+				'date_format' => 'dd.MM.yyyy hh.mm'));
 		$builder->add('location', "text");
 		$builder->add('freeTextFields', 'collection', array(
 				'type' => new FreeTextFieldType(),

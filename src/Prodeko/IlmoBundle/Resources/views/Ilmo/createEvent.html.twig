@@ -7,13 +7,25 @@
 {% block body %}
 <div class="container">
 	<form action="{{ path('create', { 'id': id }) }}" method="post" {{ form_enctype(form) }}>
-	    {{ form_row(form.name) }}
-	    {{ form_row(form.summary) }}
-	    {{ form_row(form.description) }}
-	    {{ form_row(form.takesPlace) }}
-	    {{ form_row(form.registrationStarts) }}
-	    {{ form_row(form.registrationEnds) }}
-	    {{ form_row(form.location) }}
+	    {{ form_label(form.name, "Tapahtuman nimi") }}
+	    {{ form_widget(form.name) }}
+    	{{ form_label(form.description, "Tapahtuman kuvaus") }}
+	    {{ form_widget(form.description, {'attr': { 'rows': '10'} }) }}
+	    {{ form_label(form.summary, "Lyhyt kuvaus tapahtumasta") }}
+	    {{ form_widget(form.summary, {'attr': {'placeholder': 'Kirjoita tähän tapahtumasta lyhyt, korkeintaan 160 merkin pituinen kuvaus, joka näytetään tapahtumalistassa.',
+											   'rows': '4'} }) }}
+		{{ form_label(form.takesPlace, 'Tapahtuma-aika') }}
+	    {{ form_widget(form.takesPlace, {'attr': {'placeholder': 'dd.mm.yyyy hh.mm'} }) }}
+	    {{ form_errors(form.takesPlace) }}
+	    {{ form_label(form.registrationStarts, 'Ilmoittautuminen alkaa') }}
+	    {{ form_widget(form.registrationStarts, {'attr': {'placeholder': 'dd.mm.yyyy hh.mm'} }) }}
+	    {{ form_errors(form.registrationStarts) }}
+		{{ form_label(form.registrationEnds, 'Ilmoittautuminen päättyy') }}
+	    {{ form_widget(form.registrationEnds, {'attr': {'placeholder': 'dd.mm.yyyy hh.mm'} }) }}
+	    {{ form_errors(form.registrationEnds) }}
+	    {{ form_label(form.location, 'Paikka') }}
+	    {{ form_widget(form.location) }}
+	    {{ form_errors (form.location) }}
 		
 		<div class="row">
 			<div class="span5">
@@ -39,7 +51,7 @@
 			</div>
 			
 			<div class="span5">
-				<h3>monivalintakentät:</h3>
+				<h3>{% trans %}fields.multipleChoice{% endtrans %}</h3>
 				<div class="multipleChoiceFields" data-prototype="
 					{{ form_label(form.multipleChoiceFields.get('prototype').name, 'Nimi') | e }}
 					{{ form_widget(form.multipleChoiceFields.get('prototype').name, {'attr': {'class': 'input-medium'}}) | e }}
@@ -76,7 +88,7 @@
 			{{ form_errors(form.quotas.get('prototype').size) | e }}">
 			
 			{% for quota in form.quotas %}
-				<div class="well quota form-inline">
+				<div class="well {% if not event.isOpen %}quota{% endif %} form-inline">
 					{{ form_label(quota.name, 'Nimi') }}
 					{{ form_widget(quota.name, {'attr': {'class': 'input-small'}}) }}
 					{{ form_errors(quota.name) }}

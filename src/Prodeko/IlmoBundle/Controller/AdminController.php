@@ -56,6 +56,7 @@ class AdminController extends IlmoController
 		else {
 			$state = self::STATE_NEW_EVENT; // Uuden tapahtuman luonti.
 			$event = new Event();
+			
 			$quota_names = array('I','II','III','IV','N');
 			
 			for($i=1;$i<=5;$i++) {
@@ -117,7 +118,9 @@ class AdminController extends IlmoController
 		
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:createEvent.html.twig', array(
-				'form' => $form->createView(), 'id' => $id
+				'form' => $form->createView(),
+				'id' => $id,
+				'event' => $event
 		));
 	}
 	
