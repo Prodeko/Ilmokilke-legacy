@@ -40,7 +40,7 @@ removeRegistration:
     pattern: /{_locale}/remove/{token}
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:removeRegistration, _locale: fi  }
     requirements:
-      _locale: en|fi
+      _locale: en|fi|spurdo
       
 adminRegistrations:
     pattern: /{_locale}/admin/{id}

@@ -112,9 +112,10 @@ class IlmoController extends Controller
 			$form->bindRequest($request);
 			
 			/* Tarkasta lomake, isValid näyttää automaattisesti errorit, jos niitä on. 
-			 * Älä myöskään tallenna ilmoittautumista, jos ilmo ei ole auki.
+			 * TODO: tarkista, mistä request on tullut. Jos kyseessä on jonotus,
+			 * ohjaa sendConfirmationEmailin asemesta jononäkymään.
 			 */
-			if ($form->isValid() && $event->isOpen()) {
+			if ($form->isValid()) {
 				//Lisää lomakkeelta tulleet tiedot registration-olioon
 				$registration = $form->getData();
 				$time = new \DateTime();

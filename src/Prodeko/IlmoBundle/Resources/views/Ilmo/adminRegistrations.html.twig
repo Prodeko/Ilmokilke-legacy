@@ -16,8 +16,10 @@
 	    				{% else %}
 	    					Ilmoittautuminen tähän tapahtumaan on kiinni. Ilmoittautumisaika: {{ event.registrationStarts | date("j.n.y G:i") }} - {{ event.registrationEnds | date("j.n.y G:i") }}
 	    				{% endif %}
+    				</p>
 	    			<p>
 	    			<a href="{{ path('edit', {'id': event.id}) }}">Muokkaa tapahtumaa</a>
+	    			</p>
     			</div>
     		</div>
     		<div class="row">
