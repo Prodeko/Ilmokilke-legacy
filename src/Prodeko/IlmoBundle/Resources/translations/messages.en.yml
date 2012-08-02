@@ -13,7 +13,9 @@ header:
     sidebar: English text on front page
 
 email: Email address
-event.edit: Edit event
+event:
+  edit: Edit event
+  new: New event
 events.upcoming: Upcoming events
 
 fields:

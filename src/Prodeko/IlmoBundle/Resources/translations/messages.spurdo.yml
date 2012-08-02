@@ -13,7 +13,9 @@ header:
     sidebar: Viddu, Viljamin veli tehny ebin ilmogilggeen :---D:DDD
 
 email: Sähgöbosdiosoide :D
-event.edit: Muoggaa dabahdumaa
+event:
+  edit: Muoggaa dabahdumaa
+  new: Uusi ebin dabahduma :D
 events.upcoming: Dulevad dabahdumad :--D:DD
 
 fields:

@@ -13,7 +13,10 @@ header:
     sidebar: Tässä etusivun teksti
 
 email: Sähköposti
-event.edit: Muokkaa tapahtumaa
+event:
+  edit: Muokkaa tapahtumaa
+  new: Luo uusi tapahtuma
+  
 events.upcoming: Tulevat tapahtumat
 
 fields:
