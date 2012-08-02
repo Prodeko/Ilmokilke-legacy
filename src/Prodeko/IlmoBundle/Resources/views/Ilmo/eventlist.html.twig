@@ -35,7 +35,7 @@
 	<div class="row" id="content">
 			<div class="span6">
 				<div class="event">
-					<a href={{ path('show', {'id': event.id}) }}><h2 rel="popover" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
+					<a href={{ path('show', {'id': event.id}) }}><h2 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
 					<p>{{ event.takesPlace | date("d.m.Y G:i") }}</p>
 				</div>
 			</div>
@@ -47,7 +47,7 @@
 	<div class="row" id="content">
 		<div class="span6">
 			<div class="event">
-				<a href={{ path('show', {'id': event.id}) }}><h2 rel="popover" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
+				<a href={{ path('show', {'id': event.id}) }}><h2 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
 				<p>{{ event.takesPlace | date("d.m.Y G:i") }}</p>
 			</div>
 		</div>
