@@ -10,15 +10,15 @@
 			<div class="row">
 				<div class="span3">
 					<h3>{% trans %}header.event.sidebar{% endtrans %}</h3>
-					<p><a href={{ path('adminRegistrations', {'id': event.id}) }}>Poista ilmoittautumisia</a></p>
-					<p><a href={{ path('edit', {'id': event.id}) }}>Muokkaa tapahtumaa</a></p>
+					<p><a href={{ path('adminRegistrations', {'id': event.id}) }}>{% trans %}view.admin{% endtrans %}</a></p>
+					<p><a href={{ path('edit', {'id': event.id}) }}>{% trans %}event.edit{% endtrans %}</a></p>
 				</div>
 				<div class="span9">
 					<div class="row">
 						<div class="span9">
 							<div id="title">
 								<h1>{% trans %}ilmokilke{% endtrans %}</h1>
-								<p><a href={{ path('list') }}>Takaisin listaan</a>
+								<p><a href={{ path('list') }}>{% trans %}back.to.list{% endtrans %}</a>
 							</div>
 			    			<h2 id="eventtitle">{{ event.name }}</h2>
 		    			</div>

@@ -1,6 +1,9 @@
 ilmokilke: Ilmokilke 2.0
 title: Ilmokilke 2.0
 
+allergies: Allergiat
+back.to.list: Takaisin tapahtumalistaukseen
+copyright: Copyright 2012 Prodeko Ry
 header:
   registrant:
     list: Ilmoittautuneet
@@ -9,12 +12,14 @@ header:
   list:
     sidebar: Tässä etusivun teksti
 
+email: Sähköposti
+event.edit: Muokkaa tapahtumaa
 events.upcoming: Tulevat tapahtumat
 
 fields:
   additional: Lisäkentät
   multipleChoice: Monivalintakentät
-
+quota: Kiintiö
 registration:
   open: Ilmoittautuminen auki
   ended: Ilmoittautuminen päättynyt
@@ -22,6 +27,7 @@ registration:
   not.yet.open: Ilmoittautuminen ei vielä auki
   
 register: Ilmoittaudu
+registrationmodal.register: Ilmoittaudu!
 close: Sulje
 
 register.for.event: Ilmoittaudu tapahtumaan
@@ -29,7 +35,7 @@ register.for.event: Ilmoittaudu tapahtumaan
     
 time: Aika
 time.at: klo
-
+view.admin: Avaa admin-näkymä
 location: Paikka
 
 

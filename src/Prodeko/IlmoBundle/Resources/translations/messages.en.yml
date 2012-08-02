@@ -1,6 +1,9 @@
 ilmokilke: The Ilmo Machine 2.0
 title: The Ilmo Machine 2.0
 
+allergies: Allergies
+back.to.list: Back to the list of events
+copyright: Copyright 2012 Prodeko Ry
 header:
   registrant:
     list: Registrants
@@ -9,12 +12,14 @@ header:
   list:
     sidebar: English text on front page
 
+email: Email address
+event.edit: Edit event
 events.upcoming: Upcoming events
 
 fields:
   additional: Additional fields
   multipleChoice: Multiple choice fields
-
+quota: Quota
 registration:
   open: Registration open
   ended: Registration ended
@@ -22,6 +27,7 @@ registration:
   not.yet.open: Registration not yet open
   
 register: Register
+registrationmodal.register: Send!
 close: Close
 
 register.for.event: Register for event
@@ -29,7 +35,7 @@ register.for.event: Register for event
     
 time: Time
 time.at: at
-
+view.admin: Open admin view
 location: Location
 
 name: Name

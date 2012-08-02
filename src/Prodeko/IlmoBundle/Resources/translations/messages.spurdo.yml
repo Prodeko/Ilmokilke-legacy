@@ -1,6 +1,9 @@
 ilmokilke: Ilmogilge
 title: Ilmogilge
 
+allergies: Ruogavammad :D:DD
+back.to.list: Dagaisin lisdaan :D
+copyright: Gobyright 2012 Brodeko Ry
 header:
   registrant:
     list: Ilmoiddauduneed x--DD
@@ -9,12 +12,14 @@ header:
   list:
     sidebar: Viddu, Viljamin veli tehny ebin ilmogilggeen :---D:DDD
 
+email: Sähgöbosdiosoide :D
+event.edit: Muoggaa dabahdumaa
 events.upcoming: Dulevad dabahdumad :--D:DD
 
 fields:
   additional: Sprölögendäd ::DD:DD
   multipleChoice: Monivalindagendäd :D::DD
-  
+quota: Giindiö::D
 registration:
   open: Ilmo augi :D::DD
   ended: Fug :DD Ilmo giinni :D
@@ -22,6 +27,7 @@ registration:
   not.yet.open: Fug :D Ei voi vielä ilmoda :DDD
   
 register: Ilmoiddaudu :D 
+registrationmodal.register: Ilmoittaudu!!!11 :DD:
 close: Sulje
 
 register.for.event: Ilmoiddaudu dabahdumaan x--DD:DDD
@@ -29,7 +35,7 @@ register.for.event: Ilmoiddaudu dabahdumaan x--DD:DDD
     
 time: Aiga
 time.at: glo
-
+view.admin: Ebin admin :D
 location: Baigga
 
 name: Nimi :D:DD

@@ -10,7 +10,8 @@
 				<div>{{ form_errors(form) }}</div>
 	
 				<fieldset class="control-group">
-				    {{ form_label(form.firstName, "Etunimi", { 'attr': {'class': 'control-label'}}) }}
+					{% set label %}{% trans %}name.first{% endtrans %}{% endset %}
+				    {{ form_label(form.firstName, label, { 'attr': {'class': 'control-label'}}) }}
 				    <div class="controls">
 				    	{{ form_widget(form.firstName) }}
 				    	{{ form_errors(form.firstName) }}
@@ -18,7 +19,8 @@
 				</fieldset>
 				
 				<fieldset class="control-group">
-				    {{ form_label(form.lastName, 'Sukunimi', { 'attr': {'class': 'control-label'}}) }}
+					{% set label %}{% trans %}name.last{% endtrans %}{% endset %}
+				    {{ form_label(form.lastName, label, { 'attr': {'class': 'control-label'}}) }}
 				    <div class="controls">
 				    	{{ form_widget(form.lastName) }}
 				    	{{ form_errors(form.lastName) }}
@@ -26,7 +28,8 @@
 				</fieldset>
 				
 				<fieldset class="control-group">
-				    {{ form_label(form.email, 'Sähköposti', { 'attr': {'class': 'control-label'}}) }}
+					{% set label %}{% trans %}email{% endtrans %}{% endset %}
+				    {{ form_label(form.email, label, { 'attr': {'class': 'control-label'}}) }}
 				    <div class="controls">
 				    	{{ form_widget(form.email) }}
 				    	{{ form_errors(form.email) }}
@@ -34,7 +37,8 @@
 				</fieldset>
 				
 				<fieldset class="control-group">
-				    {{ form_label(form.allergies, 'Allergiat', { 'attr': {'class': 'control-label'}}) }}
+					{% set label %}{% trans %}allergies{% endtrans %}{% endset %}
+				    {{ form_label(form.allergies, label, { 'attr': {'class': 'control-label'}}) }}
 				    <div class="controls">
 				    	{{ form_widget(form.allergies) }}
 				    	{{ form_errors(form.allergies) }}
@@ -65,7 +69,8 @@
 				{% endif %}
 				
 				<fieldset class="control-group">
-					{{ form_label(form.quota, 'Kiintiö', { 'attr': {'class': 'control-label'} } ) }}
+					{% set label %}{% trans %}quota{% endtrans %}{% endset %}
+					{{ form_label(form.quota, label, { 'attr': {'class': 'control-label'} } ) }}
 					<div class="controls">
 						{{ form_widget(form.quota) }}
 						{{ form_errors(form.quota) }}
@@ -81,7 +86,7 @@
 		</div>
 		<div class="modal-footer">
 			<a href="#" class="btn" data-dismiss="modal">{% trans %}close{% endtrans %}</a>
-			<input type="submit" class="btn btn-info" value="Ilmoittaudu!" />
+			<input type="submit" class="btn btn-info" value="{% trans %}registrationmodal.register{% endtrans %}" />
 		</div>
 	</form>
 </div>
