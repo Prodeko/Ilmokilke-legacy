@@ -134,6 +134,9 @@ class IlmoController extends Controller
 								'token' => $token,
 								'email' => $registration->getEmail()));
 			}
+			else {
+				return new Response('lol u fail'); // TODO: tämän pitäisi palauttaa jotain järkevää, mitä?
+			}
 		}
 		/*Jos register-routella on tehty GET-kutsu, ohjataan
 		tapahtumasivulle */
