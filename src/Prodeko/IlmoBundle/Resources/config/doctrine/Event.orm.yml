@@ -30,6 +30,8 @@ Prodeko\IlmoBundle\Entity\Event:
     kiltisilmo:
       type: boolean
       nullable: true
+    sizeOfOpenQuota:
+      type: integer
   manyToMany:
     freeTextFields:
       targetEntity: FreeTextField

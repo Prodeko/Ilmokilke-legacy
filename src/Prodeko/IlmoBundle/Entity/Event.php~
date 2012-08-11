@@ -381,4 +381,31 @@ class Event
     {
     	$this->quotas = $quotas;
     }
+    
+    /**
+     * Returns true if Event has any FreeTextFields
+     * to fill out
+     * @return boolean
+     */
+    public function hasFreeTextFields()
+    {
+    	return count($this->freeTextFields) > 0;
+    }
+    
+    /**
+     * Returns true if Event has any MultipleChoiceFields
+     * to fill out
+     * @return boolean
+     */
+    public function hasMultipleChoiceFields()
+    {
+    	return count($this->multipleChoiceFields) > 0;
+    }
+
+    
+    public function registrationEnded()
+    {
+    	$time = new \DateTime();
+    	return $time > $this->registrationEnds;
+    }
 }

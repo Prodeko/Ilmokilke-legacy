@@ -408,4 +408,29 @@ class Event
     	$time = new \DateTime();
     	return $time > $this->registrationEnds;
     }
+    /**
+     * @var integer $sizeOfOpenQuota
+     */
+    private $sizeOfOpenQuota;
+
+
+    /**
+     * Set sizeOfOpenQuota
+     *
+     * @param integer $sizeOfOpenQuota
+     */
+    public function setSizeOfOpenQuota($sizeOfOpenQuota)
+    {
+        $this->sizeOfOpenQuota = $sizeOfOpenQuota;
+    }
+
+    /**
+     * Get sizeOfOpenQuota
+     *
+     * @return integer 
+     */
+    public function getSizeOfOpenQuota()
+    {
+        return $this->sizeOfOpenQuota;
+    }
 }

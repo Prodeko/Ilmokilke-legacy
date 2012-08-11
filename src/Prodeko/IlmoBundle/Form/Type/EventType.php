@@ -23,6 +23,8 @@ class EventType extends AbstractType
 				'widget' => 'single_text',
 				'date_format' => 'dd.MM.yyyy hh.mm'));
 		$builder->add('location', "text");
+		$builder->add('sizeOfOpenQuota','integer');
+		
 		$builder->add('freeTextFields', 'collection', array(
 				'type' => new FreeTextFieldType(),
 				'allow_add' => true,
