@@ -21,6 +21,7 @@ events.upcoming: Upcoming events
 fields:
   additional: Additional fields
   multipleChoice: Multiple choice fields
+queue: Queue
 quota: Quota
 registration:
   open: Registration open

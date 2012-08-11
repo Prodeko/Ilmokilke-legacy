@@ -136,10 +136,10 @@ class AdminController extends IlmoController
 		if (!$event) { throw $this->createNotFoundException('Tapahtumaa ei löydy');} // TODO: joku parempi exceptionhandlaus näihin.
 		
 		$registrations = $event->getRegistrations();
-		
-		return $this->render('ProdekoIlmoBundle:Ilmo:adminRegistrations.html.twig', array(
+		$queue = Helpers::getQueue($event, $this->getDoctrine()->getRepository('ProdekoIlmoBundle:Registration'));
+		return $this->render('ProdekoIlmoBundle:Ilmo:admin.html.twig', array(
 				'event' => $event,
-				'registrations' => $registrations,
+				'queue' => $queue,
 				'isOpen' => $event->isOpen()
 		));
 		

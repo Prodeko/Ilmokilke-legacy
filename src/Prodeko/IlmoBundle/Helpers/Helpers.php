@@ -44,6 +44,7 @@ class Helpers {
 				$queue = array_merge($queue, $queueInCurrentQuota);
 			}
 		}
+		usort($queue, array('\Prodeko\IlmoBundle\Entity\Registration', 'compareByRegistrationTime'));
 		return $queue;
 	}
 	
