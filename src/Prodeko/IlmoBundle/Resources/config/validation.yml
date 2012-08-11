@@ -15,6 +15,6 @@ Prodeko\IlmoBundle\Entity\Registration:
                 
 Prodeko\IlmoBundle\Entity\Event:
     properties:
-        registrationStarts:
-            - DateTime:
-                message: Virheellinen aika!
+        name:
+            - NotBlank:
+                message: Pakollinen kenttä!   

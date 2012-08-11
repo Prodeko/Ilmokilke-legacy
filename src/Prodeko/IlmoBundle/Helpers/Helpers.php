@@ -45,7 +45,27 @@ class Helpers {
 			}
 		}
 		return $queue;
-			
+	}
+	
+	/*
+	 * Hakee argumenttina annettuun tapahtumaan mahtuneet ilmoittautumiset.
+	 */
+	public static function getParticipants(Event $event, EntityRepository $repository)
+	{
+		$participants = array();
+		$quotas = $event->getQuotas();
+		foreach($quotas as $quota) {
+			$quotaSize = $quota->getSize();
+			$participantsInCurrent = $repository->createQueryBuilder('r')
+				->where('r.quota = :quota')
+				->setParameter('quota', $quota->getId())
+				->orderBy('r.registrationTime','ASC')
+				->setMaxResults($quotaSize)
+				->getQuery()
+				->getResult();
+			$participants = array_merge($participants, $participantsInCurrent);
+		}
+		return $participants;
 	}
 	
 	/*

@@ -1,6 +1,6 @@
 Ilmoittautumisaika,Sukunimi,Etunimi,Kiintiö,Email,{% for field in event.freeTextFields %}{{ field.name }},{% endfor %}{% for field in event.multipleChoiceFields %}{{ field.name }},{% endfor %}
 
-{% for registration in event.registrations %}
+{% for registration in participants %}
 {{ registration.registrationTime | date('Y-m-d h.m.s')}},{{ registration.lastName }},{{ registration.firstName }},{{ registration.quota.name }},{{ registration.email }},{% for entry in registration.freeTextEntries %}{{ entry.content }},{% endfor %}{% for entry in registration.multipleChoiceEntries %}{{ entry.selection }},{% endfor %}
 
 {% endfor %}

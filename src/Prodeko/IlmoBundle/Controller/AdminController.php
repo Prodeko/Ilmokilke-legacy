@@ -153,8 +153,9 @@ class AdminController extends IlmoController
 		$event = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Event')
 			->findOneBy(array('id' => $id));
+		$participants = Helpers::getParticipants($event, $this->getDoctrine()->getRepository('ProdekoIlmoBundle:Registration'));
 		$filename = $id . ".csv";
-		$response = $this->render('ProdekoIlmoBundle:Ilmo:export.csv.twig', array('event' => $event));
+		$response = $this->render('ProdekoIlmoBundle:Ilmo:export.csv.twig', array('participants' => $participants, 'event' => $event));
 		$response->headers->set('Content-Type', 'text/css');
 		$response->headers->set('Content-Disposition', 'attachment; filename='.$filename);
 		return $response;
