@@ -443,4 +443,14 @@ class Event
     	$openQuotaregistrations = $this->registrations->slice($countOfQuotaRegistrations,$this->getSizeOfOpenQuota());
     	return $openQuotaregistrations;
     }
+    
+    public function getFreeSeatsInOpenQuota()
+    {
+    	return $this->getSizeOfOpenQuota() - count($this->getOpenQuotaRegistrations());
+    }
+    
+    public function getOpenQuotaFill()
+    {
+    	return ($this->getSizeOfOpenQuota()-$this->getFreeSeatsInOpenQuota())/$this->getSizeOfOpenQuota()*100;
+    }
 }

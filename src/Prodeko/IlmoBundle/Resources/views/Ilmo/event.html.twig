@@ -55,7 +55,12 @@
 			    					<td>{{ quota.getFreeSeats }} / {{ quota.getSize }}</td>
 			    					<td><div class="progress"><div class="bar" style="width: {{ quota.getFill }}%"></div></div></td>
 		    					</tr>
-			    				{% endfor %}
+		    					{% endfor %}
+		    					<tr>
+		    						<td>{% trans %}quota.open{% endtrans %}</td>
+		    						<td>{{ event.getFreeSeatsInOpenQuota }} / {{ event.getSizeOfOpenQuota }}
+		    						<td><div class="progress"><div class="bar" style="width: {{ event.getOpenQuotaFill }}%"></div></div></td>
+		    					</tr>
 		    				</table>
 		    				
 		    			</div>

@@ -56,17 +56,11 @@ class Helpers {
 		$participants = array();
 		$quotas = $event->getQuotas();
 		foreach($quotas as $quota) {
-			$quotaSize = $quota->getSize();
-			$participantsInCurrent = $repository->createQueryBuilder('r')
-				->where('r.quota = :quota')
-				->setParameter('quota', $quota->getId())
-				->orderBy('r.registrationTime','ASC')
-				->setMaxResults($quotaSize)
-				->getQuery()
-				->getResult();
+			$participantsInCurrent = $quota->getRegistrations();
 			$participants = array_merge($participants, $participantsInCurrent);
 		}
-		return $participants;
+		$participantsInOpenQuota = $event->getOpenQuotaRegistrations();
+		return array_merge($participants,$participantsInOpenQuota);
 	}
 	
 	/*
