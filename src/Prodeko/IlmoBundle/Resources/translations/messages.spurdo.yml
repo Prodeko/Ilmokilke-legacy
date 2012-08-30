@@ -23,6 +23,7 @@ fields:
   multipleChoice: Monivalindagendäd :D::DD
 queue: Fug, ette mahtunu :D:D
 quota: Giindiö::D
+quota.open: Avoin giindiö :D
 registration:
   open: Ilmo augi :D::DD
   ended: Fug :DD Ilmo giinni :D

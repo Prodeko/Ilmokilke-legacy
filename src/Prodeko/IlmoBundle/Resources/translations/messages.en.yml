@@ -23,6 +23,7 @@ fields:
   multipleChoice: Multiple choice fields
 queue: Queue
 quota: Quota
+quota.open: Open
 registration:
   open: Registration open
   ended: Registration ended

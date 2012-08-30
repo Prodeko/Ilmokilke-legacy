@@ -45,7 +45,7 @@ class Helpers {
 			}
 		}
 		usort($queue, array('\Prodeko\IlmoBundle\Entity\Registration', 'compareByRegistrationTime'));
-		return $queue;
+		return array_slice($queue, $event->getSizeOfOpenQuota());
 	}
 	
 	/*

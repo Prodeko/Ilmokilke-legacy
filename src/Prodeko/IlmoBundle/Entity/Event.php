@@ -22,7 +22,7 @@ class Event
 	
 	public function isOpen() {
 		$now = new \DateTime();
-		return ($this->registrationStarts  < $now && $now < $this->registrationEnds) ? true : false; 
+		return($this->registrationStarts  < $now && $now < $this->registrationEnds); 
 	}
     /**
      * @var integer $id
@@ -432,5 +432,15 @@ class Event
     public function getSizeOfOpenQuota()
     {
         return $this->sizeOfOpenQuota;
+    }
+
+    public function getOpenQuotaRegistrations()
+    {
+    	$countOfQuotaRegistrations = 0;
+    	foreach ($this->quotas as $quota) {
+    		$countOfQuotaRegistrations += count($quota->getRegistrations());
+    	}
+    	$openQuotaregistrations = $this->registrations->slice($countOfQuotaRegistrations,$this->getSizeOfOpenQuota());
+    	return $openQuotaregistrations;
     }
 }

@@ -24,6 +24,7 @@ fields:
   multipleChoice: Monivalintakentät
 queue: Jono
 quota: Kiintiö
+quota.open: Avoin
 registration:
   open: Ilmoittautuminen auki
   ended: Ilmoittautuminen päättynyt

@@ -48,10 +48,12 @@
 		    			<div class="span4" id="eventdescription">
 		    				<p>{{ event.description }}</p>
 		    				<h3>Vapaita paikkoja:</h3>
-		    				<table class="table table-condensed">
+		    				<table class="table-condensed">
 			    				{% for quota in event.quotas %}
 			    				<tr>
-			    					<td>{{ quota.name }}</td><td>{{ quota.getFreeSeats }} / {{ quota.getSize }}</td><td><div class="progress"><div class="bar" style="width: {{ quota.getFill }}%"></div></div></td>
+			    					<td>{{ quota.name }}</td>
+			    					<td>{{ quota.getFreeSeats }} / {{ quota.getSize }}</td>
+			    					<td><div class="progress"><div class="bar" style="width: {{ quota.getFill }}%"></div></div></td>
 		    					</tr>
 			    				{% endfor %}
 		    				</table>
@@ -91,6 +93,35 @@
 										</tbody>
 									</table>
 							{% endfor %}
+								<h4>{% trans %}quota.open{% endtrans %}</h4>
+								<table class="table table-striped table-bordered table-condensed">
+									<thead>
+										<tr>
+											<th>{% trans %}name.first{% endtrans %}</th>
+				    						<th>{% trans %}name.last{% endtrans %}</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for registration in event.getOpenQuotaRegistrations %}
+											{% set dataContent %}
+													{% for entry in registration.freeTextEntries %}
+														{% if not entry.field.flagPrivate %}
+															<p>{{ entry.field.name }}: {{ entry.content }}</p>
+														{% endif %}
+													{% endfor %}
+													{% for entry in registration.multipleChoiceEntries %}
+														{% if not entry.field.flagPrivate %}
+														<p>{{ entry.field.name }}: {{ entry.selection }}</p>
+													{% endif %}
+													{% endfor %}
+												{% endset %}
+												<tr class="registered" data-content="{{ dataContent|e }}">
+													<td>{{ registration.firstName }}</td>
+													<td>{{ registration.lastName }}</td>
+												</tr>
+										{% endfor %}
+									</tbody>
+								</table>
 							<h3>{% trans %}queue{% endtrans %}</h3>
 							<table class="table table-striped table-bordered table-condensed">
 								<thead>
