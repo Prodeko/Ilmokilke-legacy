@@ -451,6 +451,10 @@ class Event
     
     public function getOpenQuotaFill()
     {
-    	return ($this->getSizeOfOpenQuota()-$this->getFreeSeatsInOpenQuota())/$this->getSizeOfOpenQuota()*100;
+    	if($this->sizeOfOpenQuota > 0)
+    	{
+    		return ($this->getSizeOfOpenQuota()-$this->getFreeSeatsInOpenQuota())/$this->getSizeOfOpenQuota()*100;
+    	}
+    	else return -1;
     }
 }
