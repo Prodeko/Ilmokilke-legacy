@@ -24,6 +24,12 @@ class Event
 		$now = new \DateTime();
 		return($this->registrationStarts  < $now && $now < $this->registrationEnds); 
 	}
+	
+	public function kiltisIlmoOpen() {
+		$now = new \DateTime();
+		$now = $now->add(new \DateInterval('PT3H'));
+		return($this->registrationStarts  < $now && $now < $this->registrationEnds);
+	}
     /**
      * @var integer $id
      */
@@ -451,6 +457,10 @@ class Event
     
     public function getOpenQuotaFill()
     {
-    	return ($this->getSizeOfOpenQuota()-$this->getFreeSeatsInOpenQuota())/$this->getSizeOfOpenQuota()*100;
+    	if($this->sizeOfOpenQuota > 0)
+    	{
+    		return ($this->getSizeOfOpenQuota()-$this->getFreeSeatsInOpenQuota())/$this->getSizeOfOpenQuota()*100;
+    	}
+    	else return -1;
     }
 }

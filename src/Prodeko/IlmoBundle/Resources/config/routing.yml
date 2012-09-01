@@ -25,13 +25,13 @@ create:
       _locale: en|fi|spurdo
       
 edit:
-    pattern: /{_locale}/edit/{id}
+    pattern: /{_locale}/admin/edit/{id}
     defaults: { _controller: ProdekoIlmoBundle:Admin:createEventForm, _locale: fi }
     requirements:
       _locale: en|fi|spurdo
       
 export:
-    pattern: /{_locale}/export/{id}
+    pattern: /{_locale}/admin/export/{id}
     defaults: { _controller: ProdekoIlmoBundle:Admin:export, _locale: fi }
     requirements:
       _locale: en|fi|spurdo
@@ -43,7 +43,7 @@ removeRegistration:
       _locale: en|fi|spurdo
       
 adminRegistrations:
-    pattern: /{_locale}/admin/{id}
+    pattern: /{_locale}/admin/show/{id}
     defaults: { _controller: ProdekoIlmoBundle:Admin:adminRegistrations, _locale: fi  }
     requirements:
       _locale: en|fi|spurdo

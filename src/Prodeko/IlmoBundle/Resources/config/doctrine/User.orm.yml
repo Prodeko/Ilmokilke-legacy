@@ -1,0 +1,26 @@
+Prodeko\IlmoBundle\Entity\User:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    username:
+      type: string
+      length: '32'
+    salt:
+      type: string
+      length: '40'
+    password:
+      type: string
+      length: '40'
+    email:
+      type: string
+      length: '60'
+      options:
+        unique: true
+    isactive:
+      type: boolean
+  lifecycleCallbacks: {  }
