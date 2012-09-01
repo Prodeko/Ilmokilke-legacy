@@ -49,11 +49,13 @@
 		</div>
     </div>
 {% endfor %}
+{% if is_granted('ROLE_ADMIN') %}
 	<div class="row" id="devbuttons">
 	<a href="{{ path('create') }}" id="eventcreate" class="btn" >{% trans %}event.new{% endtrans %}</a>
 
 	</div>
 </div>
+{% endif %}
 {% endblock %}
 {% block javascripts %}
 	<script src="{{ asset('js/event.js') }}"></script>

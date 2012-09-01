@@ -10,8 +10,10 @@
 			<div class="row">
 				<div class="span3">
 					<h3>{% trans %}header.event.sidebar{% endtrans %}</h3>
+					{% if is_granted('ROLE_ADMIN') %}
 					<p><a href={{ path('adminRegistrations', {'id': event.id}) }}>{% trans %}view.admin{% endtrans %}</a></p>
 					<p><a href={{ path('edit', {'id': event.id}) }}>{% trans %}event.edit{% endtrans %}</a></p>
+					{% endif %}
 				</div>
 				<div class="span9">
 					<div class="row">
