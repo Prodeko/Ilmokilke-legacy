@@ -24,6 +24,12 @@ class Event
 		$now = new \DateTime();
 		return($this->registrationStarts  < $now && $now < $this->registrationEnds); 
 	}
+	
+	public function kiltisIlmoOpen() {
+		$now = new \DateTime();
+		$now = $now->add(new \DateInterval('PT3H'));
+		return($this->registrationStarts  < $now && $now < $this->registrationEnds);
+	}
     /**
      * @var integer $id
      */

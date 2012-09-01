@@ -3,7 +3,11 @@
 {% block title %}
 	{{ parent() }} - {{ event.name }}
 {% endblock %}
-
+{% if kiltis %}
+	{% set isOpen = event.kiltisIlmoOpen %}
+{% else %}
+	{% set isOpen = event.isOpen %}
+{% endif %}
 {% block body %}
 	<div class="container">
 		<div id="content">
@@ -32,13 +36,13 @@
     					</div>
     					<div class="span5">
    							<p id="registrationPeriod">{% trans %}registration.period{% endtrans %}: {{ event.registrationStarts | date("j.n.y G:i") }} - {{ event.registrationEnds | date("j.n.y G:i") }}</p>
-    						<p id="registrationOpen">{% if event.isOpen %}{% trans %}registration.open{% endtrans %}{% else %}{% trans %}registration.not.yet.open{% endtrans %}{% endif %}</p>
+    						<p id="registrationOpen">{% if isOpen %}{% trans %}registration.open{% endtrans %}{% else %}{% trans %}registration.not.yet.open{% endtrans %}{% endif %}</p>
     					</div>
 	    			</div>
 	    			<div class="row">
 	    				<div class="span9">
 			    			<p id="eventsummary">{{ event.summary }}</p>
-			    			{% if event.isOpen %}
+			    			{% if isOpen %}
 				    			<button id="eventsubscribe" class="btn" data-toggle="modal" href="#subscriptionmodal">{% trans %}register{% endtrans %}</button>
 				    			<!-- Start subscription modal -->
 				    			{% include 'ProdekoIlmoBundle:Ilmo:registration.html.twig' %}

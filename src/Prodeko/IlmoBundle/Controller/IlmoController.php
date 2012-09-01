@@ -66,11 +66,16 @@ class IlmoController extends Controller
 	//Näyttää yhden tapahtuman tiedot
 	public function showAction($id, Request $request)
 	{
+		if($ip = $request->getClientIp() === $this->container->getParameter('kiltis_ip')) {
+			$kiltis = true;
+		}
+		else {
+			$ip = false;
+		}
 		//Hae tapahtuma URI:sta tulleen id:n perusteella
 		$event = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Event')
 			->findOneBy(array('id' => $id));
-		
 		//Hae jonossa olevat ilmot
 		$queue = Helpers::getQueue($event, 
 				$this->getDoctrine()->getRepository('ProdekoIlmoBundle:Registration'));
@@ -85,6 +90,7 @@ class IlmoController extends Controller
 				'event' => $event,
 				'queue' => $queue,
 				'form' => $form->createView(),
+				'kiltis'	=> $kiltis,
 				);
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', $variables);
