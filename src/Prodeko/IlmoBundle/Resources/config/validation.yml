@@ -17,4 +17,51 @@ Prodeko\IlmoBundle\Entity\Event:
     properties:
         name:
             - NotBlank:
-                message: Pakollinen kenttä!   
+                message: Pakollinen kenttä! 
+        description:
+            - NotBlank:
+                message: Pakollinen kenttä!
+        summary:
+            - NotBlank:
+                message: Pakollinen kenttä!
+            - MaxLength:
+                limit: 160
+                message: Lyhyt kuvaus saa olla korkeintaan 160 merkkiä pitkä.
+        takesPlace:
+            - DateTime:
+                message: Virheellinen aika!
+        registrationStarts:
+            - DateTime:
+                message: Virheellinen aika!
+        registrationEnds:
+            - DateTime:
+                message: Virheellinen aika!
+        sizeOfOpenQuota:
+            - Min:
+                limit: 0
+                message: Avoimen kiintiön koko ei voi olla negatiivinen.
+
+Prodeko\IlmoBundle\Entity\Quota:
+    properties:
+        name:
+            - NotBlank:
+                message: Pakollinen kenttä!
+        size:
+            - Min:
+                limit: 0
+                message: Kiintiön koko ei voi olla negatiivinen.
+
+Prodeko\IlmoBundle\Entity\FreeTextField:
+    properties:
+        name:
+            - NotBlank:
+                message: Pakollinen kenttä!
+
+Prodeko\IlmoBundle\Entity\MultipleChoiceField:
+    properties:
+        name:
+            - NotBlank:
+                message: Pakollinen kenttä
+        choices:
+            - NotBlank:
+                message: Täytä vaihtoehdot.

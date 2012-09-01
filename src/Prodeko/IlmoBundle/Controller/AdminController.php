@@ -86,34 +86,40 @@ class AdminController extends IlmoController
 			}
 			
 			
-			//TODO: if ($form->isValid()) { ... } Jutut tähän väliin.
 			
-			//Anna lomakkeesta tulleet arvot eventille
 			$form->bindRequest($request);
-			$event = $form->getData();
+			if($form->isValid()) {
+				$event = $form->getData();
+				if ($state == self::STATE_OLD_EVENT_REGISTRANTS) {
+					/* Kenttien lisäyksen ja poiston käsittely
+					 Tämä on relevanttia vain jos muokataan tapahtumaa, jolla on ilmoittautumisia. */
+				
+					// Käytä helperseissä määriteltyä funktiota määrittämään lisätyt ja poistetut kentät.
+					list($newTextFields, $deletedTextFields) = Helpers::filterFields($originalTextFields, $event->getFreeTextFields());
+					list($newMcFields, $deletedMcFields) = Helpers::filterFields($originalMcFields, $event->getMultipleChoiceFields());
+				
+					// Lisää jokaiselle uudelle kentälle ilmoitukset kaikkiin olemassaoleviin ilmoittautumisiin, että kenttää ei ole täytetty.
+					$em = Helpers::addDummyValues(array_merge($newTextFields, $newMcFields), $registrations, $em, "Ei täytetty");
+				
+					// Poista kaikkien poistuneiden fieldien entryt (ei poista fieldejä, koska fieldien kierrätys
+					$em = Helpers::deleteEntries(array_merge($deletedMcFields, $deletedTextFields), $registrations, $em);
+				
+				} // Lopeta kenttien lisäyksen ja poiston käsittely
+					
+				//Tallenna tapahtuma
+				$em->persist($event);
+				$em->flush();
+				//Ohjaa tarkastelemaan luotua tapahtumaa
+				return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
+			}
+			else {
+				return $this->render('ProdekoIlmoBundle:Ilmo:createEvent.html.twig', array(
+				'form' => $form->createView(),
+				'id' => $id,
+				'event' => $event
+		));
+			}
 			
-			
-			if ($state == self::STATE_OLD_EVENT_REGISTRANTS) { 
-				 /* Kenttien lisäyksen ja poiston käsittely
-				 	Tämä on relevanttia vain jos muokataan tapahtumaa, jolla on ilmoittautumisia. */
-				
-				// Käytä helperseissä määriteltyä funktiota määrittämään lisätyt ja poistetut kentät.
-				list($newTextFields, $deletedTextFields) = Helpers::filterFields($originalTextFields, $event->getFreeTextFields());
-				list($newMcFields, $deletedMcFields) = Helpers::filterFields($originalMcFields, $event->getMultipleChoiceFields());
-				
-				// Lisää jokaiselle uudelle kentälle ilmoitukset kaikkiin olemassaoleviin ilmoittautumisiin, että kenttää ei ole täytetty.
-				$em = Helpers::addDummyValues(array_merge($newTextFields, $newMcFields), $registrations, $em, "Ei täytetty");
-				
-				// Poista kaikkien poistuneiden fieldien entryt (ei poista fieldejä, koska fieldien kierrätys
-				$em = Helpers::deleteEntries(array_merge($deletedMcFields, $deletedTextFields), $registrations, $em);
-				
-			} // Lopeta kenttien lisäyksen ja poiston käsittely
-			
-			//Tallenna tapahtuma
-			$em->persist($event);
-			$em->flush();
-			//Ohjaa tarkastelemaan luotua tapahtumaa
-			return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
 		}
 		
 		
