@@ -1,0 +1,22 @@
+{% extends 'ProdekoIlmoBundle:Ilmo:base.html.twig' %}
+
+{% block title %}
+	{% trans %}prompt.remove{% endtrans %}
+{% endblock %}
+
+{% set cancelPath = path('list') %}
+{% set okPath = path('remove', {'token': token}) %}
+
+{% block body %}
+<div class="container">
+ <div class="alert alert-info">
+ 	<div class="row">
+ 		{% trans %}prompt.remove{% endtrans %}
+ 	</div>
+ 	<div class="row">
+	 	<button class="btn" type="submit" onclick="parent.location = '{{ cancelPath }}'">{% trans %}cancel{% endtrans %}</button>
+		<button class="btn btn-danger" type="submit" onclick="parent.location = '{{ okPath }}'">{% trans %}ok.remove{% endtrans %}</button>
+ 	</div>
+ </div>
+</div>
+{% endblock %}

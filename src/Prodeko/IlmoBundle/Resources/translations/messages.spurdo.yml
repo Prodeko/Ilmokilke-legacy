@@ -3,6 +3,7 @@ title: Ilmogilge
 
 allergies: Ruogavammad :D:DD
 back.to.list: Dagaisin lisdaan :D
+cancel: Fug, en dosiaan! ::D
 copyright: Gobyright 2012 Brodeko Ry
 header:
   registrant:
@@ -26,6 +27,8 @@ events.upcoming: Dulevad dabahdumad :--D:DD
 fields:
   additional: Sprölögendäd ::DD:DD
   multipleChoice: Monivalindagendäd :D::DD
+ok.remove: Og
+prompt.remove: Ei viddu? Feidaatko oigeasdi? ::D
 queue: Fug, ette mahtunu :D:D
 quota: Giindiö::D
 quota.open: Avoin giindiö :D

@@ -3,6 +3,7 @@ title: The Ilmo Machine 2.0
 
 allergies: Allergies
 back.to.list: Back to the list of events
+cancel: Cancel
 copyright: Copyright 2012 Prodeko Ry
 header:
   registrant:
@@ -26,6 +27,8 @@ events.upcoming: Upcoming events
 fields:
   additional: Additional fields
   multipleChoice: Multiple choice fields
+ok.remove: Delete
+prompt.remove: Are you sure that you want to delete your registration?
 queue: Queue
 quota: Quota
 quota.open: Open

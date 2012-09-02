@@ -44,11 +44,15 @@ export:
     requirements:
       _locale: en|fi|spurdo
 
-removeRegistration:
+removePrompt:
     pattern: /{_locale}/remove/{token}
-    defaults: { _controller: ProdekoIlmoBundle:Ilmo:removeRegistration, _locale: fi  }
+    defaults: { _controller: ProdekoIlmoBundle:Ilmo:removePrompt, _locale: fi  }
     requirements:
       _locale: en|fi|spurdo
+      
+remove:
+    pattern: /{_locale}/confirmremove/{token}
+    defaults: { _controller: ProdekoIlmoBundle:Ilmo:removeRegistration, _locale: fi } 
       
 adminRegistrations:
     pattern: /{_locale}/admin/show/{id}

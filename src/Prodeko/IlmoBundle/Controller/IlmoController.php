@@ -183,6 +183,11 @@ class IlmoController extends Controller
 		return $this->render('ProdekoIlmoBundle:Ilmo:queue.html.twig', $variables);
 	}
 	
+	public function removePromptAction($token, Request $request)
+	{
+		return $this->render('ProdekoIlmoBundle:Ilmo:removeprompt.html.twig', 
+				array('token' => $token));
+	}
 	
 	
 	public function removeRegistrationAction($token, Request $request) 

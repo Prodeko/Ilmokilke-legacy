@@ -3,6 +3,7 @@ title: Ilmokilke 2.0
 
 allergies: Allergiat
 back.to.list: Takaisin tapahtumalistaukseen
+cancel: Peruuta
 copyright: Copyright 2012 Prodeko Ry
 header:
   registrant:
@@ -27,6 +28,8 @@ upcoming: Tulevat tapahtumat
 fields:
   additional: Lisäkentät
   multipleChoice: Monivalintakentät
+prompt.remove: Haluatko varmasti poistaa ilmoittautumisen?
+ok.remove: Poista
 queue: Jono
 quota: Kiintiö
 quota.open: Avoin
