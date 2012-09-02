@@ -49,6 +49,25 @@ jQuery(document).ready(function() {
 	    	$(this).tooltip();
 	    });
 	}	
+	//Päivitetään summaryn infokentän arvoon jäljellä olevien merkkien määrä.
+	$('textarea#event_summary').keyup(function(){
+    	var charLength = $(this).val().length;
+    	if (charLength <= 160) {
+    		$('span#charcount').attr('class', 'alert alert-info');
+    		if(charLength === 159) {
+    			$('span#charcount').html(160 - charLength + ' merkki jäljellä.');
+    		}
+    		else {
+    			$('span#charcount').html(160 - charLength + ' merkkiä jäljellä.');
+    		}
+    	}
+    	
+    	if(charLength > 160) {
+    		$('span#charcount').attr('class', 'alert alert-error');
+    		$('span#charcount').html("Liian pitkä kuvaus (" + charLength +" merkkiä). Lyhyt kuvaus saa olla korkeintaan 160 merkkiä pitkä!");
+    	}
+    });
+	
 	// Get the div that holds the collection of fields
 	var freeTextFieldsDiv = $('div.freeTextFields');
 	var multipleChoiceFieldsDiv = $('div.multipleChoiceFields');
@@ -63,8 +82,10 @@ jQuery(document).ready(function() {
     });
     quotasDiv.find('div.quota').each(function() {
     	addDeleteLink($(this));
-    })
-	    
+    });
+	
+    //Täytetään summaryn info-kenttään jäljellä olevien merkkien määrä
+    $('span#charcount').html(160 - $('textarea#event_summary').val().length + ' merkkiä jäljellä.');    
     // Lisää "lisää kenttä" -nappulat teksti- ja monivalintakentille.
     addAddButton(freeTextFieldsDiv, 'Lisää tekstikenttä', 'add_textfield_button', 'freeTextField');
     addAddButton(multipleChoiceFieldsDiv, 'Lisää monivalintakenttä', 'add_mcfield_button', 'multipleChoiceField');
