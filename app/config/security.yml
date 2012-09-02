@@ -9,8 +9,15 @@ security:
     providers:
         in_memory:
             users:
-                user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                admin: { password: 1meparsaa, roles: [ 'ROLE_ADMIN' ] }
+                admin:
+                    password: 979292a300ec7d3177139fd9363526d1b81deb065deeab8a79a65f25f39a1e367c048580c2c8b5a6550aae2eef3446bdfa3a5895040c66a4d7a2332d157ef84b
+                    roles: [ 'ROLE_ADMIN' ]
+    
+    encoders:
+        Symfony\Component\Security\Core\User\User:
+            algorithm: sha512
+            iterations: 1
+            encode_as_base64: false
 
     firewalls:
         dev:
@@ -23,11 +30,12 @@ security:
 
         secured_area:
             pattern:    ^/
-            
             anonymous: ~
-            http_basic:
-                realm: "Admin"
-
+            form_login:
+                login_path: /login
+                check_path: /check
+            logout:
+                path: /logout
+                target: /
     access_control:
         - { path: /admin, roles: 'ROLE_ADMIN' }
-        #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
