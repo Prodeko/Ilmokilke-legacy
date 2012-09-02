@@ -12,6 +12,11 @@ header:
   list:
     sidebar: English text on front page
 
+bodytext:
+  eventlist: 
+    header: Welcome to Ilmo Machine!
+    content: You can find the relevant events below. Specific events can be accessed by clicking on the event's name.
+
 email: Email address
 event:
   edit: Edit event
@@ -26,7 +31,11 @@ quota: Quota
 quota.open: Open
 registration:
   open: Registration open
+  open.none: No events open for registration
+  upcoming: Registration upcoming
+  upcoming.none: No upcoming events
   ended: Registration ended
+  ended.none: No past events
   period: Registration period
   not.yet.open: Registration not yet open
   

@@ -5,46 +5,106 @@
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid">
-		<div class="hero-unit">	
+<div class="container-fluid" >
+	<div class="hero-unit">	
 				<h3>{% trans %}bodytext.eventlist.header{% endtrans %}</h3>
 
 				{% trans %}bodytext.eventlist.content{% endtrans %}</h3>
 	</div>
 
-<h2>{% trans %}registration.open{% endtrans %}</h2>
-{% for event in activeEvents %}
-	<div class="row">
-		<div class="span6">
-			<a href={{ path('show', {'id': event.id}) }}><h2 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
-			<p>{{ event.takesPlace | date("d.m.Y G:i") }}</p>
+	<div class="span9 offset1">
+		<h2>{% trans %}registration.open{% endtrans %}</h2>
+	</div>
+	
+	<div class="container-fluid" id="active-div">
+		<div class="span8 offset2">
+		{%  if activeEvents|length > 0 %}
+			<table class="condensed-table bordered-table" id="open-table">
+				<thead>
+					<tr>
+						<th>Nimi</th>
+						<th>Aika</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for event in activeEvents %}
+					<tr>
+					<td>
+						<a href={{ path('show', {'id': event.id}) }}><h2 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
+					</td>
+					<td>{{ event.takesPlace | date("d.m.Y G:i") }}</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+			<h3>{% trans %}registration.open.none{% endtrans %}</h3>
+		{%  endif %}
 		</div>
-    </div>
-{% endfor %}
+	</div>
+	
+	<div class="span9 offset1">
+		<h2>{% trans %}registration.upcoming{% endtrans %}</h2>
+	</div>
+	
+	<div class="container-fluid" id="upcoming-div">
+		<div class="span8 offset2">
+		{%  if upcomingEvents|length > 0 %}
+			<table class="condensed-table bordered-table" id="open-table">
+				<thead>
+					<tr>
+						<th>Nimi</th>
+						<th>Aika</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for event in upcomingEvents %}
+					<tr>
+						<td>
+						<a href={{ path('show', {'id': event.id}) }}><h2 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
+						</td>
+					<td>{{ event.takesPlace | date("d.m.Y G:i") }}</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+			<h3>{% trans %}registration.upcoming.none{% endtrans %}</h3>
+		{%  endif %}
+		</div>
+	</div>
 
-<h2>{% trans %}events.upcoming{% endtrans %}</h2>
-{% for event in upcomingEvents %}
-	<div class="row">
-			<div class="span6">
-				<div class="event">
+	<div class="span9 offset1">
+		<h2>{% trans %}registration.ended{% endtrans %}</h2>
+	</div>
+	
+	<div class="container-fluid" id="past-div">
+		<div class="span8 offset2">
+		{%  if pastEvents|length > 0 %}
+			<table class="condensed-table bordered-table" id="open-table">
+			<thead>
+				<tr>
+					<th>Nimi</th>
+					<th>Aika</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for event in pastEvents %}
+				<tr>
+				<td>
 					<a href={{ path('show', {'id': event.id}) }}><h2 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
-					<p>{{ event.takesPlace | date("d.m.Y G:i") }}</p>
-				</div>
-			</div>
-    </div>
-{% endfor %}
-
-<h2>{% trans %}registration.ended{% endtrans %}</h2>
-{% for event in pastEvents %}
-	<div class="row">
-		<div class="span6">
-			<div class="event">
-				<a href={{ path('show', {'id': event.id}) }}><h2 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
-				<p>{{ event.takesPlace | date("d.m.Y G:i") }}</p>
-			</div>
+				</td>
+				<td>{{ event.takesPlace | date("d.m.Y G:i") }}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+			</table>
+		{% else %}
+			<h3>{% trans %}registration.ended.none{% endtrans %}</h3>
+		{%  endif %}
 		</div>
-    </div>
-{% endfor %}
+	</div>
+
 {% if is_granted('ROLE_ADMIN') %}
 	<div class="row" id="devbuttons">
 	<a href="{{ path('create') }}" id="eventcreate" class="btn" >{% trans %}event.new{% endtrans %}</a>

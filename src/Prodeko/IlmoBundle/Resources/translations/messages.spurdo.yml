@@ -12,6 +12,11 @@ header:
   list:
     sidebar: Viddu, Viljamin veli tehny ebin ilmogilggeen :---D:DDD
 
+bodytext:
+  eventlist: 
+    header: Mage, ei dääldä saa ES :D:DD Dämä on Ilmogilge :D:DD
+    content: Vähän guumoddaa gun doi ilmo gysyy mun diedot :----D:DD 
+
 email: Sähgöbosdiosoide :D
 event:
   edit: Muoggaa dabahdumaa
@@ -26,7 +31,11 @@ quota: Giindiö::D
 quota.open: Avoin giindiö :D
 registration:
   open: Ilmo augi :D::DD
+  open.none: Fug :D ES lobbu eigä oo avoimia ilmoja:DD
+  upcoming: Ilmo dulee gohda :DD
+  upcoming.none: Fug :D Dabahdumia ei dule, Korianteri sano :DD
   ended: Fug :DD Ilmo giinni :D
+  ended.none: Ei oo Maken gaa dehdy midään :DD
   period: Ilmoiddaudumisaiga :DDD
   not.yet.open: Fug :D Ei voi vielä ilmoda :DDD
   

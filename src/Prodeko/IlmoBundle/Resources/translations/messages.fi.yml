@@ -22,7 +22,7 @@ event:
   edit: Muokkaa tapahtumaa
   new: Luo uusi tapahtuma
   
-events.upcoming: Tulevat tapahtumat
+upcoming: Tulevat tapahtumat
 
 fields:
   additional: Lisäkentät
@@ -32,7 +32,11 @@ quota: Kiintiö
 quota.open: Avoin
 registration:
   open: Ilmoittautuminen auki
+  open.none: Ei ilmoittautumisia käynnissä
+  upcoming: Ilmoittautuminen tulossa
+  upcoming.none: Ei tulevia tapahtumia
   ended: Ilmoittautuminen päättynyt
+  ended.none: Ei menneitä tapahtumia
   period: Ilmoittautumisaika
   not.yet.open: Ilmoittautuminen ei vielä auki
   
