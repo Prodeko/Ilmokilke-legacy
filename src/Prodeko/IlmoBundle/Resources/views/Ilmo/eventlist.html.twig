@@ -18,8 +18,8 @@
 	
 	<div class="container-fluid" id="active-div">
 		<div class="span8 offset2">
-		{%  if activeEvents|length > 0 %}
-			<table class="condensed-table bordered-table" id="open-table">
+		{%  if activeEvents %}
+			<table class="table table-striped table-bordered table-condensed" id="open-table">
 				<thead>
 					<tr>
 						<th>Nimi</th>
@@ -49,8 +49,8 @@
 	
 	<div class="container-fluid" id="upcoming-div">
 		<div class="span8 offset2">
-		{%  if upcomingEvents|length > 0 %}
-			<table class="condensed-table bordered-table" id="open-table">
+		{%  if upcomingEvents %}
+			<table class="table table-striped table-bordered table-condensed" id="open-table">
 				<thead>
 					<tr>
 						<th>Nimi</th>
@@ -80,8 +80,8 @@
 	
 	<div class="container-fluid" id="past-div">
 		<div class="span8 offset2">
-		{%  if pastEvents|length > 0 %}
-			<table class="condensed-table bordered-table" id="open-table">
+		{%  if pastEvents %}
+			<table class="table table-striped table-bordered table-condensed" id="open-table">
 			<thead>
 				<tr>
 					<th>Nimi</th>
