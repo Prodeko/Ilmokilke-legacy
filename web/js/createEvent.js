@@ -13,6 +13,7 @@ jQuery(document).ready(function() {
 	    
 	    // add a delete link to the new form
 	    addDeleteLink($newFormDiv);
+	    createToolTips();
 	}
 	
 	function addDeleteLink($fieldFormDiv) {	// Funktio lisää annettuun diviin nappulan, jolla sen voi poistaa
@@ -43,7 +44,11 @@ jQuery(document).ready(function() {
 	    });
 		
 	}
-	
+	function createToolTips(){
+		$('a.flagprivate').each( function() {
+	    	$(this).tooltip();
+	    });
+	}	
 	// Get the div that holds the collection of fields
 	var freeTextFieldsDiv = $('div.freeTextFields');
 	var multipleChoiceFieldsDiv = $('div.multipleChoiceFields');
@@ -64,6 +69,8 @@ jQuery(document).ready(function() {
     addAddButton(freeTextFieldsDiv, 'Lisää tekstikenttä', 'add_textfield_button', 'freeTextField');
     addAddButton(multipleChoiceFieldsDiv, 'Lisää monivalintakenttä', 'add_mcfield_button', 'multipleChoiceField');
     addAddButton(quotasDiv, 'Lisää kiintiö', 'add_quota_button', 'quota');
+    createToolTips();
+    
 });
 
 

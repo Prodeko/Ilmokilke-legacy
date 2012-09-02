@@ -95,16 +95,20 @@
 					 {{ form_label(form.freeTextFields.get('prototype').name, 'Nimi') | e }}
 					 {{ form_widget(form.freeTextFields.get('prototype').name, {'attr': {'class': 'input-medium'}}) | e }}
 					 {{ form_errors(form.freeTextFields.get('prototype').name) | e }}
+					 <a class='flagprivate' href='#' rel='tooltip' title='Jos tämä on valittu, vastauksia ei näytetä julkisessa ilmoittautumislistassa'>
 					 {{ form_label(form.freeTextFields.get('prototype').flagPrivate, 'Piilotettu') | e }}
 					 {{ form_widget(form.freeTextFields.get('prototype').flagPrivate, {'attr': {'checked': 'checked'}}) | e }}
+					 </a>
 					 {{ form_errors(form.freeTextFields.get('prototype').flagPrivate) | e }}">
 		    		{% for field in form.freeTextFields %}
 		    			<div class="well form-inline freeTextField"> {# well-luokka antaa bootstrapista "upotetun" muotoilun #}
 		       	    		{{ form_label(field.name, "Nimi") }}
 					    	{{ form_widget(field.name, {'attr': {'class': 'input-medium'}}) }}
 					    	{{ form_errors(field.name) }}
-							{{ form_label(field.flagPrivate, "Yksityinen") }}
-					    	{{ form_widget(field.flagPrivate) }}
+							<a class="flagprivate" href="#" rel="tooltip" title="Jos tämä on valittu, vastauksia ei näytetä julkisessa ilmoittautumislistassa">
+								{{ form_label(field.flagPrivate, "Piilotettu") }}
+						    	{{ form_widget(field.flagPrivate) }}
+					    	</a>
 					    	{{ form_errors(field.flagPrivate) }}
 		       	    	</div>
 		        	{% endfor %}
@@ -117,7 +121,9 @@
 					{{ form_label(form.multipleChoiceFields.get('prototype').name, 'Nimi') | e }}
 					{{ form_widget(form.multipleChoiceFields.get('prototype').name, {'attr': {'class': 'input-medium'}}) | e }}
 					{{ form_errors(form.multipleChoiceFields.get('prototype').name) | e }}
+					<a class='flagprivate' href='#' rel='tooltip' title='Jos tämä on valittu, vastauksia ei näytetä julkisessa ilmoittautumislistassa'>
 					{{ form_label(form.multipleChoiceFields.get('prototype').flagPrivate, 'Piilotettu') | e }}
+					</a>
 					{{ form_widget(form.multipleChoiceFields.get('prototype').flagPrivate, {'attr': {'checked': 'checked'}}) | e }}
 					{{ form_errors(form.multipleChoiceFields.get('prototype').flagPrivate) | e }} <br/> {# TODO: tee tämä jotenkin muuten #}
 					{{ form_label(form.multipleChoiceFields.get('prototype').choices, 'Vaihtoehdot (erottele puolipisteellä)') | e }}
@@ -129,8 +135,10 @@
 							{{ form_label(field.name, 'Nimi') }}
 							{{ form_widget(field.name, {'attr': {'class': 'input-medium'}}) }}
 							{{ form_errors(field.name) }}
-							{{ form_label(field.flagPrivate, 'Piilotettu') }}
-							{{ form_widget(field.flagPrivate, {'attr': {'checked': 'checked'}}) }}
+							<a class="flagprivate" href="#" rel="tooltip" title="Jos tämä on valittu, vastauksia ei näytetä julkisessa ilmoittautumislistassa">
+								{{ form_label(field.flagPrivate, 'Piilotettu') }}
+								{{ form_widget(field.flagPrivate, {'attr': {'checked': 'checked'}}) }}
+							</a>
 							{{ form_errors(field.flagPrivate) }}
 							{{ form_label(field.choices, 'Vaihtoehdot (erottele puolipisteellä)') }}
 							{{ form_widget(field.choices, {'attr': {'class': 'input-medium'}}) }}

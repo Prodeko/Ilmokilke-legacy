@@ -15,10 +15,10 @@
     		<div class="container">
     			<div class="span6" id="nav-header">
     				<a href="{{ path('list') }}"><h1>{% trans %}title{% endtrans %}</h1></a>
-    				{% if is_granted('ROLE_USER') %}
+    			</div>
+    			{% if is_granted('ROLE_USER') %}
     					<a href="{{ path('logout') }}">Kirjaudu ulos</a>
     				{% endif %}
-    			</div>
     			{# http://stackoverflow.com/questions/9378714/get-current-url-in-twig-template
     			<div class="btn-group" id="lang-select">
     				<a class="btn" type="button" href="fi">Suomi</a>
