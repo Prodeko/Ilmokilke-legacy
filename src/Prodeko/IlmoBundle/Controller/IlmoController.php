@@ -131,12 +131,12 @@ class IlmoController extends Controller
 				
 				//Lähetä vahvistusviesti
 				return $this->forward('ProdekoIlmoBundle:Ilmo:sendConfirmationEmail',
-						array('eventId' => $event->getId(),
+						array(	'event' => $event,
 								'token' => $token,
 								'email' => $registration->getEmail()));
 			}
 			else {
-				return new Response('lol u fail'); // TODO: tämän pitäisi palauttaa jotain järkevää, mitä?
+				return new Response(var_dump($form->getErrors()));
 			}
 		}
 		/*Jos register-routella on tehty GET-kutsu, ohjataan
@@ -149,16 +149,19 @@ class IlmoController extends Controller
 	
 	/*Lähettää ilmoittautuneelle sähköpostitse vahvistusviestin,
 	 joka sisältää linkin ilmon poistamiseen */
-	public function sendConfirmationEmailAction($email, $token, $eventId, Request $request)
+	public function sendConfirmationEmailAction($email, $token, Event $event, Request $request)
 	{
+		$messageBody = "Ilmoittautumisesi tapahtumaan " . $event->getName() . " on tallennettu.\n" .
+						"Voit poistaa ilmoittautumisesi allaolevasta linkistä.\n" . 
+						"http://ilmogilge.no-ip.org/app.php/fi/remove/" . $token;
 		$message = \Swift_Message::newInstance()
-		->setSubject('Ilmoittautuminen tallennettu')
+		->setSubject($event->getName() . ' / Ilmoittautuminen tallennettu')
 		->setFrom('ilmogilge@gmail.com')
 		->setTo($email)
-		->setBody('Ime paskaa, http://ilmogilge.no-ip.org/app.php/fi/remove/' . $token);
+		->setBody($messageBody);
 		$this->get('mailer')->send($message);
 		//TODO: näytä jonkinlainen viesti "ilmoittautuminen onnistui"
-		return $this->redirect($this->generateUrl('show', array('id' => $eventId )));
+		return $this->redirect($this->generateUrl('show', array('id' => $event->getId() )));
 	}
 	
 	/*Luo jononäkymän, jossa tapahtumiin jonotetaan (kiltisjono) */

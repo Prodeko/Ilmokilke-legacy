@@ -57,15 +57,24 @@
 		    				<table class="table-condensed">
 			    				{% for quota in event.quotas %}
 			    				<tr>
+			    					{% set progress="progress-success" %}
+			    					{% if quota.getFill >= 50 %}
+			    						{% set progress = "progress-warning" %}
+		    							{% if quota.getFill > 80 %}
+		    								{% set progress = "progress-danger" %}
+	    								{% endif %}
+    								{% elseif quota.getFill == 0 %}
+    									{% set progress = "" %}
+    								{% endif %}
 			    					<td>{{ quota.name }}</td>
 			    					<td>{{ quota.getFreeSeats }} / {{ quota.getSize }}</td>
-			    					<td><div class="progress"><div class="bar" style="width: {{ quota.getFill }}%"></div></div></td>
+			    					<td><div class="progress {{ progress }}"><div class="bar" style="width: {{100 - quota.getFill }}%"></div></div></td>
 		    					</tr>
 		    					{% endfor %}
 		    					<tr>
 		    						<td>{% trans %}quota.open{% endtrans %}</td>
 		    						<td>{{ event.getFreeSeatsInOpenQuota }} / {{ event.getSizeOfOpenQuota }}
-		    						<td><div class="progress"><div class="bar" style="width: {{ event.getOpenQuotaFill }}%"></div></div></td>
+		    						<td><div class="progress"><div class="bar" style="width: {{100 -  event.getOpenQuotaFill }}%"></div></div></td>
 		    					</tr>
 		    				</table>
 		    				
