@@ -12,6 +12,11 @@ header:
   list:
     sidebar: Tässä etusivun teksti
 
+bodytext:
+  eventlist: 
+    header: Tervetuloa ilmoittautumaan Prodekon tapahtumiin!
+    content: Alla ovat listattuna kaikki lähiaikojen tapahtumat. Tapahtumiin pääset käsiksi painamalla tapahtuman nimeä.
+
 email: Sähköposti
 event:
   edit: Muokkaa tapahtumaa

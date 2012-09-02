@@ -5,16 +5,12 @@
 {% endblock %}
 
 {% block body %}
+<div class="container-fluid">
+		<div class="hero-unit">	
+				<h3>{% trans %}bodytext.eventlist.header{% endtrans %}</h3>
 
-<div class="container">
-		<div class="row">
-			<div class="span9" id="title">
-				<h1>{% trans %}ilmokilke{% endtrans %}</h1>
-			</div>
-			<div class="span3">
-				<h3>{% trans %}header.list.sidebar{% endtrans %}</h3>
-			</div>
-		</div>
+				{% trans %}bodytext.eventlist.content{% endtrans %}</h3>
+	</div>
 
 <h2>{% trans %}registration.open{% endtrans %}</h2>
 {% for event in activeEvents %}

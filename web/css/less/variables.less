@@ -147,14 +147,14 @@
 @hrBorder:                @grayLighter;
 
 
-// Navbar
+// Navbar (Originals @grayDarker,@grayDark, @grayLight, @grayLight
 // -------------------------
 @navbarHeight:                    40px;
-@navbarBackground:                @grayDarker;
-@navbarBackgroundHighlight:       @grayDark;
+@navbarBackground:                lighten(@blueDark, 15%); // @grayDarker;
+@navbarBackgroundHighlight:       @blueDark; //@grayDark;
 
-@navbarText:                      @grayLight;
-@navbarLinkColor:                 @grayLight;
+@navbarText:                      @white; //@grayLight;
+@navbarLinkColor:                 @orange; //@grayLight;
 @navbarLinkColorHover:            @white;
 @navbarLinkColorActive:           @navbarLinkColorHover;
 @navbarLinkBackgroundHover:       transparent;
@@ -169,7 +169,7 @@
 
 // Hero unit
 // -------------------------
-@heroUnitBackground:              @grayLighter;
+@heroUnitBackground:              @blue; //@grayLighter;
 @heroUnitHeadingColor:            inherit;
 @heroUnitLeadColor:               inherit;
 
@@ -200,8 +200,8 @@
 // Default 940px grid (defaultit: 60px & 20 px, changed to 644 px max, approximately 2/3 size
 // -------------------------
 @gridColumns:             12;
-@gridColumnWidth:         40px;
-@gridGutterWidth:         12px;
+@gridColumnWidth:         60px;
+@gridGutterWidth:         20px;
 @gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
 
 // Fluid grid
