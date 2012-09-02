@@ -1,0 +1,22 @@
+{% extends 'ProdekoIlmoBundle:Ilmo:base.html.twig' %}
+
+{% block title %}
+	{% trans %}login{% endtrans %}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+	<form action="{{ path('check') }}" method="post">
+		<label for="username">Käyttäjätunnus</label>
+		<input type="text" id="username" name="_username" value="{{ last_username }}" />
+		<label for="password">Salasana</label>
+		<input type="password" id="password" name="_password" /> <br/>
+		<button type="submit" class="btn btn-info">Kirjaudu</button>
+	</form>
+	{% if error %}
+		<div class="alert alert-error">
+			{{ error.message }}
+		</div>
+	{% endif %}
+</div>
+{% endblock %}

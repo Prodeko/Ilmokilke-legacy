@@ -2,6 +2,8 @@
 namespace Prodeko\IlmoBundle\Controller;
 
 
+use Symfony\Component\Security\Core\SecurityContext;
+
 use Prodeko\IlmoBundle\Entity\MultipleChoiceField;
 
 use Prodeko\IlmoBundle\Entity\FreeTextEntry;
@@ -165,6 +167,28 @@ class AdminController extends IlmoController
 		$response->headers->set('Content-Type', 'text/css');
 		$response->headers->set('Content-Disposition', 'attachment; filename='.$filename);
 		return $response;
-	}	
+	}
+
+	/*
+	 * Renderöi admin-kirjautumislomakkeen
+	 */
+	public function loginAction()
+	{
+		$request = $this->getRequest();
+		$session = $request->getSession();
+		
+		//Hae virheet, jos kirjautumislomakkeeseen palattiin virheen takia
+		if($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
+			$error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
+		}
+		else {
+			$error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
+			$session->remove(SecurityContext::AUTHENTICATION_ERROR);
+		}
+		
+		return $this->render('ProdekoIlmoBundle:Ilmo:login.html.twig', array(
+					'last_username' => $session->get(SecurityContext::LAST_USERNAME),
+					'error' => $error,));
+	}
 }
 ?>
