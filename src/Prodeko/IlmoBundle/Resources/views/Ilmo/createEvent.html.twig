@@ -31,6 +31,7 @@
 	    {{ form_label(form.summary, "Lyhyt kuvaus tapahtumasta") }}
 	    {{ form_widget(form.summary, {'attr': {'placeholder': 'Kirjoita tähän tapahtumasta lyhyt, korkeintaan 160 merkin pituinen kuvaus, joka näytetään tapahtumalistassa.',
 											   'rows': '4'} }) }}
+		<span id="charcount" class="alert alert-info"></span>
 	    {% if form_errors(form.summary) %}
 			<div class="alert alert-error">
 				<button type="button" class="close" data-dismiss="alert">×</button>
