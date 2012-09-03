@@ -151,6 +151,8 @@ class IlmoController extends Controller
 	 joka sisältää linkin ilmon poistamiseen */
 	public function sendConfirmationEmailAction($email, $token, Event $event, Request $request)
 	{
+		//Siirretty alkuun ohittaakseen
+		return $this->redirect($this->generateUrl('show', array('id' => $event->getId() )));
 		$messageBody = "Ilmoittautumisesi tapahtumaan " . $event->getName() . " on tallennettu.\n" .
 						"Voit poistaa ilmoittautumisesi allaolevasta linkistä.\n" . 
 						"http://ilmogilge.no-ip.org/app.php/fi/remove/" . $token;
@@ -161,7 +163,7 @@ class IlmoController extends Controller
 		->setBody($messageBody);
 		$this->get('mailer')->send($message);
 		//TODO: näytä jonkinlainen viesti "ilmoittautuminen onnistui"
-		return $this->redirect($this->generateUrl('show', array('id' => $event->getId() )));
+		
 	}
 	
 	/*Luo jononäkymän, jossa tapahtumiin jonotetaan (kiltisjono) */
