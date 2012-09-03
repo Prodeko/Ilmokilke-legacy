@@ -63,4 +63,9 @@ $(function() {
 		//Disabloi ilmoittautumisnappula lomakketta lähettäessä, estää tuplailmoittautumisen vahingossa.
 	    $('input[type=submit]', this).attr('disabled', 'disabled');
 	});
+	$('input#registration_firstName').keyup(function(){
+		if ($(this).val() == 'Ilari') {
+			window.open("http://www.youtube.com/watch?v=hdqHUms7vUw");
+		}
+	});
 });
