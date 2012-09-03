@@ -7,32 +7,34 @@
 {% block body %}
 <div class="container" >
 	<div class="hero-unit">	
-				<h3>{% trans %}bodytext.eventlist.header{% endtrans %}</h3>
+				<h2>{% trans %}bodytext.eventlist.header{% endtrans %}</h2>
 
-				{% trans %}bodytext.eventlist.content{% endtrans %}</h3>
+				<p>{% trans %}bodytext.eventlist.content{% endtrans %}</p>
 	</div>
 
-	<div class="span9 offset1">
+	<div class="span10 offset1">
 		<h2>{% trans %}registration.open{% endtrans %}</h2>
 	</div>
 	
-	<div class="container-fluid" id="active-div">
-		<div class="span8 offset2">
+	<div class="container" id="active-div">
+		<div class="span10 offset1">
 		{%  if activeEvents %}
 			<table class="table table-striped table-bordered table-condensed" id="open-table">
 				<thead>
 					<tr>
 						<th>Nimi</th>
 						<th>Aika</th>
+						<th>Ilmoittautuminen sulkeutuu</th>
 					</tr>
 				</thead>
 				<tbody>
 				{% for event in activeEvents %}
 					<tr>
 					<td>
-						<a href={{ path('show', {'id': event.id}) }}><h2 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
+						<a href={{ path('show', {'id': event.id}) }}><h3 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h3></a>
 					</td>
 					<td>{{ event.takesPlace | date("d.m.Y G:i") }}</td>
+					<td>{{ event.registrationEnds | date("d.m.Y G:i") }}</td>
 					</tr>
 				{% endfor %}
 				</tbody>
@@ -43,27 +45,29 @@
 		</div>
 	</div>
 	
-	<div class="span9 offset1">
+	<div class="span10 offset1">
 		<h2>{% trans %}registration.upcoming{% endtrans %}</h2>
 	</div>
 	
-	<div class="container-fluid" id="upcoming-div">
-		<div class="span8 offset2">
+	<div class="container" id="upcoming-div">
+		<div class="span10 offset1">
 		{%  if upcomingEvents %}
 			<table class="table table-striped table-bordered table-condensed" id="open-table">
 				<thead>
 					<tr>
 						<th>Nimi</th>
 						<th>Aika</th>
+						<th>Ilmo aukeaa</th>
 					</tr>
 				</thead>
 				<tbody>
 				{% for event in upcomingEvents %}
 					<tr>
 						<td>
-						<a href={{ path('show', {'id': event.id}) }}><h2 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
+						<a href={{ path('show', {'id': event.id}) }}><h3 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h3></a>
 						</td>
 					<td>{{ event.takesPlace | date("d.m.Y G:i") }}</td>
+					<td>{{ event.registrationStarts | date("d.m.Y G:i") }}
 					</tr>
 				{% endfor %}
 				</tbody>
@@ -74,12 +78,12 @@
 		</div>
 	</div>
 
-	<div class="span9 offset1">
+	<div class="span10 offset1">
 		<h2>{% trans %}registration.ended{% endtrans %}</h2>
 	</div>
 	
-	<div class="container-fluid" id="past-div">
-		<div class="span8 offset2">
+	<div class="container" id="past-div">
+		<div class="span10 offset1">
 		{%  if pastEvents %}
 			<table class="table table-striped table-bordered table-condensed" id="open-table">
 			<thead>
@@ -92,7 +96,7 @@
 			{% for event in pastEvents %}
 				<tr>
 				<td>
-					<a href={{ path('show', {'id': event.id}) }}><h2 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h2></a>
+					<a href={{ path('show', {'id': event.id}) }}><h3 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h3></a>
 				</td>
 				<td>{{ event.takesPlace | date("d.m.Y G:i") }}</td>
 				</tr>
@@ -104,14 +108,16 @@
 		{%  endif %}
 		</div>
 	</div>
-
-{% if is_granted('ROLE_ADMIN') %}
-	<div class="row" id="devbuttons">
-	<a href="{{ path('create') }}" id="eventcreate" class="btn" >{% trans %}event.new{% endtrans %}</a>
-
+	<div class="container" id="create-div">
+	<div class="span4 offset5">
+		{% if is_granted('ROLE_ADMIN') %}
+		<br>
+	<p><a href="{{ path('create') }}" id="eventcreate" class="btn-large btn-success" >{% trans %}event.new{% endtrans %}</a></p>
+	{% endif %}
+	</div>
+	</div>
 	</div>
 </div>
-{% endif %}
 {% endblock %}
 {% block javascripts %}
 	<script src="{{ asset('js/event.js') }}"></script>
