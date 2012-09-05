@@ -65,7 +65,7 @@ $(function() {
 	});
 	$('input#registration_firstName').keyup(function(){
 		if ($(this).val() == 'Ilari') {
-			$('.modal-body').append('<iframe width="500" height="315" src="http://www.youtube.com/embed/hdqHUms7vUw?autoplay=1" frameborder="0" allowfullscreen></iframe>');
+			$('.modal-body').append('<iframe width="500" height="315" src="http://www.youtube.com/embed/hdqHUms7vUw?autoplay=1#t=38s" frameborder="0" allowfullscreen></iframe>');
 		}
 	});
 });
