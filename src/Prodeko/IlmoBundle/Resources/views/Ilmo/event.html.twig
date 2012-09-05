@@ -21,7 +21,9 @@
 			</div>
 				
 			<div class="span3">
-				<button id="eventsubscribe" class="btn-large btn-success" data-toggle="modal" href="#subscriptionmodal">{% trans %}register{% endtrans %}</button>
+				{% if isOpen %}
+					<button id="eventsubscribe" class="btn-large btn-success" data-toggle="modal" href="#subscriptionmodal">{% trans %}register{% endtrans %}</button>
+				{% endif %}
 			</div>
     	</div>
 	    		
