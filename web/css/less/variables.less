@@ -21,7 +21,7 @@
 
 // Accent colors
 // -------------------------
-@blue:                  #049cdb;
+@blue:                  #0053a1;
 @blueDark:              #0064cd;
 @green:                 #46a546;
 @red:                   #9d261d;
@@ -150,12 +150,12 @@
 // Navbar (Originals @grayDarker,@grayDark, @grayLight, @grayLight
 // -------------------------
 @navbarHeight:                    40px;
-@navbarBackground:                @blueDark; // @grayDarker;
-@navbarBackgroundHighlight:       lighten(@blueDark, 5%); //@grayDark;
+@navbarBackground:                @blue; // @grayDarker;
+@navbarBackgroundHighlight:       lighten(@blue, 5%); //@grayDark;
 
 @navbarText:                      @white; //@grayLight;
-@navbarLinkColor:                 @orange; //@grayLight;
-@navbarLinkColorHover:            @white;
+@navbarLinkColor:                 @white; //@grayLight;
+@navbarLinkColorHover:            @grayLight;
 @navbarLinkColorActive:           @navbarLinkColorHover;
 @navbarLinkBackgroundHover:       transparent;
 @navbarLinkBackgroundActive:      @navbarBackground;
@@ -200,7 +200,7 @@
 // Default 940px grid (defaultit: 60px & 20 px, changed to 644 px max, approximately 2/3 size
 // -------------------------
 @gridColumns:             12;
-@gridColumnWidth:         60px;
+@gridColumnWidth:         50px;
 @gridGutterWidth:         20px;
 @gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
 

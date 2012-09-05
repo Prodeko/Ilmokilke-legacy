@@ -10,49 +10,39 @@
 {% endif %}
 {% block body %}
 	<div class="container" id="content">
-		<div class="span2">
-			<h3>{% trans %}header.event.sidebar{% endtrans %}</h3>
-			{% if is_granted('ROLE_ADMIN') %}
-				<p><a href={{ path('adminRegistrations', {'id': event.id}) }}>{% trans %}view.admin{% endtrans %}</a></p>
-				<p><a href={{ path('edit', {'id': event.id}) }}>{% trans %}event.edit{% endtrans %}</a></p>
-			{% endif %}
-		</div>
-		<div class="span10">
-			<div class="row">
-				<div class="span10" id="title">
-						<h1 id="eventtitle">{{ event.name }}</h1>
-						<p><a href={{ path('list') }}>{% trans %}back.to.list{% endtrans %}</a>
-				</div>
-	    	</div>
+		<div class="row">
+			<div class="span12" id="title">
+				{% if is_granted('ROLE_ADMIN') %}
+					<p><a href={{ path('adminRegistrations', {'id': event.id}) }}>{% trans %}view.admin{% endtrans %}</a></p>
+					<p><a href={{ path('edit', {'id': event.id}) }}>{% trans %}event.edit{% endtrans %}</a></p>
+				{% endif %}
+				<h1 id="eventtitle">{{ event.name }}</h1>
+				<button id="eventsubscribe" class="btn-large btn-success" data-toggle="modal" href="#subscriptionmodal">{% trans %}register{% endtrans %}</button>
+				
+				<p><a href={{ path('list') }}>{% trans %}back.to.list{% endtrans %}</a>
+			</div>
     	</div>
 	    		
 	    <div class="row">
-    		<div class="span4 offset2">
+    		<div class="span6">
     			<p id="eventtime">{% trans %}time{% endtrans %}: {{ event.takesPlace | date("j.n.y") }} {% trans %}time.at{% endtrans %} {{ event.takesPlace | date("G:i") }}</p>
     			<p id="eventlocation">{% trans %}location{% endtrans %}: {{ event.location }}</p>
-    		</div>
-    		<div class="span5">
+
    				<p id="registrationPeriod">{% trans %}registration.period{% endtrans %}: {{ event.registrationStarts | date("j.n.y G:i") }} - {{ event.registrationEnds | date("j.n.y G:i") }}</p>
     			<p id="registrationOpen">{% if isOpen %}{% trans %}registration.open{% endtrans %}{% else %}{% trans %}registration.not.yet.open{% endtrans %}{% endif %}</p>
-    		</div>
-	    </div>
-	    		
-	    <div class="row">
-	    	<div class="span9 offset2">
-		   		<p id="eventsummary">{{ event.summary }}</p>
-	    	{% if isOpen %}
-				<button id="eventsubscribe" class="btn" data-toggle="modal" href="#subscriptionmodal">{% trans %}register{% endtrans %}</button>
+    		
+    			<p id="eventsummary">{{ event.summary }}</p>
+	    		{% if isOpen %}
 		   		<!-- Start subscription modal -->
 		    		{% include 'ProdekoIlmoBundle:Ilmo:registration.html.twig' %}
 		    		<!-- End subscription modal -->
-	    	{% endif %}
-    		</div>
-		</div>
-			
-		<div class="row">
-    		<div class="span4 offset2" id="eventdescription">
-    			<p>{{ event.description }}</p>
-    			<h3>Vapaita paikkoja:</h3>
+	    		{% endif %}
+	    	
+	    		<p>{{ event.description | nl2br }}</p>
+    		
+	    	</div>
+	    	<div class="span6">
+	    		<h3>Vapaita paikkoja:</h3>
     			<table class="table-condensed">
 	    			{% for quota in event.quotas %}
 	    			<tr>
@@ -76,11 +66,7 @@
     					<td><div class="progress"><div class="bar" style="width: {{100 -  event.getOpenQuotaFill }}%"></div></div></td>
     				</tr>
     			</table>
-    		</div>
-    		
-    		<div class="span5" id="registered">
-    			<h3>{% trans %}header.registrant.list{% endtrans %}</h3>
-	    		{% for quota in event.quotas %}
+    				{% for quota in event.quotas %}
 			    	<h4>{{ quota.name }}</h4>
 			    	<table class="table table-striped table-bordered table-condensed">
 		    			<thead>
@@ -96,7 +82,7 @@
 										{% if not entry.field.flagPrivate %}
 											<p>{{ entry.field.name }}: {{ entry.content }}</p>
 										{% endif %}
-									{% endfor %}
+									{% endfor %} 
 									{% for entry in registration.multipleChoiceEntries %}
 										{% if not entry.field.flagPrivate %}
 										<p>{{ entry.field.name }}: {{ entry.selection }}</p>
@@ -111,68 +97,9 @@
 						</tbody>
 					</table>
 				{% endfor %}
-				
-				<h4>{% trans %}quota.open{% endtrans %}</h4>
-				<table class="table table-striped table-bordered table-condensed">
-					<thead>
-						<tr>
-							<th>{% trans %}name.first{% endtrans %}</th>
-		    				<th>{% trans %}name.last{% endtrans %}</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for registration in event.getOpenQuotaRegistrations %}
-							{% set dataContent %}
-								{% for entry in registration.freeTextEntries %}
-									{% if not entry.field.flagPrivate %}
-										<p>{{ entry.field.name }}: {{ entry.content }}</p>
-									{% endif %}
-								{% endfor %}
-								{% for entry in registration.multipleChoiceEntries %}
-									{% if not entry.field.flagPrivate %}
-										<p>{{ entry.field.name }}: {{ entry.selection }}</p>
-									{% endif %}
-								{% endfor %}
-							{% endset %}
-							<tr class="registered" data-content="{{ dataContent|e }}">
-								<td>{{ registration.firstName }}</td>
-								<td>{{ registration.lastName }}</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-				
-				<h3>{% trans %}queue{% endtrans %}</h3>
-				<table class="table table-striped table-bordered table-condensed">
-					<thead>
-						<tr>
-							<th>{% trans %}name{% endtrans %}</th>
-							<th>{% trans %}time{% endtrans %}</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for registration in queue %}
-							{% set dataContent %}
-								{% for entry in registration.freeTextEntries %}
-									{% if not entry.field.flagPrivate %}
-										<p>{{ entry.field.name }}: {{ entry.content }}</p>
-									{% endif %}
-								{% endfor %}
-								{% for entry in registration.multipleChoiceEntries %}
-									{% if not entry.field.flagPrivate %}
-										<p>{{ entry.field.name }}: {{ entry.selection }}</p>
-									{% endif %}
-								{% endfor %}
-							{% endset %}
-							<tr class="registered" data-content="{{ dataContent|e }}">
-								<td>{{ registration.firstName }} {{ registration.lastName }}</td>
-								<td>{{ registration.registrationTime|date("d.m.y h.i.s") }}
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-		</div>
+	    	</div>
+	    </div>
+			
     	</div>
 
 {% endblock %}

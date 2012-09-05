@@ -53,7 +53,7 @@ $(function() {
 			$(this).popover({'placement': 'left'});
 		}
 	});
-	$("h2.event").each(function() {
+	$(".event").each(function() {
 		if ($(this).attr("data-content") != "") {
 			$(this).popover({'placement': 'top'});
 		}
@@ -65,7 +65,7 @@ $(function() {
 	});
 	$('input#registration_firstName').keyup(function(){
 		if ($(this).val() == 'Ilari') {
-			window.open("http://www.youtube.com/watch?v=hdqHUms7vUw");
+			$('.modal-body').append('<iframe width="500" height="315" src="http://www.youtube.com/embed/hdqHUms7vUw?autoplay=1" frameborder="0" allowfullscreen></iframe>');
 		}
 	});
 });
