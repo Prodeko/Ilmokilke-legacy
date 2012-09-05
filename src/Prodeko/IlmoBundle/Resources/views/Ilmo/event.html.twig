@@ -11,15 +11,17 @@
 {% block body %}
 	<div class="container" id="content">
 		<div class="row">
-			<div class="span12" id="title">
+			<div class="span6" id="title">
 				{% if is_granted('ROLE_ADMIN') %}
 					<p><a href={{ path('adminRegistrations', {'id': event.id}) }}>{% trans %}view.admin{% endtrans %}</a></p>
 					<p><a href={{ path('edit', {'id': event.id}) }}>{% trans %}event.edit{% endtrans %}</a></p>
 				{% endif %}
 				<h1 id="eventtitle">{{ event.name }}</h1>
-				<button id="eventsubscribe" class="btn-large btn-success" data-toggle="modal" href="#subscriptionmodal">{% trans %}register{% endtrans %}</button>
+				<p><a href={{ path('list') }}>{% trans %}back.to.list{% endtrans %}</a></p>
+			</div>
 				
-				<p><a href={{ path('list') }}>{% trans %}back.to.list{% endtrans %}</a>
+			<div class="span3">
+				<button id="eventsubscribe" class="btn-large btn-success" data-toggle="modal" href="#subscriptionmodal">{% trans %}register{% endtrans %}</button>
 			</div>
     	</div>
 	    		

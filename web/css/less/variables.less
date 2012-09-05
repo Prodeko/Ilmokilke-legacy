@@ -76,8 +76,8 @@
 @btnPrimaryBackground:              @linkColor;
 @btnPrimaryBackgroundHighlight:     spin(@btnPrimaryBackground, 15%);
 
-@btnInfoBackground:                 #5bc0de;
-@btnInfoBackgroundHighlight:        #2f96b4;
+@btnInfoBackground:                 @blue;
+@btnInfoBackgroundHighlight:        lighten(@btnInfoBackground, 30%);
 
 @btnSuccessBackground:              #62c462;
 @btnSuccessBackgroundHighlight:     #51a351;
@@ -92,8 +92,8 @@
 @btnInverseBackgroundHighlight:     @grayDarker;
 
 @btnRadioBackground:				@blue;
-@btnRadioBackgroundHighlight:		@orange; //darken(@btnRadioBackground, 15%);
-@btnRadioBackgroundActive:			@orange;
+@btnRadioBackgroundHighlight:		lighten(@btnRadioBackground, 30%); //darken(@btnRadioBackground, 15%);
+@btnRadioBackgroundActive:			@btnRadioBackground;
 
 
 // Forms
