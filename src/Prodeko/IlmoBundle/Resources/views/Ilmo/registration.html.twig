@@ -3,7 +3,6 @@
 <div class="modal" id="subscriptionmodal" style="display: none">
 	<form action="{{ path('register', { 'id': event.id }) }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
 		<div class="modal-header">
-			<button class="close" data-dismiss="modal">&times;</button>
 			<h3>{% trans %}register.for.event{% endtrans %} {{ event.name }}</h3>
 		</div>
 		<div class="modal-body">
