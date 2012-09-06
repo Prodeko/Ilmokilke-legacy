@@ -18,10 +18,10 @@
 	    				{% endif %}
     				</p>
 	    			<p>
-	    				<a href="{{ path('edit', {'id': event.id}) }}">Muokkaa tapahtumaa</a>
+	    				<a href="{{ path('edit', {'id': event.id}) }}"><img src="{{ asset('img/edit-icon.png') }}"/>Muokkaa tapahtumaa</a>
 	    			</p>
 	    			<p>
-	    				<a href="{{ path('export', {'id': event.id}) }}">Vie osallistujalista CSV-muodossa</a>
+	    				<a href="{{ path('export', {'id': event.id}) }}"><img src="{{ asset('img/csv-icon.png') }}"/>Vie osallistujalista CSV-muodossa</a>
 	    			</p>
     			</div>
     		</div>

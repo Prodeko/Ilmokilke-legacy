@@ -27,6 +27,7 @@ events.upcoming: Dulevad dabahdumad :--D:DD
 fields:
   additional: Sprölögendäd ::DD:DD
   multipleChoice: Monivalindagendäd :D::DD
+kiltis.registration.starts: Gildigsellä ilmo :DD
 number.of.attendees: Ilmoiddauduneet
 ok.remove: Og
 prompt.remove: Ei viddu? Feidaatko oigeasdi? ::D
