@@ -116,7 +116,7 @@
     						</tr>
     				</thead>
     				<tbody>
-					{% for registration in queue %}
+					{% for registration in event.getQueue %}
 			    				<tr>
 									<td>{{ registration.firstName }}</td>
 									<td>{{ registration.lastName }}</td>

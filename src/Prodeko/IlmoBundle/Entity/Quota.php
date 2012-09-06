@@ -130,7 +130,7 @@ class Quota
     }
 
     /**
-     * Get registrations
+     * Get registrations that fit in the quota
      *
      * @return Doctrine\Common\Collections\Collection 
      */
@@ -138,6 +138,16 @@ class Quota
     {
     	//palauttaa vain tapahtumaan mahtuneet
         return $this->registrations->slice(0,$this->getSize());
+    }
+    
+    /**
+     * Get registrations in queue, i.e. the complement of
+     * $this->getRegistrations()
+     */
+    public function getQueue()
+    {
+    	$queue = $this->registrations->slice($this->getSize());
+    	return $queue;
     }
 
     /**

@@ -144,10 +144,8 @@ class AdminController extends IlmoController
 		if (!$event) { throw $this->createNotFoundException('Tapahtumaa ei löydy');} // TODO: joku parempi exceptionhandlaus näihin.
 		
 		$registrations = $event->getRegistrations();
-		$queue = Helpers::getQueue($event, $this->getDoctrine()->getRepository('ProdekoIlmoBundle:Registration'));
 		return $this->render('ProdekoIlmoBundle:Ilmo:admin.html.twig', array(
 				'event' => $event,
-				'queue' => $queue,
 				'isOpen' => $event->isOpen()
 		));
 		
@@ -161,9 +159,8 @@ class AdminController extends IlmoController
 		$event = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Event')
 			->findOneBy(array('id' => $id));
-		$participants = Helpers::getParticipants($event, $this->getDoctrine()->getRepository('ProdekoIlmoBundle:Registration'));
 		$filename = $id . ".csv";
-		$response = $this->render('ProdekoIlmoBundle:Ilmo:export.csv.twig', array('participants' => $participants, 'event' => $event));
+		$response = $this->render('ProdekoIlmoBundle:Ilmo:export.csv.twig', array('event' => $event));
 		$response->headers->set('Content-Type', 'text/css');
 		$response->headers->set('Content-Disposition', 'attachment; filename='.$filename);
 		return $response;

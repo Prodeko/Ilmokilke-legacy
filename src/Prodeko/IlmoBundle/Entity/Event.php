@@ -209,13 +209,22 @@ class Event
     }
 
     /**
-     * Get registrations
+     * Get registrations that fit in quotas or open quota
      *
      * @return Doctrine\Common\Collections\Collection 
      */
     public function getRegistrations()
     {
-        return $this->registrations;
+    	$registrations = array();
+    	foreach($this->quotas as $quota) {
+    		$registrations = array_merge($registrations, $quota->getRegistrations());
+    	}
+        return $registrations;
+    }
+    
+    public function getAllRegistrations()
+    {
+    	return $this->registrations;
     }
     /**
      * @var Prodeko\IlmoBundle\Entity\FreeTextField
@@ -439,16 +448,34 @@ class Event
     {
         return $this->sizeOfOpenQuota;
     }
-
+	
+    /**
+     * A helper method that returns the composite of queue and registrations in
+     * open quota to be further divided
+     */
+    public function getNonQuotaRegistrations(){
+    	$queue = array();
+    	foreach($this->quotas as $quota) {
+    		$queue = array_merge($queue,$quota->getQueue());
+    	}
+    	usort($queue, array('\Prodeko\IlmoBundle\Entity\Registration', 'compareByRegistrationTime'));
+    	return $queue;
+    }
+    
     public function getOpenQuotaRegistrations()
     {
-    	$countOfQuotaRegistrations = 0;
-    	foreach ($this->quotas as $quota) {
-    		$countOfQuotaRegistrations += count($quota->getRegistrations());
-    	}
-    	$openQuotaregistrations = $this->registrations->slice($countOfQuotaRegistrations,$this->getSizeOfOpenQuota());
-    	return $openQuotaregistrations;
+    	return array_slice($this->getNonQuotaRegistrations(), 0, $this->sizeOfOpenQuota);
     }
+    /**
+     * Returns those registrations that don't fit in their specified quota
+     * or the open quota
+     * @return multitype:
+     */
+    public function getQueue()
+    {
+    	return array_slice($this->getNonQuotaRegistrations(), $this->sizeOfOpenQuota); 
+    }
+    
     
     public function getFreeSeatsInOpenQuota()
     {

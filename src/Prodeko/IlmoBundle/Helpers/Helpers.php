@@ -22,46 +22,6 @@ use Prodeko\IlmoBundle\Entity\Registration;
 
 class Helpers {
 	
-	/*
-	 * Hakee argumenttina annetun tapahtuman jonossa olevat ilmot, 
-	 * so. kustakin kiintiöstä ne ilmot, jotka eivät mahtuneet kiintiöön
-	 */
-	public static function getQueue(Event $event, EntityRepository $repository)
-	{
-		$queue = array();
-		$quotas = $event->getQuotas();
-		foreach ($quotas as $quota) {
-			//Haetaan jonossa olevat ilmot kussakin kiintiössä
-			$quotaSize = $quota->getSize();
-			if (!$quota->hasFreeSeats()) {
-				$queueInCurrentQuota = $repository->createQueryBuilder('r')
-				->where('r.quota = :quota')
-				->setParameter('quota', $quota->getId())
-				->orderBy('r.registrationTime', 'DESC')
-				->setMaxResults($quota->getQueueLength())
-				->getQuery()
-				->getResult();
-				$queue = array_merge($queue, $queueInCurrentQuota);
-			}
-		}
-		usort($queue, array('\Prodeko\IlmoBundle\Entity\Registration', 'compareByRegistrationTime'));
-		return array_slice($queue, $event->getSizeOfOpenQuota());
-	}
-	
-	/*
-	 * Hakee argumenttina annettuun tapahtumaan mahtuneet ilmoittautumiset.
-	 */
-	public static function getParticipants(Event $event, EntityRepository $repository)
-	{
-		$participants = array();
-		$quotas = $event->getQuotas();
-		foreach($quotas as $quota) {
-			$participantsInCurrent = $quota->getRegistrations();
-			$participants = array_merge($participants, $participantsInCurrent);
-		}
-		$participantsInOpenQuota = $event->getOpenQuotaRegistrations();
-		return array_merge($participants,$participantsInOpenQuota);
-	}
 	
 	/*
 	 * Luo argumenttina annettuun tapahtumaan liittyvän ilmo-olion

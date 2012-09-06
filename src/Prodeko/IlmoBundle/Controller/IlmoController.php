@@ -74,9 +74,6 @@ class IlmoController extends Controller
 		$event = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Event')
 			->findOneBy(array('id' => $id));
-		//Hae jonossa olevat ilmot
-		$queue = Helpers::getQueue($event, 
-				$this->getDoctrine()->getRepository('ProdekoIlmoBundle:Registration'));
 
 		//Luo uusi ilmoittautumisolio ja liitä sille kyseinen tapahtuma
 		$registration = Helpers::createRegistrationObject($event);
@@ -86,7 +83,6 @@ class IlmoController extends Controller
 		//Anna templatelle muuttujat 
 		$variables = array(
 				'event' => $event,
-				'queue' => $queue,
 				'form' => $form->createView(),
 				'kiltis'	=> $kiltis,
 				);
