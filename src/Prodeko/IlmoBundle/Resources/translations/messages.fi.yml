@@ -24,7 +24,7 @@ event:
   new: Luo uusi tapahtuma
   
 upcoming: Tulevat tapahtumat
-
+number.of.attendees: Ilmoittautuneet
 fields:
   additional: Lisäkentät
   multipleChoice: Monivalintakentät
@@ -34,6 +34,7 @@ queue: Jono
 quota: Kiintiö
 quota.open: Avoin
 registration:
+  ends: Ilmoittautuminen päättyy
   open: Ilmoittautuminen auki
   open.none: Ei ilmoittautumisia käynnissä
   upcoming: Ilmoittautuminen tulossa
@@ -42,6 +43,7 @@ registration:
   ended.none: Ei menneitä tapahtumia
   period: Ilmoittautumisaika
   not.yet.open: Ilmoittautuminen ei vielä auki
+  starts: Ilmoittautuminen aukeaa
   
 register: Ilmoittaudu
 registrationmodal.register: Ilmoittaudu!

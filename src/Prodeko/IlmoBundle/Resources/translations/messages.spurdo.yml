@@ -27,12 +27,14 @@ events.upcoming: Dulevad dabahdumad :--D:DD
 fields:
   additional: Sprölögendäd ::DD:DD
   multipleChoice: Monivalindagendäd :D::DD
+number.of.attendees: Ilmoiddauduneet
 ok.remove: Og
 prompt.remove: Ei viddu? Feidaatko oigeasdi? ::D
 queue: Fug, ette mahtunu :D:D
 quota: Giindiö::D
 quota.open: Avoin giindiö :D
 registration:
+  ends: Ilmo bääddyy :D
   open: Ilmo augi :D::DD
   open.none: Fug :D ES lobbu eigä oo avoimia ilmoja:DD
   upcoming: Ilmo dulee gohda :DD
@@ -41,6 +43,7 @@ registration:
   ended.none: Ei oo Maken gaa dehdy midään :DD
   period: Ilmoiddaudumisaiga :DDD
   not.yet.open: Fug :D Ei voi vielä ilmoda :DDD
+  starts: Ilmo algaa :D
   
 register: Ilmoiddaudu :D 
 registrationmodal.register: Ilmoittaudu!!!11 :DD:

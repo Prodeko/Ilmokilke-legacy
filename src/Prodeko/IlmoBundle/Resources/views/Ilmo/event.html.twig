@@ -46,7 +46,7 @@
     		
 	    	</div>
 	    	<div class="span6">
-	    		<h3>Vapaita paikkoja:</h3>
+	    		<h3>{% trans %}number.of.attendees{% endtrans %}</h3>
     			<table class="table-condensed">
 	    			{% for quota in event.quotas %}
 	    			<tr>
@@ -60,8 +60,8 @@
     								{% set progress = "" %}
     							{% endif %}
 	    				<td>{{ quota.name }}</td>
-	    				<td>{{ quota.getFreeSeats }} / {{ quota.getSize }}</td>
-	    				<td><div class="progress {{ progress }}"><div class="bar" style="width: {{100 - quota.getFill }}%"></div></div></td>
+	    				<td>{{ quota.getSize - quota.getFreeSeats }} / {{ quota.getSize }}</td>
+	    				<td><div class="progress {{ progress }}"><div class="bar" style="width: {{ quota.getFill }}%"></div></div></td>
     				</tr>
     				{% endfor %}
     				{% if event.getSizeOfOpenQuota > 0 %}
@@ -91,7 +91,7 @@
 								{% endset %}
 								<tr class="registered" data-content="{{ dataContent|e }}">
 									<td>{{ registration.firstName }} {{ registration.lastName }}</td>
-									<td>{{ registration.registrationTime|date("d.m.y h.i.s") }}
+									<td>{{ registration.registrationTime|date("d.m.Y h.i.s") }}
 								</tr>
 							{% endfor %}
 						</tbody>
@@ -116,7 +116,7 @@
 								{% endset %}
 								<tr class="registered" data-content="{{ dataContent|e }}">
 									<td>{{ registration.firstName }} {{ registration.lastName }}</td>
-									<td>{{ registration.registrationTime|date("d.m.y h.i.s") }}</td>
+									<td>{{ registration.registrationTime|date("d.m.Y h.i.s") }}</td>
 									<td>{{ registration.quota.name }}</td>
 								</tr>
 						{% endfor %}
@@ -141,7 +141,7 @@
 						{% endset %}
 						<tr class="registered" data-content="{{ dataContent|e }}">
 							<td>{{ registration.firstName }} {{ registration.lastName }}</td>
-							<td>{{ registration.registrationTime|date("d.m.y h.i.s") }}
+							<td>{{ registration.registrationTime|date("d.m.Y h.i.s") }}
 							<td>{{ registration.quota.name }}</td>
 						</tr>
 					{% endfor %}

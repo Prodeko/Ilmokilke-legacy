@@ -27,12 +27,14 @@ events.upcoming: Upcoming events
 fields:
   additional: Additional fields
   multipleChoice: Multiple choice fields
+number.of.attendees: Number of attendees
 ok.remove: Delete
 prompt.remove: Are you sure that you want to delete your registration?
 queue: Queue
 quota: Quota
 quota.open: Open
 registration:
+  ends: Registration ends
   open: Registration open
   open.none: No events open for registration
   upcoming: Registration upcoming
@@ -41,6 +43,7 @@ registration:
   ended.none: No past events
   period: Registration period
   not.yet.open: Registration not yet open
+  starts: Registration starts
   
 register: Register
 registrationmodal.register: Send!
