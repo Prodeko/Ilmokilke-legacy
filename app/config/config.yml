@@ -22,6 +22,7 @@ twig:
     strict_variables: %kernel.debug%
     globals:
         deployed: %deployed%
+        kiltis_ip: %kiltis%
 
 # Assetic Configuration
 assetic:
@@ -62,4 +63,4 @@ jms_security_extra:
 
 # Custom parameter configurations
 parameters:
-  kiltis_ip: 127.0.0.1
+  kiltis_ip: %kiltis%

@@ -30,6 +30,10 @@ class Event
 		$now = $now->add(new \DateInterval('PT3H'));
 		return($this->registrationStarts  < $now && $now < $this->registrationEnds);
 	}
+	
+	public function kiltisRegistrationStarts() {
+		return $this->registrationStarts->sub(new \DateInterval('PT3H'));
+	}
     /**
      * @var integer $id
      */

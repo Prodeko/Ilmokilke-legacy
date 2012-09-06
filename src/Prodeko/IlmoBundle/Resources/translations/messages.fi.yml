@@ -22,12 +22,13 @@ email: Sähköposti
 event:
   edit: Muokkaa tapahtumaa
   new: Luo uusi tapahtuma
-  
+
 upcoming: Tulevat tapahtumat
 number.of.attendees: Ilmoittautuneet
 fields:
   additional: Lisäkentät
   multipleChoice: Monivalintakentät
+kiltis.registration.starts: Kiltisilmo alkaa
 prompt.remove: Haluatko varmasti poistaa ilmoittautumisen?
 ok.remove: Poista
 queue: Jono

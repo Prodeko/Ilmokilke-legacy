@@ -33,6 +33,7 @@
     			<p id="eventlocation">{% trans %}location{% endtrans %}: {{ event.location }}</p>
 
    				<p id="registrationPeriod">{% trans %}registration.period{% endtrans %}: {{ event.registrationStarts | date("j.n.y G:i") }} - {{ event.registrationEnds | date("j.n.y G:i") }}</p>
+   				<p id="kiltisRegistrationStarts">{% trans %}kiltis.registration.starts{% endtrans %}: {{ event.kiltisRegistrationStarts | date ("j.n.y G:i") }}
     			<p id="registrationOpen">{% if isOpen %}{% trans %}registration.open{% endtrans %}{% else %}{% trans %}registration.not.yet.open{% endtrans %}{% endif %}</p>
     		
     			<blockquote id="eventsummary">{{ event.summary }}</blockquote>

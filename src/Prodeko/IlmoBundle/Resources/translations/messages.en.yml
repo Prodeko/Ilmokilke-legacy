@@ -27,6 +27,7 @@ events.upcoming: Upcoming events
 fields:
   additional: Additional fields
   multipleChoice: Multiple choice fields
+kiltis.registration.starts: Registration starts at the guild room
 number.of.attendees: Number of attendees
 ok.remove: Delete
 prompt.remove: Are you sure that you want to delete your registration?

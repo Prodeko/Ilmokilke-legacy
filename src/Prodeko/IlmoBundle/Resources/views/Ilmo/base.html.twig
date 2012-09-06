@@ -1,3 +1,10 @@
+
+{% if  (kiltis is defined and kiltis) %}
+	{% set navbarClass = "navbar-inner kiltis" %}
+{% else %}
+	{% set navbarClass ="navbar-inner" %}
+{% endif %}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,7 +18,7 @@
     <body>
     	{% block navbar %}
     	<div class ="navbar">
-    		<div class="navbar-inner">
+    		<div class="{{ navbarClass }}">
     		<div class="container">
     			<div class="span6" id="nav-header">
     				<ul class="nav">
