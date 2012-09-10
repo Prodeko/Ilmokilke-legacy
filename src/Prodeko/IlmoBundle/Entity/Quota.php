@@ -24,11 +24,95 @@ class Quota
     private $name;
 
     /**
+     * @var integer $size
+     */
+    private $size;
+    
+    /**
      * @var integer $yearOfStudiesValue
      */
     private $yearOfStudiesValue;
-
-
+    
+    /**
+     * @var Prodeko\IlmoBundle\Entity\Event
+     */
+    private $event;
+    
+    /**
+     * @var Prodeko\IlmoBundle\Entity\Registration
+     */
+    private $registrations;
+    
+    
+    public function __construct()
+    {
+    	$this->registrations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Returns the number of registrations that still fit in the quota.
+     * 
+     * @return number
+     */
+    public function getFreeSeats()
+    {
+    	$registrants = count($this->registrations);
+    	if($registrants < $this->size) {
+    		return $this->size - $registrants;
+    	}
+    	else {
+    		return 0;
+    	}
+    }
+    
+    /**
+     * Returns true if the quota has any free seats
+     * 
+     * @return boolean
+     */
+    public function hasFreeSeats()
+    {
+    	return $this->getFreeSeats() > 0;
+    }
+    
+    /**
+     * Get registrations in queue, i.e. the complement of
+     * $this->getRegistrations()
+     * 
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getQueue()
+    {
+    	$queue = $this->registrations->slice($this->getSize());
+    	return $queue;
+    }
+    
+    /**
+     * Returns the number of registrations that don't fit within the quota.
+     * 
+     * @return number
+     */
+    public function getQueueLength()
+    {
+    	return $this->registrations->count() - $this->getSize();
+    }
+    
+    /**
+     * Returns the fill rate of the quota (ratio of registrations in the quota
+     * to total size of the quota) as a number in range [0,100].
+     * 
+     * @return number
+     */
+    public function getFill()
+    {
+    	if($this->size > 0) {
+    		return 100 - 100*$this->getFreeSeats() / $this->size;
+    	}
+    	return 0;
+    }
+    
+    /*****************DEFAULT GETTERS AND SETTERS BELOW***********************/
+    
     /**
      * Get id
      *
@@ -39,7 +123,6 @@ class Quota
         return $this->id;
     }
     
-
     /**
      * Set name
      *
@@ -61,6 +144,26 @@ class Quota
     }
 
     /**
+     * Set size
+     *
+     * @param integer $size
+     */
+    public function setSize($size)
+    {
+    	$this->size = $size;
+    }
+    
+    /**
+     * Get size
+     *
+     * @return integer
+     */
+    public function getSize()
+    {
+    	return $this->size;
+    }
+    
+    /**
      * Set yearOfStudiesValue
      *
      * @param integer $yearOfStudiesValue
@@ -79,46 +182,26 @@ class Quota
     {
         return $this->yearOfStudiesValue;
     }
+    
     /**
-     * @var integer $size
+     * Set event
+     *
+     * @param Prodeko\IlmoBundle\Entity\Event $event
      */
-    private $size;
-
-    /**
-     * @var Prodeko\IlmoBundle\Entity\Registration
-     */
-    private $registrations;
-
-    /**
-     * @var Prodeko\IlmoBundle\Entity\Event
-     */
-    private $event;
-
-    public function __construct()
+    public function setEvent(\Prodeko\IlmoBundle\Entity\Event $event)
     {
-        $this->registrations = new \Doctrine\Common\Collections\ArrayCollection();
+    	$this->event = $event;
     }
     
     /**
-     * Set size
+     * Get event
      *
-     * @param integer $size
+     * @return Prodeko\IlmoBundle\Entity\Event
      */
-    public function setSize($size)
+    public function getEvent()
     {
-        $this->size = $size;
+    	return $this->event;
     }
-
-    /**
-     * Get size
-     *
-     * @return integer 
-     */
-    public function getSize()
-    {
-        return $this->size;
-    }
-
     /**
      * Add registrations
      *
@@ -138,64 +221,5 @@ class Quota
     {
     	//palauttaa vain tapahtumaan mahtuneet
         return $this->registrations->slice(0,$this->getSize());
-    }
-    
-    /**
-     * Get registrations in queue, i.e. the complement of
-     * $this->getRegistrations()
-     */
-    public function getQueue()
-    {
-    	$queue = $this->registrations->slice($this->getSize());
-    	return $queue;
-    }
-
-    /**
-     * Set event
-     *
-     * @param Prodeko\IlmoBundle\Entity\Event $event
-     */
-    public function setEvent(\Prodeko\IlmoBundle\Entity\Event $event)
-    {
-        $this->event = $event;
-    }
-
-    /**
-     * Get event
-     *
-     * @return Prodeko\IlmoBundle\Entity\Event 
-     */
-    public function getEvent()
-    {
-        return $this->event;
-    }
-    
-    public function getFreeSeats()
-    {
-    	$registrants = count($this->registrations);
-    	if($registrants < $this->size) {
-    		return $this->size - $registrants;
-    	}
-    	else {
-    		return 0;
-    	}
-    }
-    
-    public function hasFreeSeats()
-    {
-    	return $this->getFreeSeats() > 0;
-    }
-    
-    public function getQueueLength()
-    {
-    	return $this->registrations->count() - $this->getSize();
-    }
-    
-    public function getFill()
-    {
-    	if($this->size > 0) {
-    		return 100 - 100*$this->getFreeSeats() / $this->size;
-    	}
-    	return 0;
     }
 }

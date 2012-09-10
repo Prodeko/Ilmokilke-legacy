@@ -38,6 +38,31 @@ class Registration
      * @var string $allergies
      */
     private $allergies;
+    
+    /**
+     * @var string $phone
+     */
+    private $phone;
+    
+    /**
+     * @var string $token
+     */
+    private $token;
+    
+    /**
+     * @var Prodeko\IlmoBundle\Entity\Person
+     */
+    private $person;
+    
+    /**
+     * @var Prodeko\IlmoBundle\Entity\Event
+     */
+    private $event;
+    
+    /**
+     * @var Prodeko\IlmoBundle\Entity\Quota
+     */
+    private $quota;
 
     /**
      * @var Prodeko\IlmoBundle\Entity\FreeTextEntry
@@ -45,15 +70,38 @@ class Registration
     private $freeTextEntries;
     
     /**
-     * @var Prodeko\IlmoBundle\Entity\Event
+     * @var Prodeko\IlmoBundle\Entity\MultipleChoiceEntry
      */
-    private $event;
+    private $multipleChoiceEntries;
+
 
     public function __construct()
     {
         $this->freeTextEntries = new \Doctrine\Common\Collections\ArrayCollection();
         $this->multipleChoiceEntries = new \Doctrine\Common\Collections\ArrayCollection();
     }
+    
+    /**
+     * Returns 1, if $registration2 took place earlier than $registration1, 1 if
+     * conversely and 0 if they took place at the same time. Used for sorting
+     * registration lists.
+     * 
+     * @param Prodeko\Ilmobundle\Entity\Registration $registration1
+     * @param Prodeko\Ilmobundle\Entity\Registration $registration2
+     * 
+     * @return int
+     */
+    public static function compareByRegistrationTime($registration1, $registration2)
+    {
+    	$time1 = $registration1->getRegistrationTime();
+    	$time2 = $registration2->getRegistrationTime();
+    	if($time1 == $time2) {
+    		return 0;
+    	}
+    	return ($time1 > $time2) ? 1 : -1;
+    }
+    
+    /*****************DEFAULT GETTERS AND SETTERS BELOW***********************/
     
     /**
      * Get id
@@ -164,7 +212,107 @@ class Registration
     {
         return $this->allergies;
     }
-
+    
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     */
+    public function setPhone($phone)
+    {
+    	$this->phone = $phone;
+    }
+    
+    /**
+     * Get phone
+     *
+     * @return string
+     */
+    public function getPhone()
+    {
+    	return $this->phone;
+    }
+    
+    /**
+     * Set token
+     *
+     * @param string $token
+     */
+    public function setToken($token)
+    {
+    	$this->token = $token;
+    }
+    
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+    	return $this->token;
+    }
+    
+    /**
+     * Set person
+     *
+     * @param Prodeko\IlmoBundle\Entity\Person $person
+     */
+    public function setPerson(\Prodeko\IlmoBundle\Entity\Person $person)
+    {
+    	$this->person = $person;
+    }
+    
+    /**
+     * Get person
+     *
+     * @return Prodeko\IlmoBundle\Entity\Person
+     */
+    public function getPerson()
+    {
+    	return $this->person;
+    }
+    
+    /**
+     * Set event
+     *
+     * @param Prodeko\IlmoBundle\Entity\Event $event
+     */
+    public function setEvent(\Prodeko\IlmoBundle\Entity\Event $event)
+    {
+    	$this->event = $event;
+    }
+    
+    /**
+     * Get event
+     *
+     * @return Prodeko\IlmoBundle\Entity\Event
+     */
+    public function getEvent()
+    {
+    	return $this->event;
+    }
+    
+    /**
+     * Set quota
+     *
+     * @param Prodeko\IlmoBundle\Entity\Quota $quota
+     */
+    public function setQuota(\Prodeko\IlmoBundle\Entity\Quota $quota)
+    {
+    	$this->quota = $quota;
+    }
+    
+    /**
+     * Get quota
+     *
+     * @return Prodeko\IlmoBundle\Entity\Quota
+     */
+    public function getQuota()
+    {
+    	return $this->quota;
+    }
+    
     /**
      * Add freeTextEntries
      *
@@ -196,31 +344,6 @@ class Registration
     }
 
     /**
-     * Set event
-     *
-     * @param Prodeko\IlmoBundle\Entity\Event $event
-     */
-    public function setEvent(\Prodeko\IlmoBundle\Entity\Event $event)
-    {
-        $this->event = $event;
-    }
-
-    /**
-     * Get event
-     *
-     * @return Prodeko\IlmoBundle\Entity\Event 
-     */
-    public function getEvent()
-    {
-        return $this->event;
-    }
-    /**
-     * @var Prodeko\IlmoBundle\Entity\MultipleChoiceEntry
-     */
-    private $multipleChoiceEntries;
-
-
-    /**
      * Add multipleChoiceEntries
      *
      * @param Prodeko\IlmoBundle\Entity\MultipleChoiceEntry $multipleChoiceEntries
@@ -249,116 +372,4 @@ class Registration
     {
     	$this->multipleChoiceEntries = $multipleChoiceEntries;
     }
-    
-    /**
-     * @var Prodeko\IlmoBundle\Entity\Person
-     */
-    private $person;
-
-    /**
-     * @var Prodeko\IlmoBundle\Entity\Quota
-     */
-    private $quota;
-
-
-    /**
-     * Set person
-     *
-     * @param Prodeko\IlmoBundle\Entity\Person $person
-     */
-    public function setPerson(\Prodeko\IlmoBundle\Entity\Person $person)
-    {
-        $this->person = $person;
-    }
-
-    /**
-     * Get person
-     *
-     * @return Prodeko\IlmoBundle\Entity\Person 
-     */
-    public function getPerson()
-    {
-        return $this->person;
-    }
-
-    /**
-     * Set quota
-     *
-     * @param Prodeko\IlmoBundle\Entity\Quota $quota
-     */
-    public function setQuota(\Prodeko\IlmoBundle\Entity\Quota $quota)
-    {
-        $this->quota = $quota;
-    }
-
-    /**
-     * Get quota
-     *
-     * @return Prodeko\IlmoBundle\Entity\Quota 
-     */
-    public function getQuota()
-    {
-        return $this->quota;
-    }
-    
-    public static function compareByRegistrationTime($registration1, $registration2)
-    {
-    	$time1 = $registration1->getRegistrationTime();
-    	$time2 = $registration2->getRegistrationTime();
-    	if($time1 == $time2) {
-    		return 0;
-    	}
-    	return ($time1 > $time2) ? 1 : -1;
-    }
-    /**
-     * @var string $token
-     */
-    private $token;
-
-
-    /**
-     * Set token
-     *
-     * @param string $token
-     */
-    public function setToken($token)
-    {
-        $this->token = $token;
-    }
-
-    /**
-     * Get token
-     *
-     * @return string 
-     */
-    public function getToken()
-    {
-        return $this->token;
-    }
-    /**
-     * @var string $phone
-     */
-    private $phone;
-
-
-    /**
-     * Set phone
-     *
-     * @param string $phone
-     */
-    public function setPhone($phone)
-    {
-        $this->phone = $phone;
-    }
-
-    /**
-     * Get phone
-     *
-     * @return string 
-     */
-    public function getPhone()
-    {
-        return $this->phone;
-    }
-
 }
