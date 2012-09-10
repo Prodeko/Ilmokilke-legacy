@@ -30,8 +30,8 @@
 				<tbody>
 				{% for event in activeEvents %}
 					<tr>
-					<td>
-						<a href={{ path('show', {'id': event.id}) }}><h3 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h3></a>
+					<td class="event" data-content="{{ event.summary }}">
+						<a href={{ path('show', {'id': event.id}) }}><h3  style="display: inline;">{{ event.name }}</h3></a>
 					</td>
 					<td>{{ event.takesPlace | date("d.m.Y G:i") }}</td>
 					<td>{{ event.registrationEnds | date("d.m.Y G:i") }}</td>
@@ -63,8 +63,8 @@
 				<tbody>
 				{% for event in upcomingEvents %}
 					<tr>
-						<td>
-						<a href={{ path('show', {'id': event.id}) }}><h3 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h3></a>
+						<td class="event" data-content="{{ event.summary }}">
+						<a href={{ path('show', {'id': event.id}) }}><h3 style="display: inline;">{{ event.name }}</h3></a>
 						</td>
 					<td>{{ event.takesPlace | date("d.m.Y G:i") }}</td>
 					<td>{{ event.registrationStarts | date("d.m.Y G:i") }}
@@ -95,8 +95,8 @@
 			<tbody>
 			{% for event in pastEvents %}
 				<tr>
-				<td>
-					<a href={{ path('show', {'id': event.id}) }}><h3 class="event" style="display: inline;" data-content="{{ event.summary }}">{{ event.name }}</h3></a>
+				<td class="event" data-content="{{ event.summary }}">
+					<a href={{ path('show', {'id': event.id}) }}><h3 style="display: inline;">{{ event.name }}</h3></a>
 				</td>
 				<td>{{ event.takesPlace | date("d.m.Y G:i") }}</td>
 				</tr>
