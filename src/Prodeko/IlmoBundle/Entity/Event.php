@@ -10,6 +10,78 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Event
 {
+	/**
+	 * @var integer $sizeOfOpenQuota
+	 */
+	private $sizeOfOpenQuota;
+	
+	/**
+	 * @var integer $id
+	 */
+	private $id;
+	
+	/**
+	 * @var string $name
+	 */
+	private $name;
+	
+	/**
+	 * @var datetime $takesPlace
+	 */
+	private $takesPlace;
+	
+	/**
+	 * @var datetime $registrationStarts
+	 */
+	private $registrationStarts;
+	
+	/**
+	 * @var datetime $registration_ends
+	 */
+	private $registrationEnds;
+	
+	/**
+	 * @var boolean $kiltisilmo
+	 */
+	private $kiltisilmo;
+
+	/**
+	 * @var string $location
+	 */
+	private $location;
+	
+	/**
+	 * @var string $summary
+	 */
+	private $summary;
+	
+	/**
+	 * @var text $description
+	 */
+	private $description;
+	
+	/**
+	 * @var Prodeko\IlmoBundle\Entity\Quota
+	 */
+	private $quotas;
+	
+	/**
+	 * @var Prodeko\IlmoBundle\Entity\FreeTextField
+	 */
+	private $freeTextFields;
+	
+	/**
+	 * @var Prodeko\IlmoBundle\Entity\MultipleChoiceField
+	 */
+	private $multipleChoiceFields;
+	
+	/**
+	 * @var Prodeko\IlmoBundle\Entity\Registration
+	 */
+	private $registrations;
+	
+
+	
 	public function __construct()
 	{
 		$this->freeTextFields = new ArrayCollection();
@@ -20,26 +92,158 @@ class Event
 								  //tapahtumat
 	}
 	
+	/**
+	 * Returns true if the registration for the event is currently open.
+	 * 
+	 * @return boolean
+	 */
 	public function registrationOpen() {
 		$now = new \DateTime();
 		return($this->registrationStarts  < $now && $now < $this->registrationEnds); 
 	}
 	
+	/**
+	 * Returns true if the registration for the event has already ended
+	 *
+	 * @return boolean
+	 */
+	public function registrationEnded()
+	{
+		$time = new \DateTime();
+		return $time > $this->registrationEnds;
+	}
+	
+	/**
+	 * Returns true if the guild room registration (3h earlier) for the event
+	 * is currently open
+	 * 
+	 * @return boolean
+	 */
 	public function kiltisRegistrationOpen() {
 		$now = new \DateTime();
 		$now = $now->add(new \DateInterval('PT3H'));
 		return($this->registrationStarts  < $now && $now < $this->registrationEnds);
 	}
 	
+	/**
+	 * Returns the time when the registration at the guild room starts
+	 * 
+	 * @return \DateTime
+	 */
 	public function kiltisRegistrationStarts() {
 		return $this->registrationStarts->sub(new \DateInterval('PT3H'));
 	}
-    /**
-     * @var integer $id
-     */
-    private $id;
+	
+	/**
+	 * Returns true if Event has any FreeTextFields to fill out
+	 * 
+	 * @return boolean
+	 */
+	public function hasFreeTextFields()
+	{
+		return count($this->freeTextFields) > 0;
+	}
+	
+	/**
+	 * Returns true if Event has any MultipleChoiceFields to fill out
+	 * 
+	 * @return boolean
+	 */
+	public function hasMultipleChoiceFields()
+	{
+		return count($this->multipleChoiceFields) > 0;
+	}
+	
 
 
+	/**
+	 * Get registrations that fit in quotas or open quota
+	 *
+	 * @return array
+	 */
+	public function getRegistrations()
+	{
+		$registrations = array();
+		foreach($this->quotas as $quota) {
+			$registrations = array_merge($registrations, $quota->getRegistrations());
+		}
+		return $registrations;
+	}
+	/**
+	 * Get all registrations whether they fit in quotas or not.
+	 * 
+	 * @return Doctrine\Common\Collections\Collection
+	 */
+	public function getAllRegistrations()
+	{
+		return $this->registrations;
+	}
+	
+	/**
+	 * A helper method that returns the composite of queue and registrations in
+	 * open quota to be further divided
+	 * 
+	 * @return array
+	 */
+	public function getNonQuotaRegistrations(){
+		$queue = array();
+		foreach($this->quotas as $quota) {
+			$queue = array_merge($queue,$quota->getQueue());
+		}
+		usort($queue, array('\Prodeko\IlmoBundle\Entity\Registration', 'compareByRegistrationTime'));
+		return $queue;
+	}
+	
+	/**
+	 * Returns all registrations in the open quota.
+	 * 
+	 * @return array
+	 */
+	public function getOpenQuotaRegistrations()
+	{
+		return array_slice($this->getNonQuotaRegistrations(), 0, $this->sizeOfOpenQuota);
+	}
+	
+	/**
+	 * Returns those registrations that don't fit in their specified quota
+	 * or the open quota
+	 * 
+	 * @return array
+	 */
+	public function getQueue()
+	{
+		return array_slice($this->getNonQuotaRegistrations(), $this->sizeOfOpenQuota);
+	}
+	
+	/**
+	 * Returns the number of free seats in the open quota, that is, how many 
+	 * registrations still fit in the open quota.
+	 * 
+	 * @return int:
+	 */
+	public function getFreeSeatsInOpenQuota()
+	{
+		return $this->getSizeOfOpenQuota() - count($this->getOpenQuotaRegistrations());
+	}
+	
+	/**
+	 * Returns the fill rate of the open (the ratio of registrations in open
+	 * quota to size of the open quota) quota as a percentage in range [0,100]
+	 * 
+	 * @return number
+	 */
+	public function getOpenQuotaFill()
+	{
+		if($this->sizeOfOpenQuota > 0)
+		{
+			return ($this->getSizeOfOpenQuota()-$this->getFreeSeatsInOpenQuota())/$this->getSizeOfOpenQuota()*100;
+		}
+		else return 0;
+	}
+
+	
+	/*****************DEFAULT GETTERS AND SETTERS BELOW***********************/
+	
     /**
      * Get id
      *
@@ -49,14 +253,10 @@ class Event
     {
         return $this->id;
     }
-    /**
-     * @var datetime $takes_place
-     */
 
 
     /**
      * Set takes_place
-     * MUUTTUJIEN MÄÄRITTELY ALAREUNASSA
      * @param datetime $takesPlace
      */
     public function setTakesPlace($takesPlace)
@@ -96,25 +296,7 @@ class Event
     {
         return $this->registrationStarts;
     }
-    /**
-     * @var datetime $registration_ends
-     */
-    private $registrationEnds;
 
-    /**
-     * @var string $location
-     */
-    private $location;
-
-    /**
-     * @var string $summary
-     */
-    private $summary;
-
-    /**
-     * @var text $description
-     */
-    private $description;
 
 
     /**
@@ -196,10 +378,7 @@ class Event
     {
         return $this->description;
     }
-    /**
-     * @var Prodeko\IlmoBundle\Entity\Registration
-     */
-    private $registrations;
+
 
     
     /**
@@ -211,30 +390,6 @@ class Event
     {
         $this->registrations[] = $registrations;
     }
-
-    /**
-     * Get registrations that fit in quotas or open quota
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getRegistrations()
-    {
-    	$registrations = array();
-    	foreach($this->quotas as $quota) {
-    		$registrations = array_merge($registrations, $quota->getRegistrations());
-    	}
-        return $registrations;
-    }
-    
-    public function getAllRegistrations()
-    {
-    	return $this->registrations;
-    }
-    /**
-     * @var Prodeko\IlmoBundle\Entity\FreeTextField
-     */
-    private $freeTextFields;
-
 
     /**
      * Add freeTextFields
@@ -255,11 +410,7 @@ class Event
     {
         return $this->freeTextFields;
     }
-    /**
-     * @var string $name
-     */
-    private $name;
-    
+
     /**
      * Set freeTextFields
      *
@@ -270,12 +421,6 @@ class Event
     	$this->freeTextFields = $freeTextFields;
     }
 
-    /**
-     * @var Prodeko\IlmoBundle\Entity\MultipleChoiceField
-     */
-    private $multipleChoiceFields;
-    
-    
     /**
      * Add multipleChoiceFields
      *
@@ -325,27 +470,6 @@ class Event
     {
         return $this->name;
     }
-    /**
-     * @var datetime $takesPlace
-     */
-    private $takesPlace;
-
-    /**
-     * @var datetime $registrationStarts
-     */
-    private $registrationStarts;
-
-    /**
-     * @var datetime $registrationEnds
-     */
-    
-
-
-    /**
-     * @var boolean $kiltisilmo
-     */
-    private $kiltisilmo;
-
 
     /**
      * Set kiltisilmo
@@ -366,11 +490,6 @@ class Event
     {
         return $this->kiltisilmo;
     }
-    /**
-     * @var Prodeko\IlmoBundle\Entity\Quota
-     */
-    private $quotas;
-
 
     /**
      * Add quotas
@@ -402,38 +521,6 @@ class Event
     }
     
     /**
-     * Returns true if Event has any FreeTextFields
-     * to fill out
-     * @return boolean
-     */
-    public function hasFreeTextFields()
-    {
-    	return count($this->freeTextFields) > 0;
-    }
-    
-    /**
-     * Returns true if Event has any MultipleChoiceFields
-     * to fill out
-     * @return boolean
-     */
-    public function hasMultipleChoiceFields()
-    {
-    	return count($this->multipleChoiceFields) > 0;
-    }
-
-    
-    public function registrationEnded()
-    {
-    	$time = new \DateTime();
-    	return $time > $this->registrationEnds;
-    }
-    /**
-     * @var integer $sizeOfOpenQuota
-     */
-    private $sizeOfOpenQuota;
-
-
-    /**
      * Set sizeOfOpenQuota
      *
      * @param integer $sizeOfOpenQuota
@@ -453,45 +540,5 @@ class Event
         return $this->sizeOfOpenQuota;
     }
 	
-    /**
-     * A helper method that returns the composite of queue and registrations in
-     * open quota to be further divided
-     */
-    public function getNonQuotaRegistrations(){
-    	$queue = array();
-    	foreach($this->quotas as $quota) {
-    		$queue = array_merge($queue,$quota->getQueue());
-    	}
-    	usort($queue, array('\Prodeko\IlmoBundle\Entity\Registration', 'compareByRegistrationTime'));
-    	return $queue;
-    }
-    
-    public function getOpenQuotaRegistrations()
-    {
-    	return array_slice($this->getNonQuotaRegistrations(), 0, $this->sizeOfOpenQuota);
-    }
-    /**
-     * Returns those registrations that don't fit in their specified quota
-     * or the open quota
-     * @return multitype:
-     */
-    public function getQueue()
-    {
-    	return array_slice($this->getNonQuotaRegistrations(), $this->sizeOfOpenQuota); 
-    }
-    
-    
-    public function getFreeSeatsInOpenQuota()
-    {
-    	return $this->getSizeOfOpenQuota() - count($this->getOpenQuotaRegistrations());
-    }
-    
-    public function getOpenQuotaFill()
-    {
-    	if($this->sizeOfOpenQuota > 0)
-    	{
-    		return ($this->getSizeOfOpenQuota()-$this->getFreeSeatsInOpenQuota())/$this->getSizeOfOpenQuota()*100;
-    	}
-    	else return -1;
-    }
+
 }
