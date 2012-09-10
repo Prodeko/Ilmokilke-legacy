@@ -149,7 +149,7 @@ class IlmoController extends Controller
 						"http://www.prodeko.fi/Ilmokilke/web/app.php/fi/remove/" . $token;
 		$message = \Swift_Message::newInstance()
 		->setSubject($event->getName() . ' / Ilmoittautuminen tallennettu')
-		->setFrom('ilmogilge@gmail.com')
+		->setFrom('ilmo@prodeko.fi')
 		->setTo($email)
 		->setBody($messageBody);
 		$this->get('mailer')->send($message);
