@@ -164,7 +164,7 @@ class IlmoController extends Controller
 			     	  ->findOneBy(array('id' => $id));
 		
 		//Jos ilmo on alkanut, ohjataan tapahtumasivulle
-		if($event->isOpen() || $event->registrationEnded()) {
+		if($event->registrationOpen() || $event->registrationEnded()) {
 			return $this->redirect($this->generateUrl('show', array('id' => $id)));
 		}
 		$registration = Helpers::createRegistrationObject($event);

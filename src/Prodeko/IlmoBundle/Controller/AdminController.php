@@ -148,7 +148,7 @@ class AdminController extends IlmoController
 		$registrations = $event->getRegistrations();
 		return $this->render('ProdekoIlmoBundle:Ilmo:admin.html.twig', array(
 				'event' => $event,
-				'isOpen' => $event->isOpen()
+				'isOpen' => $event->registrationOpen()
 		));
 		
 	}

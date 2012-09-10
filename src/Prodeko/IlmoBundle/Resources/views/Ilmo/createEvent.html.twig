@@ -158,7 +158,7 @@
 			{{ form_errors(form.quotas.get('prototype').size) | e }}">
 			
 			{% for quota in form.quotas %}
-				<div class="well {% if not event.isOpen %}quota{% endif %} form-inline">
+				<div class="well {% if not event.registrationOpen %}quota{% endif %} form-inline">
 					{{ form_label(quota.name, 'Nimi') }}
 					{{ form_widget(quota.name, {'attr': {'class': 'input-small'}}) }}
 					{% if form_errors(quota.name) %}

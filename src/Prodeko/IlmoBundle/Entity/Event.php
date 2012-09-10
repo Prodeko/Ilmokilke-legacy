@@ -20,12 +20,12 @@ class Event
 								  //tapahtumat
 	}
 	
-	public function isOpen() {
+	public function registrationOpen() {
 		$now = new \DateTime();
 		return($this->registrationStarts  < $now && $now < $this->registrationEnds); 
 	}
 	
-	public function kiltisIlmoOpen() {
+	public function kiltisRegistrationOpen() {
 		$now = new \DateTime();
 		$now = $now->add(new \DateInterval('PT3H'));
 		return($this->registrationStarts  < $now && $now < $this->registrationEnds);
