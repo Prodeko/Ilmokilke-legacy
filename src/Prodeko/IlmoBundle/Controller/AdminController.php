@@ -106,8 +106,10 @@ class AdminController extends IlmoController
 					// Poista kaikkien poistuneiden fieldien entryt (ei poista fieldejä, koska fieldien kierrätys
 					$em = Helpers::deleteEntries(array_merge($deletedMcFields, $deletedTextFields), $registrations, $em);
 				
-				} // Lopeta kenttien lisäyksen ja poiston käsittely
-					
+				}
+				foreach($event->getQuotas() as $quota) {
+					$quota->setEvent($event);
+				}
 				//Tallenna tapahtuma
 				$em->persist($event);
 				$em->flush();
