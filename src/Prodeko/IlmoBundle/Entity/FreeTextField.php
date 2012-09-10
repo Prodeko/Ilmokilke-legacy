@@ -13,12 +13,38 @@ class FreeTextField
      * @var integer $id
      */
     private $id;
-	
+    
+    /**
+     * @var string $name
+     */
+    private $name;
+    
+    /**
+     * @var text $description
+     */
+    private $description;
+    
+    /**
+     * @var boolean $flagPrivate
+     */
+    private $flagPrivate = true;
+    
+    /**
+     * @var Prodeko\IlmoBundle\Entity\FreeTextEntry
+     */
+    private $entries;
+    
     /**
      * @var Prodeko\IlmoBundle\Entity\Event
      */
     private $events;
-
+    
+    
+    public function __construct()
+    {
+    	$this->entries = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -28,16 +54,6 @@ class FreeTextField
     {
         return $this->id;
     }
-    /**
-     * @var string $name
-     */
-    private $name;
-
-    /**
-     * @var text $description
-     */
-    private $description;
-
 
     /**
      * Set name
@@ -78,15 +94,29 @@ class FreeTextField
     {
         return $this->description;
     }
+    
     /**
-     * @var Prodeko\IlmoBundle\Entity\FreeTextEntry
+     * Set flagPrivate
+     *
+     * @param boolean $flagPrivate
      */
-    private $entries;
-
-    public function __construct()
+    public function setFlagPrivate($flagPrivate)
     {
-        $this->entries = new \Doctrine\Common\Collections\ArrayCollection();
+    	$this->flagPrivate = $flagPrivate;
     }
+    
+    /**
+     * Get flagPrivate
+     *
+     * @return boolean
+     */
+    public function getFlagPrivate()
+    {
+    	return $this->flagPrivate;
+    }
+
+
+
     
     /**
      * Add entries
@@ -108,31 +138,7 @@ class FreeTextField
         return $this->entries;
     }
 
-    /**
-     * @var boolean $flagPrivate
-     */
-    private $flagPrivate = true;
 
-
-    /**
-     * Set flagPrivate
-     *
-     * @param boolean $flagPrivate
-     */
-    public function setFlagPrivate($flagPrivate)
-    {
-        $this->flagPrivate = $flagPrivate;
-    }
-
-    /**
-     * Get flagPrivate
-     *
-     * @return boolean 
-     */
-    public function getFlagPrivate()
-    {
-        return $this->flagPrivate;
-    }
 
     /**
      * Add events

@@ -23,7 +23,11 @@ class FreeTextEntry
      * @var Prodeko\IlmoBundle\Entity\FreeTextField
      */
     private $field;
-
+	
+    /**
+     * @var Prodeko\IlmoBundle\Entity\Registration
+     */
+    private $registration;
 
     /**
      * Get id
@@ -74,11 +78,6 @@ class FreeTextEntry
     {
         return $this->field;
     }
-    /**
-     * @var Prodeko\IlmoBundle\Entity\Registration
-     */
-    private $registration;
-
 
     /**
      * Set registration
