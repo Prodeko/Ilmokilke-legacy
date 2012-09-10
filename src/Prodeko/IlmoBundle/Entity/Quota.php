@@ -193,6 +193,9 @@ class Quota
     
     public function getFill()
     {
-    	return 100 - 100*$this->getFreeSeats() / $this->size;
+    	if($this->size > 0) {
+    		return 100 - 100*$this->getFreeSeats() / $this->size;
+    	}
+    	return 0;
     }
 }
