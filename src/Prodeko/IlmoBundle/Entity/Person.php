@@ -13,72 +13,53 @@ class Person
      * @var integer $id
      */
     private $id;
-
+    
+    /**
+     * @var string $openId
+     */
+    private $openId;
+    
+    /**
+     * @var string $firstName
+     */
+    private $firstName;
+    
+    /**
+     * @var string $lastName
+     */
+    private $lastName;
+    
+    /**
+     * @var string $email
+     */
+    private $email;
+    
+    /**
+     * @var array $allergies
+     */
+    private $allergies;
+    
+    /**
+     * @var Prodeko\IlmoBundle\Entity\Registration
+     */
+    private $registrations;
 
     /**
      * Get id
      *
      * @return integer 
      */
+    
+    public function __construct()
+    {
+    	$this->registrations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     public function getId()
     {
         return $this->id;
     }
-    /**
-     * @var Prodeko\IlmoBundle\Entity\Registration
-     */
-    private $registrations;
-
-    public function __construct()
-    {
-        $this->registrations = new \Doctrine\Common\Collections\ArrayCollection();
-    }
     
-    /**
-     * Add registrations
-     *
-     * @param Prodeko\IlmoBundle\Entity\Registration $registrations
-     */
-    public function addRegistration(\Prodeko\IlmoBundle\Entity\Registration $registrations)
-    {
-        $this->registrations[] = $registrations;
-    }
-
-    /**
-     * Get registrations
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getRegistrations()
-    {
-        return $this->registrations;
-    }
-    /**
-     * @var string $openId
-     */
-    private $openId;
-
-    /**
-     * @var string $firstName
-     */
-    private $firstName;
-
-    /**
-     * @var string $lastName
-     */
-    private $lastName;
-
-    /**
-     * @var string $email
-     */
-    private $email;
-
-    /**
-     * @var array $allergies
-     */
-    private $allergies;
-
-
     /**
      * Set openId
      *
@@ -86,17 +67,17 @@ class Person
      */
     public function setOpenId($openId)
     {
-        $this->openId = $openId;
+    	$this->openId = $openId;
     }
-
+    
     /**
      * Get openId
      *
-     * @return string 
+     * @return string
      */
     public function getOpenId()
     {
-        return $this->openId;
+    	return $this->openId;
     }
 
     /**
@@ -177,5 +158,25 @@ class Person
     public function getAllergies()
     {
         return $this->allergies;
+    }
+    
+    /**
+     * Add registrations
+     *
+     * @param Prodeko\IlmoBundle\Entity\Registration $registrations
+     */
+    public function addRegistration(\Prodeko\IlmoBundle\Entity\Registration $registrations)
+    {
+    	$this->registrations[] = $registrations;
+    }
+    
+    /**
+     * Get registrations
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getRegistrations()
+    {
+    	return $this->registrations;
     }
 }
