@@ -99,7 +99,7 @@
 								{% endset %}
 								<tr class="registered" data-content="{{ dataContent|e }}">
 									<td>{{ registration.firstName }} {{ registration.lastName }}</td>
-									<td class="registrationtime">{{ registration.registrationTime|date("d.m.Y h.i.s") }}
+									<td class="registrationtime">{{ registration.registrationTime|date("d.m.Y G.i.s") }}
 								</tr>
 							{% endfor %}
 						</tbody>
@@ -125,7 +125,7 @@
 								<tr class="registered" data-content="{{ dataContent|e }}">
 									<td>{{ registration.quota.name }}</td>
 									<td>{{ registration.firstName }} {{ registration.lastName }}</td>
-									<td class="registrationtime">{{ registration.registrationTime|date("d.m.Y h.i.s") }}</td>
+									<td class="registrationtime">{{ registration.registrationTime|date("d.m.Y G.i.s") }}</td>
 								</tr>
 						{% endfor %}
 					</tbody>
@@ -150,7 +150,7 @@
 						<tr class="registered" data-content="{{ dataContent|e }}">
 							<td>{{ registration.quota.name }}</td>
 							<td>{{ registration.firstName }} {{ registration.lastName }}</td>
-							<td class="registrationtime">{{ registration.registrationTime|date("d.m.Y h.i.s") }}
+							<td class="registrationtime">{{ registration.registrationTime|date("d.m.Y G.i.s") }}
 						</tr>
 					{% endfor %}
 					</tbody>
