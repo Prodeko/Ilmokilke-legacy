@@ -14,14 +14,17 @@ class EventType extends AbstractType
 		$builder->add('summary', 'textarea');
 		$builder->add('description', 'textarea');
 		$builder->add('takesPlace', "datetime", array(
-				'widget' => 'single_text',
-				'date_format' => 'dd.MM.yyyy hh.mm'));
+				'date_widget' => 'single_text',
+				'time_widget' => 'single_text',
+				'date_format' => 'dd.MM.yyyy'));
 		$builder->add('registrationStarts', "datetime", array(
-				'widget' => 'single_text',
-				'date_format' => 'dd.MM.yyyy hh.mm'));
+				'date_widget' => 'single_text',
+				'time_widget' => 'single_text',
+				'date_format' => 'dd.MM.yyyy'));
 		$builder->add('registrationEnds', "datetime", array(
-				'widget' => 'single_text',
-				'date_format' => 'dd.MM.yyyy hh.mm'));
+				'date_widget' => 'single_text',
+				'time_widget' => 'single_text',
+				'date_format' => 'dd.MM.yyyy'));
 		$builder->add('location', "text");
 		$builder->add('sizeOfOpenQuota','integer');
 		
