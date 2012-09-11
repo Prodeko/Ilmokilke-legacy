@@ -28,17 +28,23 @@ Prodeko\IlmoBundle\Entity\Event:
                 limit: 160
                 message: Lyhyt kuvaus saa olla korkeintaan 160 merkkiä pitkä.
         takesPlace:
+            - NotBlank:
+                message: Pakollinen kenttä!
             - DateTime:
                 message: Virheellinen aika!
         registrationStarts:
+            - NotBlank:
+                message: Pakollinen kenttä!
             - DateTime:
                 message: Virheellinen aika!
         registrationEnds:
+            - NotBlank:
+                message: Pakollinen kenttä!
             - DateTime:
                 message: Virheellinen aika!
         sizeOfOpenQuota:
-            -NotBlank:
-                message: Täytä avoimen kiintiön kooksi 0, jos sitä ei käytetä.
+            - NotBlank:
+                message: Aseta avoimen kiintiön koko nollaksi, jos sitä ei käytetä.
             - Min:
                 limit: 0
                 message: Avoimen kiintiön koko ei voi olla negatiivinen.
