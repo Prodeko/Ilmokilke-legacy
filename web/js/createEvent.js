@@ -92,6 +92,8 @@ jQuery(document).ready(function() {
     addAddButton(quotasDiv, 'Lisää kiintiö', 'add_quota_button', 'quota');
     createToolTips();
     
+    $('#event_takesPlace_date').datepicker();
+    
 });
 
 
