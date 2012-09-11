@@ -37,6 +37,8 @@ Prodeko\IlmoBundle\Entity\Event:
             - DateTime:
                 message: Virheellinen aika!
         sizeOfOpenQuota:
+            -NotBlank:
+                message: Täytä avoimen kiintiön kooksi 0, jos sitä ei käytetä.
             - Min:
                 limit: 0
                 message: Avoimen kiintiön koko ei voi olla negatiivinen.
