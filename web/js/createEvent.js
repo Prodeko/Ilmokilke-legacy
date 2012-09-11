@@ -93,7 +93,8 @@ jQuery(document).ready(function() {
     createToolTips();
     
     $('#event_takesPlace_date').datepicker();
-    
+    $('#event_registrationStarts_date').datepicker();
+    $('#event_registrationEnds_date').datepicker();
 });
 
 
