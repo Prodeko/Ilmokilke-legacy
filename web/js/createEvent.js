@@ -92,9 +92,16 @@ jQuery(document).ready(function() {
     addAddButton(quotasDiv, 'Lisää kiintiö', 'add_quota_button', 'quota');
     createToolTips();
     
-    $('#event_takesPlace_date').datepicker();
-    $('#event_registrationStarts_date').datepicker();
-    $('#event_registrationEnds_date').datepicker();
+    //Lisätään päivämääräkenttiin datepicker-widget
+    $('.datepicker').datepicker(
+    		{
+    			format: 'dd.mm.yyyy'
+    		});
+    //Formatoidaan aikakentät (Symfony ei jostain syystä tue tätä)
+    $('.timefield').attr('value', function() {
+    	return $(this).attr('value').substr(0,5).replace(':','.');
+    });
+
 });
 
 
