@@ -95,6 +95,15 @@ class AdminController extends IlmoController
 			
 			$form->bindRequest($request);
 			if($form->isValid()) {
+				if($state == self::STATE_OLD_EVENT_NO_REGISTRANTS) {
+					$originalEvent = $this->getDoctrine()
+					->getRepository('ProdekoIlmoBundle:Event')
+					->findOneBy(array('id'=>$event->getId()));
+					foreach ($originalEvent->getQuotas() as $oldquota) {
+						$em->remove($oldquota);
+						$em->flush();
+					}
+				}
 				$event = $form->getData();
 				if ($state == self::STATE_OLD_EVENT_REGISTRANTS) {
 					/* Kenttien lisäyksen ja poiston käsittely
@@ -109,8 +118,8 @@ class AdminController extends IlmoController
 				
 					// Poista kaikkien poistuneiden fieldien entryt (ei poista fieldejä, koska fieldien kierrätys
 					$em = Helpers::deleteEntries(array_merge($deletedMcFields, $deletedTextFields), $registrations, $em);
-				
 				}
+				
 				foreach($event->getQuotas() as $quota) {
 					$quota->setEvent($event);
 				}

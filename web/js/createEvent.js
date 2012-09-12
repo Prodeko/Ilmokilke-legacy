@@ -24,7 +24,8 @@ jQuery(document).ready(function() {
 	        // prevent the link from creating a "#" on the URL
 	        e.preventDefault();
 	        $(this).remove();
-	        // remove the li for the field form
+	        
+	        //Show a confirmation dialog
 	        var $confirmationDialog = $('<div class="alert alert-error fade in">' +
 	        		'<p>Haluatko varmasti poistaa tämän?</p>' + 
 	        		'</div>');
@@ -40,8 +41,7 @@ jQuery(document).ready(function() {
 	        	addDeleteLink($fieldFormDiv);
 	        });
 	        $confirmationDialog.append($okButton).append($cancelButton);
-	        $fieldFormDiv.append($confirmationDialog);
-	        //$fieldFormDiv.remove();	        
+	        $fieldFormDiv.append($confirmationDialog);	        
 	    });
 	}
 	
