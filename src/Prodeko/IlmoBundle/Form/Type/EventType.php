@@ -30,6 +30,7 @@ class EventType extends AbstractType
 		
 		$builder->add('freeTextFields', 'collection', array(
 				'type' => new FreeTextFieldType(),
+				'label' => ' ',
 				'allow_add' => true,
 				'allow_delete' => true,
 				'by_reference' => false,
@@ -38,6 +39,7 @@ class EventType extends AbstractType
 		
 		$builder->add('multipleChoiceFields', 'collection', array(
 				'type' => new MultipleChoiceFieldType($this->em),
+				'label' => ' ',
 				'allow_add' => true,
 				'allow_delete' => true,
 				'by_reference' => false,
@@ -46,6 +48,7 @@ class EventType extends AbstractType
 		
 		$builder->add('quotas', 'collection', array(
 				'type' => new QuotaType(),
+				'label' => ' ',
 				'allow_add' => true,
 				'allow_delete' => true,
 				'by_reference' => false,
