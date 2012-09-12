@@ -67,7 +67,12 @@
 				{% endif %}
 				
 				<fieldset class="control-group">
+				{# piilotetaan kiintiönvalinnan label, jos kiintiöitä ei ole#}
+				{% if event.hasQuotas %}
 					{% set label %}{% trans %}quota{% endtrans %}{% endset %}
+				{% else %}
+					{% set label %}{% endset %}
+				{% endif %}
 					{{ form_label(form.quota, label, { 'attr': {'class': 'control-label'} } ) }}
 					<div class="controls">
 						{{ form_widget(form.quota) }}

@@ -148,7 +148,9 @@
 									{% endfor %}
 								{% endset %}
 								<tr class="registered" data-content="{{ dataContent|e }}">
-									<td>{{ registration.quota.name }}</td>
+									{% if registration.quota is not null %}
+										<td>{{ registration.quota.name }}</td>
+									{% endif %}
 									<td>{{ registration.firstName }} {{ registration.lastName }}</td>
 									<td class="registrationtime">{{ registration.registrationTime|date("d.m.Y G.i.s") }}</td>
 								</tr>
@@ -173,7 +175,9 @@
 					{% endfor %}
 						{% endset %}
 						<tr class="registered" data-content="{{ dataContent|e }}">
-							<td>{{ registration.quota.name }}</td>
+							{% if registration.quota is not null %}
+								<td>{{ registration.quota.name }}</td>
+							{% endif %}
 							<td>{{ registration.firstName }} {{ registration.lastName }}</td>
 							<td class="registrationtime">{{ registration.registrationTime|date("d.m.Y G.i.s") }}
 						</tr>

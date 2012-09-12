@@ -135,6 +135,16 @@ class Event
 	}
 	
 	/**
+	 * Returns true if Event has any defined Quotas
+	 * 
+	 * @return boolean
+	 */
+	public function hasQuotas()
+	{
+		return count($this->quotas) > 0;
+	}
+	
+	/**
 	 * Returns true if Event has any FreeTextFields to fill out
 	 * 
 	 * @return boolean
@@ -186,6 +196,10 @@ class Event
 	 * @return array
 	 */
 	public function getNonQuotaRegistrations(){
+		if (!$this->hasQuotas()) 
+		{
+			return $this->registrations->toArray();
+		}
 		$queue = array();
 		foreach($this->quotas as $quota) {
 			$queue = array_merge($queue,$quota->getQueue());
