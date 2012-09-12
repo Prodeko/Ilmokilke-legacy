@@ -68,6 +68,10 @@ class AdminController extends IlmoController
 				$quota->setEvent($event);
 				$event->addQuota($quota);
 			}
+			$now = new \DateTime('today midnight');
+			$event->setTakesPlace($now);
+			$event->setRegistrationStarts($now);
+			$event->setRegistrationEnds($now);
 				
 		}
 		

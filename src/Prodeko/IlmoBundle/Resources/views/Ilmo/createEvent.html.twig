@@ -41,8 +41,8 @@
     	</div>
     	<div class="well form-inline">
 			{{ form_label(form.takesPlace, 'Tapahtuma-aika') }}
-		    {{ form_widget(form.takesPlace.date, {'attr': {'placeholder': 'dd.mm.yyyy'} }) }}
-		    {{ form_widget(form.takesPlace.time, {'attr': {'placeholder': 'hh.mm'} })}}
+		    {{ form_widget(form.takesPlace.date, {'attr': {'placeholder': 'dd.mm.yyyy', 'class': 'datepicker'} }) }}
+		    {{ form_widget(form.takesPlace.time, {'attr': {'placeholder': 'hh.mm', 'class': 'timefield'} })}}
 		    {% if form_errors(form.takesPlace) %}
 			    <div class="alert alert-error">
 			    	<button type="button" class="close" data-dismiss="alert">×</button>
@@ -52,8 +52,8 @@
     	</div>
     	<div class="well form-inline">
 		    {{ form_label(form.registrationStarts, 'Ilmoittautuminen alkaa') }}
-		    {{ form_widget(form.registrationStarts.date, {'attr': {'placeholder': 'dd.mm.yyyy'} }) }}
-		    {{ form_widget(form.registrationStarts.time, {'attr': {'placeholder': 'hh.mm'} }) }}
+		    {{ form_widget(form.registrationStarts.date, {'attr': {'placeholder': 'dd.mm.yyyy', 'class': 'datepicker'} }) }}
+		    {{ form_widget(form.registrationStarts.time, {'attr': {'placeholder': 'hh.mm', 'class': 'timefield'} }) }}
 		    {% if form_errors(form.registrationStarts) %}
 			    <div class="alert alert-error">
 			    	<button type="button" class="close" data-dismiss="alert">×</button>
@@ -63,8 +63,8 @@
 	   	</div>
 	   	<div class="well form-inline">
 			{{ form_label(form.registrationEnds, 'Ilmoittautuminen päättyy') }}
-		    {{ form_widget(form.registrationEnds.date, {'attr': {'placeholder': 'dd.mm.yyyy'} }) }}
-		    {{ form_widget(form.registrationEnds.time, {'attr': {'placeholder': 'hh.mm'} }) }}
+		    {{ form_widget(form.registrationEnds.date, {'attr': {'placeholder': 'dd.mm.yyyy', 'class': 'datepicker'} }) }}
+		    {{ form_widget(form.registrationEnds.time, {'attr': {'placeholder': 'hh.mm', 'class': 'timefield'} }) }}
 		    {% if form_errors(form.registrationEnds) %}
 			    <div class="alert alert-error">
 			    	<button type="button" class="close" data-dismiss="alert">×</button>
@@ -189,4 +189,8 @@
 
 {% block javascripts %}
 	<script src="{{ asset('js/createEvent.js') }}"></script>
+	<script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/datepicker.css') }}"/>
 {% endblock %}
