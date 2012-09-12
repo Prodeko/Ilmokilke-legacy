@@ -49,7 +49,7 @@ $(function() {
 	});
 	
 	$("tr.registered").each(function() {
-		if ($(this).attr("data-content") != "") {
+		if ($.trim($(this).attr("data-content")) != "") {
 			$(this).popover({'placement': 'left'});
 		}
 	});

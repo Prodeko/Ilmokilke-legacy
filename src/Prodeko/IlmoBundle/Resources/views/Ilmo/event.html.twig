@@ -118,7 +118,7 @@
 									{% endfor %} 
 									{% for entry in registration.multipleChoiceEntries %}
 										{% if not entry.field.flagPrivate %}
-										<p>{{ entry.field.name }}: {{ entry.selection }}</p>
+											<p>{{ entry.field.name }}: {{ entry.selection }}</p>
 										{% endif %}
 									{% endfor %}
 								{% endset %}
@@ -143,8 +143,8 @@
 									{% endfor %}
 									{% for entry in registration.multipleChoiceEntries %}
 										{% if not entry.field.flagPrivate %}
-										<p>{{ entry.field.name }}: {{ entry.selection }}</p>
-									{% endif %}
+											<p>{{ entry.field.name }}: {{ entry.selection }}</p>
+										{% endif %}
 									{% endfor %}
 								{% endset %}
 								<tr class="registered" data-content="{{ dataContent|e }}">
