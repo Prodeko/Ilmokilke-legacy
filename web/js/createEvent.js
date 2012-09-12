@@ -23,9 +23,25 @@ jQuery(document).ready(function() {
 	    $removeFormButton.on('click', function(e) {
 	        // prevent the link from creating a "#" on the URL
 	        e.preventDefault();
-
+	        $(this).remove();
 	        // remove the li for the field form
-	        $fieldFormDiv.remove();
+	        var $confirmationDialog = $('<div class="alert alert-error fade in">' +
+	        		'<p>Haluatko varmasti poistaa tämän?</p>' + 
+	        		'</div>');
+	        var $okButton = $('<button type="button" class="btn btn-danger">OK</button>');
+	        $okButton.on('click', function(e) {
+	        	e.preventDefault();
+	        	$fieldFormDiv.remove();
+	        });
+	        var $cancelButton = $('<button type="button" class="btn">Peruuta</button>');
+	        $cancelButton.on('click', function(e) {
+	        	e.preventDefault();
+	        	$($confirmationDialog).alert('close');
+	        	addDeleteLink($fieldFormDiv);
+	        });
+	        $confirmationDialog.append($okButton).append($cancelButton);
+	        $fieldFormDiv.append($confirmationDialog);
+	        //$fieldFormDiv.remove();	        
 	    });
 	}
 	
