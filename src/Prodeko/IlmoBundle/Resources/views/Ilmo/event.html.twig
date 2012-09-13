@@ -49,7 +49,12 @@
     				<td>{{ event.kiltisRegistrationStarts | date ("j.n.y G:i") }}</td>
     			</tr>
     		</table>
-    		<div class="alert alert-success">
+    		{% if registrationOpen %}
+    			{% set class %}alert alert-success{% endset %}
+    		{% else %}
+    			{% set class %}alert{% endset %}
+    		{% endif %}
+    		<div class="{{ class }}">
     			<h4 id="registrationOpen">{% if registrationOpen %}
     										{% trans %}registration.open{% endtrans %}
     									 {% elseif event.registrationEnded %}
