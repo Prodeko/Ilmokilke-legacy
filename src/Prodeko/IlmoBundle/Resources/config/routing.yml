@@ -61,7 +61,7 @@ adminRegistrations:
       _locale: en|fi|spurdo
       
 sendEmail:
-    pattern: /{_locale}/admin/email
+    pattern: /{_locale}/admin/email/{id}
     defaults: { _controller: ProdekoIlmoBundle:Admin:sendEmail }
       
 registrationSuccess:

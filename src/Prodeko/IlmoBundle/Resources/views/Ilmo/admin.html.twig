@@ -10,9 +10,12 @@
 			<div class="row" id="title">
 				<div class="span9">
 	    			<h2>{{ event.name }}</h2>
+	    			{% if message is defined %}
+	    			<div class="alert alert-success">
+	    				<p>{{ message }}</p>
+	    			</div>
+	    			{% endif %}
 	    			{% include 'ProdekoIlmoBundle:Ilmo:sendemail.html.twig' %}
-	    			<button id="sendemail" class="btn-large btn-success" data-toggle="modal" href="#emailmodal">{% trans %}send.email{% endtrans %}</button>
-	    			
 	    			<p>
 	    				{% if isOpen %}
 	    					Ilmoittautuminen tähän tapahtumaan on auki! Ilmoittautuminen sulkeutuu {{ event.registrationEnds | date("G:i j.n.y") }}.
@@ -20,12 +23,21 @@
 	    					Ilmoittautuminen tähän tapahtumaan on kiinni. Ilmoittautumisaika: {{ event.registrationStarts | date("j.n.y G:i") }} - {{ event.registrationEnds | date("j.n.y G:i") }}
 	    				{% endif %}
     				</p>
-	    			<p>
-	    				<a href="{{ path('edit', {'id': event.id}) }}"><img src="{{ asset('img/edit-icon.png') }}"/>Muokkaa tapahtumaa</a>
-	    			</p>
-	    			<p>
-	    				<a href="{{ path('export', {'id': event.id}) }}"><img src="{{ asset('img/csv-icon.png') }}"/>Vie osallistujalista CSV-muodossa</a>
-	    			</p>
+    				<table>
+    					<tr>
+			    			<td>
+			    				<a href="{{ path('edit', {'id': event.id}) }}"><img src="{{ asset('img/edit-icon.png') }}"/>Muokkaa tapahtumaa</a>
+			    			</td>
+			    			<td>
+			    				<a href="{{ path('export', {'id': event.id}) }}"><img src="{{ asset('img/csv-icon.png') }}"/>Vie osallistujalista CSV-muodossa</a>
+			    			</td>
+		    			</tr>
+		    			<tr>
+		    				<td>
+		    					<a data-toggle="modal" href="#emailmodal"><img src="{{ asset('img/email-icon.png') }}"/>{% trans %}send.email.to.participants{% endtrans %}</a>
+		    				</td>
+		    			</tr>
+	    			</table>
     			</div>
     		</div>
     		<div class="row">

@@ -1,19 +1,29 @@
 {% form_theme form 'ProdekoIlmoBundle:Form:ilmo.formtheme.html.twig' %}
 <div class="modal" id="emailmodal" style="display: none">
-	<form action="{{ path('sendEmail') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+	<form action="{{ path('sendEmail', {'id': event.id}) }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
 		<div class="modal-header">
 			<h3>{% trans %}send.email{% endtrans %} - {{ event.name }}</h3>
 		</div>
 		<div class="modal-body">
 			<div>{{ form_errors(form) }}</div>
-			{{ form_label(form.subject) }}
-			{{ form_widget(form.subject) }}
-			{{ form_label(form.sender) }}
-			{{ form_widget(form.sender) }}
-			{{ form_label(form.message) }}
-			{{ form_widget(form.message) }}
+			<fieldset class="control-group">
+				{{ form_label(form.subject, 'Otsikko', { 'attr': {'class': 'control-label'} }) }}
+				<div class="controls">
+					{{ form_widget(form.subject) }}
+				</div>
+			</fieldset>
+			<fieldset class="control-group">
+				{{ form_label(form.sender, 'Lähettäjä', { 'attr': {'class': 'control-label'}}) }}
+				<div class="controls">
+					{{ form_widget(form.sender) }}
+				</div>
+			</fieldset>
+					{{ form_widget(form.message, { 'attr': {'rows': '20',
+															'class': 'input-xxlarge', 
+													'placeholder': 'Tämä viesti lähetetään ainoastaan tapahtuman osallistujille, ei jonottajille'} }) }}
 		</div>
 		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">{% trans %}close{% endtrans %}</a>
 			<input type="submit" class="btn btn-info" value="{% trans %}send{% endtrans %}">
 		</div>
 	</form>

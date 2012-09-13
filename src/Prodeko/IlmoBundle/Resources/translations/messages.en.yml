@@ -51,7 +51,9 @@ registrationmodal.register: Send!
 close: Close
 
 register.for.event: Register for event
-
+send: Send
+send.email: Send email
+send.email.to.participants: Send email to all participants
     
 time: Time
 time.at: at

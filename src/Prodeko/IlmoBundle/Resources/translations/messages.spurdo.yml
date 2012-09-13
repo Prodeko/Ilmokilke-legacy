@@ -51,7 +51,9 @@ registrationmodal.register: Ilmoittaudu!!!11 :DD:
 close: Sulje
 
 register.for.event: Ilmoiddaudu dabahdumaan x--DD:DDD
-
+send: Lähedä::D
+send.email: Lähedä bosdia ::d
+send.email.to.participants: Laida bosdi gogo bosselle :DD
     
 time: Aiga
 time.at: glo

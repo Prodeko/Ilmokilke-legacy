@@ -72,6 +72,7 @@ class AdminController extends IlmoController
 			$event->setTakesPlace($now);
 			$event->setRegistrationStarts($now);
 			$event->setRegistrationEnds($now);
+			$event->setSizeOfOpenQuota(0);
 				
 		}
 		
@@ -170,14 +171,43 @@ class AdminController extends IlmoController
 		return $this->render('ProdekoIlmoBundle:Ilmo:admin.html.twig', array(
 				'event' => $event,
 				'isOpen' => $event->registrationOpen(),
-				'form'	=> $form->createView()
+				'form'	=> $form->createView(), 
 		));
 		
 	}
 	
-	public function sendEmailAction(Request $request)
+	public function sendEmailAction(Request $request, $id)
 	{
-		return new Response('lol');
+		if ($request->getMethod() == 'POST') {
+			$form = $this->createFormBuilder()
+					 ->add('subject', 'text')
+					 ->add('sender', 'text')
+					 ->add('message', 'textarea')
+					 ->getForm();
+			$form->bindRequest($request);
+			$data = $form->getData();
+			$email = $data['sender'];
+			$message = $data['message'];
+			$subject = $data['subject'];
+			
+			$event = $this->getDoctrine()->getRepository('ProdekoIlmoBundle:Event')
+								->find($id);
+			$registrations = $event->getRegistrations(); //note this only gets the registrations that fit
+			
+			$emailMessage = \Swift_Message::newInstance();
+			$emailMessage->setSubject($subject)
+						 ->setSender($email)
+						 ->setBody($message);
+			foreach($registrations as $registration) {
+				$emailMessage->addTo($registration->getEmail());
+			}
+			$this->get('mailer')->send($emailMessage);
+			return $this->render('ProdekoIlmoBundle:Ilmo:admin.html.twig', array(
+					'event' => $event,
+					'isOpen' => $event->registrationOpen(),
+					'form' => $form->createView(),
+					'message' => 'Viesti lähetetty'));
+		}
 	}
 	
 	/*

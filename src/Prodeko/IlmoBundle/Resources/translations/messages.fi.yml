@@ -51,7 +51,9 @@ registrationmodal.register: Ilmoittaudu!
 close: Sulje
 
 register.for.event: Ilmoittaudu tapahtumaan
-
+send: Lähetä
+send.email: Lähetä sähköposti
+send.email.to.participants: Lähetä sähköposti kaikille osallistujille
     
 time: Aika
 time.at: klo
