@@ -10,6 +10,9 @@
 			<div class="row" id="title">
 				<div class="span9">
 	    			<h2>{{ event.name }}</h2>
+	    			{% include 'ProdekoIlmoBundle:Ilmo:sendemail.html.twig' %}
+	    			<button id="sendemail" class="btn-large btn-success" data-toggle="modal" href="#emailmodal">{% trans %}send.email{% endtrans %}</button>
+	    			
 	    			<p>
 	    				{% if isOpen %}
 	    					Ilmoittautuminen tähän tapahtumaan on auki! Ilmoittautuminen sulkeutuu {{ event.registrationEnds | date("G:i j.n.y") }}.

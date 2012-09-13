@@ -60,6 +60,10 @@ adminRegistrations:
     requirements:
       _locale: en|fi|spurdo
       
+sendEmail:
+    pattern: /{_locale}/admin/email
+    defaults: { _controller: ProdekoIlmoBundle:Admin:sendEmail }
+      
 registrationSuccess:
     pattern: /success/{token}/
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:registrationSuccess }

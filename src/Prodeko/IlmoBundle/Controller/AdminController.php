@@ -159,12 +159,27 @@ class AdminController extends IlmoController
 		if (!$event) { throw $this->createNotFoundException('Tapahtumaa ei löydy');} // TODO: joku parempi exceptionhandlaus näihin.
 		
 		$registrations = $event->getRegistrations();
+		$defaultData = array('sender' => 'ilmo@prodeko.fi');
+		$form = $this->createFormBuilder($defaultData)
+					 ->add('subject', 'text')
+					 ->add('sender', 'text')
+					 ->add('message', 'textarea')
+					 ->getForm();
+		
+		
 		return $this->render('ProdekoIlmoBundle:Ilmo:admin.html.twig', array(
 				'event' => $event,
-				'isOpen' => $event->registrationOpen()
+				'isOpen' => $event->registrationOpen(),
+				'form'	=> $form->createView()
 		));
 		
 	}
+	
+	public function sendEmailAction(Request $request)
+	{
+		return new Response('lol');
+	}
+	
 	/*
 	 * Tuottaa ilmoittautuneiden listasta CSV-tiedoston
 	 * ladattavaksi.
