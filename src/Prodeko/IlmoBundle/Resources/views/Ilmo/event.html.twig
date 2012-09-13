@@ -101,7 +101,7 @@
     				<tr>
     					<td>{% trans %}quota.open{% endtrans %}</td>
     					<td>{{ event.getSizeOfOpenQuota - event.getFreeSeatsInOpenQuota }} / {{ event.getSizeOfOpenQuota }}
-    					<td><div class="progress"><div class="bar" style="width: {{ event.getOpenQuotaFill }}%"></div></div></td>
+    					<td><div class="progress {{ progress }}"><div class="bar" style="width: {{ event.getOpenQuotaFill }}%"></div></div></td>
     				</tr>
     				{% endif %}
     			</table>
