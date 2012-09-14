@@ -13,7 +13,7 @@ list:
       _locale: en|fi|spurdo
       
 show:
-    pattern: /{_locale}/show/{id}
+    pattern: /{_locale}/{id}
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:show, _locale: fi  }
     requirements:
       _locale: en|fi|spurdo
@@ -22,12 +22,22 @@ register:
     pattern: /{_locale}/register/{id}
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:register, _locale: fi }
     
+removePrompt:
+    pattern: /{_locale}/remove/{token}
+    defaults: { _controller: ProdekoIlmoBundle:Ilmo:removePrompt, _locale: fi  }
+    requirements:
+      _locale: en|fi|spurdo
+      
+remove:
+    pattern: /{_locale}/confirmremove/{token}
+    defaults: { _controller: ProdekoIlmoBundle:Ilmo:removeRegistration, _locale: fi } 
+    
 queue:
     pattern: /{_locale}/queue/{id}
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:queue, _locale: fi }
       
 create:
-    pattern: /{_locale}/create/{id}
+    pattern: /{_locale}/admin/create/{id}
     defaults: { _controller: ProdekoIlmoBundle:Admin:createEventForm, id: 0, _locale: fi  }
     requirements:
       _locale: en|fi|spurdo
@@ -44,18 +54,19 @@ export:
     requirements:
       _locale: en|fi|spurdo
 
-removePrompt:
-    pattern: /{_locale}/remove/{token}
-    defaults: { _controller: ProdekoIlmoBundle:Ilmo:removePrompt, _locale: fi  }
-    requirements:
-      _locale: en|fi|spurdo
-      
-remove:
-    pattern: /{_locale}/confirmremove/{token}
-    defaults: { _controller: ProdekoIlmoBundle:Ilmo:removeRegistration, _locale: fi } 
-      
+admin:
+    pattern: /{_locale}/admin
+    defaults: { _controller: ProdekoIlmoBundle:Ilmo:list, _locale: fi }
+
+admin_default:
+  pattern: /admin
+  defaults:  
+      _controller: FrameworkBundle:Redirect:redirect
+      route: admin
+      permanent: true
+   
 adminRegistrations:
-    pattern: /{_locale}/admin/show/{id}
+    pattern: /{_locale}/admin/{id}
     defaults: { _controller: ProdekoIlmoBundle:Admin:adminRegistrations, _locale: fi  }
     requirements:
       _locale: en|fi|spurdo
@@ -63,17 +74,3 @@ adminRegistrations:
 sendEmail:
     pattern: /{_locale}/admin/email/{id}
     defaults: { _controller: ProdekoIlmoBundle:Admin:sendEmail }
-      
-registrationSuccess:
-    pattern: /success/{token}/
-    defaults: { _controller: ProdekoIlmoBundle:Ilmo:registrationSuccess }
-
-
-######### kun localea ei anneta URL:ssa #########
-
-list_default:
-  pattern: /list
-  defaults:  
-      _controller: FrameworkBundle:Redirect:redirect
-      route: list
-      permanent: true
