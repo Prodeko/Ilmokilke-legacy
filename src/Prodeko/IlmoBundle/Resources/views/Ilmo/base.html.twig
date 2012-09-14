@@ -24,6 +24,7 @@
     </head>
     <body>
     	{% block navbar %}
+    	<div class="wrapper">
     	<div class ="navbar">
     		<div class="{{ navbarClass }}">
     		<div class="container">
@@ -48,6 +49,8 @@
     	</div>
     	{% endblock%}
         {% block body %}{% endblock %}
+        <div class="push"></div>
+        </div>
         {% include 'ProdekoIlmoBundle:Ilmo:footer.html.twig' %}
     </body>
 </html>
