@@ -1,3 +1,20 @@
+admin:
+    pattern: /{_locale}/admin
+    defaults: { _controller: ProdekoIlmoBundle:Ilmo:list, _locale: fi }
+    
+admin_default:
+  pattern: /admin
+  defaults:  
+      _controller: FrameworkBundle:Redirect:redirect
+      route: admin
+      permanent: true
+   
+adminRegistrations:
+    pattern: /{_locale}/admin/{id}
+    defaults: { _controller: ProdekoIlmoBundle:Admin:adminRegistrations, _locale: fi  }
+    requirements:
+      _locale: en|fi|spurdo
+
 login:
     pattern: /login
     defaults: { _controller: ProdekoIlmoBundle:Admin:login }
@@ -54,23 +71,15 @@ export:
     requirements:
       _locale: en|fi|spurdo
 
-admin:
-    pattern: /{_locale}/admin
-    defaults: { _controller: ProdekoIlmoBundle:Ilmo:list, _locale: fi }
-
-admin_default:
-  pattern: /admin
-  defaults:  
-      _controller: FrameworkBundle:Redirect:redirect
-      route: admin
-      permanent: true
-   
-adminRegistrations:
-    pattern: /{_locale}/admin/{id}
-    defaults: { _controller: ProdekoIlmoBundle:Admin:adminRegistrations, _locale: fi  }
-    requirements:
-      _locale: en|fi|spurdo
-      
 sendEmail:
     pattern: /{_locale}/admin/email/{id}
     defaults: { _controller: ProdekoIlmoBundle:Admin:sendEmail }
+    
+    #legacy route, delete this after Sep 30.#
+show_legacy:
+    pattern: /{_locale}/show/{id}
+    defaults: 
+        _controller: FrameworkBundle:Redirect:redirect
+        route: show
+    requirements:
+      _locale: en|fi|spurdo
