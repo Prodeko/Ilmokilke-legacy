@@ -67,7 +67,7 @@
 									<td>{{ registration.firstName }}</td>
 									<td>{{ registration.lastName }}</td>
 									<td>{{ registration.email }}</td>
-									<td>{{ registration.allergies }}
+									<td>{{ registration.allergies }}</td>
 									{% for entry in registration.freeTextEntries %}
     									<td>{{ entry.content }}</td>
     								{% endfor %}
@@ -88,6 +88,7 @@
     							<th>{% trans %}name.first{% endtrans %}</th>
     							<th>{% trans %}name.last{% endtrans %}</th>
     							<th>email</th>
+    							<th>allergiat</th>
     							{% for field in event.freeTextFields %}
     								<th>{{ field.name }}</th>
     							{% endfor %}
@@ -103,6 +104,8 @@
 									<td>{{ registration.firstName }}</td>
 									<td>{{ registration.lastName }}</td>
 									<td>{{ registration.email }}</td>
+									<td>{{ registration.allergies }}</td>
+									<th>allergiat</th>
 									{% for entry in registration.freeTextEntries %}
     									<td>{{ entry.content }}</td>
     								{% endfor %}
@@ -123,6 +126,7 @@
     							<th>{% trans %}name.first{% endtrans %}</th>
     							<th>{% trans %}name.last{% endtrans %}</th>
     							<th>email</th>
+    							<th>allergiat</th>
     							{% for field in event.freeTextFields %}
     								<th>{{ field.name }}</th>
     							{% endfor %}
@@ -138,6 +142,7 @@
 									<td>{{ registration.firstName }}</td>
 									<td>{{ registration.lastName }}</td>
 									<td>{{ registration.email }}</td>
+									<td>{{ registration.allergies }}</td>
 									{% for entry in registration.freeTextEntries %}
     									<td>{{ entry.content }}</td>
     								{% endfor %}
