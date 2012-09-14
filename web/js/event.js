@@ -1,4 +1,9 @@
 $(function() {
+	
+	jQuery.fn.reset = function () {
+		  $(this).each (function() { this.reset(); });
+		};
+	
 	function replaceRadioButtons($buttonDiv, $prototype) {
 		//Funktio piilottaa radiobuttonit annetussa divissä ja korvaa ne pseudo-radiobuttoneilla prototyypissä annetun mallin mukaan.
 		//Hae yksittäisen nappulan prototyyppi.
@@ -26,6 +31,11 @@ $(function() {
 		$buttonDiv.children().hide();
 		//Liitä uudet radiobuttonit
 		$buttonDiv.prepend($prototype);
+	}
+	
+	function clearModal() {
+		$('form').reset();
+		$('button.active').removeClass('active');
 	}
 	
 	//Tarkista, onko lomakkeeseen tullut virheitä edellisestä lähetyksestä
@@ -68,4 +78,14 @@ $(function() {
 			$('.modal-body').append('<iframe width="500" height="315" src="http://www.youtube.com/embed/hdqHUms7vUw?autoplay=1#t=38s" frameborder="0" allowfullscreen></iframe>');
 		}
 	});
+	
+	//Ilmomodaali tyhjenee, kun se on riittävän pitkään ollut suljettuna
+	var timeout;
+	$('#subscriptionmodal').on('hide', function() {
+		timeout = setTimeout(function(){ clearModal();}, 60000);
+	});
+	
+	$('#subscriptionmodal').on('show', function() {
+		clearTimeout(timeout);
+	})
 });
