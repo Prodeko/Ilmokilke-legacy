@@ -64,14 +64,14 @@
     									 {% endif %}
     			</h4>
     		</div>
-    			<blockquote id="eventsummary">{{ event.summary }}</blockquote>
+    			<blockquote id="event_summary">{{ event.summary }}</blockquote>
 	    		{% if registrationOpen %}
 		   		<!-- Start subscription modal -->
 		    		{% include 'ProdekoIlmoBundle:Ilmo:registration.html.twig' %}
 		    		<!-- End subscription modal -->
 	    		{% endif %}
 	    	
-	    		<p>{{ event.description | nl2br }}</p>
+	    		<p id="event_description">{{ event.description | nl2br }}</p>
     		
 	    	</div>
 	    	<div class="span6">

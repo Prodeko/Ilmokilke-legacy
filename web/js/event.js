@@ -69,6 +69,13 @@ $(function() {
 		}
 	});
 	
+	$('#event_description').html(function(){
+		return linkify($(this).html());
+	});
+	$('#event_summary').html(function(){
+		return linkify($(this).html());
+	});
+	
 	$('form').submit(function(){
 		//Disabloi ilmoittautumisnappula lomakketta lähettäessä, estää tuplailmoittautumisen vahingossa.
 	    $('input[type=submit]', this).attr('disabled', 'disabled');
