@@ -177,6 +177,7 @@ class Event
 		foreach($this->quotas as $quota) {
 			$registrations = array_merge($registrations, $quota->getRegistrations());
 		}
+		$registrations = array_merge($registrations, $this->getOpenQuotaRegistrations());
 		return $registrations;
 	}
 	/**
