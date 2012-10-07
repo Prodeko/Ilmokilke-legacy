@@ -2,5 +2,7 @@ Ilmoittautumisaika,Sukunimi,Etunimi,Kiintiö,Email,Allergiat,{% for field in eve
 
 {% for registration in event.getRegistrations %}
 {{ registration.registrationTime | date('Y-m-d G.i.s')}},{{ registration.lastName }},{{ registration.firstName }},{{ registration.quota.name }},{{ registration.email }},{{ registration.allergies }},{% for entry in registration.freeTextEntries %}{{ entry.content }},{% endfor %}{% for entry in registration.multipleChoiceEntries %}{{ entry.selection }},{% endfor %}
-
+{% endfor %}
+{% for registration in event.getOpenQuotaRegistrations %}
+{{ registration.registrationTime | date('Y-m-d G.i.s')}},{{ registration.lastName }},{{ registration.firstName }},{% trans %}quota.open{% endtrans %},{{ registration.email }},{{ registration.allergies }},{% for entry in registration.freeTextEntries %}{{ entry.content }},{% endfor %}{% for entry in registration.multipleChoiceEntries %}{{ entry.selection }},{% endfor %}
 {% endfor %}
