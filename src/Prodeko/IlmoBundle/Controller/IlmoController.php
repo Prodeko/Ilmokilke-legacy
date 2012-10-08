@@ -178,14 +178,26 @@ class IlmoController extends Controller
 	
 	public function removePromptAction($token, Request $request)
 	{
-		return $this->render('ProdekoIlmoBundle:Ilmo:removeprompt.html.twig', 
-				array('token' => $token));
+		$isAdmin = $this->get('security.context')->isGranted('ROLE_ADMIN');
+		$em = $this->getDoctrine()->getEntityManager();
+		$registration = $this->getDoctrine()
+			->getRepository('ProdekoIlmoBundle:Registration')
+			->findOneBy(array('token' => $token));
+		if(!$registration) {
+			throw $this->createNotFoundException("Virheellinen ilmoittautumiskoodi");
+		}
+		if(!$registration->getEvent()->registrationEnded() || $isAdmin) {
+			return $this->render('ProdekoIlmoBundle:Ilmo:removeprompt.html.twig',
+					array('token' => $token));
+		}
+		//TODO: Tässä palautettava jotain fiksumpaa
+		else throw $this->createNotFoundException("Et voi poistaa ilmoittautumistasi, sillä tapahtuman ilmoittautuminen on sulkeutunut.");
 	}
 	
 	
 	public function removeRegistrationAction($token, Request $request) 
 	{
-		//Poistaa ilmoittautumisen annetulla id:llä. Tähän pitää tehdä varmennussysteemit.
+		$isAdmin = $this->get('security.context')->isGranted('ROLE_ADMIN');
 		$em = $this->getDoctrine()->getEntityManager();
 		$registration = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Registration')
@@ -195,17 +207,20 @@ class IlmoController extends Controller
 			return $this->redirect($this->generateUrl("list"));
 		}
 		$event = $registration->getEvent();
+		if(!$registration->getEvent()->registrationEnded() || $isAdmin)
+		{
+			// Poista ilmoittautumisen vapaateksti- ja monivalintaentryt
+			foreach ($registration->getFreeTextEntries() as $freeTextEntry) $em->remove($freeTextEntry);
+			foreach ($registration->getMultipleChoiceEntries() as $multipleChoiceEntry) $em->remove($multipleChoiceEntry);
+			
+			// Poista itse ilmoittautuminen ja tallenna.
+			$em->remove($registration);
+			$em->flush();
+			//Ohjaa tarkastelemaan tapahtumaa
+			//TODO: Ohjaa takaisin adminin ilmoittautumiset - näkymään, jos pyyntö tullut sieltä.
+			return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
+		}
 		
-		// Poista ilmoittautumisen vapaateksti- ja monivalintaentryt
-		foreach ($registration->getFreeTextEntries() as $freeTextEntry) $em->remove($freeTextEntry);
-		foreach ($registration->getMultipleChoiceEntries() as $multipleChoiceEntry) $em->remove($multipleChoiceEntry);
-		
-		// Poista itse ilmoittautuminen ja tallenna.
-		$em->remove($registration);
-		$em->flush();
-		//Ohjaa tarkastelemaan tapahtumaa
-		//TODO: Ohjaa takaisin adminin ilmoittautumiset - näkymään, jos pyyntö tullut sieltä.
-		return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
 	}
 }
 ?>
