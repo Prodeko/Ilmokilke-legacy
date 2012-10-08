@@ -130,8 +130,8 @@ class Event
 	 * @return \DateTime
 	 */
 	public function kiltisRegistrationStarts() {
-		$kiltisRegistrationStarts = $this->registrationStarts->sub(new \DateInterval('PT3H'));
-		$this->registrationStarts->add(new \DateInterval('PT3H'));
+		$kiltisRegistrationStarts = clone $this->registrationStarts;
+		$kiltisRegistrationStarts->sub(new \DateInterval('PT3H'));
 		return $kiltisRegistrationStarts;
 	}
 	
