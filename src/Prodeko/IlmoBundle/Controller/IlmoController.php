@@ -69,6 +69,7 @@ class IlmoController extends Controller
 		$kiltis = false;
 		if($ip = $request->getClientIp() === $this->container->getParameter('kiltis_ip')) {
 			$kiltis = true;
+			
 		}
 		//Hae tapahtuma URI:sta tulleen id:n perusteella
 		$event = $this->getDoctrine()

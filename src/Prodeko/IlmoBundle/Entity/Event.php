@@ -121,8 +121,7 @@ class Event
 	 */
 	public function kiltisRegistrationOpen() {
 		$now = new \DateTime();
-		$now = $now->add(new \DateInterval('PT3H'));
-		return($this->registrationStarts  < $now && $now < $this->registrationEnds);
+		return($this->kiltisRegistrationStarts()  < $now && $now < $this->registrationEnds);
 	}
 	
 	/**
@@ -131,7 +130,9 @@ class Event
 	 * @return \DateTime
 	 */
 	public function kiltisRegistrationStarts() {
-		return $this->registrationStarts->sub(new \DateInterval('PT3H'));
+		$kiltisRegistrationStarts = $this->registrationStarts->sub(new \DateInterval('PT3H'));
+		$this->registrationStarts->add(new \DateInterval('PT3H'));
+		return $kiltisRegistrationStarts;
 	}
 	
 	/**

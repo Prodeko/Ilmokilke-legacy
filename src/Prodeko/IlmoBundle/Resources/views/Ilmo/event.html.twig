@@ -42,7 +42,7 @@
     			{% endif %}
     			<tr>
     				<td>{% trans %}registration.period{% endtrans %}:</td>
-    				<td>{{ event.registrationStarts | date("j.n.y G:i") }} - {{ event.registrationEnds | date("j.n.y G:i") }}</td>
+    				<td>{{ event.getRegistrationStarts | date("j.n.y G:i") }} - {{ event.registrationEnds | date("j.n.y G:i") }}</td>
     			</tr>
     			<tr>
     				<td>{% trans %}kiltis.registration.starts{% endtrans %}:</td>
