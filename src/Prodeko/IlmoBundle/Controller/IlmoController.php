@@ -189,7 +189,7 @@ class IlmoController extends Controller
 		}
 		if(!$registration->getEvent()->registrationEnded() || $isAdmin) {
 			return $this->render('ProdekoIlmoBundle:Ilmo:removeprompt.html.twig',
-					array('token' => $token));
+					array('registration' => $registration));
 		}
 		//TODO: Tässä palautettava jotain fiksumpaa
 		else throw $this->createNotFoundException("Et voi poistaa ilmoittautumistasi, sillä tapahtuman ilmoittautuminen on sulkeutunut.");
@@ -219,6 +219,9 @@ class IlmoController extends Controller
 			$em->flush();
 			//Ohjaa tarkastelemaan tapahtumaa
 			//TODO: Ohjaa takaisin adminin ilmoittautumiset - näkymään, jos pyyntö tullut sieltä.
+			if($isAdmin) {
+				return $this->redirect($this->generateUrl("adminRegistrations", array('id' => $event->getId())));
+			}
 			return $this->redirect($this->generateUrl("show", array('id' => $event->getId())));
 		}
 		

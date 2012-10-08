@@ -5,13 +5,15 @@
 {% endblock %}
 
 {% set cancelPath = path('list') %}
-{% set okPath = path('remove', {'token': token}) %}
+{% set okPath = path('remove', {'token': registration.token}) %}
 
 {% block body %}
 <div class="container">
  	<div class="row">
 	 	<div class="alert alert-info">
-	 		{% trans %}prompt.remove{% endtrans %}
+	 		<p>{% trans %}prompt.remove{% endtrans %}</p>
+	 		<p><strong>{{ registration.event.name }}</strong></p>
+	 		<p><strong>{{ registration.firstName }} {{ registration.lastName }}</strong></p>
 	 	</div>
  	</div>
  	<div class="row">
