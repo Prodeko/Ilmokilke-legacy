@@ -17,7 +17,7 @@ jQuery(document).ready(function() {
 	}
 	
 	function addDeleteLink($fieldFormDiv) {	// Funktio lisää annettuun diviin nappulan, jolla sen voi poistaa
-	    var $removeFormButton = $('<button href="#" class="close">&times;</button>');
+	    var $removeFormButton = $('<a href="#" class="close">&times;</a>');
 	    $fieldFormDiv.prepend($removeFormButton);
 
 	    $removeFormButton.on('click', function(e) {
