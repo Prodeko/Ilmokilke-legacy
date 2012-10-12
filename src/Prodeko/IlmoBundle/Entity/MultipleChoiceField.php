@@ -73,7 +73,7 @@ class MultipleChoiceField
      */
     public function getName()
     {
-        return $this->name;
+        return stripslashes($this->name);
     }
 
     /**

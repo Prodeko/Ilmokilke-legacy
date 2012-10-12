@@ -72,7 +72,7 @@ class FreeTextField
      */
     public function getName()
     {
-        return $this->name;
+        return stripslashes($this->name);
     }
 
     /**
@@ -92,7 +92,7 @@ class FreeTextField
      */
     public function getDescription()
     {
-        return $this->description;
+        return stripslashes($this->description);
     }
     
     /**

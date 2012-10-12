@@ -150,7 +150,7 @@ class Registration
      */
     public function getFirstName()
     {
-        return $this->firstName;
+        return stripslashes($this->firstName);
     }
 
     /**
@@ -170,7 +170,7 @@ class Registration
      */
     public function getLastName()
     {
-        return $this->lastName;
+        return stripslashes($this->lastName);
     }
 
     /**
@@ -210,7 +210,7 @@ class Registration
      */
     public function getAllergies()
     {
-        return $this->allergies;
+        return stripslashes($this->allergies);
     }
     
     /**

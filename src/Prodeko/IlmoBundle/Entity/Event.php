@@ -352,7 +352,7 @@ class Event
      */
     public function getLocation()
     {
-        return $this->location;
+        return stripslashes($this->location);
     }
 
     /**
@@ -372,7 +372,7 @@ class Event
      */
     public function getSummary()
     {
-        return $this->summary;
+        return stripslashes($this->summary);
     }
 
     /**
@@ -392,10 +392,9 @@ class Event
      */
     public function getDescription()
     {
-        return $this->description;
+        return stripslashes($this->description);
     }
-
-
+    
     
     /**
      * Add registrations
@@ -484,7 +483,7 @@ class Event
      */
     public function getName()
     {
-        return $this->name;
+        return stripslashes($this->name);
     }
 
     /**

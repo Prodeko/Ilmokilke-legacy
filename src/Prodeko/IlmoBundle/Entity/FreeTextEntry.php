@@ -56,7 +56,7 @@ class FreeTextEntry
      */
     public function getContent()
     {
-        return $this->content;
+        return stripslashes($this->content);
     }
 
     /**
