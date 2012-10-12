@@ -29,6 +29,7 @@ fields:
   additional: Lisäkentät
   multipleChoice: Monivalintakentät
 kiltis.registration.starts: Kiltisilmo alkaa
+preview.form: Esikatsele
 prompt.remove: Haluatko varmasti poistaa ilmoittautumisen?
 ok.remove: Poista
 queue: Jono

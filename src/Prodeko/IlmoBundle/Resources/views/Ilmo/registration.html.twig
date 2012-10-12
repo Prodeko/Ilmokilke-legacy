@@ -80,8 +80,9 @@
 					</div>
 				</fieldset>
 				{# Älä poista form_restiä, se luo lomakkeen varmistustokenin #}
-				{{ form_rest(form) }}
-				
+				{% if registrationOpen %}
+					{{ form_rest(form) }}
+				{% endif %}
 				{# tätä prototyyppiä ei näytetä, se toimii vain esimerkkinä kaikille luotaville pseudo-radiobutton-diveille #}
 				<div id="radiobuttons-prototype" class="btn-group" data-toggle="buttons-radio" style="display: none">
 					<button class="btn btn-radio" type="button"></button>
@@ -89,7 +90,9 @@
 		</div>
 		<div class="modal-footer">
 			<a href="#" class="btn" data-dismiss="modal">{% trans %}close{% endtrans %}</a>
-			<input type="submit" class="btn btn-info" value="{% trans %}registrationmodal.register{% endtrans %}" />
+			{% if registrationOpen %}
+				<input type="submit" class="btn btn-info" value="{% trans %}registrationmodal.register{% endtrans %}" />
+			{% endif %}
 		</div>
 	</form>
 </div>

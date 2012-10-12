@@ -23,6 +23,8 @@
 			<div class="span3">
 				{% if registrationOpen %}
 					<button id="eventsubscribe" class="btn-large btn-success" data-toggle="modal" href="#subscriptionmodal">{% trans %}register{% endtrans %}</button>
+				{% elseif is_granted('ROLE_ADMIN') %}
+					<button id="formpreview" class="btn-large btn-success" data-toggle="modal" href="#subscriptionmodal">{% trans %}preview.form{% endtrans %}</button>
 				{% endif %}
 			</div>
     	</div>
@@ -65,7 +67,7 @@
     			</h4>
     		</div>
     			<blockquote id="event_summary">{{ event.summary }}</blockquote>
-	    		{% if registrationOpen %}
+	    		{% if registrationOpen or is_granted('ROLE_ADMIN') %}
 		   		<!-- Start subscription modal -->
 		    		{% include 'ProdekoIlmoBundle:Ilmo:registration.html.twig' %}
 		    		<!-- End subscription modal -->
