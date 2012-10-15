@@ -27,6 +27,9 @@ class EventType extends AbstractType
 				'date_format' => 'dd.MM.yyyy'));
 		$builder->add('location', "text");
 		$builder->add('sizeOfOpenQuota','integer');
+		$builder->add('hiddenList', 'checkbox', array('required' => false));
+		$builder->add('askAboutAllergies', 'checkbox', array('required' => false));
+		$builder->add('kiltisilmo', 'checkbox', array('required' => false));
 		
 		$builder->add('freeTextFields', 'collection', array(
 				'type' => new FreeTextFieldType(),

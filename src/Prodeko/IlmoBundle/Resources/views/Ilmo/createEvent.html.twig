@@ -90,12 +90,25 @@
 	    </div>
 	    <div class="span6">
 	    <h1>Lisävalinnat</h1>
-	    <div class="well form-inline">
-	    	<ul>
-	    	<li>Piilota tapahtumalista</li>
-	    	<li>Tiedustele erityisruokavalioita</li>
-	    	<li>Kiltisilmo käytössä</li>
-	    	</ul>
+	    <div class="well">
+	    <div class="form-inline">
+	    <a class="flagprivate" href="#" rel="tooltip" title="Rasti tämä, jos haluat, että ilmoittautumislistaa ei näytetä muille kuin admin-käyttäjille.">
+	    	{{ form_widget(form.hiddenList) }}
+	    	{{ form_label(form.hiddenList, 'Piilotettu ilmoittautumislista') }}
+	    </a>
+	    </div>
+	    <div class="form-inline">
+	    <a class="flagprivate" href="#" rel="tooltip" title="Jos tapahtumassa tarjotaan ruokaa, rasti tämä, jotta lomakkeeseen lisätään oikea kenttä. Älä lisää allaolevalla työkalulla erityisruokavaliokenttää erikseen.">
+	    	{{ form_widget(form.askAboutAllergies) }}
+	    	{{ form_label(form.askAboutAllergies, 'Tiedustele erityisruokavalioita') }}
+	    </a>
+	    </div>
+	    <div class="form-inline">
+	    <a class="flagprivate" href="#" rel="tooltip" title="Muistathan, että Prodekon tapahtumiin voi killan sääntöjen mukaan ilmoittautua ensimmäisen kolmen tunnin ajan vain kiltahuoneella.">
+	    	{{ form_widget(form.kiltisilmo) }}
+	    	{{ form_label(form.kiltisilmo, 'Kiltisilmo päällä') }}
+	    </a>
+	    </div>
 	    </div>
 	    <h1>Kiintiöt</h1>
 	    <div class="well form-inline">

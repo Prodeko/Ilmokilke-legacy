@@ -29,7 +29,7 @@ Prodeko\IlmoBundle\Entity\Event:
       type: text
     kiltisilmo:
       type: boolean
-    hiddenlist:
+    hiddenList:
       type: boolean
     askAboutAllergies:
       type: boolean

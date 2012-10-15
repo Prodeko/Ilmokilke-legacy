@@ -61,6 +61,16 @@ class Event
 	private $description;
 	
 	/**
+	 * @var boolean $hiddenlist
+	 */
+	private $hiddenList;
+	
+	/**
+	 * @var boolean $askAboutAllergies
+	 */
+	private $askAboutAllergies;
+	
+	/**
 	 * @var Prodeko\IlmoBundle\Entity\Quota
 	 */
 	private $quotas;
@@ -556,15 +566,6 @@ class Event
     }
 	
 
-    /**
-     * @var boolean $hiddenlist
-     */
-    private $hiddenlist;
-
-    /**
-     * @var boolean $askAboutAllergies
-     */
-    private $askAboutAllergies;
 
 
     /**
@@ -572,9 +573,9 @@ class Event
      *
      * @param boolean $hiddenlist
      */
-    public function setHiddenlist($hiddenlist)
+    public function setHiddenList($hiddenList)
     {
-        $this->hiddenlist = $hiddenlist;
+        $this->hiddenList = $hiddenList;
     }
 
     /**
@@ -584,7 +585,7 @@ class Event
      */
     public function getHiddenlist()
     {
-        return $this->hiddenlist;
+        return $this->hiddenList;
     }
 
     /**
