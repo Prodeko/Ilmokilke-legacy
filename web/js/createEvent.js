@@ -61,7 +61,7 @@ jQuery(document).ready(function() {
 		
 	}
 	function createToolTips(){
-		$('a.flagprivate').each( function() {
+		$('.tool').each( function() {
 	    	$(this).tooltip();
 	    });
 	}	

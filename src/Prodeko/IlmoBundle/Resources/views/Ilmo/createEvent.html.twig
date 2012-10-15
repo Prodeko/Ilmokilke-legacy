@@ -55,7 +55,9 @@
 	    	{% endif %}
     	</div>
     	<div class="form">
+    	<a class="tool" href="#" rel="tooltip" title="Täytä tähän aika, jolloin ilmoittautuminen aukeaa kaikkialla. Kiltisilmo alkaa siis 3 tuntia aiemmin.">
 		    {{ form_label(form.registrationStarts, 'Ilmoittautuminen alkaa') }}
+		</a>
 		    {{ form_widget(form.registrationStarts.date, {'attr': {'placeholder': 'dd.mm.yyyy', 'class': 'datepicker'} }) }}
 		    {{ form_widget(form.registrationStarts.time, {'attr': {'placeholder': 'hh.mm', 'class': 'timefield'} }) }}
 		    {% if form_errors(form.registrationStarts) %}
@@ -92,19 +94,19 @@
 	    <h1>Lisävalinnat</h1>
 	    <div class="well">
 	    <div class="form-inline">
-	    <a class="flagprivate" href="#" rel="tooltip" title="Rasti tämä, jos haluat, että ilmoittautumislistaa ei näytetä muille kuin admin-käyttäjille.">
+	    <a class="tool" href="#" rel="tooltip" title="Rasti tämä, jos haluat, että ilmoittautumislistaa ei näytetä muille kuin admin-käyttäjille.">
 	    	{{ form_widget(form.hiddenList) }}
 	    	{{ form_label(form.hiddenList, 'Piilotettu ilmoittautumislista') }}
 	    </a>
 	    </div>
 	    <div class="form-inline">
-	    <a class="flagprivate" href="#" rel="tooltip" title="Jos tapahtumassa tarjotaan ruokaa, rasti tämä, jotta lomakkeeseen lisätään oikea kenttä. Älä lisää allaolevalla työkalulla erityisruokavaliokenttää erikseen.">
+	    <a class="tool" href="#" rel="tooltip" title="Jos tapahtumassa tarjotaan ruokaa, rasti tämä, jotta lomakkeeseen lisätään oikea kenttä. Älä lisää allaolevalla työkalulla erityisruokavaliokenttää erikseen.">
 	    	{{ form_widget(form.askAboutAllergies) }}
 	    	{{ form_label(form.askAboutAllergies, 'Tiedustele erityisruokavalioita') }}
 	    </a>
 	    </div>
 	    <div class="form-inline">
-	    <a class="flagprivate" href="#" rel="tooltip" title="Muistathan, että Prodekon tapahtumiin voi killan sääntöjen mukaan ilmoittautua ensimmäisen kolmen tunnin ajan vain kiltahuoneella.">
+	    <a class="tool" href="#" rel="tooltip" title="Muistathan, että Prodekon tapahtumiin voi killan sääntöjen mukaan ilmoittautua ensimmäisen kolmen tunnin ajan vain kiltahuoneella.">
 	    	{{ form_widget(form.kiltisilmo) }}
 	    	{{ form_label(form.kiltisilmo, 'Kiltisilmo päällä') }}
 	    </a>
@@ -112,8 +114,10 @@
 	    </div>
 	    <h1>Kiintiöt</h1>
 	    <div class="well form-inline">
+	    <div class="well">
 		    {{ form_label(form.sizeOfOpenQuota, 'Kiintiöimättömät paikat') }}
 		    {{ form_widget(form.sizeOfOpenQuota, {'attr': {'class': 'input-small'}}) }}
+	    </div>
 		    {% if form_errors(form.sizeOfOpenQuota) %}
 			    <div class="alert alert-error">
 			    	<button type="button" class="close" data-dismiss="alert">×</button>
@@ -153,13 +157,16 @@
 		</div>
 		</div>
 		<div class="row">
+		<h1>Kysyttävät lisätiedot</h1>
+		</div>
+		<div class="row">
 			<div class="span6">
-				<h3>{% trans %}fields.additional{% endtrans %}</h3>
+				<h3>{% trans %}fields.freetext{% endtrans %}</h3>
 				<div class="freeTextFields" data-prototype="
 					 {{ form_label(form.freeTextFields.get('prototype').name, 'Nimi') | e }}
 					 {{ form_widget(form.freeTextFields.get('prototype').name, {'attr': {'class': 'input-medium'}}) | e }}
 					 {{ form_errors(form.freeTextFields.get('prototype').name) | e }}
-					 <a class='flagprivate' href='#' rel='tooltip' title='Jos tämä on valittu, vastauksia ei näytetä julkisessa ilmoittautumislistassa'>
+					 <a class='tool' href='#' rel='tooltip' title='Jos tämä on valittu, vastauksia ei näytetä julkisessa ilmoittautumislistassa'>
 					 {{ form_label(form.freeTextFields.get('prototype').flagPrivate, 'Piilotettu') | e }}
 					 {{ form_widget(form.freeTextFields.get('prototype').flagPrivate, {'attr': {'checked': 'checked'}}) | e }}
 					 </a>
@@ -169,7 +176,7 @@
 		       	    		{{ form_label(field.name, "Nimi") }}
 					    	{{ form_widget(field.name, {'attr': {'class': 'input-medium'}}) }}
 					    	{{ form_errors(field.name) }}
-							<a class="flagprivate" href="#" rel="tooltip" title="Jos tämä on valittu, vastauksia ei näytetä julkisessa ilmoittautumislistassa">
+							<a class="tool" href="#" rel="tooltip" title="Jos tämä on valittu, vastauksia ei näytetä julkisessa ilmoittautumislistassa">
 								{{ form_label(field.flagPrivate, "Piilotettu") }}
 						    	{{ form_widget(field.flagPrivate) }}
 					    	</a>
@@ -185,7 +192,7 @@
 					{{ form_label(form.multipleChoiceFields.get('prototype').name, 'Nimi') | e }}
 					{{ form_widget(form.multipleChoiceFields.get('prototype').name, {'attr': {'class': 'input-medium'}}) | e }}
 					{{ form_errors(form.multipleChoiceFields.get('prototype').name) | e }}
-					<a class='flagprivate' href='#' rel='tooltip' title='Jos tämä on valittu, vastauksia ei näytetä julkisessa ilmoittautumislistassa'>
+					<a class='tool' href='#' rel='tooltip' title='Jos tämä on valittu, vastauksia ei näytetä julkisessa ilmoittautumislistassa'>
 					{{ form_label(form.multipleChoiceFields.get('prototype').flagPrivate, 'Piilotettu') | e }}
 					</a>
 					{{ form_widget(form.multipleChoiceFields.get('prototype').flagPrivate, {'attr': {'checked': 'checked'}}) | e }}
@@ -199,7 +206,7 @@
 							{{ form_label(field.name, 'Nimi') }}
 							{{ form_widget(field.name, {'attr': {'class': 'input-medium'}}) }}
 							{{ form_errors(field.name) }}
-							<a class="flagprivate" href="#" rel="tooltip" title="Jos tämä on valittu, vastauksia ei näytetä julkisessa ilmoittautumislistassa">
+							<a class="tool" href="#" rel="tooltip" title="Jos tämä on valittu, vastauksia ei näytetä julkisessa ilmoittautumislistassa">
 								{{ form_label(field.flagPrivate, 'Piilotettu') }}
 								{{ form_widget(field.flagPrivate, {'attr': {'checked': 'checked'}}) }}
 							</a>
