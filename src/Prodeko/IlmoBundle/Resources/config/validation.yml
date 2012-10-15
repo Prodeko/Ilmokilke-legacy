@@ -12,6 +12,9 @@ Prodeko\IlmoBundle\Entity\Registration:
                 message: Pakollinen kenttä!
             - Email:
                 message: Virheellinen osoite!
+        quota:
+            - NotBlank:
+                message: Valitse kiintiö
                 
 Prodeko\IlmoBundle\Entity\Event:
     properties:
@@ -36,7 +39,7 @@ Prodeko\IlmoBundle\Entity\Event:
             - NotBlank:
                 message: Pakollinen kenttä!
             - DateTime:
-                message: Virheellinen aika!
+                message:  Virheellinen aika!
         registrationEnds:
             - NotBlank:
                 message: Pakollinen kenttä!

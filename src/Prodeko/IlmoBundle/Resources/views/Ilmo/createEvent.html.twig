@@ -7,7 +7,11 @@
 {% block body %}
 <div class="container">
 	<form action="{{ path('create', { 'id': id }) }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
-		<div class="well form-inline">
+	<div class="row">
+	<div class="span6">
+		<h1>Perustiedot</h1>
+		<div class="well">
+		<div class="form-inline">
 		    {{ form_label(form.name, "Tapahtuman nimi") }}
 		    {{ form_widget(form.name) }}
 		    {% if form_errors(form.name) %}
@@ -17,7 +21,7 @@
 		    	</div>
 	    	{% endif %}
     	</div>
-    	<div class="well form">
+    	<div class="form">
 	    	{{ form_label(form.description, "Tapahtuman kuvaus") }}
 		    {{ form_widget(form.description, {'attr': { 'rows': '10'} }) }}
 		    {%  if form_errors(form.description) %}
@@ -27,11 +31,11 @@
 			    </div>
 		    {% endif %}
 	    </div>
-	    <div class="well">
+	    <div class="">
 	    {{ form_label(form.summary, "Lyhyt kuvaus tapahtumasta") }}
 	    {{ form_widget(form.summary, {'attr': {'placeholder': 'Kirjoita tähän tapahtumasta lyhyt, korkeintaan 160 merkin pituinen kuvaus, joka näytetään tapahtumalistassa.',
 											   'rows': '4'} }) }}
-		<span id="charcount" class="alert alert-info"></span>
+		<p id="charcount" class="alert alert-info"></p>
 	    {% if form_errors(form.summary) %}
 			<div class="alert alert-error">
 				<button type="button" class="close" data-dismiss="alert">×</button>
@@ -39,7 +43,7 @@
 	    	</div>
     	{% endif %}
     	</div>
-    	<div class="well form-inline">
+    	<div class="form">
 			{{ form_label(form.takesPlace, 'Tapahtuma-aika') }}
 		    {{ form_widget(form.takesPlace.date, {'attr': {'placeholder': 'dd.mm.yyyy', 'class': 'datepicker'} }) }}
 		    {{ form_widget(form.takesPlace.time, {'attr': {'placeholder': 'hh.mm', 'class': 'timefield'} })}}
@@ -50,7 +54,7 @@
 		    	</div>
 	    	{% endif %}
     	</div>
-    	<div class="well form-inline">
+    	<div class="form">
 		    {{ form_label(form.registrationStarts, 'Ilmoittautuminen alkaa') }}
 		    {{ form_widget(form.registrationStarts.date, {'attr': {'placeholder': 'dd.mm.yyyy', 'class': 'datepicker'} }) }}
 		    {{ form_widget(form.registrationStarts.time, {'attr': {'placeholder': 'hh.mm', 'class': 'timefield'} }) }}
@@ -61,7 +65,7 @@
 			   	</div>
 		   	{% endif %}
 	   	</div>
-	   	<div class="well form-inline">
+	   	<div class="form">
 			{{ form_label(form.registrationEnds, 'Ilmoittautuminen päättyy') }}
 		    {{ form_widget(form.registrationEnds.date, {'attr': {'placeholder': 'dd.mm.yyyy', 'class': 'datepicker'} }) }}
 		    {{ form_widget(form.registrationEnds.time, {'attr': {'placeholder': 'hh.mm', 'class': 'timefield'} }) }}
@@ -72,7 +76,7 @@
 			    </div>
 		    {% endif %}
 	    </div>
-	    <div class="well form-inline">
+	    <div class="form">
 		    {{ form_label(form.location, 'Paikka') }}
 		    {{ form_widget(form.location) }}
 		    {% if form_errors(form.location) %}
@@ -82,8 +86,12 @@
 			    </div>
 		    {% endif %}
 	    </div>
+	    </div>
+	    </div>
+	    <div class="span6">
+	    <h1>Kiintiöt</h1>
 	    <div class="well form-inline">
-		    {{ form_label(form.sizeOfOpenQuota, 'Avoimen kiintiön koko') }}
+		    {{ form_label(form.sizeOfOpenQuota, 'Kiintiöimättömät paikat') }}
 		    {{ form_widget(form.sizeOfOpenQuota, {'attr': {'class': 'input-small'}}) }}
 		    {% if form_errors(form.sizeOfOpenQuota) %}
 			    <div class="alert alert-error">
@@ -91,9 +99,40 @@
 			    	{{ form_errors(form.sizeOfOpenQuota) }}
 				</div>
 			{% endif %}
+			<div class="quotas" data-prototype="
+			{{ form_label(form.quotas.get('prototype').name, 'Nimi') | e }}
+			{{ form_widget(form.quotas.get('prototype').name, {'attr': {'class': 'input-small'}}) | e }}
+			{{ form_errors(form.quotas.get('prototype').name) | e }}
+			{{ form_label(form.quotas.get('prototype').size, 'Koko') | e }}
+			{{ form_widget(form.quotas.get('prototype').size, {'attr': {'class': 'input-small'}}) | e }}
+			{{ form_errors(form.quotas.get('prototype').size) | e }}">
+			
+			{% for quota in form.quotas %}
+				<div class="well {% if not event.registrationOpen %}quota{% endif %} form-inline">
+					{{ form_label(quota.name, 'Nimi') }}
+					{{ form_widget(quota.name, {'attr': {'class': 'input-small'}}) }}
+					{% if form_errors(quota.name) %}
+						<div class="alert alert-error">
+							<button type="button" class="close" data-dismiss="alert">×</button>
+							{{ form_errors(quota.name) }}
+						</div>
+					{% endif %}
+					{{ form_label(quota.size, 'Koko') }}
+					{{ form_widget(quota.size, {'attr': {'class': 'input-small'}}) }}
+					{% if form_errors(quota.size) %}
+						<div class="alert alert-error">
+							<button type="button" class="close" data-dismiss="alert">×</button>
+							{{ form_errors(quota.size) }}
+						</div>
+					{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+		</div>
+		</div>
 		</div>
 		<div class="row">
-			<div class="span5">
+			<div class="span6">
 				<h3>{% trans %}fields.additional{% endtrans %}</h3>
 				<div class="freeTextFields" data-prototype="
 					 {{ form_label(form.freeTextFields.get('prototype').name, 'Nimi') | e }}
@@ -119,7 +158,7 @@
 				</div>
 			</div>
 			
-			<div class="span5">
+			<div class="span6">
 				<h3>{% trans %}fields.multipleChoice{% endtrans %}</h3>
 				<div class="multipleChoiceFields" data-prototype="
 					{{ form_label(form.multipleChoiceFields.get('prototype').name, 'Nimi') | e }}
@@ -152,37 +191,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="quotas" data-prototype="
-			{{ form_label(form.quotas.get('prototype').name, 'Nimi') | e }}
-			{{ form_widget(form.quotas.get('prototype').name, {'attr': {'class': 'input-small'}}) | e }}
-			{{ form_errors(form.quotas.get('prototype').name) | e }}
-			{{ form_label(form.quotas.get('prototype').size, 'Koko') | e }}
-			{{ form_widget(form.quotas.get('prototype').size, {'attr': {'class': 'input-small'}}) | e }}
-			{{ form_errors(form.quotas.get('prototype').size) | e }}">
-			
-			{% for quota in form.quotas %}
-				<div class="well {% if not event.registrationOpen %}quota{% endif %} form-inline">
-					{{ form_label(quota.name, 'Nimi') }}
-					{{ form_widget(quota.name, {'attr': {'class': 'input-small'}}) }}
-					{% if form_errors(quota.name) %}
-						<div class="alert alert-error">
-							<button type="button" class="close" data-dismiss="alert">×</button>
-							{{ form_errors(quota.name) }}
-						</div>
-					{% endif %}
-					{{ form_label(quota.size, 'Koko') }}
-					{{ form_widget(quota.size, {'attr': {'class': 'input-small'}}) }}
-					{% if form_errors(quota.size) %}
-						<div class="alert alert-error">
-							<button type="button" class="close" data-dismiss="alert">×</button>
-							{{ form_errors(quota.size) }}
-						</div>
-					{% endif %}
-				</div>
-			{% endfor %}
-		</div>
+		
 		{{ form_rest(form) }}
-	    <input type="submit" />
+	    <input type="submit" class="btn btn-info" value="Tallenna" />
 	</form>
 </div>
 {% endblock %}
