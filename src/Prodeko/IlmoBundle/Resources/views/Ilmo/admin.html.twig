@@ -51,7 +51,9 @@
     							<th>{% trans %}name.first{% endtrans %}</th>
     							<th>{% trans %}name.last{% endtrans %}</th>
     							<th>email</th>
+    							{% if event.askAboutAllergies %}
     							<th>allergiat</th>
+    							{% endif %}
     							{% for field in event.freeTextFields %}
     								<th>{{ field.name }}</th>
     							{% endfor %}
@@ -67,7 +69,9 @@
 									<td>{{ registration.firstName }}</td>
 									<td>{{ registration.lastName }}</td>
 									<td>{{ registration.email }}</td>
+									{% if event.askAboutAllergies %}
 									<td>{{ registration.allergies }}</td>
+									{% endif %}
 									{% for entry in registration.freeTextEntries %}
     									<td>{{ entry.content }}</td>
     								{% endfor %}
@@ -88,7 +92,9 @@
     							<th>{% trans %}name.first{% endtrans %}</th>
     							<th>{% trans %}name.last{% endtrans %}</th>
     							<th>email</th>
+    							{% if event.askAboutAllergies %}
     							<th>allergiat</th>
+    							{% endif %}
     							{% for field in event.freeTextFields %}
     								<th>{{ field.name }}</th>
     							{% endfor %}
@@ -104,7 +110,9 @@
 									<td>{{ registration.firstName }}</td>
 									<td>{{ registration.lastName }}</td>
 									<td>{{ registration.email }}</td>
+									{% if event.askAboutAllergies %}
 									<td>{{ registration.allergies }}</td>
+									{% endif %}
 									{% for entry in registration.freeTextEntries %}
     									<td>{{ entry.content }}</td>
     								{% endfor %}
@@ -125,7 +133,9 @@
     							<th>{% trans %}name.first{% endtrans %}</th>
     							<th>{% trans %}name.last{% endtrans %}</th>
     							<th>email</th>
+    							{% if event.askAboutAllergies %}
     							<th>allergiat</th>
+    							{% endif %}
     							{% for field in event.freeTextFields %}
     								<th>{{ field.name }}</th>
     							{% endfor %}
@@ -141,7 +151,9 @@
 									<td>{{ registration.firstName }}</td>
 									<td>{{ registration.lastName }}</td>
 									<td>{{ registration.email }}</td>
+									{% if event.askAboutAllergies %}
 									<td>{{ registration.allergies }}</td>
+									{% endif %}
 									{% for entry in registration.freeTextEntries %}
     									<td>{{ entry.content }}</td>
     								{% endfor %}
