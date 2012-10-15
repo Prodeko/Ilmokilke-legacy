@@ -556,4 +556,54 @@ class Event
     }
 	
 
+    /**
+     * @var boolean $hiddenlist
+     */
+    private $hiddenlist;
+
+    /**
+     * @var boolean $askAboutAllergies
+     */
+    private $askAboutAllergies;
+
+
+    /**
+     * Set hiddenlist
+     *
+     * @param boolean $hiddenlist
+     */
+    public function setHiddenlist($hiddenlist)
+    {
+        $this->hiddenlist = $hiddenlist;
+    }
+
+    /**
+     * Get hiddenlist
+     *
+     * @return boolean 
+     */
+    public function getHiddenlist()
+    {
+        return $this->hiddenlist;
+    }
+
+    /**
+     * Set askAboutAllergies
+     *
+     * @param boolean $askAboutAllergies
+     */
+    public function setAskAboutAllergies($askAboutAllergies)
+    {
+        $this->askAboutAllergies = $askAboutAllergies;
+    }
+
+    /**
+     * Get askAboutAllergies
+     *
+     * @return boolean 
+     */
+    public function getAskAboutAllergies()
+    {
+        return $this->askAboutAllergies;
+    }
 }

@@ -15,15 +15,7 @@ class MultipleChoiceEntry
     private $id;
 
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+
     /**
      * @var string $selection
      */
@@ -39,7 +31,16 @@ class MultipleChoiceEntry
      */
     private $field;
 
-
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+    	return $this->id;
+    }
+    
     /**
      * Set selection
      *

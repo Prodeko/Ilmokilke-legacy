@@ -11,7 +11,7 @@
 	<div class="span6">
 		<h1>Perustiedot</h1>
 		<div class="well">
-		<div class="form-inline">
+		<div class="form">
 		    {{ form_label(form.name, "Tapahtuman nimi") }}
 		    {{ form_widget(form.name) }}
 		    {% if form_errors(form.name) %}
@@ -89,6 +89,14 @@
 	    </div>
 	    </div>
 	    <div class="span6">
+	    <h1>Lisävalinnat</h1>
+	    <div class="well form-inline">
+	    	<ul>
+	    	<li>Piilota tapahtumalista</li>
+	    	<li>Tiedustele erityisruokavalioita</li>
+	    	<li>Kiltisilmo käytössä</li>
+	    	</ul>
+	    </div>
 	    <h1>Kiintiöt</h1>
 	    <div class="well form-inline">
 		    {{ form_label(form.sizeOfOpenQuota, 'Kiintiöimättömät paikat') }}

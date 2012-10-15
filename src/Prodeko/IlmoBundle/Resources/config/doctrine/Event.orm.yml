@@ -29,7 +29,10 @@ Prodeko\IlmoBundle\Entity\Event:
       type: text
     kiltisilmo:
       type: boolean
-      nullable: true
+    hiddenlist:
+      type: boolean
+    askAboutAllergies:
+      type: boolean
     sizeOfOpenQuota:
       type: integer
   manyToMany:
