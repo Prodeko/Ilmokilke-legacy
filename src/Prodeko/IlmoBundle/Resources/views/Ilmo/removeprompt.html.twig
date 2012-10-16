@@ -3,8 +3,11 @@
 {% block title %}
 	{% trans %}prompt.remove{% endtrans %}
 {% endblock %}
-
-{% set cancelPath = path('list') %}
+{% if is_granted('ROLE_ADMIN') %}
+	{% set cancelPath = path('adminRegistrations', {'id': registration.event.id}) %}
+{% else %}
+	{% set cancelPath = path('list') %}
+{% endif %}
 {% set okPath = path('remove', {'token': registration.token}) %}
 
 {% block body %}

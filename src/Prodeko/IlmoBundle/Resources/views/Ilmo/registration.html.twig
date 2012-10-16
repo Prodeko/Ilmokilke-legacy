@@ -35,6 +35,7 @@
 				    </div>
 				</fieldset>
 				
+				{% if event.askAboutAllergies %}
 				<fieldset class="control-group">
 					{% set label %}{% trans %}allergies{% endtrans %}{% endset %}
 				    {{ form_label(form.allergies, label, { 'attr': {'class': 'control-label'}}) }}
@@ -43,6 +44,7 @@
 				    	{{ form_errors(form.allergies) }}
 				    </div>
 				</fieldset>
+				{% endif %}
 				{% if form.freeTextEntries is defined %}
 					{% for entry in form.freeTextEntries %}
 						<fieldset class="control-group">
@@ -81,7 +83,7 @@
 				</fieldset>
 				{# Älä poista form_restiä, se luo lomakkeen varmistustokenin #}
 				{% if registrationOpen %}
-					{{ form_rest(form) }}
+					{{ form_widget(form._token) }}
 				{% endif %}
 				{# tätä prototyyppiä ei näytetä, se toimii vain esimerkkinä kaikille luotaville pseudo-radiobutton-diveille #}
 				<div id="radiobuttons-prototype" class="btn-group" data-toggle="buttons-radio" style="display: none">

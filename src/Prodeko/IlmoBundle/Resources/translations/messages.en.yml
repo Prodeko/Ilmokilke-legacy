@@ -26,6 +26,7 @@ events.upcoming: Upcoming events
 
 fields:
   additional: Additional fields
+  freetext: Free text fields
   multipleChoice: Multiple choice fields
 kiltis.registration.starts: Registration starts at the guild room
 number.of.attendees: Number of attendees

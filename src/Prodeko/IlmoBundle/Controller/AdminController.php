@@ -58,7 +58,7 @@ class AdminController extends IlmoController
 		else {
 			$state = self::STATE_NEW_EVENT; // Uuden tapahtuman luonti.
 			$event = new Event();
-			
+			/*
 			$quota_names = array('I','II','III','IV','N');
 			
 			for($i=1;$i<=5;$i++) {
@@ -67,7 +67,8 @@ class AdminController extends IlmoController
 				$quota->setName($quota_names[$i-1]);
 				$quota->setEvent($event);
 				$event->addQuota($quota);
-			}
+			
+			}*/
 			$now = new \DateTime('today midnight');
 			$event->setTakesPlace($now);
 			$event->setRegistrationStarts($now);
