@@ -1,0 +1,15 @@
+{% extends 'ProdekoIlmoBundle:Ilmo:base.html.twig' %}
+
+{% block title %}
+	{{ parent() }} - {{ event.name }} - Virhe
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="hero-unit">
+	<p>{{ status_code }}</p>
+	<p>{{ exception.message }}</p>
+	<a href="{{ path('list') }}">{% trans %}back.to.list{% endtrans %}</a>
+</div>
+</div>
+{% endblock %}

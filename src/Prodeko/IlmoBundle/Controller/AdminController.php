@@ -158,7 +158,7 @@ class AdminController extends IlmoController
 		$event = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Event')
 			->findOneBy(array('id' => $id));
-		if (!$event) { throw $this->createNotFoundException('Tapahtumaa ei löydy');} // TODO: joku parempi exceptionhandlaus näihin.
+		if (!$event) { throw $this->createNotFoundException('Tapahtumaa ei löydy');}
 		
 		$registrations = $event->getRegistrations();
 		$defaultData = array('sender' => 'ilmo@prodeko.fi');

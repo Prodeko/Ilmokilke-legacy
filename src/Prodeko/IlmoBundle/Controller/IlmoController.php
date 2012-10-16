@@ -2,6 +2,10 @@
 namespace Prodeko\IlmoBundle\Controller;
 
 
+use Symfony\Component\HttpKernel\Exception\HttpException;
+
+use Symfony\Component\Config\Definition\Exception\Exception;
+
 use Prodeko\IlmoBundle\Entity\MultipleChoiceEntry;
 
 use Prodeko\IlmoBundle\Entity\FreeTextEntry;
@@ -75,7 +79,9 @@ class IlmoController extends Controller
 		$event = $this->getDoctrine()
 			->getRepository('ProdekoIlmoBundle:Event')
 			->findOneBy(array('id' => $id));
-
+		if(!$event)  {
+			throw $this->createNotFoundException("Tapahtumaa ei löydy!");
+		}
 		//Luo uusi ilmoittautumisolio ja liitä sille kyseinen tapahtuma
 		$registration = Helpers::createRegistrationObject($event);
 		//Tee ilmoittautumislomake, määrittely löytyy Prodeko\IlmoBundle\Form\Type\RegistrationType
@@ -191,8 +197,8 @@ class IlmoController extends Controller
 			return $this->render('ProdekoIlmoBundle:Ilmo:removeprompt.html.twig',
 					array('registration' => $registration));
 		}
-		//TODO: Tässä palautettava jotain fiksumpaa
-		else throw $this->createNotFoundException("Et voi poistaa ilmoittautumistasi, sillä tapahtuman ilmoittautuminen on sulkeutunut.");
+		//TODO: Tässä pajotain fiksumpaa
+		else throw new HttpException(403, "Et voi poistaa ilmoittautumistasi, sillä tapahtuman ilmoittautuminen on sulkeutunut.");
 	}
 	
 	
