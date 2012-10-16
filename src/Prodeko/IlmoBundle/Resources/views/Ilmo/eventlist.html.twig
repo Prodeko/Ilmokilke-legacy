@@ -11,7 +11,21 @@
 
 				<p>{% trans %}bodytext.eventlist.content{% endtrans %}</p>
 	</div>
-
+	<div class="container" id="kiltis-div">
+		<h2>Kiltisilmo juuri nyt!</h2>
+		{% for event in kiltisEvents %}
+			<div class="row">
+				<div class="span5">
+				<p class="event" data-content="{{ event.summary }}">
+					<a href={{ path('show', {'id': event.id}) }}><h3 style="display: inline;">{{ event.name }}</h3></a>
+				</p>
+				</div>
+				<div class="span5">
+				<p>{{ event.description | slice(0,200)}}...</p>
+				</div>
+			</div>
+		{% endfor %}
+		</div>
 	<div class="span10 offset1">
 		<h2>{% trans %}registration.open{% endtrans %}</h2>
 	</div>

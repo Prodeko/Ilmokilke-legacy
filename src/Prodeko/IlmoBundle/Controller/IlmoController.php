@@ -60,10 +60,22 @@ class IlmoController extends Controller
 			->getQuery();
 		$pastEvents = $query->getResult();
 		
+		//Hae tapahtumat, joissa on kiltisilmo paraikaa meneillään
+		$kiltisNow = new \DateTime();
+		$kiltisNow->add(new \DateInterval('PT3H'));
+		$query = $repository->createQueryBuilder('e')
+			->where('e.registrationStarts < :kiltisNow')
+			->andWhere('e.registrationStarts > :now')
+			->setParameter('now', $now)
+			->setParameters(array('now' => $now, 'kiltisNow' => $kiltisNow))
+			->getQuery();
+		$kiltisEvents = $query->getResult();
+		
 		return $this->render('ProdekoIlmoBundle:Ilmo:eventlist.html.twig',
 				array('activeEvents' => $activeEvents,
 					  'upcomingEvents' => $upcomingEvents,
-					  'pastEvents' => $pastEvents)
+					  'pastEvents' => $pastEvents,
+					  'kiltisEvents' => $kiltisEvents)
 				);
 	}
 	
