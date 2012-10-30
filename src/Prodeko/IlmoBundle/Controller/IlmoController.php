@@ -56,10 +56,18 @@ class IlmoController extends Controller
 		$pastEventTreshold = new \DateTime();
 		$pastEventTreshold->sub(new \DateInterval('P2W')); //TODO: make configurable
 		$query = $repository->createQueryBuilder('e')
-			->where('e.registrationEnds < :now')
-			->andWhere('e.takesPlace > :treshold')
-			->setParameters(array('treshold' => $pastEventTreshold, 'now' => $now))
-			->getQuery();
+			->where('e.registrationEnds < :now');
+		
+		$isAdmin = $this->get('security.context')->isGranted('ROLE_ADMIN');
+		
+		if(!$isAdmin) {
+			$query = $query->andWhere('e.takesPlace > :treshold')
+							->setParameters(array('treshold' => $pastEventTreshold, 'now' => $now));
+		}
+		else {
+			$query = $query->setParameter('now', $now);
+		}
+		$query = $query->getQuery();
 		$pastEvents = $query->getResult();
 		
 		return $this->render('ProdekoIlmoBundle:Ilmo:eventlist.html.twig',
