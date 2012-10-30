@@ -53,10 +53,12 @@ class IlmoController extends Controller
 		
 		
 		//Listaa tapahtumia, joiden ilmo on jo sulkeutunut
+		$pastEventTreshold = new \DateTime();
+		$pastEventTreshold->sub(new \DateInterval('P2W')); //TODO: make configurable
 		$query = $repository->createQueryBuilder('e')
 			->where('e.registrationEnds < :now')
-			->andWhere('e.takesPlace > :now')
-			->setParameter('now', $now)
+			->andWhere('e.takesPlace > :treshold')
+			->setParameters(array('treshold' => $pastEventTreshold, 'now' => $now))
 			->getQuery();
 		$pastEvents = $query->getResult();
 		
