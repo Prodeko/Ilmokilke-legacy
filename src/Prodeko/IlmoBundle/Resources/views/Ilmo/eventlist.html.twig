@@ -13,7 +13,7 @@
 	</div>
 	{% if kiltisEvents %}
 		<div class="container" id="kiltis-div">
-			<div class="span9 offset1 well">
+			<div class="span9 offset1 well well-kiltis">
 				<h2>Kiltisilmo juuri nyt!</h2>
 				{% for event in kiltisEvents %}
 				<div class="row">
@@ -25,7 +25,7 @@
 					</div>
 					<div class="span5">
 						<p>{{ event.description | slice(0,400)}}...</p>
-					</div>	
+					</div>
 				</div>
 				{% endfor %}
 			</div>
