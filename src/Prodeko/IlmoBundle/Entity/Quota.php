@@ -34,6 +34,11 @@ class Quota
     private $yearOfStudiesValue;
     
     /**
+     * @var integer $order
+     */
+    private $order;
+    
+    /**
      * @var Prodeko\IlmoBundle\Entity\Event
      */
     private $event;
@@ -221,5 +226,51 @@ class Quota
     {
     	//palauttaa vain tapahtumaan mahtuneet
         return $this->registrations->slice(0,$this->getSize());
+    }
+
+
+    /**
+     * Set order
+     *
+     * @param integer $order
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
+    }
+
+    /**
+     * Get order
+     *
+     * @return integer 
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+    /**
+     * @var integer $orderNumber
+     */
+    private $orderNumber;
+
+
+    /**
+     * Set orderNumber
+     *
+     * @param integer $orderNumber
+     */
+    public function setOrderNumber($orderNumber)
+    {
+        $this->orderNumber = $orderNumber;
+    }
+
+    /**
+     * Get orderNumber
+     *
+     * @return integer 
+     */
+    public function getOrderNumber()
+    {
+        return $this->orderNumber;
     }
 }

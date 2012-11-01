@@ -14,6 +14,8 @@ Prodeko\IlmoBundle\Entity\Quota:
       nullable: true
     size:
       type: integer
+    orderNumber:
+      type: integer
   manyToOne:
     event:
       targetEntity: Event
