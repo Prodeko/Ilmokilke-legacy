@@ -3,8 +3,22 @@ title: Ilmokilke 2.0
 
 allergies: Erityisruokavaliot
 back.to.list: Takaisin tapahtumalistaukseen
+bodytext:
+  eventlist: 
+    header: Tervetuloa ilmoittautumaan Prodekon tapahtumiin!
+    content: Alla ovat listattuna kaikki lähiaikojen tapahtumat. Tapahtumiin pääset käsiksi painamalla tapahtuman nimeä.
 cancel: Peruuta
+close: Sulje
 copyright: Copyright 2012 Prodeko Ry
+email: Sähköposti
+event:
+  edit: Muokkaa tapahtumaa
+  new: Luo uusi tapahtuma
+events.upcoming: Tulevat tapahtumat
+fields:
+  additional: Lisäkentät
+  freetext: Vapaatekstikentät
+  multipleChoice: Monivalintakentät
 header:
   registrant:
     list: Ilmoittautuneet
@@ -12,27 +26,15 @@ header:
     sidebar: Tässä tapahtumasivun teksti
   list:
     sidebar: Tässä etusivun teksti
-
-bodytext:
-  eventlist: 
-    header: Tervetuloa ilmoittautumaan Prodekon tapahtumiin!
-    content: Alla ovat listattuna kaikki lähiaikojen tapahtumat. Tapahtumiin pääset käsiksi painamalla tapahtuman nimeä.
-
-email: Sähköposti
-event:
-  edit: Muokkaa tapahtumaa
-  new: Luo uusi tapahtuma
-
-upcoming: Tulevat tapahtumat
-number.of.attendees: Ilmoittautuneet
-fields:
-  additional: Lisäkentät
-  freetext: Vapaatekstikentät
-  multipleChoice: Monivalintakentät
 kiltis.registration.starts: Kiltisilmo alkaa
+location: Paikka
+name: Nimi
+name.first: Etunimi
+name.last: Sukunimi
+number.of.attendees: Ilmoittautuneet
+ok.remove: Poista
 preview.form: Esikatsele
 prompt.remove: Haluatko varmasti poistaa ilmoittautumisen?
-ok.remove: Poista
 queue: Jono
 quota: Kiintiö
 quota.open: Avoin
@@ -47,22 +49,17 @@ registration:
   period: Ilmoittautumisaika
   not.yet.open: Ilmoittautuminen ei vielä auki
   starts: Ilmoittautuminen aukeaa
-  
 register: Ilmoittaudu
+register.for:
+  event: Ilmoittaudu tapahtumaan
+  queue: Liity jonoon
 registrationmodal.register: Ilmoittaudu!
-close: Sulje
-
-register.for.event: Ilmoittaudu tapahtumaan
 send: Lähetä
 send.email: Lähetä sähköposti
 send.email.to.participants: Lähetä sähköposti kaikille osallistujille
-    
 time: Aika
 time.at: klo
 view.admin: Avaa admin-näkymä
-location: Paikka
 
 
-name: Nimi
-name.first: Etunimi
-name.last: Sukunimi
+

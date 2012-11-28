@@ -3,8 +3,22 @@ title: Ilmogilge
 
 allergies: Ruogavammad :D:DD
 back.to.list: Dagaisin lisdaan :D
+bodytext:
+  eventlist: 
+    header: Mage, ei dääldä saa ES :D:DD Dämä on Ilmogilge :D:DD
+    content: Vähän guumoddaa gun doi ilmo gysyy mun diedot :----D:DD 
 cancel: Fug, en dosiaan! ::D
+close: Sulje
 copyright: Gobyright 2012 Brodeko Ry
+email: Sähgöbosdiosoide :D
+event:
+  edit: Muoggaa dabahdumaa
+  new: Uusi ebin dabahduma :D
+events.upcoming: Dulevad dabahdumad :--D:DD
+fields:
+  additional: Sprölögendäd ::DD:DD
+  freetext: Vabaadegsdigendäd
+  multipleChoice: Monivalindagendäd :D::DD
 header:
   registrant:
     list: Ilmoiddauduneed x--DD
@@ -12,23 +26,11 @@ header:
     sidebar: Ei viddu mage x--DDD
   list:
     sidebar: Viddu, Viljamin veli tehny ebin ilmogilggeen :---D:DDD
-
-bodytext:
-  eventlist: 
-    header: Mage, ei dääldä saa ES :D:DD Dämä on Ilmogilge :D:DD
-    content: Vähän guumoddaa gun doi ilmo gysyy mun diedot :----D:DD 
-
-email: Sähgöbosdiosoide :D
-event:
-  edit: Muoggaa dabahdumaa
-  new: Uusi ebin dabahduma :D
-events.upcoming: Dulevad dabahdumad :--D:DD
-
-fields:
-  additional: Sprölögendäd ::DD:DD
-  freetext: Vabaadegsdigendäd
-  multipleChoice: Monivalindagendäd :D::DD
 kiltis.registration.starts: Gildigsellä ilmo :DD
+location: Baigga
+name: Nimi :D:DD
+name.first: Edunimi ;D:D:D
+name.last: Sugunimi x--DD
 number.of.attendees: Ilmoiddauduneet
 ok.remove: Og
 preview.form: Snage breview D:D:DD
@@ -47,21 +49,16 @@ registration:
   period: Ilmoiddaudumisaiga :DDD
   not.yet.open: Fug :D Ei voi vielä ilmoda :DDD
   starts: Ilmo algaa :D
-  
 register: Ilmoiddaudu :D 
+register.for:
+  event: Ilmoiddaudu dabahdumaan x--DD:DDD
+  queue: Ilmoiddaudu jonoon :D
 registrationmodal.register: Ilmoittaudu!!!11 :DD:
-close: Sulje
-
-register.for.event: Ilmoiddaudu dabahdumaan x--DD:DDD
 send: Lähedä::D
 send.email: Lähedä bosdia ::d
 send.email.to.participants: Laida bosdi gogo bosselle :DD
-    
 time: Aiga
 time.at: glo
 view.admin: Ebin admin :D
-location: Baigga
 
-name: Nimi :D:DD
-name.first: Edunimi ;D:D:D
-name.last: Sugunimi x--DD
+
