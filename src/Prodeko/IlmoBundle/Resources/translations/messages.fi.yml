@@ -26,6 +26,7 @@ header:
     sidebar: Tässä tapahtumasivun teksti
   list:
     sidebar: Tässä etusivun teksti
+join.queue: Liity jonoon
 kiltis.registration.starts: Kiltisilmo alkaa
 location: Paikka
 name: Nimi
@@ -57,6 +58,7 @@ registrationmodal.register: Ilmoittaudu!
 send: Lähetä
 send.email: Lähetä sähköposti
 send.email.to.participants: Lähetä sähköposti kaikille osallistujille
+shout.out: Huuda pois
 time: Aika
 time.at: klo
 view.admin: Avaa admin-näkymä

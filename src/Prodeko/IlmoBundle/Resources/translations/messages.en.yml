@@ -26,6 +26,7 @@ header:
     sidebar: English text for event page sidebar
   list:
     sidebar: English text on front page
+join.queue: Join the queue
 kiltis.registration.starts: Registration starts at the guild room
 location: Location
 name: Name
@@ -57,6 +58,7 @@ registrationmodal.register: Send!
 send: Send
 send.email: Send email
 send.email.to.participants: Send email to all participants
+shout.out: Remove from queue
 time: Time
 time.at: at
 view.admin: Open admin view
