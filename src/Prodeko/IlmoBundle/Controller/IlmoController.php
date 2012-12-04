@@ -152,10 +152,17 @@ class IlmoController extends Controller
 				$em->flush();
 				
 				//Lähetä vahvistusviesti
-				return $this->forward('ProdekoIlmoBundle:Ilmo:sendConfirmationEmail',
-						array(	'event' => $event,
-								'token' => $token,
-								'email' => $registration->getEmail()));
+				//Jos ilmo ei ole auki, kyseessä on jonoon ilmoittautuminen
+				if($event->registrationOpen()) {
+					return $this->forward('ProdekoIlmoBundle:Ilmo:sendConfirmationEmail',
+							array(	'event' => $event,
+									'token' => $token,
+									'email' => $registration->getEmail()));
+				}
+				else {
+					return $this->forward('ProdekoIlmoBundle:Ilmo:queue',
+							array(  'id' => $id));
+				}
 			}
 			else {
 				return new Response(var_dump($form->getErrors()));

@@ -21,18 +21,33 @@
 	</div>
 	<div class="push"></div>
 	<div class="row">
-	    <table class="table table-striped table-bordered table-condensed">
-	    	<tbody>
-	    		{% for registration in event.registrations %}
-	    			<tr>
-	    				<td>{{ loop.index }}</td>
-	    				<td>{{ registration.firstName }} {{ registration.lastName }}</td>
-	    				<td>{{ registration.quota.name }}</td>
-	    				<td class="removeReg"><button class="btn btn-danger">{% trans %}shout.out{% endtrans %}</button></td>
-	    			</tr>
-	    		{% endfor %}
-	    	</tbody>
-	    </table>
+		<div class="span3"><p>{% trans %}queue.helptext{% endtrans %}</p></div>
+		<div class="span7">
+		    <table class="table table-striped table-bordered table-condensed">
+		    	<tbody>
+		    		{% for registration in event.registrations %}
+		    			{% set dataContent %}
+							{% for entry in registration.freeTextEntries %}
+								{% if not entry.field.flagPrivate %}
+									<p>{{ entry.field.name }}: {{ entry.content }}</p>
+								{% endif %}
+							{% endfor %}
+							{% for entry in registration.multipleChoiceEntries %}
+								{% if not entry.field.flagPrivate %}
+									<p>{{ entry.field.name }}: {{ entry.selection }}</p>
+								{% endif %}
+							{% endfor %}
+						{% endset %}
+		    			<tr class="registered" data-content="{{ dataContent|e }}">
+		    				<td>{{ loop.index }}</td>
+		    				<td>{{ registration.firstName }} {{ registration.lastName }}</td>
+		    				<td>{{ registration.quota.name }}</td>
+		    				<td class="w100"><button class="btn btn-danger">{% trans %}shout.out{% endtrans %}</button></td>
+		    			</tr>
+		    		{% endfor %}
+		    	</tbody>
+		    </table>
+	    </div>
     </div>
     <!-- Start subscription modal -->
     {% include 'ProdekoIlmoBundle:Ilmo:registration.html.twig' %}
