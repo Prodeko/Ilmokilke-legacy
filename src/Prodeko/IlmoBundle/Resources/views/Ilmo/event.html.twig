@@ -22,7 +22,7 @@
 				
 			<div class="span3">
 				{% if registrationOpen %}
-					<button id="eventsubscribe" class="btn-large btn-success" data-toggle="modal" href="#subscriptionmodal">{% trans %}register{% endtrans %}</button>
+					<button id="eventsubscribe" class=" btn btn-large btn-success" data-toggle="modal" href="#subscriptionmodal">{% trans %}register{% endtrans %}</button>
 				{% elseif is_granted('ROLE_ADMIN') %}
 					<button id="formpreview" class="btn-large btn-success" data-toggle="modal" href="#subscriptionmodal">{% trans %}preview.form{% endtrans %}</button>
 				{% endif %}
