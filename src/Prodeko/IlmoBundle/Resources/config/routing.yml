@@ -1,3 +1,7 @@
+ajax_registrationlist:
+    pattern: /ajax/{quotaId}
+    defaults: { _controller: ProdekoIlmoBundle:Ajax:ajaxList } 
+
 create:
     pattern: /{_locale}/admin/create/{id}
     defaults: { _controller: ProdekoIlmoBundle:Admin:createEventForm, id: 0, _locale: fi  }
