@@ -14,18 +14,25 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AjaxController extends Controller{
-	public function ajaxListAction(Request $request, $quotaId)
+	public function ajaxListAction(Request $request, $eventId)
 	{
 		$jsonEncoder = new JsonEncoder();
-		$quota = $this->getDoctrine()
-					  ->getRepository('ProdekoIlmoBundle:Quota')->findOneBy(array('id' => $quotaId));
-		$registrations = $quota->getRegistrations();
+		$event = $this->getDoctrine()
+					  ->getRepository('ProdekoIlmoBundle:Event')->findOneBy(array('id' => $eventId));
+		$quotas = $event->getQuotas();
 		$foo = array();
-		foreach ($registrations as $registration) {
-			$foo[]=array('name' => $registration->getFirstName() ." ". $registration->getLastName(),
-						  'time' => $registration->getRegistrationTime()->format('d.m.y G.i.s') );
+		foreach ($quotas as $quota) {
+			$registrationArray = array();
+			$registrations = $quota->getRegistrations();
+			foreach ($registrations as $registration)
+			{
+				$registrationArray[]=array('name' => $registration->getFirstName() . " " . $registration->getLastName(),
+										   'time' => $registration->getRegistrationTime()->format('d.m.y G.i.s') );
+			}
+			$quotaArray[]=array('name' => $quota->getName(),
+						  'registrants' => $registrationArray);
 		}
-		$response = new Response($jsonEncoder->encode($foo, 'json'));
+		$response = new Response($jsonEncoder->encode($quotaArray, 'json'));
 		return $response;
 	}
 }

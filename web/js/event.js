@@ -38,6 +38,38 @@ $(function() {
 		$('button.active').removeClass('active');
 	}
 	
+//	<table class="table table-striped table-bordered table-condensed">
+//	<tbody>
+//	    {% for registration in quota.getRegistrations %}
+//		    {% set dataContent %}
+//				{% for entry in registration.freeTextEntries %}
+//					{% if not entry.field.flagPrivate %}
+//						<p>{{ entry.field.name }}: {{ entry.content }}</p>
+//					{% endif %}
+//				{% endfor %} 
+//				{% for entry in registration.multipleChoiceEntries %}
+//					{% if not entry.field.flagPrivate %}
+//						<p>{{ entry.field.name }}: {{ entry.selection }}</p>
+//					{% endif %}
+//				{% endfor %}
+//			{% endset %}
+//			<tr class="registered" data-content="{{ dataContent|e }}">
+//				<td>{{ registration.firstName }} {{ registration.lastName }}</td>
+//				<td class="w125">{{ registration.registrationTime|date("d.m.Y G.i.s") }}
+//			</tr>
+//		{% endfor %}
+//	</tbody>
+//	</table>
+//	
+	//Lataa ilmolistat ajaxilla
+	$.getJSON("../ajax/2", function(data) {
+		$.each(data, function(key,val) {
+			var registrantTable = $('<h4>'+val.name+'</h4><table class="table table-striped table-bordered table-condensed"></table>')
+			console.log(val.name);
+			$('#registrationList').append(registrantTable);
+		})
+	})
+	
 	//Tarkista, onko lomakkeeseen tullut virheitä edellisestä lähetyksestä
 	//(Jos virheitä on tullut, .formerror - luokan diveillä on sisältöä, eli joku niistä on :parent)
 	if ($('.formerror:parent').length == 0) {

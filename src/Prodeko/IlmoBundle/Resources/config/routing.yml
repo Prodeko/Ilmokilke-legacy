@@ -1,5 +1,5 @@
 ajax_registrationlist:
-    pattern: /ajax/{quotaId}
+    pattern: /ajax/{eventId}
     defaults: { _controller: ProdekoIlmoBundle:Ajax:ajaxList } 
 
 create:
