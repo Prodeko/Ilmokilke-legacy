@@ -3,7 +3,7 @@
 {% block title %}
 	{{ parent() }} - {{ event.name }}
 {% endblock %}
-{% if kiltis %}
+{% if kiltis and event.getKiltisIlmo %}
 	{% set registrationOpen = event.kiltisRegistrationOpen %}
 {% else %}
 	{% set registrationOpen = event.registrationOpen %}
@@ -46,10 +46,12 @@
     				<td>{% trans %}registration.period{% endtrans %}:</td>
     				<td>{{ event.getRegistrationStarts | date("j.n.y G:i") }} - {{ event.registrationEnds | date("j.n.y G:i") }}</td>
     			</tr>
+    			{% if event.getKiltisIlmo %}
     			<tr>
     				<td>{% trans %}kiltis.registration.starts{% endtrans %}:</td>
     				<td>{{ event.kiltisRegistrationStarts | date ("j.n.y G:i") }}</td>
     			</tr>
+    			{% endif %}
     		</table>
     		{% if registrationOpen %}
     			{% set class %}alert alert-success{% endset %}
