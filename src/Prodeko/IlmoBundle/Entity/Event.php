@@ -98,8 +98,6 @@ class Event
 		$this->multipleChoiceFields = new ArrayCollection();
 		$this->registrations = new ArrayCollection();
 		$this->quotas = new ArrayCollection();
-		$this->kiltisilmo = true; //Poista tämä, jos sallitaan kiltisilmottomat
-								  //tapahtumat
 	}
 	
 	/**
