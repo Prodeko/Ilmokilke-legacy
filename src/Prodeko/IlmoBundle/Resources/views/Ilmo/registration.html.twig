@@ -3,7 +3,11 @@
 <div class="modal" id="subscriptionmodal" style="display: none">
 	<form action="{{ path('register', { 'id': event.id }) }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
 		<div class="modal-header">
+		{% if queueModal is defined %}
+			<h3>{% trans %}register.for.queue{% endtrans %} {{ event.name }}</h3>
+		{% else %}
 			<h3>{% trans %}register.for.event{% endtrans %} {{ event.name }}</h3>
+		{% endif %}
 		</div>
 		<div class="modal-body">
 				<div>{{ form_errors(form) }}</div>

@@ -3,8 +3,22 @@ title: The Ilmo Machine 2.0
 
 allergies: Allergies
 back.to.list: Back to the list of events
+bodytext:
+  eventlist: 
+    header: Welcome to Ilmo Machine!
+    content: You can find the relevant events below. Specific events can be accessed by clicking on the event's name.
 cancel: Cancel
+close: Close
 copyright: Copyright 2012 Prodeko Ry
+email: Email address
+event:
+  edit: Edit event
+  new: New event
+events.upcoming: Upcoming events
+fields:
+  additional: Additional fields
+  freetext: Free text fields
+  multipleChoice: Multiple choice fields
 header:
   registrant:
     list: Registrants
@@ -12,23 +26,12 @@ header:
     sidebar: English text for event page sidebar
   list:
     sidebar: English text on front page
-
-bodytext:
-  eventlist: 
-    header: Welcome to Ilmo Machine!
-    content: You can find the relevant events below. Specific events can be accessed by clicking on the event's name.
-
-email: Email address
-event:
-  edit: Edit event
-  new: New event
-events.upcoming: Upcoming events
-
-fields:
-  additional: Additional fields
-  freetext: Free text fields
-  multipleChoice: Multiple choice fields
+join.queue: Join the queue
 kiltis.registration.starts: Registration starts at the guild room
+location: Location
+name: Name
+name.first: First name
+name.last: Last name
 number.of.attendees: Number of attendees
 ok.remove: Delete
 preview.form: Preview form
@@ -47,21 +50,15 @@ registration:
   period: Registration period
   not.yet.open: Registration not yet open
   starts: Registration starts
-  
 register: Register
+register.for:
+  event: Register for event
+  queue: Join the queue
 registrationmodal.register: Send!
-close: Close
-
-register.for.event: Register for event
 send: Send
 send.email: Send email
 send.email.to.participants: Send email to all participants
-    
+shout.out: Remove from queue
 time: Time
 time.at: at
 view.admin: Open admin view
-location: Location
-
-name: Name
-name.first: First name
-name.last: Last name

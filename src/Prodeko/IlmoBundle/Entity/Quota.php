@@ -47,6 +47,7 @@ class Quota
     public function __construct()
     {
     	$this->registrations = new \Doctrine\Common\Collections\ArrayCollection();
+    	$this->orderNumber = 1;
     }
     
     /**
@@ -221,5 +222,31 @@ class Quota
     {
     	//palauttaa vain tapahtumaan mahtuneet
         return $this->registrations->slice(0,$this->getSize());
+    }
+
+    /**
+     * @var integer $orderNumber
+     */
+    private $orderNumber;
+
+
+    /**
+     * Set orderNumber
+     *
+     * @param integer $orderNumber
+     */
+    public function setOrderNumber($orderNumber)
+    {
+        $this->orderNumber = $orderNumber;
+    }
+
+    /**
+     * Get orderNumber
+     *
+     * @return integer 
+     */
+    public function getOrderNumber()
+    {
+        return $this->orderNumber;
     }
 }

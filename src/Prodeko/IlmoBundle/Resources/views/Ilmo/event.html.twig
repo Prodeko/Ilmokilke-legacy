@@ -134,7 +134,7 @@
 								{% endset %}
 								<tr class="registered" data-content="{{ dataContent|e }}">
 									<td>{{ registration.firstName }} {{ registration.lastName }}</td>
-									<td class="registrationtime">{{ registration.registrationTime|date("d.m.Y G.i.s") }}
+									<td class="w125">{{ registration.registrationTime|date("d.m.Y G.i.s") }}
 								</tr>
 							{% endfor %}
 						</tbody>
@@ -162,7 +162,7 @@
 										<td>{{ registration.quota.name }}</td>
 									{% endif %}
 									<td>{{ registration.firstName }} {{ registration.lastName }}</td>
-									<td class="registrationtime">{{ registration.registrationTime|date("d.m.Y G.i.s") }}</td>
+									<td class="w125">{{ registration.registrationTime|date("d.m.Y G.i.s") }}</td>
 								</tr>
 						{% endfor %}
 					</tbody>
@@ -177,19 +177,19 @@
 								{% if not entry.field.flagPrivate %}
 									<p>{{ entry.field.name }}: {{ entry.content }}</p>
 								{% endif %}
-					{% endfor %}
-					{% for entry in registration.multipleChoiceEntries %}
-						{% if not entry.field.flagPrivate %}
-							<p>{{ entry.field.name }}: {{ entry.selection }}</p>
-						{% endif %}
-					{% endfor %}
+							{% endfor %}
+							{% for entry in registration.multipleChoiceEntries %}
+								{% if not entry.field.flagPrivate %}
+									<p>{{ entry.field.name }}: {{ entry.selection }}</p>
+								{% endif %}
+							{% endfor %}
 						{% endset %}
 						<tr class="registered" data-content="{{ dataContent|e }}">
 							{% if registration.quota is not null %}
 								<td>{{ registration.quota.name }}</td>
 							{% endif %}
 							<td>{{ registration.firstName }} {{ registration.lastName }}</td>
-							<td class="registrationtime">{{ registration.registrationTime|date("d.m.Y G.i.s") }}
+							<td class="w125">{{ registration.registrationTime|date("d.m.Y G.i.s") }}
 						</tr>
 					{% endfor %}
 					</tbody>

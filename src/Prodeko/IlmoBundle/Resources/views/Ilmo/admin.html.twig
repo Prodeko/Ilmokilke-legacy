@@ -78,7 +78,6 @@
     								{% for entry in registration.multipleChoiceEntries %}
     									<td>{{ entry.selection }}</td>
     								{% endfor %}
-    								{# TODO: Token-systeemi poistamiseen ja joku alertti (Haluatko varmasti poistaa ilmoittautumisen? etc.) #}
     								<td class="removeReg"><a class="close" href="{{ path('removePrompt', {'token': registration.token}) }}">&times;</a></td>
 								</tr>
 							{% endfor %}

@@ -34,7 +34,11 @@ list:
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:list, _locale: fi }
     requirements:
       _locale: en|fi|spurdo
-      
+
+queue:
+    pattern: /{_locale}/queue/{id}
+    defaults: { _controller: ProdekoIlmoBundle:Ilmo:queue, _locale: fi }
+
 show:
     pattern: /{_locale}/{id}
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:show, _locale: fi  }
@@ -54,11 +58,7 @@ removePrompt:
 remove:
     pattern: /{_locale}/confirmremove/{token}
     defaults: { _controller: ProdekoIlmoBundle:Ilmo:removeRegistration, _locale: fi } 
-    
-queue:
-    pattern: /{_locale}/queue/{id}
-    defaults: { _controller: ProdekoIlmoBundle:Ilmo:queue, _locale: fi }
-      
+         
 edit:
     pattern: /{_locale}/admin/edit/{id}
     defaults: { _controller: ProdekoIlmoBundle:Admin:createEventForm, _locale: fi }

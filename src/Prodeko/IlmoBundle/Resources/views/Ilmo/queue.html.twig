@@ -1,16 +1,58 @@
 {% extends 'ProdekoIlmoBundle:Ilmo:base.html.twig' %}
-
+{% set registrationOpen %}
+		{{ true }}
+	{% endset %}
+	{% set queueModal %}
+		{{ true }}
+	{% endset %}
 {% block title %}
 	{{ parent() }} - {{ event.name }}
 {% endblock %}
 
 {% block body %}
-	<h1>Jono tapahtumaan</h1>
-	<h2>{{ event.name }}</h2>
-	<button id="eventsubscribe" class="btn" data-toggle="modal" href="#subscriptionmodal">{% trans %}register{% endtrans %}</button>
+<div class="container" id="content">
+	<div class="row">
+		<div class="span6">
+			<h1>{{ event.name }} - {% trans %}queue{% endtrans %}</h1>
+		</div>
+		<div class="span3">
+			<button id="eventsubscribe" class="btn btn-large btn-success" data-toggle="modal" href="#subscriptionmodal">{% trans %}join.queue{% endtrans %}</button>
+		</div>
+	</div>
+	<div class="push"></div>
+	<div class="row">
+		<div class="span3"><p>{% trans %}queue.helptext{% endtrans %}</p></div>
+		<div class="span7">
+		    <table class="table table-striped table-bordered table-condensed">
+		    	<tbody>
+		    		{% for registration in event.registrations %}
+		    			{% set dataContent %}
+							{% for entry in registration.freeTextEntries %}
+								{% if not entry.field.flagPrivate %}
+									<p>{{ entry.field.name }}: {{ entry.content }}</p>
+								{% endif %}
+							{% endfor %}
+							{% for entry in registration.multipleChoiceEntries %}
+								{% if not entry.field.flagPrivate %}
+									<p>{{ entry.field.name }}: {{ entry.selection }}</p>
+								{% endif %}
+							{% endfor %}
+						{% endset %}
+		    			<tr class="registered" data-content="{{ dataContent|e }}">
+		    				<td>{{ loop.index }}</td>
+		    				<td>{{ registration.firstName }} {{ registration.lastName }}</td>
+		    				<td>{{ registration.quota.name }}</td>
+		    				<td class="w100"><button class="btn btn-danger">{% trans %}shout.out{% endtrans %}</button></td>
+		    			</tr>
+		    		{% endfor %}
+		    	</tbody>
+		    </table>
+	    </div>
+    </div>
     <!-- Start subscription modal -->
     {% include 'ProdekoIlmoBundle:Ilmo:registration.html.twig' %}
     <!-- End subscription modal -->
+</div>
 {% endblock %}
 {% block javascripts %}
 	<script src="{{ asset('js/event.js') }}"></script>
