@@ -73,6 +73,7 @@ class AdminController extends IlmoController
 			$event->setTakesPlace($now);
 			$event->setRegistrationStarts($now);
 			$event->setRegistrationEnds($now);
+			$event->setKiltisilmo(true);
 			$event->setSizeOfOpenQuota(0);
 				
 		}
