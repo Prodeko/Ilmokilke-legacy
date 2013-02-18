@@ -34,11 +34,6 @@ class Quota
     private $yearOfStudiesValue;
     
     /**
-     * @var integer $order
-     */
-    private $order;
-    
-    /**
      * @var Prodeko\IlmoBundle\Entity\Event
      */
     private $event;
@@ -52,6 +47,7 @@ class Quota
     public function __construct()
     {
     	$this->registrations = new \Doctrine\Common\Collections\ArrayCollection();
+    	$this->orderNumber = 1;
     }
     
     /**
@@ -228,26 +224,6 @@ class Quota
         return $this->registrations->slice(0,$this->getSize());
     }
 
-
-    /**
-     * Set order
-     *
-     * @param integer $order
-     */
-    public function setOrder($order)
-    {
-        $this->order = $order;
-    }
-
-    /**
-     * Get order
-     *
-     * @return integer 
-     */
-    public function getOrder()
-    {
-        return $this->order;
-    }
     /**
      * @var integer $orderNumber
      */
