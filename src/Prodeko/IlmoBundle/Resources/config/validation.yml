@@ -12,6 +12,9 @@ Prodeko\IlmoBundle\Entity\Registration:
                 message: Pakollinen kenttä!
             - Email:
                 message: Virheellinen osoite!
+    getters:
+        validQuota:
+          - "True": { message: Valitse kiintiö! }
                 
 Prodeko\IlmoBundle\Entity\Event:
     properties:

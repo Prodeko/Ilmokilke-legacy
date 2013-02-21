@@ -95,7 +95,6 @@ class IlmoController extends Controller
 		$kiltis = false;
 		if($ip = $request->getClientIp() === $this->container->getParameter('kiltis_ip')) {
 			$kiltis = true;
-			
 		}
 		//Hae tapahtuma URI:sta tulleen id:n perusteella
 		$event = $this->getDoctrine()
@@ -165,7 +164,17 @@ class IlmoController extends Controller
 				}
 			}
 			else {
-				return new Response(var_dump($form->getErrors()));
+				//return new Response(var_dump($form->getErrors()));
+				$kiltis = false;
+				if($ip = $request->getClientIp() === $this->container->getParameter('kiltis_ip')) {
+					$kiltis = true;
+				}
+				return $this->render('ProdekoIlmoBundle:Ilmo:event.html.twig', array(
+						'form' => $form->createView(),
+						'id' => $id,
+						'event' => $event,
+						'kiltis' => $kiltis
+				));
 			}
 		}
 		/*Jos register-routella on tehty GET-kutsu, ohjataan

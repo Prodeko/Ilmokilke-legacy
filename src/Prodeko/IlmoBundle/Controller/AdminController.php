@@ -137,7 +137,7 @@ class AdminController extends IlmoController
 				'form' => $form->createView(),
 				'id' => $id,
 				'event' => $event
-		));
+			));
 			}
 			
 		}

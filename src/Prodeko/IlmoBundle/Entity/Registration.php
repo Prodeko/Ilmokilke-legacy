@@ -81,6 +81,12 @@ class Registration
         $this->multipleChoiceEntries = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
+    public function isValidQuota()
+    {
+    	//no quota needed in registrations for events with no quotas
+    	return ($this->quota!=NULL) || (count($this->event->getQuotas()) == 0);
+    }
+    
     /**
      * Returns 1, if $registration2 took place earlier than $registration1, 1 if
      * conversely and 0 if they took place at the same time. Used for sorting

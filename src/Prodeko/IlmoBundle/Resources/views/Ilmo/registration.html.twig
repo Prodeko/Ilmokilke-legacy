@@ -10,7 +10,6 @@
 		{% endif %}
 		</div>
 		<div class="modal-body">
-				<div>{{ form_errors(form) }}</div>
 	
 				<fieldset class="control-group">
 					{% set label %}{% trans %}name.first{% endtrans %}{% endset %}
@@ -83,18 +82,21 @@
 					<div class="controls">
 						{{ form_widget(form.quota) }}
 						{{ form_errors(form.quota) }}
+						
 					</div>
 				</fieldset>
-				{# Älä poista form_restiä, se luo lomakkeen varmistustokenin #}
+				{# CSRF-token #}
 				{% if registrationOpen %}
 					{{ form_widget(form._token) }}
 				{% endif %}
+				{{ form_errors(form) }}
 				{# tätä prototyyppiä ei näytetä, se toimii vain esimerkkinä kaikille luotaville pseudo-radiobutton-diveille #}
 				<div id="radiobuttons-prototype" class="btn-group" data-toggle="buttons-radio" style="display: none">
 					<button class="btn btn-radio" type="button"></button>
 				</div>
 		</div>
 		<div class="modal-footer">
+		
 			<a href="#" class="btn" data-dismiss="modal">{% trans %}close{% endtrans %}</a>
 			{% if registrationOpen %}
 				<input type="submit" class="btn btn-info" value="{% trans %}registrationmodal.register{% endtrans %}" />
