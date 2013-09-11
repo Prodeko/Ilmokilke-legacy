@@ -199,6 +199,7 @@ class AdminController extends IlmoController
 			$emailMessage = \Swift_Message::newInstance();
 			$emailMessage->setSubject($subject)
 						 ->setSender($email)
+						 ->setFrom($email)
 						 ->setBody($message);
 			foreach($registrations as $registration) {
 				$emailMessage->addTo($registration->getEmail());
