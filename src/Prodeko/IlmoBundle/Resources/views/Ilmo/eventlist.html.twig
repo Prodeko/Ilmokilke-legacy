@@ -11,6 +11,14 @@
 
 				<p>{% trans %}bodytext.eventlist.content{% endtrans %}</p>
 	</div>
+	<div class="container" id="create-div">
+	<div class="span4 offset5">
+		{% if is_granted('ROLE_ADMIN') %}
+		<br>
+	<p><a href="{{ path('create') }}" id="eventcreate" class="btn-large btn-success" >{% trans %}event.new{% endtrans %}</a></p>
+	{% endif %}
+	</div>
+	</div>
 	{% if kiltisEvents %}
 		<div class="container" id="kiltis-div">
 			<div class="span9 offset1 well well-kiltis">
@@ -127,14 +135,7 @@
 		{%  endif %}
 		</div>
 	</div>
-	<div class="container" id="create-div">
-	<div class="span4 offset5">
-		{% if is_granted('ROLE_ADMIN') %}
-		<br>
-	<p><a href="{{ path('create') }}" id="eventcreate" class="btn-large btn-success" >{% trans %}event.new{% endtrans %}</a></p>
-	{% endif %}
-	</div>
-	</div>
+	
 	</div>
 </div>
 {% endblock %}
