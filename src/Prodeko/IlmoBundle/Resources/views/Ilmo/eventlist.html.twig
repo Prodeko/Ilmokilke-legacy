@@ -15,12 +15,12 @@
 		<p>Anna hallitukselle <a href="http://tinyurl.com/ProPalaute">palautetta</a> killan toiminnasta!</p>
 	</div>
 	<div class="container" id="create-div">
-	<div class="span4 offset5">
-		{% if is_granted('ROLE_ADMIN') %}
-		<br>
-	<p><a href="{{ path('create') }}" id="eventcreate" class="btn-large btn-success" >{% trans %}event.new{% endtrans %}</a></p>
-	{% endif %}
-	</div>
+		<div class="span4 offset5">
+			{% if is_granted('ROLE_ADMIN') %}
+				<br>
+				<p><a href="{{ path('create') }}" id="eventcreate" class="btn-large btn-success" >{% trans %}event.new{% endtrans %}</a></p>
+			{% endif %}
+		</div>
 	</div>
 	{% if kiltisEvents %}
 		<div class="container" id="kiltis-div">
@@ -82,7 +82,7 @@
 	<div class="container" id="upcoming-div">
 		<div class="span10 offset1">
 		{%  if upcomingEvents %}
-			<table class="table table-striped table-bordered table-condensed" id="open-table">
+			<table class="table table-striped table-bordered table-condensed" id="upcoming-table">
 				<thead>
 					<tr>
 						<th>{% trans %}name{% endtrans %}</th>
@@ -138,8 +138,7 @@
 		{%  endif %}
 		</div>
 	</div>
-	
-	</div>
+
 </div>
 {% endblock %}
 {% block javascripts %}
