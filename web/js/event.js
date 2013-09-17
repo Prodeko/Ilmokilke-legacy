@@ -80,11 +80,7 @@ $(function() {
 		//Disabloi ilmoittautumisnappula lomakketta lähettäessä, estää tuplailmoittautumisen vahingossa.
 	    $('input[type=submit]', this).attr('disabled', 'disabled');
 	});
-	$('input#registration_firstName').keyup(function(){
-		if ($(this).val() == 'Ilari') {
-			$('.modal-body').append('<iframe width="500" height="315" src="http://www.youtube.com/embed/hdqHUms7vUw?autoplay=1#t=38s" frameborder="0" allowfullscreen></iframe>');
-		}
-	});
+
 	
 	//Ilmomodaali tyhjenee, kun se on riittävän pitkään ollut suljettuna
 	var timeout;
