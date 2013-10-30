@@ -56,7 +56,8 @@ class IlmoController extends Controller
 		$pastEventTreshold = new \DateTime();
 		$pastEventTreshold->sub(new \DateInterval('P2W')); //TODO: make configurable
 		$query = $repository->createQueryBuilder('e')
-			->where('e.registrationEnds < :now');
+			->where('e.registrationEnds < :now')
+			->orderBy('e.takesPlace', 'DESC');
 		
 		$isAdmin = $this->get('security.context')->isGranted('ROLE_ADMIN');
 		
