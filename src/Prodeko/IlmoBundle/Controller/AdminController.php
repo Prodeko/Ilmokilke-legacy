@@ -226,6 +226,9 @@ class AdminController extends IlmoController
 		$response = $this->render('ProdekoIlmoBundle:Ilmo:export.csv.twig', array('event' => $event));
 		$response->headers->set('Content-Type', 'text/css');
 		$response->headers->set('Content-Disposition', 'attachment; filename='.$filename);
+		//muuta charset latin-15, jotta näkyy excelissa vaivoitta
+		$response->setContent(mb_convert_encoding($response->getContent(), 'ISO-8859-15', 'UTF-8'));
+		$response->setCharset('ISO-8859-15');
 		return $response;
 	}
 

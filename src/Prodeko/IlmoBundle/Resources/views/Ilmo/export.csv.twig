@@ -1,6 +1,6 @@
-Ilmoittautumisaika,Sukunimi,Etunimi,Kiintiö,Email,{% if event.askAboutAllergies %}Allergiat,{% endif %}{% for field in event.freeTextFields %}{{ field.name }},{% endfor %}{% for field in event.multipleChoiceFields %}{{ field.name }},{% endfor %}
+Ilmoittautumisaika;Sukunimi;Etunimi;{% if event.hasQuotas %}Kiintiö;{% endif %}Email;{% if event.askAboutAllergies %}Allergiat;{% endif %}{% for field in event.freeTextFields %}"{{ field.name }}";{% endfor %}{% for field in event.multipleChoiceFields %}"{{ field.name }}";{% endfor %}
 
 {% for registration in event.getRegistrations %}
-{{ registration.registrationTime | date('Y-m-d G.i.s')}},{{ registration.lastName }},{{ registration.firstName }},{{ registration.quota.name }},{{ registration.email }},{% if event.askAboutAllergies %}{{ registration.allergies }},{% endif %}{% for entry in registration.freeTextEntries %}{{ entry.content }},{% endfor %}{% for entry in registration.multipleChoiceEntries %}{{ entry.selection }},{% endfor %}
+{{ registration.registrationTime | date('Y-m-d G.i.s')}};"{{ registration.lastName }}";"{{ registration.firstName }}";{% if event.hasQuotas %}"{{ registration.quota.name }}";{% endif %}"{{ registration.email }}";{% if event.askAboutAllergies %}"{{ registration.allergies }}";{% endif %}{% for entry in registration.freeTextEntries %}"{{ entry.content }}";{% endfor %}{% for entry in registration.multipleChoiceEntries %}"{{ entry.selection }}";{% endfor %}
 
 {% endfor %}
