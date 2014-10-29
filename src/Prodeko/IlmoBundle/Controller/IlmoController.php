@@ -186,7 +186,7 @@ class IlmoController extends Controller
 	{
 		$messageBody = "Ilmoittautumisesi tapahtumaan " . $event->getName() . " on tallennettu.\n" .
 						"Voit poistaa ilmoittautumisesi allaolevasta linkistä.\n" . 
-						"http://ilmo.prodeko.fi/web/app.php/fi/remove/" . $token;
+						"http://ilmo.prodeko.org/fi/remove/" . $token;
 		$message = \Swift_Message::newInstance()
 		->setSubject($event->getName() . ' / Ilmoittautuminen tallennettu')
 		->setFrom('ilmo@prodeko.fi')
