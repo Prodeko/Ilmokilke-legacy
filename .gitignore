@@ -1,6 +1,7 @@
 .settings
 .project
 .buildpath
+.htaccess
 app/logs
 app/cache
 app/config/parameters_prod.ini
