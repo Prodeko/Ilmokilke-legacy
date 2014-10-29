@@ -15,6 +15,8 @@ event:
   edit: Edit event
   new: New event
 events.upcoming: Upcoming events
+feedback: "Give <strong><a href='http://tinyurl.com/ProPalaute'>feedback</a></strong> to Prodeko board!"
+feedbackuni: "Give <strong><a href='http://tinyurl.com/LafkaPalauteEn'>feedback</a></strong> to School of Science!"
 fields:
   additional: Additional fields
   freetext: Free text fields
@@ -62,4 +64,3 @@ shout.out: Remove from queue
 time: Time
 time.at: at
 view.admin: Open admin view
-feedback: "Give <strong><a href='http://tinyurl.com/ProPalaute'>feedback</a></strong> to Prodeko board!"

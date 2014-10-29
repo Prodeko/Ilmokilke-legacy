@@ -15,6 +15,8 @@ event:
   edit: Muoggaa dabahdumaa
   new: Uusi ebin dabahduma :D
 events.upcoming: Dulevad dabahdumad :--D:DD
+feedback: "<strong><a href='http://tinyurl.com/ProPalaute'>Ulise</a></strong> #yolol ::D xD"
+feedbackuni: "<strong><a href='http://tinyurl.com/LafkaPalaute'>Ulise lafkalle</a></strong> #yolol ::D xD"
 fields:
   additional: Sprölögendäd ::DD:DD
   freetext: Vabaadegsdigendäd
@@ -62,6 +64,3 @@ shout.out: Bainu vidduun! :D :D
 time: Aiga
 time.at: glo
 view.admin: Ebin admin :D
-feedback: "<strong><a href='http://tinyurl.com/ProPalaute'>Ulise</a></strong> #yolol ::D xD"
-
-
