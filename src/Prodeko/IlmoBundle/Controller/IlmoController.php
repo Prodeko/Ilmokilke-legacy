@@ -75,9 +75,9 @@ class IlmoController extends Controller
 		$kiltisNow = new \DateTime();
 		$kiltisNow->add(new \DateInterval('PT3H'));
 		$query = $repository->createQueryBuilder('e')
-			->where('e.registrationStarts < :kiltisNow')
+      ->where('e.kiltisilmo = true')
+			->andWhere('e.registrationStarts < :kiltisNow')
 			->andWhere('e.registrationStarts > :now')
-			->setParameter('now', $now)
 			->setParameters(array('now' => $now, 'kiltisNow' => $kiltisNow))
 			->getQuery();
 		$kiltisEvents = $query->getResult();
