@@ -27,6 +27,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class IlmoController extends Controller
 {
+	/* NB: The andWhere method of this Doctrine version throws an error with PHP 7.
+	   Thus, all calls to andWhere have been substituted by placing the associated
+	   content into the preceding call to where, producing equivalent result sets. */
+
 	//listaa kaikki tapahtumat
 	public function listAction()
 	{
@@ -44,8 +48,7 @@ class IlmoController extends Controller
 		
 		//Listaa tapahtumat, joiden ilmo on käynnissä
 		$query = $repository->createQueryBuilder('e')
-			->where('e.registrationStarts < :now')
-			->andWhere('e.registrationEnds > :now')
+			->where('e.registrationStarts < :now AND e.registrationEnds > :now')
 			->setParameter('now', $now)
 			->orderBy('e.takesPlace', 'ASC')
 			->getQuery();
@@ -58,12 +61,16 @@ class IlmoController extends Controller
 		$query = $repository->createQueryBuilder('e')
 			->where('e.registrationEnds < :now')
 			->orderBy('e.takesPlace', 'DESC');
-		
+	        
+                $anotherQuery = $repository->createQueryBuilder('e')
+                        ->where('e.registrationEnds < :now AND e.takesPlace > :treshold')
+                        ->orderBy('e.takesPlace', 'DESC');
+	
 		$isAdmin = $this->get('security.context')->isGranted('ROLE_ADMIN');
 		
 		if(!$isAdmin) {
-			$query = $query->andWhere('e.takesPlace > :treshold')
-							->setParameters(array('treshold' => $pastEventTreshold, 'now' => $now));
+			$query = $anotherQuery
+			        ->setParameters(array('treshold' => $pastEventTreshold, 'now' => $now));
 		}
 		else {
 			$query = $query->setParameter('now', $now);
@@ -75,9 +82,7 @@ class IlmoController extends Controller
 		$kiltisNow = new \DateTime();
 		$kiltisNow->add(new \DateInterval('PT3H'));
 		$query = $repository->createQueryBuilder('e')
-      ->where('e.kiltisilmo = true')
-			->andWhere('e.registrationStarts < :kiltisNow')
-			->andWhere('e.registrationStarts > :now')
+                        ->where('e.kiltisilmo = true AND e.registrationStarts < :kiltisNow AND e.registrationStarts > :now')
 			->setParameters(array('now' => $now, 'kiltisNow' => $kiltisNow))
 			->getQuery();
 		$kiltisEvents = $query->getResult();
@@ -186,7 +191,7 @@ class IlmoController extends Controller
 	{
 		$messageBody = "Ilmoittautumisesi tapahtumaan " . $event->getName() . " on tallennettu.\n" .
 						"Voit poistaa ilmoittautumisesi allaolevasta linkistä.\n" . 
-						"http://ilmo.prodeko.org/fi/remove/" . $token;
+						"https://ilmo.prodeko.org/fi/remove/" . $token;
 		$message = \Swift_Message::newInstance()
 		->setSubject($event->getName() . ' / Ilmoittautuminen tallennettu')
 		->setFrom('ilmo@prodeko.fi')

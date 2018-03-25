@@ -15,7 +15,7 @@ event:
   edit: Muokkaa tapahtumaa
   new: Luo uusi tapahtuma
 events.upcoming: Tulevat tapahtumat
-feedback: "Anna hallitukselle <strong><a href='http://tinyurl.com/ProPalaute'>palautetta</a></strong> killan toiminnasta!"
+feedback: "Anna hallitukselle <strong><a href='https://goo.gl/forms/Q2ND4siGBW9P96DT2'>palautetta</a></strong> killan toiminnasta!"
 feedbackuni: "Anna korkeakoululle <strong><a href='http://tinyurl.com/LafkaPalaute'>palautetta</a></strong> kursseista tai opetuksesta yleensä!"
 fields:
   additional: Lisäkentät

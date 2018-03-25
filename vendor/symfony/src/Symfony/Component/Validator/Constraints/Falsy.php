@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraint;
  *
  * @api
  */
-class False extends Constraint
+class Falsy extends Constraint
 {
     public $message = 'This value should be false';
 }

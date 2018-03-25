@@ -4,6 +4,5 @@
 .htaccess
 app/logs
 app/cache
-app/config/parameters_prod.ini
-app/config/parameters.old
-vendor/
+app/config
+

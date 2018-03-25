@@ -17,7 +17,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 /**
  * @api
  */
-class TrueValidator extends ConstraintValidator
+class FalsyValidator extends ConstraintValidator
 {
     /**
      * Checks if the passed value is valid.
@@ -35,7 +35,7 @@ class TrueValidator extends ConstraintValidator
             return true;
         }
 
-        if (true === $value || 1 === $value || '1' === $value) {
+        if (false === $value || 0 === $value || '0' === $value) {
             return true;
         }
 

@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraint;
  *
  * @api
  */
-class True extends Constraint
+class Truish extends Constraint
 {
     public $message = 'This value should be true';
 }

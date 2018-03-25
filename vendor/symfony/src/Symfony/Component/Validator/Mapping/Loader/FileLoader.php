@@ -70,6 +70,13 @@ abstract class FileLoader implements LoaderInterface
             $className = 'Symfony\\Component\\Validator\\Constraints\\'.$name;
         }
 
+	// true and false are reserved words in PHP 7.
+        if (substr($className, -4) === 'True') {
+            $className = 'Symfony\\Component\\Validator\\Constraints\\Truish';
+        } elseif (substr($className, -5) === 'False') {
+            $className = 'Symfony\\Component\\Validator\\Constraints\\Falsy';
+        }
+
         return new $className($options);
     }
 }
